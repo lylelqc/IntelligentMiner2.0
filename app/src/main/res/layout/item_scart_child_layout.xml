@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="#ffff">
+    <!--android:focusable="false" 不占用原有View点击事件-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="3dp"
+        android:layout_height="115dp"
+        android:descendantFocusability="blocksDescendants"
+        android:background="#ffffff">
+
+        <CheckBox
+            android:id="@+id/cb_select"
+            android:layout_width="19dp"
+            android:layout_height="19dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="12dp"
+            android:background="@null"
+            android:button="@drawable/selector_check_bg"
+            android:focusable="false"/>
+
+        <ImageView
+            android:id="@+id/iv_goods_pic"
+            android:layout_width="87dp"
+            android:layout_height="87dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="13dp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/cb_select"
+            android:src="@drawable/common_icon"/>
+
+        <LinearLayout
+            android:id="@+id/rl_no_edtor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="15dp"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/iv_goods_pic"
+            android:layout_toRightOf="@+id/iv_goods_pic"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <TextView
+                android:id="@+id/tv_goods_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lines="2"
+                android:layout_marginTop="13dp"
+                android:lineSpacingExtra="2dp"
+                android:text="商品名称:广东省广州市天河区大观中路95号从301"
+                android:textColor="#333333"
+                android:textSize="14sp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="规格:"/>
+
+                <TextView
+                    android:id="@+id/tv_goods_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textSize="16sp"/>
+
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:gravity="center_vertical"
+                android:layout_gravity="center_vertical"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="7dp">
+
+
+                <LinearLayout
+                    android:id="@+id/ll_textview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    >
+
+                    <TextView
+                        android:id="@+id/textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="价   格："
+                        android:textColor="@android:color/holo_red_light"
+                        android:textSize="12sp"/>
+
+                    <TextView
+                        android:id="@+id/tv_goods_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@+id/textView"
+                        android:layout_toEndOf="@+id/textView"
+                        android:layout_toRightOf="@+id/textView"
+                        android:text="@string/price"
+                        android:textColor="@android:color/holo_red_light"
+                        android:textSize="16sp"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/tv_goods_num"
+                        android:gravity="right"
+                        android:layout_marginRight="14dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/good_count"
+                        android:textSize="12dp"/>
+                </LinearLayout>
+
+            </RelativeLayout>
+        </LinearLayout>
+
+
+        <!-- android:visibility="gone"-->
+        <LinearLayout
+            android:id="@+id/ll_edit_layout"
+            android:layout_width="match_parent"
+            android:layout_height="114dp"
+            android:layout_marginLeft="15dp"
+            android:layout_toRightOf="@id/iv_goods_pic"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="114dp"
+                android:layout_weight="3">
+
+                <LinearLayout
+                    android:id="@+id/ll_change_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_reduce"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:singleLine="true"
+                        android:text="一"
+                        android:textSize="14dp"/>
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="3dp"
+                        android:layout_marginTop="3dp"
+                        android:background="#f8fbfd"/>
+
+                    <EditText
+                        android:id="@+id/tv_num"
+                        android:layout_width="57dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:singleLine="true"
+                        android:background="#f2f2f2"
+                        android:inputType="number"
+                        android:text="1"
+                        android:textSize="16dp"/>
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="3dp"
+                        android:layout_marginTop="3dp"
+                        android:background="#f8fbfd"/>
+
+
+                    <TextView
+                        android:id="@+id/tv_add"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:singleLine="true"
+                        android:text="十"
+                        android:textSize="16dp"/>
+
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/id_tv_price_now"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:padding="10dp"
+                    android:text="@string/price"
+                    android:textColor="@android:color/holo_red_light"
+                    android:textSize="14dp"
+                    android:visibility="gone"/>
+
+                <LinearLayout
+                    android:id="@+id/ll_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/ll_change_num"
+                    android:layout_gravity="left"
+                    android:layout_marginBottom="10dp" android:visibility="gone"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/id_tv_des_now"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="规格："/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:text=""/>
+
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tv_goods_delete"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="3"
+                android:background="@color/orange"
+                android:gravity="center"
+                android:text="删除"
+                android:textColor="@color/white"
+                android:visibility="gone"/>
+        </LinearLayout>
+
+    </RelativeLayout>
+</LinearLayout>

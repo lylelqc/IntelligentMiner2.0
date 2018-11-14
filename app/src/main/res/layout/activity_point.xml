@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@id/sc_view"
+        android:layout_width="match_parent"
+        android:background="#f2f2f2"
+        android:layout_below="@+id/title"
+        android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="#ffffff"
+                android:clickable="true">
+
+                <RelativeLayout
+                    android:id="@+id/ll_myintegral"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true"
+                    android:clickable="true">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="24dp"
+                        android:drawableLeft="@drawable/ic_mall_pont_top"
+                        android:drawablePadding="12dp"
+                        android:gravity="center_vertical"
+                        android:text="我的积分："
+                        android:textColor="#666"
+                        android:id="@+id/title_jifen"
+                        android:textSize="13sp"/>
+
+                    <TextView
+                        android:id="@+id/title_jifen_jl"
+                        android:layout_alignParentRight="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="24dp"
+                        android:drawableLeft="@drawable/ic_mall_pont_s"
+                        android:drawablePadding="12dp"
+                        android:gravity="center_vertical"
+                        android:text="兑换记录"
+                        android:textColor="#666"
+                        android:textSize="13sp"/>
+
+                    <TextView
+                        android:id="@+id/tv_integral"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="5dp"
+                        android:gravity="center_vertical"
+                        android:text="0"
+                        android:layout_toRightOf="@id/title_jifen"
+                        android:textColor="#0aaadc"
+                        android:textSize="12sp"/>
+                </RelativeLayout>
+
+                <TextView
+                    android:visibility="gone"
+                    android:id="@+id/tv_convert_record"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="24dp"
+                    android:clickable="true"
+                    android:drawableLeft="@drawable/ic_mall_pont_top"
+                    android:drawablePadding="6dp"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="24dp"
+                    android:text="兑换记录"
+                    android:textColor="#666"
+                    android:textSize="13sp"
+                    />
+            </RelativeLayout>
+
+            <vip.devkit.view.common.banner.BannerV
+                android:id="@+id/banner_view"
+                android:layout_width="match_parent"
+                app:banner_image_scale_type="fit_xy"
+                android:background="@drawable/home_banner"
+                android:layout_height="160dp"></vip.devkit.view.common.banner.BannerV>
+
+            <include layout="@layout/layout_point_menu"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                >
+
+                <ImageView
+                    android:layout_width="19dp"
+                    android:layout_height="19dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_mall_pont_hot"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="热门兑换"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center_vertical"
+                    android:textSize="15sp"
+                    android:textColor="#333333"
+                    android:layout_height="match_parent"/>
+
+            </LinearLayout>
+
+
+            <com.sly.app.view.MyGridView
+                android:id="@+id/gv_integral_hot"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:horizontalSpacing="2dp"
+                android:listSelector="@android:color/transparent"
+                android:numColumns="3"
+                android:padding="1dp"
+                android:verticalSpacing="2dp"/>
+
+            <vip.devkit.view.common.banner.BannerV
+                android:layout_below="@id/gv_integral_hot"
+                android:id="@+id/integral_remen_vp"
+                android:background="@drawable/home_banner"
+                app:banner_image_scale_type="fit_xy"
+                android:layout_height="100dp"
+                android:layout_width="match_parent"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                >
+
+                <ImageView
+                    android:layout_width="19dp"
+                    android:layout_height="19dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_mall_pont_star"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="热门活动"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center_vertical"
+                    android:textSize="15sp"
+                    android:textColor="#333333"
+                    android:layout_height="match_parent"/>
+
+            </LinearLayout>
+
+            <include layout="@layout/layout_point_activity"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                >
+
+                <ImageView
+                    android:layout_width="19dp"
+                    android:layout_height="19dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_mall_pont_seling"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="为您推荐"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center_vertical"
+                    android:textSize="15sp"
+                    android:textColor="#333333"
+                    android:layout_height="match_parent"/>
+
+            </LinearLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_point_list"
+                android:layout_width="match_parent"
+                android:background="#ffffff"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                android:scrollbars="none">
+            </android.support.v7.widget.RecyclerView>
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+    <include
+        android:id="@+id/title"
+        layout="@layout/main_title"/>
+    <ImageView
+        android:id="@+id/iv_toTop"
+        android:layout_width="25dp"
+        android:src="@drawable/ic_top"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="25dp"
+        android:layout_height="25dp"/>
+
+</RelativeLayout>

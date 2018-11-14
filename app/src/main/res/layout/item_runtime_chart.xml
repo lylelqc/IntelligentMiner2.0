@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="#ffffff">
+
+        <ImageView
+            android:id="@+id/iv_1"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="26dp"
+            android:src="@drawable/icon_tongji" />
+
+        <TextView
+            android:id="@+id/tv_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="7dp"
+            android:layout_toRightOf="@id/iv_1"
+            android:text="运行设备(台)  : "
+            android:textColor="#333333"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/tv_run_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="7dp"
+            android:layout_toRightOf="@id/tv_2"
+            android:text="100"
+            android:textColor="#333333"
+            android:textSize="12sp" />
+
+        <ImageView
+            android:visibility="gone"
+            android:id="@+id/iv_2"
+            android:layout_width="17dp"
+            android:layout_height="7dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/up_tongji" />
+
+        <TextView
+            android:id="@+id/tv_run_present"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:text="100%"
+            android:textColor="#389fd0"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/tv_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="7dp"
+            android:layout_toLeftOf="@id/tv_run_present"
+            android:text="运行率 :"
+            android:textColor="#333333"
+            android:textSize="12sp" />
+    </RelativeLayout>
+    <!--<LinearLayout-->
+        <!--android:visibility="gone"-->
+        <!--android:layout_marginTop="20dp"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:weightSum="2"-->
+        <!--android:background="#f4f4f4"-->
+        <!--android:layout_marginBottom="13dp"-->
+        <!--&gt;-->
+        <!--<RelativeLayout-->
+            <!--android:layout_weight="1"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_marginRight="20dp"-->
+            <!--android:layout_height="wrap_content">-->
+            <!--<LinearLayout-->
+                <!--android:orientation="vertical"-->
+                <!--android:layout_alignParentRight="true"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content">-->
+                <!--<TextView-->
+                    <!--android:id="@+id/tv_run_week_present"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:textSize="18sp"-->
+                    <!--android:text="100%"-->
+                    <!--android:layout_gravity="center_horizontal"-->
+                    <!--android:textColor="#40c98e"/>-->
+                <!--<TextView-->
+                    <!--android:id="@+id/tv_week_1"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:textSize="12sp"-->
+                    <!--android:layout_alignParentRight="true"-->
+                    <!--android:layout_marginTop="8dp"-->
+                    <!--android:text="一周平均运行率"-->
+                    <!--android:layout_below="@id/tv_run_week_present"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_marginRight="7dp"-->
+                    <!--android:layout_gravity="center_vertical"-->
+                    <!--android:textColor="#333333"/>-->
+            <!--</LinearLayout>-->
+        <!--</RelativeLayout>-->
+        <!--<RelativeLayout-->
+            <!--android:layout_weight="1"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_marginLeft="20dp"-->
+            <!--android:layout_height="wrap_content">-->
+            <!--<LinearLayout-->
+                <!--android:orientation="vertical"-->
+                <!--android:layout_alignParentLeft="true"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content">-->
+                <!--<TextView-->
+                    <!--android:id="@+id/tv_run_month_present"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:textSize="18sp"-->
+                    <!--android:text="45%"-->
+                    <!--android:layout_gravity="center_horizontal"-->
+                    <!--android:textColor="#45b8ef"/>-->
+                <!--<TextView-->
+                    <!--android:id="@+id/tv_month_2"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:textSize="12sp"-->
+                    <!--android:layout_marginTop="8dp"-->
+                    <!--android:text="当月平均运行率"-->
+                    <!--android:textColor="#333333"/>-->
+
+            <!--</LinearLayout>-->
+        <!--</RelativeLayout>-->
+
+    <!--</LinearLayout>-->
+            <!--<com.sly.app.view.chartView.BarChart03View-->
+                <!--android:id="@+id/bar_chart"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="220dp" />-->
+
+</LinearLayout>

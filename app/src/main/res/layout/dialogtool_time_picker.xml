@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+          android:background="@drawable/item_background"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <com.sly.app.view.WheelView
+            android:id="@+id/year"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:itemNumber="3"
+            app:lineColor="#f1f1f1"
+            app:maskHight="32dp"
+            app:noEmpty="true"
+            app:normalTextColor="#23b7c1"
+            app:normalTextSize="14sp"
+            app:selectedTextColor="#23b7c1"
+            app:selectedTextSize="22sp"
+            app:unitHight="50dp" />
+
+
+        <com.sly.app.view.WheelView
+            android:id="@+id/month"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:itemNumber="3"
+            app:lineColor="#f1f1f1"
+            app:lineHeight="1dp"
+            app:maskHight="32dp"
+            app:noEmpty="true"
+            app:normalTextColor="#23b7c1"
+            app:normalTextSize="14sp"
+            app:selectedTextColor="#23b7c1"
+            app:selectedTextSize="22sp"
+            app:unitHight="50dp" />
+
+        <com.sly.app.view.WheelView
+            android:id="@+id/day"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:itemNumber="3"
+            app:lineColor="#f1f1f1"
+            app:lineHeight="1dp"
+            app:maskHight="32dp"
+            app:noEmpty="true"
+            app:normalTextColor="#23b7c1"
+            app:normalTextSize="14sp"
+            app:selectedTextColor="#23b7c1"
+            app:selectedTextSize="22sp"
+            app:unitHight="50dp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@android:color/transparent" />
+
+    <Button
+        android:id="@+id/dialogtool_time_select_sure"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/dialog_shape_corners"
+        android:text="确定" />
+
+</LinearLayout>

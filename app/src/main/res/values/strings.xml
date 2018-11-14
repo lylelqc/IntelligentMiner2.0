@@ -1,0 +1,55 @@
+<resources>
+    <string name="app_name">智能矿工</string>
+    <string name="good_count">x %d</string>
+    <string name="price">￥0.00</string>
+    <string name="total_1">合计：</string>
+    <string name="ac_0">结算(0)</string>
+
+    <string name="pwd">输入密码</string>
+    <string name="forgot_pwd">忘记密码？</string>
+    <string name="num_1">1</string>
+    <string name="num_2">2</string>
+    <string name="num_3">3</string>
+    <string name="num_4">4</string>
+    <string name="num_5">5</string>
+    <string name="num_6">6</string>
+    <string name="num_7">7</string>
+    <string name="num_8">8</string>
+    <string name="num_9">9</string>
+    <string name="num_0">0</string>
+    <string name="About_us_top"> \"智能矿工\"是由广州算力云区块链科技有限公司自主研发的一款矿场管理软件，是一款为矿场管理量身打造的智能化管理平台。该平台的推出改变了传统的管理模式，实现设备可视化、人员管理智能化、计费透明化。</string>
+    <string name="reg_name">姓\u3000\u3000\u3000名：</string>
+    <string name="reg_tell">手\u3000机\u3000号：</string>
+    <string name="reg_tag_1">第一识别码：</string>
+    <string name="reg_tag_2">第二识别码：</string>
+    <string name="reg_get_code">获取验证码</string>
+    <string name="reg_contract">同意算力云使用协议</string>
+    <string name="reg_register">注册</string>
+    <string name="join_id">会\u3000 员\u3000 ID</string>
+
+    <string name="empty_view_hint">暂无数据</string>
+    <string name="error_view_hint">加载失败</string>
+    <string name="no_network_view_hint">网络异常</string>
+
+    <string-array name="bank">
+        <item>选择发卡银行</item>
+        <item>中国工商银行</item>
+        <item>中国农业银行 </item>
+        <item>中国建设银行</item>
+    </string-array>
+
+    <string-array name="currency_type">
+        <item>充值类型</item>
+        <item>钱包余额</item>
+        <item>产品券</item>
+        <item>库存额度</item>
+    </string-array>
+    <string-array name="sp_join_2">
+        <item>请选择礼包类型</item>
+        <item>VIP会员</item>
+        <item>品牌大使</item>
+        <item>金牌代理</item>
+        <item>钻石代理</item>
+        <item>合伙人</item>
+    </string-array>
+</resources>

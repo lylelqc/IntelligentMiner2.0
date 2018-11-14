@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_null"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="115dp"
+        android:gravity="center_horizontal"
+        android:text="您还没有相关的订单哦"
+        android:visibility="visible"/>
+
+    <com.sly.app.view.LoadMoreListView
+        android:id="@+id/lv_odetails"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:cacheColorHint="#ffffff"
+        android:listSelector="#ffffff"
+        android:divider="@null"
+        android:dividerHeight="0dp"
+        android:visibility="visible"/>
+
+</RelativeLayout>

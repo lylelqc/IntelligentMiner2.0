@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="#f2f2f2"
+              android:orientation="vertical">
+
+    <include layout="@layout/main_title"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginTop="10dp"
+        android:background="#fff"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="12dp" android:gravity="center"
+            android:text="金额"
+            android:textColor="#333333"
+            android:textSize="14sp"
+            android:id="@+id/textView9"/>
+
+        <EditText
+            android:id="@+id/recharge_money"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_toEndOf="@+id/textView9" android:layout_marginLeft="15dp"
+            android:layout_toStartOf="@+id/sp_currency_type"
+            android:background="#00000000"
+            android:hint="建议充值1元以上金额"
+            android:numeric="integer"
+            android:textColorHint="#ccc"
+            android:textSize="14sp"/>
+
+        <Spinner
+            android:id="@+id/sp_currency_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:entries="@array/currency_type"
+            android:singleLine="true" android:layout_marginRight="15dp"
+            android:textSize="15sp"/>
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="27dp"
+        android:text="选择支付的方式"
+        android:textColor="#666666"/>
+
+    <RelativeLayout
+        android:id="@+id/rl_pay_aliPay"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="#fff">
+
+        <ImageView
+            android:id="@+id/gmfw_icon_alipay"
+            android:layout_width="22dp"
+            android:layout_height="20dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="12dp"
+            android:src="@drawable/my_wallet2_topup_icon1"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="9dp"
+            android:layout_toRightOf="@id/gmfw_icon_alipay"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="支付宝"
+                android:textColor="#333333"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="建议安装微信5.0及以上版本的用户使用"
+                android:textColor="#989898"
+                android:textSize="8sp"/>
+        </LinearLayout>
+
+        <CheckBox
+            android:id="@+id/cb_pay_aliPay"
+            android:layout_width="19dp"
+            android:layout_height="19dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="13dp"
+            android:layout_marginRight="13dp"
+            android:button="@drawable/selector_check_bg"
+            />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="#e5e5e5"/>
+    <RelativeLayout
+        android:id="@+id/rl_pay_weChat"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="#fff">
+
+        <ImageView
+            android:id="@+id/gmfw_icon_wx"
+            android:layout_width="22dp"
+            android:layout_height="20dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="12dp"
+            android:src="@drawable/my_wallet2_topup_icon2"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="9dp"
+            android:layout_toRightOf="@id/gmfw_icon_wx"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="微信充值"
+                android:textColor="#333333"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="建议安装微信5.0及以上版本的用户使用"
+                android:textColor="#989898"
+                android:textSize="8sp"/>
+        </LinearLayout>
+
+        <CheckBox
+            android:id="@+id/cb_pay_weChat"
+            android:layout_width="19dp"
+            android:layout_height="19dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="13dp"
+            android:layout_marginRight="13dp"
+            android:button="@drawable/selector_check_bg"
+            />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="#e5e5e5"/>
+
+    <RelativeLayout
+        android:id="@+id/rl_pay_wallet"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" android:visibility="gone"
+        android:background="@color/white">
+
+        <ImageView
+            android:id="@+id/wx"
+            android:layout_width="22dp"
+            android:layout_height="16dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/my_wallet2_topup_icon3"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="9dp"
+            android:layout_toEndOf="@+id/wx"
+            android:layout_toRightOf="@+id/wx"
+            android:text="线下支付"
+            android:textColor="#333333"
+            android:textSize="14sp"/>
+
+        <CheckBox
+            android:id="@+id/cb_pay_wallet"
+            android:layout_width="19dp"
+            android:layout_height="19dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="13dp"
+            android:layout_marginRight="13dp"
+            android:button="@drawable/selector_check_bg"
+            android:checked="false"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:background="#d5d5d5"/>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/bt_recharge"
+        style="@style/default_btn"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/click_seletor"
+        android:gravity="center"
+        android:text="充值"
+        android:textColor="#ffffff"
+        android:textSize="17dp"
+        />
+</LinearLayout>

@@ -1,0 +1,1160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f4f4f4"
+    android:orientation="vertical">
+
+    <include layout="@layout/main_title" />
+
+    <RelativeLayout
+        android:id="@+id/rl_chooise"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="1dp"
+        android:background="@color/white">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:text="币种"
+            android:textColor="#333333"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:id="@+id/iv_chooise"
+            android:layout_width="8dp"
+            android:layout_height="16dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:src="@drawable/calculator_choice"
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/tv_bto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:text="BTC"
+            android:textColor="@color/sly_text_blue2"
+            android:textSize="14sp" />
+    </RelativeLayout>
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/sc_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1dp"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="1dp"
+                        android:layout_weight="1"
+                        android:background="@color/white">
+
+                        <ImageView
+                            android:id="@+id/iv_1"
+                            android:layout_width="23dp"
+                            android:layout_height="23dp"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="12dp"
+                            android:src="@drawable/calculator_icon1" />
+
+                        <TextView
+                            android:id="@+id/tv_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="6dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_toRightOf="@id/iv_1"
+                            android:text="单台矿机价格"
+                            android:textColor="@color/sly_text_666666"
+                            android:textSize="12sp" />
+
+                        <EditText
+                            android:id="@+id/et_3"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/tv_2"
+                            android:layout_marginBottom="15dp"
+                            android:layout_marginLeft="6dp"
+                            android:layout_marginTop="11dp"
+                            android:layout_toRightOf="@id/iv_1"
+                            android:background="@color/white"
+                            android:text="00.00"
+                            android:inputType="number"
+                            android:digits="0123456789."
+                            android:textColor="#333333"
+                            android:textSize="16sp" />
+
+                        <ImageView
+                            android:id="@+id/iv_1_x"
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_alignRight="@id/et_3"
+                            android:layout_marginRight="14dp"
+                            android:layout_marginTop="45dp"
+                            android:src="@drawable/calculator_icon9" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@color/white">
+
+                        <ImageView
+                            android:id="@+id/iv2_1"
+                            android:layout_width="23dp"
+                            android:layout_height="23dp"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="12dp"
+                            android:src="@drawable/calculator_icon2" />
+
+                        <TextView
+                            android:id="@+id/tv2_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="6dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_toRightOf="@id/iv2_1"
+                            android:text="矿机数量"
+                            android:textColor="@color/sly_text_666666"
+                            android:textSize="12sp" />
+
+                        <EditText
+                            android:id="@+id/et2_3"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/tv2_2"
+                            android:layout_marginBottom="15dp"
+                            android:layout_marginLeft="6dp"
+                            android:layout_marginTop="11dp"
+                            android:layout_toRightOf="@id/iv2_1"
+                            android:background="@color/white"
+                            android:text="00.00"
+                            android:inputType="number"
+                            android:digits="0123456789."
+                            android:textColor="#333333"
+                            android:textSize="16sp" />
+
+                        <ImageView
+                            android:id="@+id/iv2_1_x"
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_alignRight="@id/et2_3"
+                            android:layout_marginRight="14dp"
+                            android:layout_marginTop="45dp"
+                            android:src="@drawable/calculator_icon9" />
+
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1dp"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="1dp"
+                        android:layout_weight="1"
+                        android:background="@color/white">
+
+                        <ImageView
+                            android:id="@+id/iv3_1"
+                            android:layout_width="23dp"
+                            android:layout_height="23dp"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="12dp"
+                            android:src="@drawable/calculator_icon3" />
+
+                        <TextView
+                            android:id="@+id/tv3_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="6dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_toRightOf="@id/iv3_1"
+                            android:text="矿机算力（TH/s）"
+                            android:textColor="@color/sly_text_666666"
+                            android:textSize="12sp" />
+
+                        <EditText
+                            android:id="@+id/et3_3"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/tv3_2"
+                            android:layout_marginBottom="15dp"
+                            android:layout_marginLeft="6dp"
+                            android:layout_marginTop="11dp"
+                            android:layout_toRightOf="@id/iv3_1"
+                            android:background="@color/white"
+                            android:text="00.00"
+                            android:inputType="number"
+                            android:digits="0123456789."
+                            android:textColor="#333333"
+                            android:textSize="16sp" />
+
+                        <ImageView
+                            android:id="@+id/iv3_1_x"
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_alignRight="@id/et3_3"
+                            android:layout_marginRight="14dp"
+                            android:layout_marginTop="45dp"
+                            android:src="@drawable/calculator_icon9" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@color/white">
+
+                        <ImageView
+                            android:id="@+id/iv4_1"
+                            android:layout_width="23dp"
+                            android:layout_height="23dp"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="12dp"
+                            android:src="@drawable/calculator_icon4" />
+
+                        <TextView
+                            android:id="@+id/tv4_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="6dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_toRightOf="@id/iv4_1"
+                            android:text="矿机功耗（W）"
+                            android:textColor="@color/sly_text_666666"
+                            android:textSize="12sp" />
+
+                        <EditText
+                            android:id="@+id/et4_3"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/tv4_2"
+                            android:layout_marginBottom="15dp"
+                            android:layout_marginLeft="6dp"
+                            android:layout_marginTop="11dp"
+                            android:layout_toRightOf="@id/iv4_1"
+                            android:background="@color/white"
+                            android:text="00.00"
+                            android:inputType="number"
+                            android:digits="0123456789."
+                            android:textColor="#333333"
+                            android:textSize="16sp" />
+
+                        <ImageView
+                            android:id="@+id/iv4_1_x"
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_alignRight="@id/et4_3"
+                            android:layout_marginRight="14dp"
+                            android:layout_marginTop="45dp"
+                            android:src="@drawable/calculator_icon9" />
+
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1dp"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="1dp"
+                        android:layout_weight="1"
+                        android:background="@color/white">
+
+                        <ImageView
+                            android:id="@+id/iv5_1"
+                            android:layout_width="23dp"
+                            android:layout_height="23dp"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="12dp"
+                            android:src="@drawable/calculator_icon5" />
+
+                        <TextView
+                            android:id="@+id/tv5_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="6dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_toRightOf="@id/iv5_1"
+                            android:text="电费（¥/kwh）"
+                            android:textColor="@color/sly_text_666666"
+                            android:textSize="12sp" />
+
+                        <EditText
+                            android:id="@+id/et5_3"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/tv5_2"
+                            android:layout_marginBottom="15dp"
+                            android:layout_marginLeft="6dp"
+                            android:layout_marginTop="11dp"
+                            android:layout_toRightOf="@id/iv5_1"
+                            android:background="@color/white"
+                            android:text="00.00"
+                            android:inputType="number"
+                            android:digits="0123456789."
+                            android:textColor="#333333"
+                            android:textSize="16sp" />
+
+                        <ImageView
+                            android:id="@+id/iv5_1_x"
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_alignRight="@id/et5_3"
+                            android:layout_marginRight="14dp"
+                            android:layout_marginTop="45dp"
+                            android:src="@drawable/calculator_icon9" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@color/white">
+
+                        <ImageView
+                            android:id="@+id/iv6_1"
+                            android:layout_width="23dp"
+                            android:layout_height="23dp"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="12dp"
+                            android:src="@drawable/calculator_icon6" />
+
+                        <TextView
+                            android:id="@+id/tv6_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="6dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_toRightOf="@id/iv6_1"
+                            android:text="每T功耗（W/T）"
+                            android:textColor="@color/sly_text_666666"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/et6_3"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/tv6_2"
+                            android:layout_marginBottom="15dp"
+                            android:layout_marginLeft="6dp"
+                            android:layout_marginTop="11dp"
+                            android:layout_toRightOf="@id/iv6_1"
+                            android:background="@color/white"
+                            android:text="00.00"
+                            android:textColor="#333333"
+                            android:textSize="16sp" />
+
+
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1dp"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="1dp"
+                        android:layout_weight="1"
+                        android:background="@color/white">
+
+                        <ImageView
+                            android:id="@+id/iv7_1"
+                            android:layout_width="23dp"
+                            android:layout_height="23dp"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="12dp"
+                            android:src="@drawable/calculator_icon7" />
+
+                        <TextView
+                            android:id="@+id/tv7_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="6dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_toRightOf="@id/iv7_1"
+                            android:text="每T价格（/T）"
+                            android:textColor="@color/sly_text_666666"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/et7_3"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/tv7_2"
+                            android:layout_marginBottom="15dp"
+                            android:layout_marginLeft="6dp"
+                            android:layout_marginTop="11dp"
+                            android:layout_toRightOf="@id/iv7_1"
+                            android:background="@color/white"
+                            android:text="00.00"
+                            android:textColor="#333333"
+                            android:textSize="16sp" />
+
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@color/white">
+
+                        <ImageView
+                            android:id="@+id/iv8_1"
+                            android:layout_width="23dp"
+                            android:layout_height="23dp"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="12dp"
+                            android:src="@drawable/calculator_icon8" />
+
+                        <TextView
+                            android:id="@+id/tv8_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="6dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_toRightOf="@id/iv8_1"
+                            android:text="全网算力（/T）"
+                            android:textColor="@color/sly_text_666666"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/et8_3"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/tv8_2"
+                            android:layout_marginBottom="15dp"
+                            android:layout_marginLeft="6dp"
+                            android:layout_marginTop="11dp"
+                            android:layout_toRightOf="@id/iv8_1"
+                            android:background="@color/white"
+                            android:text="00.00"
+                            android:textColor="#333333"
+                            android:textSize="16sp" />
+
+                    </RelativeLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/white"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_marginRight="9dp"
+                        android:src="@drawable/calculator_img1" />
+
+                    <TextView
+                        android:id="@+id/tv_price_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="8dp"
+                        android:gravity="center"
+                        android:text="币&#8195;&#8195;价:" />
+
+                    <EditText
+                        android:id="@+id/tv_price_b"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:singleLine="true"
+                        android:background="@drawable/bg_caler_tv"
+                        android:gravity="center"
+                        android:minWidth="124dp"
+                        android:text="00.00"
+                        android:inputType="number"
+                        android:digits="0123456789."
+                        android:textColor="@color/sly_text_666666" />
+
+
+                    <TextView
+                        android:id="@+id/tv_price_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="6dp"
+                        android:layout_marginRight="8dp"
+                        android:gravity="center"
+                        android:text="¥/BTC"
+                        android:textColor="#333333" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/white"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_marginRight="9dp"
+                        android:src="@drawable/calculator_img2" />
+
+                    <TextView
+                        android:id="@+id/tv_price2_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="8dp"
+                        android:gravity="center"
+                        android:text="起始难度:" />
+
+                    <EditText
+                        android:id="@+id/tv_start_b"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:background="@drawable/bg_caler_tv"
+                        android:gravity="center"
+                        android:minWidth="124dp"
+                        android:singleLine="true"
+                        android:text="00.00"
+                        android:inputType="number"
+                        android:digits="0123456789."
+                        android:textColor="@color/sly_text_666666" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/white"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_marginRight="9dp"
+                        android:src="@drawable/calculator_img3" />
+
+                    <TextView
+                        android:id="@+id/tv_hard_b"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="8dp"
+                        android:gravity="center"
+                        android:text="难度增幅:" />
+
+                    <EditText
+                        android:id="@+id/tv_price3_b"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:background="@drawable/bg_caler_tv"
+                        android:gravity="center"
+                        android:minWidth="124dp"
+                        android:singleLine="true"
+                        android:text="00.00"
+                        android:inputType="number"
+                        android:digits="0123456789."
+                        android:textColor="@color/sly_text_666666" />
+
+
+                    <TextView
+                        android:id="@+id/tv_price3_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="6dp"
+                        android:layout_marginRight="8dp"
+                        android:gravity="center"
+                        android:text="%"
+                        android:textColor="#333333" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/white"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_marginRight="9dp"
+                        android:src="@drawable/calculator_img4" />
+
+                    <TextView
+                        android:id="@+id/tv_price4_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="8dp"
+                        android:gravity="center"
+                        android:text="收  益  比:" />
+
+                    <EditText
+                        android:id="@+id/tv_money_b"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:background="@drawable/bg_caler_tv"
+                        android:gravity="center"
+                        android:minWidth="124dp"
+                        android:singleLine="true"
+                        android:text="00.00"
+                        android:inputType="number"
+                        android:digits="0123456789."
+                        android:textColor="@color/sly_text_666666" />
+
+                    <TextView
+                        android:id="@+id/tv_price4_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="6dp"
+                        android:layout_marginRight="8dp"
+                        android:gravity="center"
+                        android:text="%"
+                        android:textColor="#333333" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:gravity="center_horizontal"
+                    android:paddingBottom="18dp"
+                    android:paddingTop="8dp"
+                    android:text="注:折合PPS 100%"
+                    android:textColor="#999999"
+                    android:textSize="11dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_cal"
+                        android:layout_width="match_parent"
+                        android:layout_height="42dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginBottom="12dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:background="@drawable/bg_submit_btn"
+                        android:gravity="center"
+                        android:text="计算"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:orientation="horizontal"
+                    android:paddingLeft="15dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="每日预估收益: "
+                        android:textColor="@color/sly_text_666666"
+                        android:textSize="13dp" />
+
+                    <TextView
+                        android:id="@+id/tv_day_get_money"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0.0000000000 BTC/TH"
+                        android:textColor="#fcaf01"
+                        android:textSize="13dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:orientation="horizontal"
+                    android:paddingBottom="20dp"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="回本天数为 "
+                        android:textColor="@color/sly_text_666666"
+                        android:textSize="13dp" />
+
+                    <TextView
+                        android:id="@+id/tv_back_day"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textColor="#46d598"
+                        android:textSize="12dp" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="37dp"
+                    android:background="@color/white"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:layout_width="4dp"
+                        android:layout_height="12dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="12dp"
+                        android:background="#2a93ff"></View>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="8dp"
+                        android:text="预期概览"
+                        android:textColor="#333333"
+                        android:textSize="13dp" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1dp"
+                    android:background="@color/white"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="14dp"
+                        android:layout_marginTop="14dp"
+                        android:layout_weight="1">
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="45dp"
+                            android:layout_alignParentRight="true"
+                            android:background="#ececec">
+
+
+                        </View>
+
+                        <TextView
+                            android:id="@+id/tv_day_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:text="当前每日收入"
+                            android:textColor="#333333"
+                            android:textSize="15dp" />
+
+                        <TextView
+                            android:id="@+id/tv_yu_money"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/tv_day_1"
+                            android:layout_centerHorizontal="true"
+                            android:text="¥ 00.00"
+                            android:textColor="#00dc9b"
+                            android:textSize="15dp" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="14dp"
+                        android:layout_marginTop="14dp"
+                        android:layout_weight="1">
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="45dp"
+                            android:layout_alignParentRight="true"
+                            android:background="#ececec">
+
+
+                        </View>
+
+                        <TextView
+                            android:id="@+id/tv_day_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:text="当前每日电费"
+                            android:textColor="#333333"
+                            android:textSize="15dp" />
+
+                        <TextView
+                            android:id="@+id/tv_yu_dian"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/tv_day_2"
+                            android:layout_centerHorizontal="true"
+                            android:text="¥ 00.00"
+                            android:textColor="#00dc9b"
+                            android:textSize="15dp" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="14dp"
+                        android:layout_marginTop="14dp"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/tv_day_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:text="当前每日利润"
+                            android:textColor="#333333"
+                            android:textSize="15dp" />
+
+                        <TextView
+                            android:id="@+id/tv_yu_lirun"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/tv_day_3"
+                            android:layout_centerHorizontal="true"
+                            android:text="¥ 00.00"
+                            android:textColor="#00dc9b"
+                            android:textSize="15dp" />
+
+                    </RelativeLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1dp"
+                    android:background="@color/white"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="14dp"
+                        android:layout_marginTop="14dp"
+                        android:layout_weight="1">
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="45dp"
+                            android:layout_alignParentRight="true"
+                            android:background="#ececec">
+
+
+                        </View>
+
+                        <TextView
+                            android:id="@+id/tv_day2_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:text="总矿机成本"
+                            android:textColor="#333333"
+                            android:textSize="15dp" />
+
+                        <TextView
+                            android:id="@+id/tv_yu_chenben"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/tv_day2_1"
+                            android:layout_centerHorizontal="true"
+                            android:text="¥ 00.00"
+                            android:textColor="#14b4ff"
+                            android:textSize="15dp" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="14dp"
+                        android:layout_marginTop="14dp"
+                        android:layout_weight="1">
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="45dp"
+                            android:layout_alignParentRight="true"
+                            android:background="#ececec">
+
+
+                        </View>
+
+                        <TextView
+                            android:id="@+id/tv_day2_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:text="每T价格"
+                            android:textColor="#333333"
+                            android:textSize="15dp" />
+
+                        <TextView
+                            android:id="@+id/tv_yu_t_price"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/tv_day2_2"
+                            android:layout_centerHorizontal="true"
+                            android:text="¥ 00.00"
+                            android:textColor="#14b4ff"
+                            android:textSize="15dp" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="14dp"
+                        android:layout_marginTop="14dp"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/tv_day2_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:text="投资回报率"
+                            android:textColor="#333333"
+                            android:textSize="15dp" />
+
+                        <TextView
+                            android:id="@+id/tv_yu_huibao"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/tv_day2_3"
+                            android:layout_centerHorizontal="true"
+                            android:text="¥ 00.00"
+                            android:textColor="#14b4ff"
+                            android:textSize="15dp" />
+
+                    </RelativeLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1dp"
+                    android:background="@color/white"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="14dp"
+                        android:layout_marginTop="14dp"
+                        android:layout_weight="1">
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="45dp"
+                            android:layout_alignParentRight="true"
+                            android:background="#ececec">
+
+
+                        </View>
+
+                        <TextView
+                            android:id="@+id/tv_day3_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:text="总收入"
+                            android:textColor="#333333"
+                            android:textSize="15dp" />
+
+                        <TextView
+                            android:id="@+id/tv_yu_zong_shouru"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/tv_day3_1"
+                            android:layout_centerHorizontal="true"
+                            android:text="¥ 00.00"
+                            android:textColor="#f29718"
+                            android:textSize="15dp" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="14dp"
+                        android:layout_marginTop="14dp"
+                        android:layout_weight="1">
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="45dp"
+                            android:layout_alignParentRight="true"
+                            android:background="#ececec">
+
+
+                        </View>
+
+                        <TextView
+                            android:id="@+id/tv_day3_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:text="总利润"
+                            android:textColor="#333333"
+                            android:textSize="15dp" />
+
+                        <TextView
+                            android:id="@+id/tv_yu_zong_lirun"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/tv_day3_2"
+                            android:layout_centerHorizontal="true"
+                            android:text="¥ 00.00"
+                            android:textColor="#f29718"
+                            android:textSize="15dp" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="14dp"
+                        android:layout_marginTop="14dp"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/tv_day3_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:text="总电费"
+                            android:textColor="#333333"
+                            android:textSize="15dp" />
+
+                        <TextView
+                            android:id="@+id/tv_yu_zong_dianfei"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/tv_day3_3"
+                            android:layout_centerHorizontal="true"
+                            android:text="¥ 00.00"
+                            android:textColor="#f29718"
+                            android:textSize="15dp" />
+
+                    </RelativeLayout>
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="50dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/bg_zhuyi_txt"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="26dp"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:paddingTop="24dp"
+                    android:text="注：此计算结果仅适用于PPS模式下的挖矿。另外挖矿会受矿机实质工作状态，当地电费等因素影响，造成与实际值有误差，计算结果仅供参考。"
+                    android:textColor="#333333"
+                    android:textSize="12sp"
+
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+</LinearLayout>

@@ -1,0 +1,21 @@
+
+minSdkVersion 19
+targetSdkVersion 25
+ signingConfigs {
+        config {
+            keyAlias 'dqcsign'
+            keyPassword 'www.dqc100.com'
+            storeFile file('../appInfo/dqcSign.jks')
+            storePassword 'www.dqc100.com'
+        }
+    }
+
+开发者账号：
+支付宝 ： 2524671647@qq.com，密码dqc100
+微   信： app_dqc100@qq.com   mhdqc100123456
+
+
+
+应用名称：聚微
+上架的应用市场名称：百度应用市场
+下载地址：http://shouji.baidu.com/software/23093938.html

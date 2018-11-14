@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/main_title" />
+
+    <include layout="@layout/gray_line" />
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingBottom="12dp">
+
+                <TextView
+                    android:id="@+id/goods_description_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:gravity="center"
+                    android:text="矿场介绍"/>
+
+                <EditText
+                    android:id="@+id/goods_description_edt"
+                    android:layout_below="@+id/goods_description_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:gravity="top"
+                    android:textSize="14sp"
+                    android:background="@null"
+                    android:scrollbars="vertical"
+                    android:maxLength="300"
+                    android:textColor="@color/text_color_normal"/>
+
+                <TextView
+                    android:id="@+id/goods_description_num_tv"
+                    android:layout_below="@+id/goods_description_edt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:textColor="@color/sly_text_9c9c9c"
+                    android:layout_alignParentRight="true"
+                    android:text="还能输入300字"/>
+
+            </RelativeLayout>
+            <include layout="@layout/gray_line" />
+            <RelativeLayout
+                android:id="@+id/rl_adress"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:paddingRight="15dp"
+                android:paddingLeft="15dp"
+                android:background="@color/white">
+                <TextView
+                    android:id="@+id/tv_area"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:textSize="14sp"
+                    android:drawablePadding="2dp"
+                    android:drawableRight="@drawable/my_next2" />
+                <TextView
+                    android:id="@+id/tv_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="10dp"
+                    android:text="位置："
+                    android:textColor="#9c9c9c"
+                    android:textSize="15sp"/>
+            </RelativeLayout>
+            <include layout="@layout/gray_line" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:background="@color/white">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="20dp"
+                    android:text="机位数量"
+                    android:textColor="#9c9c9c"
+                    android:textSize="15sp"/>
+                <EditText
+                    android:id="@+id/et_num"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@null"
+                    android:hint="请输入您的机位数量"
+                    android:textColor="#323232"
+                    android:inputType="number"
+                    android:textColorHint="@color/sly_text_999999"
+                    android:textSize="15sp" />
+            </LinearLayout>
+            <include layout="@layout/gray_line" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="15dp"
+                    android:text="服务费(元)"
+                    android:textColor="#9c9c9c"
+                    android:textSize="15sp"/>
+
+                <EditText
+                    android:id="@+id/et_begin_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@null"
+                    android:hint="起始单价"
+                    android:textColor="#323232"
+                    android:gravity="center"
+                    android:inputType="number|numberDecimal"
+                    android:textColorHint="@color/sly_text_999999"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:text="~"
+                    android:textColor="#9c9c9c"
+                    android:textSize="15sp"/>
+
+                <EditText
+                    android:id="@+id/et_end_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@null"
+                    android:hint="结束单价"
+                    android:textColor="#323232"
+                    android:gravity="center"
+                    android:inputType="number|numberDecimal"
+                    android:textColorHint="@color/sly_text_999999"
+                    android:textSize="15sp" />
+            </LinearLayout>
+            <include layout="@layout/gray_line" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="20dp"
+                    android:text="管理费(元/月):"
+                    android:textColor="#9c9c9c"
+                    android:textSize="15sp"/>
+                <EditText
+                    android:id="@+id/et_manager_fee"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@null"
+                    android:hint="请输入您的管理费"
+                    android:textColor="#323232"
+                    android:inputType="number"
+                    android:digits="0123456789."
+                    android:textColorHint="@color/sly_text_999999"
+                    android:textSize="15sp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:background="@color/white">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="45dp"
+                    android:gravity="center_vertical"
+                    android:textSize="15sp"
+                    android:text="请上传矿场资质/现场等相关图片" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="45dp"
+                    android:gravity="center_vertical"
+                    android:textSize="12sp"
+                    android:text="（最多可上传4张）" />
+            </LinearLayout>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_list"
+                android:layout_width="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+              />
+
+
+            <include layout="@layout/gray_line" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="20dp"
+                    android:text="联系电话"
+                    android:textColor="#9c9c9c"
+                    android:textSize="15sp"/>
+                <EditText
+                    android:id="@+id/et_tell"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@null"
+                    android:hint="请输入您的电话"
+                    android:textColor="#323232"
+                    android:inputType="number"
+                    android:textColorHint="@color/sly_text_999999"
+                    android:textSize="15sp" />
+            </LinearLayout>
+            <Button
+                android:id="@+id/btn_submit"
+                style="@style/default_btn"
+                android:layout_marginBottom="30dp"
+                android:layout_marginTop="55dp"
+                android:background="@drawable/button_color_selector"
+                android:text="提交"
+                android:textColor="#fff"
+                android:textSize="19sp" />
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+</LinearLayout>

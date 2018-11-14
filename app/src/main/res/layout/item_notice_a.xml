@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="#f2f2f2"
+    >
+
+    <com.sly.app.view.SwipeListLayout
+        android:id="@+id/sll_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        >
+
+        <LinearLayout
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:background="#ff3148">
+
+            <TextView
+                android:id="@+id/tv_delete"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="删除"
+                android:textColor="#ffffff"
+                android:textSize="17sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#ffffff"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="27dp"
+                android:layout_marginTop="15dp"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="订单已签收"
+                    android:textColor="#2cb064"
+                    android:textSize="15sp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="（快递公司）"
+                    android:layout_marginLeft="20dp"
+                    android:textSize="13sp"
+                    android:textColor="#999999"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="27dp"
+                android:layout_marginTop="10dp"
+                android:paddingBottom="12dp">
+                <RelativeLayout
+                    android:layout_width="60dp"
+                    android:layout_height="60dp">
+                    <ImageView
+                        android:id="@+id/iv_msg_img"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:src="@drawable/default_image"/>
+                    <TextView
+                        android:layout_width="60dp"
+                        android:layout_height="16dp"
+                        android:background="#777777"
+                        android:text="1件商品"
+                        android:textColor="#ffffff"
+                        android:gravity="center"
+                        android:textSize="10sp"
+                        android:layout_alignParentBottom="true"/>
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    >
+
+                    <TextView
+                        android:id="@+id/tv_msg_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="御美丽冰红茶"
+                        android:textColor="#333333"
+                        android:maxLength="9"
+                        android:ellipsize="end"
+                        android:textSize="15sp"/>
+
+                    <TextView
+                        android:id="@+id/tv_msg_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:text="17/08/19"
+                        android:textColor="#999999"
+                        android:textSize="12sp"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="35dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="物流单号:"
+                            android:textColor="#999999"
+                            android:textSize="13sp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginLeft="20dp"
+                            android:text="46512165123413"
+                            android:textColor="#999999"
+                            android:textSize="13sp"/>
+                    </LinearLayout>
+
+                </RelativeLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+    </com.sly.app.view.SwipeListLayout>
+</LinearLayout>

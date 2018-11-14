@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:background="@drawable/bg_share_layout">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="10dp"
+        android:layout_height="50dp">
+
+        <TextView
+            android:id="@+id/tv_dialog_title"
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_height="match_parent"
+            android:textSize="15sp"
+            android:textColor="#333333"
+            android:text="绑定会员"/>
+
+        <ImageView
+            android:id="@+id/iv_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/ic_delete"/>
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp"
+            android:layout_gravity="center"
+            android:text="会员号"
+            android:textSize="12sp"
+            android:textColor="@color/sly_text_666666"/>
+
+        <EditText
+            android:id="@+id/et_dialog_txt"
+            android:layout_width="180dp"
+            android:layout_height="45dp"
+            android:layout_gravity="center"
+            android:numeric="integer"
+            android:background="@drawable/bg_share_layout"
+            android:textSize="13sp"
+            android:textColor="@color/sly_text_666666"/>
+
+        <TextView
+            android:id="@+id/tv_vip_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_gravity="center"
+            android:textSize="12sp"
+            android:textColor="@color/sly_text_666666"/>
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_search"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:layout_alignParentStart="true"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="65dp"
+            android:background="@drawable/flow_checked_bg"
+            android:gravity="center"
+            android:text="搜索"
+            android:textColor="#ffffff"
+            android:textSize="13sp" />
+        <TextView
+            android:id="@+id/tv_submit_vip_num"
+            android:layout_width="80dp"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="15dp"
+            android:textSize="13sp"
+            android:background="@drawable/flow_checked_bg"
+            android:textColor="#ffffff"
+            android:text="确定添加"
+            android:layout_toRightOf="@+id/tv_search"/>
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="15dp"/>
+
+</LinearLayout>

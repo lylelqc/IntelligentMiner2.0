@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/main_title2" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@color/sly_line_gray"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@color/white"
+                android:weightSum="3">
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="45dp"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:text="备件"
+                        android:textSize="14dp"
+                        android:textColor="#333333"/>
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/tv_num"
+                    android:layout_width="0dp"
+                    android:layout_height="45dp"
+                    android:layout_weight="1"
+                    android:text="数量"
+                    android:gravity="center"
+                    android:textSize="14sp"
+                    android:textColor="#333333" />
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="45dp"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/tv_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="15dp"
+                        android:layout_alignParentRight="true"
+                        android:text="价格"
+                        android:textSize="14dp"
+                        android:textColor="#333333"/>
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#f4f4f4"/>
+
+            <LinearLayout
+                android:id="@+id/ll_item"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="#fff">
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="15dp"
+                android:background="#f4f4f4"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="#fff">
+
+                <TextView
+                    android:id="@+id/tv_work_hour"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15dp"
+                    android:drawablePadding="10dp"
+                    android:gravity="center_vertical"
+                    android:text="维修工时费: "
+                    android:textSize="15sp"
+                    android:textColor="#333333" />
+
+                <TextView
+                    android:id="@+id/tv_rmb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="12dp"
+                    android:layout_toRightOf="@+id/tv_work_hour"
+                    android:text="¥"
+                    android:textSize="12sp"
+                    android:textColor="#394277" />
+                <TextView
+                    android:id="@+id/tv_money"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@+id/tv_rmb"
+                    android:text="222"
+                    android:textSize="15sp"
+                    android:textColor="#394277" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="#fff">
+
+                <TextView
+                    android:id="@+id/tv_good_all"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15dp"
+                    android:drawablePadding="10dp"
+                    android:gravity="center_vertical"
+                    android:text="配件总费用: "
+                    android:textSize="15sp"
+                    android:textColor="#333333" />
+
+                <TextView
+                    android:id="@+id/tv_rmb2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="12dp"
+                    android:layout_toRightOf="@+id/tv_good_all"
+                    android:text="¥"
+                    android:textSize="12sp"
+                    android:textColor="#394277" />
+                <TextView
+                    android:id="@+id/tv_money2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@+id/tv_rmb2"
+                    android:text="222"
+                    android:textSize="15sp"
+                    android:textColor="#394277" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="#fff">
+
+                <TextView
+                    android:id="@+id/tv_billo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15dp"
+                    android:drawablePadding="10dp"
+                    android:gravity="center_vertical"
+                    android:text="报单总费用: "
+                    android:textSize="15sp"
+                    android:textColor="#333333" />
+
+                <TextView
+                    android:id="@+id/tv_rmb3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="12dp"
+                    android:layout_toRightOf="@+id/tv_billo"
+                    android:text="¥"
+                    android:textSize="12sp"
+                    android:textColor="#333333" />
+                <TextView
+                    android:id="@+id/tv_money3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@+id/tv_rmb3"
+                    android:text="222"
+                    android:textSize="18sp"
+                    android:textColor="#202a54" />
+            </RelativeLayout>.
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="#fff">
+
+                <TextView
+                    android:id="@+id/tv_descip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15dp"
+                    android:drawablePadding="10dp"
+                    android:gravity="center_vertical"
+                    android:text="维 修 描 述: "
+                    android:textSize="15sp"
+                    android:textColor="#333333" />
+
+                <TextView
+                    android:id="@+id/tv_desciption"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="12dp"
+                    android:layout_toRightOf="@+id/tv_descip"
+                    android:text="零件损坏"
+                    android:textSize="15sp"
+                    android:textColor="#999999"
+                    android:maxWidth="200dp"
+                    android:ellipsize="end"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="#fff">
+
+                <TextView
+                    android:id="@+id/tv_note1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15dp"
+                    android:drawablePadding="10dp"
+                    android:gravity="center_vertical"
+                    android:text="备 注: "
+                    android:textSize="15sp"
+                    android:textColor="#333333" />
+
+                <TextView
+                    android:id="@+id/tv_note"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="12dp"
+                    android:layout_toRightOf="@+id/tv_note1"
+                    android:text="无"
+                    android:textSize="15sp"
+                    android:textColor="#999999"
+                    android:maxWidth="200dp"
+                    android:ellipsize="end"/>
+            </RelativeLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff">
+
+        <TextView
+            android:id="@+id/tv_commit"
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="center"
+            android:layout_height="40dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:textSize="18sp"
+            android:background="@drawable/bg_add_btn"
+            android:textColor="#ffffff"
+            android:text="提交"/>
+    </RelativeLayout>
+</LinearLayout>

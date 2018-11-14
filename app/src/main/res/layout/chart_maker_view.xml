@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/rl_mark_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_chart_view">
+        <TextView
+            android:id="@+id/tv_date_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:text="2018-10-25"
+            android:textSize="10sp"
+            android:textColor="@color/white"/>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_date_time"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="5dp">
+
+            <TextView
+                android:id="@+id/tv_suanli"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:text="算力："
+                android:textSize="10dp"
+                android:textColor="@color/white"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:ellipsize="marquee"
+                android:singleLine="true"
+                />
+
+            <TextView
+                android:id="@+id/txt_tips"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginBottom="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_toRightOf="@+id/tv_suanli"
+                android:text="123"
+                android:textSize="10dp"
+                android:textColor="@color/white"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:ellipsize="marquee"
+                android:singleLine="true"
+                />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="10dp"
+        android:layout_height="5dp"
+        android:layout_below="@+id/rl_mark_view"
+        android:layout_centerHorizontal="true"/>
+</RelativeLayout>

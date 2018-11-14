@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <include layout="@layout/main_title"/>
+        <LinearLayout
+            android:layout_width="match_parent" android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:background="@drawable/ic_user_points_bg"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/iv_img"
+                    android:layout_width="69dp"
+                    android:layout_marginTop="16dp"
+                    android:src="@drawable/h_portrait"
+                    android:background="@drawable/bg_img"
+                    android:padding="0.8dp"
+                    android:layout_height="69dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"/>
+
+                <TextView
+                    android:id="@+id/tv_user_name"
+                    android:textSize="14sp"
+                    android:textColor="#333333"
+                    android:layout_width="match_parent"
+                    android:layout_below="@+id/iv_img"
+                    android:layout_height="wrap_content"
+                    android:text="美好地球村"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_user_points"
+                    android:textSize="34sp"
+                    android:textColor="#06a9df"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="18888.00"
+                    android:layout_below="@+id/tv_user_name"
+                    android:layout_centerHorizontal="true"/>
+
+                <TextView
+                    android:textSize="13sp"
+                    android:textColor="#333333"
+                    android:layout_width="match_parent"
+                    android:layout_below="@+id/tv_user_points"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="50dp"
+                    android:text="当前积分"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center"
+                    />
+
+                <ImageView
+                    android:id="@+id/iv_point_rule"
+                    android:layout_width="110dp"
+                    android:src="@drawable/wdjf_rule_btn"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="16dp"
+                    android:layout_height="30dp"/>
+            </RelativeLayout>
+
+            <ListView
+                android:id="@+id/lv_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"></ListView>
+        </LinearLayout>
+</LinearLayout>

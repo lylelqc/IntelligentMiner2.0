@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="16dp"
+    android:layout_marginLeft="16dp"
+    android:layout_marginRight="16dp"
+    android:background="@drawable/bg_item_machine_seat"
+    android:gravity="center"
+    android:orientation="horizontal">
+
+    <RelativeLayout
+        android:id="@+id/rl_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:id="@+id/rl_top"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/id_head_machine"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
+                android:clickable="false"
+                android:src="@drawable/seat_head_portrait" />
+
+            <RelativeLayout
+                android:id="@+id/rl_item_center"
+                android:layout_width="145dp"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/id_head_machine">
+
+                <TextView
+                    android:id="@+id/tv_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="21dp"
+                    android:text="我是矿场主"
+                    android:textColor="@color/sly_text_blue2"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:id="@+id/iv_rz_status"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/tv_title"
+                    android:layout_marginTop="24dp"
+                    android:src="@drawable/authentication_icon_2"/>
+
+                <TextView
+                    android:id="@+id/tv_msg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_title"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="8dp"
+                    android:text="1.国家认可"
+                    android:maxLines="2"
+                    android:ellipsize="end"
+                    android:textColor="@color/sly_text_9c9c9c"
+                    android:textSize="13sp" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/rl_location"
+                android:layout_toRightOf="@id/rl_item_center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tv_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="26dp"
+                android:text="新疆"
+                android:textColor="@color/sly_text_9c9c9c"
+                android:drawableLeft="@drawable/seat_location"
+                android:drawablePadding="5dp"
+                android:textSize="11sp" />
+
+            <!--<ImageView-->
+                <!--android:id="@+id/iv_address"-->
+                <!--android:layout_width="11dp"-->
+                <!--android:layout_height="15dp"-->
+                <!--android:layout_marginRight="5dp"-->
+                <!--android:layout_marginTop="25dp"-->
+                <!--android:layout_toLeftOf="@id/tv_address"-->
+                <!--android:src="@drawable/seat_location" />-->
+            </RelativeLayout>
+            <RelativeLayout
+                android:visibility="gone"
+                android:id="@+id/rl_delete_seat"
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:layout_below="@+id/rl_location"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="7dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="5dp"
+                android:gravity="center"
+                android:background="@drawable/bg_btn_blue_5dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="删除机位"
+                    android:textSize="11sp"
+                    android:textColor="@color/white"/>
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/view_hor"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/rl_top"
+            android:background="@color/sly_text_e7e7e7" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/view_hor">
+
+            <TextView
+                android:id="@+id/tv_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="12dp"
+                android:text="剩"
+                android:textColor="@color/sly_text_9c9c9c"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tv_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:layout_marginTop="12dp"
+                android:layout_toRightOf="@id/tv_1"
+                android:text="100"
+                android:textColor="@color/sly_text_blue2"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tv_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:layout_marginTop="12dp"
+                android:layout_toRightOf="@id/tv_number"
+                android:text="机位"
+                android:textColor="@color/sly_text_9c9c9c"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tv_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="12dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="12dp"
+                android:text="电价：0.01-0.04元/千瓦时"
+                android:textColor="@color/sly_text_9c9c9c"
+                android:textSize="11sp" />
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+
+</LinearLayout>
