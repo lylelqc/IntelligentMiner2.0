@@ -1,4 +1,4 @@
-package com.sly.app.utils;
+package com.sly.app.listener;
 
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;

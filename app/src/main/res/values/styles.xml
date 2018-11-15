@@ -141,4 +141,7 @@
         <item name="cardBackgroundColor">@android:color/white</item>
         <item name="cardCornerRadius">1dip</item>
     </style>
+    <style name="TabLayoutTextStyle">
+        <item name="android:textSize">17sp</item>
+    </style>
 </resources>

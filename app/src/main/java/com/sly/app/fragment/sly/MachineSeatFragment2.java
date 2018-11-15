@@ -45,7 +45,7 @@ import com.sly.app.utils.CommonUtils;
 import com.sly.app.utils.EncryptUtil;
 import com.sly.app.utils.JsonHelper;
 import com.sly.app.utils.NetUtils;
-import com.sly.app.utils.OnRecyclerViewListener;
+import com.sly.app.listener.OnRecyclerViewListener;
 import com.sly.app.utils.SharedPreferencesUtil;
 import com.sly.app.utils.StringUtils;
 import com.sly.app.utils.ToastUtils;

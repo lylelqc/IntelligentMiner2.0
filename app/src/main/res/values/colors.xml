@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#2F3F61</color>
-    <color name="colorPrimaryDark">#2F3F61</color>
-    <color name="colorAccent">#2F3F61</color>
+    <color name="colorPrimary">#3b7ce6</color>
+    <color name="colorPrimaryDark">#3b7ce6</color>
+    <color name="colorAccent">#3b7ce6</color>
 
     <!--布局颜色-->
     <!--<color name="transparent">#50000000</color>-->
@@ -35,11 +35,9 @@
     <color name="sly_text_blue">#3d78da</color>
     <color name="sly_text_blue2">#1d8fe1</color>
     <color name="sly_text_9c9c9c">#9c9c9c</color>
-    <!--重点色-->
-    <color name="sly_btn_blue">#1d8fe1</color>
+
     <color name="sly_btn_bgb6b6b6">#b6b6b6</color>
     <color name="sly_line_gray">#e5e5e5</color>
-    <color name="sly_text_666666">#666666</color>
 
     <color name="sly_text_999999">#999999</color>
     <color name="sly_text_e7e7e7">#e7e7e7</color>
@@ -49,5 +47,16 @@
     <color name="bg_f4f4f4">#f4f4f4</color>
     <color name="bg_f2f2f2">#f2f2f2</color>
     <color name="multiple_image_select_primaryDark">#2F3F61</color>
+
+    <!--version 2.0-->
+    <!--导航栏颜色-->
+    <color name="sly_navigation_bar">#3b7ce6</color>
+    <color name="sly_text_white">#fff</color>
+    <!--重点色-->
+    <color name="sly_btn_blue">#2386e3</color>
+    <color name="sly_one_dp">#ececec</color>
+    <color name="sly_bg_f4f4f4">#f4f4f4</color>
+    <color name="sly_text_333333">#333333</color>
+    <color name="sly_text_666666">#666666</color>
 
 </resources>

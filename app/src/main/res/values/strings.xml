@@ -52,4 +52,15 @@
         <item>钻石代理</item>
         <item>合伙人</item>
     </string-array>
+
+    <!--version 2.0-->
+    <!--消息中心-->
+    <string name="sly_notice">消息中心</string>
+    <string name="notice_new">待办</string>
+    <string name="notice_old">公告</string>
+
+
+    <string name="request_data">请求数据...</string>
+    <string name="no_data">暂时木有数据哦！</string>
+
 </resources>

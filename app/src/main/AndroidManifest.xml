@@ -114,13 +114,13 @@
         <activity android:name=".activity.sly.mine.yunw.MachineListActivity" />
         <activity android:name=".activity.sly.mine.yunw.CheckAreaActivity" />
         <activity android:name=".activity.sly.mine.yunw.SlyMachineManagerActivity" />
-        <activity android:name=".activity.sly.mine.MineMachineDetailActivity" />
         <activity android:name=".activity.sly.mine.yunw.SlyRepairDocActivity" />
         <activity android:name=".activity.sly.mine.yunw.RepairFormActivity" />
         <activity android:name=".activity.sly.mine.yunw.FormDetailsActivity" />
         <activity android:name=".activity.sly.mine.yunw.SlyMachineMonitorActivity" />
-        <activity android:name=".activity.sly.mine.FaultMachineActivity" />
         <activity android:name=".activity.sly.mine.yunw.SlyAttendanceActivity" />
+        <activity android:name=".activity.sly.mine.MineMachineDetailActivity" />
+        <activity android:name=".activity.sly.mine.FaultMachineActivity" />
 
         <activity android:name=".activity.sly.home.SlyBannerDetailsActivity" />
 

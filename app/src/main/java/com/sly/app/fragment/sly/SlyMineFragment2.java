@@ -16,6 +16,7 @@ import com.sly.app.R;
 import com.sly.app.activity.device.MinersDeviceActivity;
 import com.sly.app.activity.mine.LoginActivity;
 import com.sly.app.activity.sly.mine.IdCardActivity;
+import com.sly.app.activity.sly.mine.notice.Sly2NoticeActivity;
 import com.sly.app.activity.sly.mine.yunw.SlyAttendanceActivity;
 import com.sly.app.activity.sly.mine.yunw.SlyMachineManagerActivity;
 import com.sly.app.activity.sly.mine.yunw.SlyMachineMonitorActivity;
@@ -243,7 +244,7 @@ public class SlyMineFragment2 extends BaseFragment {
 //                    startActivity(intent);
                     break;
                 case R.id.msg:
-                    CommonUtil2.goActivity(mContext,SlyNoticeActivity.class);
+                    CommonUtil2.goActivity(mContext,Sly2NoticeActivity.class);
                     break;
                 case R.id.rl_member:
                     //startActivityWithoutExtras(ShareRecordActivity.class);
