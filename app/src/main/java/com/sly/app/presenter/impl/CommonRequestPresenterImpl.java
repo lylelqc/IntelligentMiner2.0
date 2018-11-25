@@ -3,6 +3,7 @@ package com.sly.app.presenter.impl;
 import android.content.Context;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
+import android.widget.Toast;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -14,6 +15,7 @@ import com.sly.app.listener.IRequestListener;
 import com.sly.app.model.PostResult;
 import com.sly.app.presenter.ICommonRequestPresenter;
 import com.sly.app.utils.LoginMsgHelper;
+import com.sly.app.utils.ToastUtils;
 import com.sly.app.utils.http.HttpStatusUtil;
 import com.sly.app.view.iviews.ICommonViewUi;
 
@@ -97,6 +99,7 @@ public class CommonRequestPresenterImpl implements ICommonRequestPresenter, IReq
                 EventBus.getDefault().post(new PostResult(EventBusTags.LOGOUT));
             }else if("会话过期或非法访问".equals(HttpStatusUtil.getStatusMsg(data))){
                 LoginMsgHelper.reLogin(context); // 重启到登录页面
+                ToastUtils.showToast("会话过期或非法访问");
                 EventBus.getDefault().post(new PostResult(EventBusTags.LOGOUT));
             }else{
                 iCommonViewUi.onRequestSuccessException(eventTag, HttpStatusUtil.getStatusMsg(data));

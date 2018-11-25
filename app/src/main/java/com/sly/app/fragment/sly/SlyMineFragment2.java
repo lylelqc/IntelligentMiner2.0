@@ -13,19 +13,8 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.sly.app.R;
-import com.sly.app.activity.device.MinersDeviceActivity;
 import com.sly.app.activity.mine.LoginActivity;
-import com.sly.app.activity.sly.mine.IdCardActivity;
 import com.sly.app.activity.sly.mine.notice.Sly2NoticeActivity;
-import com.sly.app.activity.sly.mine.yunw.SlyAttendanceActivity;
-import com.sly.app.activity.sly.mine.yunw.SlyMachineManagerActivity;
-import com.sly.app.activity.sly.mine.yunw.SlyMachineMonitorActivity;
-import com.sly.app.activity.sly.mine.yunw.SlyMachineOnlineActivity;
-import com.sly.app.activity.sly.mine.SlyMineBalanceActivity;
-import com.sly.app.activity.sly.mine.notice.SlyNoticeActivity;
-import com.sly.app.activity.sly.mine.yunw.SlyRepairDocActivity;
-import com.sly.app.activity.sly.mine.SlySettingActivity;
-import com.sly.app.activity.sly.mine.UserInfoEditActivity;
 import com.sly.app.comm.EventBusTags;
 import com.sly.app.fragment.BaseFragment;
 import com.sly.app.http.NetWorkCons;
@@ -33,8 +22,6 @@ import com.sly.app.http.type1.HttpClient;
 import com.sly.app.http.type1.HttpResponseHandler;
 import com.sly.app.model.PostResult;
 import com.sly.app.model.ReturnBean;
-import com.sly.app.model.sly.AllDMinerMasterTableBean;
-import com.sly.app.model.sly.AllDMinerTableBean;
 import com.sly.app.model.sly.KgFullInfoBean;
 import com.sly.app.model.sly.MinerMasterInfoBean;
 import com.sly.app.model.sly.SlyReturnListBean;
@@ -236,8 +223,6 @@ public class SlyMineFragment2 extends BaseFragment {
                     showPopupWindow();
                     break;
                 case R.id.shezhi:
-                    intent.setClass(getActivity(), SlySettingActivity.class);
-                    startActivity(intent);
                     break;
                 case R.id.rl_my_shebei:
 //                    intent.setClass(getActivity(), MyMachineActivity.class);
@@ -247,21 +232,14 @@ public class SlyMineFragment2 extends BaseFragment {
                     CommonUtil2.goActivity(mContext,Sly2NoticeActivity.class);
                     break;
                 case R.id.rl_member:
-                    //startActivityWithoutExtras(ShareRecordActivity.class);
-                    intent.setClass(getActivity(), UserInfoEditActivity.class);
-                    startActivity(intent);
                     break;
                 case R.id.rl_balance:
-                    intent.setClass(getActivity(), SlyMineBalanceActivity.class);
-                    startActivity(intent);
                     break;
                 case R.id.rl_weixiu:
 //                    intent.setClass(getActivity(), ReplareTaketActivity.class);
 //                    startActivity(intent);
                     break;
                 case R.id.rl_tongji:
-                    intent.setClass(getActivity(), MinersDeviceActivity.class);
-                    startActivity(intent);
                     break;
                 case R.id.rl_smrenzheng:
                     checkRzStatus(02);
@@ -281,26 +259,16 @@ public class SlyMineFragment2 extends BaseFragment {
                 case R.id.rl_shebeicount:
                     break;
                 case R.id.rl_online:
-                    intent.setClass(getActivity(), SlyMachineOnlineActivity.class);
-                    startActivity(intent);
                     break;
                 case R.id.rl_offline:
                     break;
                 case R.id.rl_shebeiManager:
-                    intent.setClass(getActivity(), SlyMachineManagerActivity.class);
-                    startActivity(intent);
                     break;
                 case R.id.rl_weixiudanManager:
-                    intent.setClass(getActivity(), SlyRepairDocActivity.class);
-                    startActivity(intent);
                     break;
                 case R.id.rl_monitor:
-                    intent.setClass(getActivity(), SlyMachineMonitorActivity.class);
-                    startActivity(intent);
                     break;
                 case R.id.rl_attendance:
-                    intent.setClass(getActivity(), SlyAttendanceActivity.class);
-                    startActivity(intent);
                     break;
 
             }
@@ -431,18 +399,6 @@ public class SlyMineFragment2 extends BaseFragment {
                     SlyReturnListBean mReturnBean = JSON.parseObject(CommonUtils.proStr(content), SlyReturnListBean.class);
 
                     if (mReturnBean.getStatus().equals("1") && mReturnBean.getData().getRows().size() > 0) {
-                        if (LoginType.equals("Miner")) {
-                            List<AllDMinerTableBean> chartList = JSON.parseArray(mReturnBean.getData().getRows().toString(), AllDMinerTableBean.class);
-                            Logcat.e(chartList.toString());
-                            AllDMinerTableBean allDataTableBean = chartList.get(0);
-                            tvShebeiCount.setText(allDataTableBean.getMachineCount() + "台");
-
-                        } else {
-                            List<AllDMinerMasterTableBean> chartList = JSON.parseArray(mReturnBean.getData().getRows().toString(), AllDMinerMasterTableBean.class);
-                            Logcat.e(chartList.toString());
-                            AllDMinerMasterTableBean allDataTableBean = chartList.get(0);
-                            tvShebeiCount.setText(allDataTableBean.getMachineCount() + "台");
-                        }
 
                     } else {
 //                            ToastUtils.showToast(mReturnBean.getMsg());
@@ -497,9 +453,7 @@ public class SlyMineFragment2 extends BaseFragment {
                                     if("false".equals(data)){
                                         ToastUtils.showToast("成为矿场主认证审核中，请耐心等候");
                                     }else{
-                                        intent.setClass(mContext, IdCardActivity.class);
-                                        intent.putExtra("tag", tag);
-                                        startActivity(intent);
+
                                     }
                                     /*switch (Integer.valueOf(data)) {
                                         case 0:
@@ -533,9 +487,6 @@ public class SlyMineFragment2 extends BaseFragment {
                                     ReturnBean returnBean = JSON.parseObject(CommonUtils.proStr(content), ReturnBean.class);
                                     if (returnBean.getStatus().equals("1")) {
                                         if(returnBean.getData().equals("true")){
-                                            intent.setClass(mContext, IdCardActivity.class);
-                                            intent.putExtra("tag", tag);
-                                            startActivity(intent);
                                         }else{
                                             ToastUtils.showToast("您的实名认证还在审核中哦，请耐心等候");
                                         }

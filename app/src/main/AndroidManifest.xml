@@ -44,85 +44,23 @@
             </intent-filter>
         </activity>
         <activity android:name="com.sly.app.activity.MainActivity" />
-        <activity
-            android:name="com.sly.app.activity.qrc.SaoErWeiMaActivity"
-            android:launchMode="standard" />
-        <activity
-            android:name="com.sly.app.activity.qrc.ShareActivity"
-            android:launchMode="standard" />
-        <activity android:name="com.sly.app.activity.qrc.ShareRecordActivity" />
-        <activity android:name="com.sly.app.activity.qrc.ScanResultActivity" />
-        <activity android:name="com.sly.app.activity.mine.AccountActivity" />
-        <activity android:name="com.sly.app.activity.mine.AboutActivity" />
-        <activity android:name="com.sly.app.activity.mine.ForgetStep1Activity" />
-        <activity android:name="com.sly.app.activity.mine.ForgetStep2Activity" />
-        <activity android:name="com.sly.app.activity.sly.mine.SlySettingActivity" />
-        <activity android:name="com.sly.app.activity.sly.mine.SlyConsumerActivity" />
-        <activity android:name="com.sly.app.activity.sly.mine.SlyUserInfoActivity" />
-        <activity android:name="com.sly.app.activity.sly.mine.SetPayPwdActivity" />
-        <activity android:name="com.sly.app.activity.sly.MachineDetailActivity" />
-        <activity android:name="com.sly.app.activity.sly.mine.SlyMineBalanceActivity" />
-        <activity android:name="com.sly.app.activity.sly.mine.SlyRechargeRecordActivity" />
-        <activity android:name="com.sly.app.activity.sly.mine.notice.SlyNoticeActivity" />
-        <activity android:name="com.sly.app.activity.sly.mine.notice.NoticeDetailActivity" />
 
-        <activity
-            android:name="com.sly.app.activity.mine.RegisterActivity"
-            android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity
             android:name="com.sly.app.activity.mine.LoginActivity"
             android:windowSoftInputMode="adjustPan|stateHidden"
             android:launchMode="singleTask"/>
-        <activity android:name="com.sly.app.activity.mine.CustomerServiceActivity" />
-        <activity android:name="com.sly.app.activity.mine.FeedbackActivity" />
-        <activity android:name="com.sly.app.activity.mine.wallet.WithdrawActivity" />
-        <activity android:name="com.sly.app.activity.mine.wallet.WithdrawAccountActivity" />
-        <activity android:name="com.sly.app.activity.mine.wallet.WithdrawDetailActivity" />
-        <activity android:name="com.sly.app.activity.mine.ProtocolActivity" />
-        <activity android:name="com.sly.app.activity.loading.LoadingActivity" />
-        <activity android:name="com.sly.app.push.SplashActivity" />
-        <activity android:name="com.sly.app.activity.machineSeat.MachineSeatDetailActivity" />
-        <activity android:name="com.sly.app.activity.mine.MyMachineActivity" />
-        <activity android:name="com.sly.app.activity.mine.TaketDetailActivity" />
-        <activity android:name="com.sly.app.activity.mine.ReplareTaketActivity" />
-        <activity android:name="com.sly.app.activity.sly.home.SlyHomeMsgDetailActivity" />
-        <activity
-            android:name=".activity.sly.mine.UserInfoEditActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="com.sly.app.activity.sly.mine.IdCardActivity"
-            android:windowSoftInputMode="adjustPan|stateHidden" />
-        <activity
-            android:name="com.sly.app.activity.sly.home.SlyCalerActivity"
-            android:windowSoftInputMode="adjustPan|stateHidden" />
-        <activity
-            android:name="com.sly.app.activity.machineSeat.ReleaseOreActivity"
-            android:windowSoftInputMode="adjustPan|stateHidden" />
-
-
-        <activity android:name="com.sly.app.activity.sly.mine.SlyRechargeActivity" />
-
-
-        <activity android:name=".activity.device.MinersDeviceActivity" />
-
-        <activity android:name="com.sly.app.activity.sly.mine.SlyRecordActivity" />
 
         <!-- 运维界面 -->
-        <activity android:name=".activity.sly.mine.yunw.SlyMachineOnlineActivity" />
-        <activity android:name=".activity.sly.mine.yunw.SlyOnlineListActivity" />
-        <activity android:name=".activity.sly.mine.yunw.ScanDetailsActivity" />
-        <activity android:name=".activity.sly.mine.yunw.MachineListActivity" />
-        <activity android:name=".activity.sly.mine.yunw.CheckAreaActivity" />
-        <activity android:name=".activity.sly.mine.yunw.SlyMachineManagerActivity" />
-        <activity android:name=".activity.sly.mine.yunw.SlyRepairDocActivity" />
-        <activity android:name=".activity.sly.mine.yunw.RepairFormActivity" />
-        <activity android:name=".activity.sly.mine.yunw.FormDetailsActivity" />
-        <activity android:name=".activity.sly.mine.yunw.SlyMachineMonitorActivity" />
-        <activity android:name=".activity.sly.mine.yunw.SlyAttendanceActivity" />
-        <activity android:name=".activity.sly.mine.MineMachineDetailActivity" />
-        <activity android:name=".activity.sly.mine.FaultMachineActivity" />
 
-        <activity android:name=".activity.sly.home.SlyBannerDetailsActivity" />
+        <!--version 2.0-->
+        <activity android:name=".activity.sly.mine.notice.Sly2NoticeActivity" />
+        <activity android:name=".activity.sly.mine.notice.NoticeNewDetailsActivity" />
+        <activity android:name=".activity.yunw.repair.RepairBillActivity" />
+        <activity android:name=".activity.yunw.repair.RepairBillDetailsActivity" />
+        <activity android:name=".activity.yunw.repair.RepairHistoryActivity" />
+        <activity android:name=".activity.yunw.repair.RepairFormActivity" />
+        <activity android:name=".activity.yunw.repair.RepairFormDetailsActivity" />
+        <activity android:name=".activity.yunw.machine.MachineListActivity" />
 
 
         <!-- Rich push 核心功能 since 2.0.6-->
@@ -291,19 +229,6 @@
                 android:resource="@xml/provider_paths"
                 tools:replace="name,resource" />
         </provider>
-
-
-        <!--微信支付-->
-        <activity
-            android:name="com.sly.app.wxapi.WXPayEntryActivity"
-            android:exported="true"
-            android:launchMode="singleTop" />
-        <activity android:name="vip.devkit.common.share._ShareActivity" />
-
-        <activity-alias
-            android:name=".wxapi.WXEntryActivity"
-            android:exported="true"
-            android:targetActivity="vip.devkit.common.share._ShareActivity" />
     </application>
     <supports-screens
         android:anyDensity="true"

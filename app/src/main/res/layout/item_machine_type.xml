@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <com.sly.app.view.ToggleRadioButton
+            android:id="@+id/rb_machine_type_status"
+            android:layout_width="78dp"
+            android:layout_height="34dp"
+            android:background="@drawable/selector_flow_color"
+            android:button="@null"
+            android:gravity="center"
+            android:textSize="12sp"
+            android:textColor="@color/selector_flow_text_color"/>
+    </RadioGroup>
+
+</LinearLayout>

@@ -18,14 +18,12 @@ import android.widget.Toast;
 import com.sly.app.R;
 import com.sly.app.activity.mine.LoginActivity;
 import com.sly.app.comm.AppContext;
-import com.sly.app.fragment.sly.MachineSeatFragment2;
+import com.sly.app.fragment.Sly2YunwFragment;
 import com.sly.app.fragment.sly.SlyHomeFragment;
-import com.sly.app.fragment.sly.SlyHostingFragment;
 import com.sly.app.fragment.sly.SlyMineFragment2;
 import com.sly.app.listener.OnPopupItemOnClickListener;
 import com.sly.app.utils.CommonUtil2;
 import com.sly.app.utils.LoginMsgHelper;
-import com.sly.app.utils.ToastUtils;
 import com.sly.app.view.NoScrollViewpager;
 
 import butterknife.BindView;
@@ -225,9 +223,9 @@ public class MainActivity extends BaseActivity implements OnPopupItemOnClickList
             if (position == 0) {
                 return SlyHomeFragment.newInstance(tabCount[position % tabCount.length]);
             } else if (position == 1) {
-                return SlyHostingFragment.newInstance(tabCount[position % tabCount.length]);
+                return Sly2YunwFragment.newInstance(tabCount[position % tabCount.length]);
             } else if (position == 2) {
-                return MachineSeatFragment2.newInstance(tabCount[position % tabCount.length]);
+                return SlyMineFragment2.newInstance(tabCount[position % tabCount.length]);
             } else {
                 return SlyMineFragment2.newInstance(tabCount[position % tabCount.length]);
             }

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:orientation="vertical"
+       android:background="@color/white">
+
+       <include layout="@layout/main_title2"/>
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="horizontal"
+           android:weightSum="2">
+
+           <android.support.design.widget.TabLayout
+               android:id="@+id/heath_tab"
+               android:layout_width="0dp"
+               android:layout_height="45dp"
+               android:layout_weight="1.1"
+               android:layout_marginLeft="15dp"
+               app:tabPaddingEnd="-1dp"
+               app:tabPaddingStart="-1dp"
+               app:tabTextAppearance="@style/TabLayoutTextStyle"
+               app:tabIndicatorHeight="2dp"
+               app:tabIndicatorColor="#3b7ce6"
+               app:tabTextColor="@color/sly_text_244153"
+               app:tabSelectedTextColor="#3b7ce6">
+           </android.support.design.widget.TabLayout>
+
+           <RelativeLayout
+               android:layout_width="0dp"
+               android:layout_height="45dp"
+               android:layout_weight="0.9"
+               android:layout_marginRight="15dp">
+
+               <RelativeLayout
+                   android:id="@+id/rl_repair_check"
+                   android:layout_width="wrap_content"
+                   android:layout_height="match_parent"
+                   android:layout_alignParentRight="true">
+
+                   <TextView
+                       android:id="@+id/tv_repair_check"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_centerVertical="true"
+                       android:drawableLeft="@drawable/sousuo_weixiudan_icon"
+                       android:drawablePadding="5dp"
+                       android:text="查询"
+                       android:textSize="14sp"
+                       android:textColor="@color/sly_text_244153"/>
+               </RelativeLayout>
+           </RelativeLayout>
+       </LinearLayout>
+
+       <android.support.v4.view.ViewPager
+           android:id="@+id/viewpager_heath_tab"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"></android.support.v4.view.ViewPager>
+
+   </LinearLayout>
+
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/ll_shadow"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"/>
+
+        <TextView
+            android:id="@+id/tv_shadow"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:alpha="0.5"
+            android:background="@color/black"/>
+    </LinearLayout>
+</FrameLayout>

@@ -1,6 +1,5 @@
 package com.sly.app.fragment.sly;
 
-import android.content.Context;
 import android.content.Intent;
 import android.hardware.Camera;
 import android.os.Bundle;
@@ -9,7 +8,6 @@ import android.os.Message;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.RecyclerView;
 import android.text.format.Time;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -19,17 +17,12 @@ import android.widget.TextView;
 import com.sly.app.R;
 import com.sly.app.activity.MainActivity;
 import com.sly.app.activity.mine.LoginActivity;
-import com.sly.app.activity.sly.home.SlyBannerDetailsActivity;
-import com.sly.app.activity.sly.home.SlyCalerActivity;
-import com.sly.app.adapter.HomeHotAdapter;
-import com.sly.app.adapter.HomeRecyclerViewAdapter;
 import com.sly.app.adapter.ScrollAdAdapter;
 import com.sly.app.fragment.BaseFragment;
 import com.sly.app.http.NetLogCat;
 import com.sly.app.http.NetWorkCons;
 import com.sly.app.http.type1.HttpClient;
 import com.sly.app.http.type1.HttpResponseHandler;
-import com.sly.app.model.GoodsBean;
 import com.sly.app.model.sly.SlyMsgBean;
 import com.sly.app.utils.ApiSIgnUtil;
 import com.sly.app.utils.BannerGlideImageLoader;
@@ -38,8 +31,6 @@ import com.sly.app.utils.CommonUtils;
 import com.sly.app.utils.EncryptUtil;
 import com.sly.app.utils.JsonHelper;
 import com.sly.app.utils.SharedPreferencesUtil;
-import com.sly.app.view.DrawableTextView;
-import com.sly.app.view.MyGridView;
 import com.sly.app.view.MyStaggeredGridLayoutManager;
 
 import org.json.JSONException;
@@ -71,28 +62,10 @@ public class SlyHomeFragment extends BaseFragment {
     private static final String STATUS_KEY = "status";
     @BindView(R.id.banner_view)
     BannerV mBannerView;
-    @BindView(R.id.tv_menu_1)
-    DrawableTextView mTvMenu1;
-    @BindView(R.id.tv_menu_2)
-    DrawableTextView mTvMenu2;
-    @BindView(R.id.tv_menu_3)
-    DrawableTextView mTvMenu3;
-    @BindView(R.id.tv_menu_4)
-    DrawableTextView mTvMenu4;
-    @BindView(R.id.tv_menu_5)
-    DrawableTextView mTvMenu5;
-    @BindView(R.id.tv_menu_6)
-    DrawableTextView mTvMenu6;
-    @BindView(R.id.tv_menu_7)
-    DrawableTextView mTvMenu7;
-    @BindView(R.id.tv_menu_8)
-    DrawableTextView mTvMenu8;
     @BindView(R.id.scroll_layout_ad_1)
     RollingLayout mScrollLayoutAd1;
     @BindView(R.id.scroll_layout_ad_2)
     RollingLayout mScrollLayoutAd2;
-    @BindView(R.id.gv_home_hot)
-    MyGridView mGvHomeHot;
     @BindView(R.id.img_hot_1)
     ImageView mImgHot1;
     @BindView(R.id.textView6)
@@ -129,15 +102,9 @@ public class SlyHomeFragment extends BaseFragment {
     RelativeLayout rlBanner;
 
     private int pageIndex = 1;
-    private List<GoodsBean> mMall = new ArrayList<>();
-    private List<GoodsBean> mHotData = new ArrayList<>();
     private List<SlyMsgBean> mAdList = new ArrayList<>();
-    private HomeRecyclerViewAdapter mRecyclerViewAdapter;
-    private HomeHotAdapter mHotAdapter;
     private ScrollAdAdapter mAdAdapter1, mAdAdapter2;
-    private String MemberCode, Token,User,Key,LoginType;
-    private View FooterView;
-    private int flag = 0;
+    private String Token,User,Key,LoginType;
     private static final int VIEW_FLAG = 1;
     private Handler mHandler = new Handler(new Handler.Callback() {
         @Override
@@ -176,10 +143,8 @@ public class SlyHomeFragment extends BaseFragment {
     @Override
     protected void initViewsAndEvents() {
         tvNewLogin.setText("立即\n登录");
-        FooterView = ((LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.view_list_footer, null, false);
         final MyStaggeredGridLayoutManager mLayoutManager = new MyStaggeredGridLayoutManager(2, MyStaggeredGridLayoutManager.VERTICAL);
         LoginType = SharedPreferencesUtil.getString(mContext, "LoginType", "None");
-        MemberCode = SharedPreferencesUtil.getString(mContext, LoginType.equals("Miner") ? "FrSysCode": "FMasterCode");
         User = SharedPreferencesUtil.getString(mContext, "User", "None");
         Token = SharedPreferencesUtil.getString(mContext, "Token", "None");
         Key = SharedPreferencesUtil.getString(mContext, "Key", "None");
@@ -245,18 +210,6 @@ public class SlyHomeFragment extends BaseFragment {
         mBannerView.setOnBannerListener(new OnBannerListener() {
             @Override
             public void OnBannerClick(int position) {
-                Intent intent = new Intent();
-                if(position == 0){
-                    intent.setClass(mContext, SlyBannerDetailsActivity.class);
-                    intent.putExtra("bannerType", "MineMaster");
-                }else if(position == 1){
-                    intent.setClass(mContext, SlyBannerDetailsActivity.class);
-                    intent.putExtra("bannerType", "Equity");
-                }else{
-                    intent.setClass(mContext, SlyBannerDetailsActivity.class);
-                    intent.putExtra("bannerType", "MachineSeat");
-                }
-                startActivity(intent);
             }
         });
         //banner设置方法全部调用完毕时最后调用
@@ -350,8 +303,6 @@ public class SlyHomeFragment extends BaseFragment {
                 mScView.smoothScrollTo(0, 0);
                 break;
             case R.id.iv_caler:
-                intent.setClass(getActivity(), SlyCalerActivity.class);
-                startActivity(intent);
                 break;
             case R.id.iv_hosting:
 

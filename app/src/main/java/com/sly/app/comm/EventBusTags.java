@@ -25,4 +25,11 @@ public class EventBusTags {
 
     public static final String UPDATE_HOSTING_OPERATION_DATA = "update_hosting_operation_data";//更新运维托管
 
+    /*
+    * version 2.0
+    * */
+    public static final String JUMP_REPAIR_BILL_TREATING = "jump_repair_bill_treating"; //跳转处理中
+
+    public static final String JUMP_REPAIR_BILL_TREATED = "jump_repair_bill_treated"; //跳转已处理
+
 }

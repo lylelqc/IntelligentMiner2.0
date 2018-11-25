@@ -11,7 +11,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.sly.app.R;
-import com.sly.app.model.sly.UserNameBean;
+import com.sly.app.model.yunw.repair.RepairSparesBean;
 
 import java.util.List;
 
@@ -19,9 +19,9 @@ public class DialogListAdapter extends BaseAdapter implements View.OnClickListen
 
     private Activity mContext;
     private ListView mListView;
-    private List<UserNameBean> mList;
+    private List<RepairSparesBean> mList;
 
-    public DialogListAdapter(Activity context, List<UserNameBean> list, ListView lv){
+    public DialogListAdapter(Activity context, List<RepairSparesBean> list, ListView lv){
         this.mContext = context;
         this.mList = list;
         this.mListView = lv;
@@ -59,7 +59,7 @@ public class DialogListAdapter extends BaseAdapter implements View.OnClickListen
             holder = (ViewHolder) convertView.getTag();
         }
 
-        holder.textView.setText(mList.get(position).getName());
+        holder.textView.setText(mList.get(position).getPartName());
         holder.dialogRl.setTag(position);
         holder.dialogRl.setOnClickListener(this);
 

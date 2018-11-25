@@ -322,12 +322,12 @@ public class LoginActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.tv_register:
-                intent.setClass(LoginActivity.this, RegisterActivity.class);
-                startActivity(intent);
+//                intent.setClass(LoginActivity.this, RegisterActivity.class);
+//                startActivity(intent);
                 break;
             case R.id.tv_forget_pwd:
-                intent.setClass(LoginActivity.this, ForgetStep1Activity.class);
-                startActivity(intent);
+//                intent.setClass(LoginActivity.this, ForgetStep1Activity.class);
+//                startActivity(intent);
                 break;
             case R.id.tv_forget_account:
 //                intent.setClass(LoginActivity.this, ForgetMemberActivity.class);

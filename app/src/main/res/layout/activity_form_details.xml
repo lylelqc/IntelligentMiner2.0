@@ -73,7 +73,7 @@
                 android:background="#f4f4f4"/>
 
             <LinearLayout
-                android:id="@+id/ll_item"
+                android:id="@+id/ll_form_details_additem"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -99,30 +99,29 @@
                     android:layout_marginLeft="15dp"
                     android:drawablePadding="10dp"
                     android:gravity="center_vertical"
-                    android:text="维修工时费: "
+                    android:text="维修工时费"
                     android:textSize="15sp"
-                    android:textColor="#333333" />
+                    android:textColor="@color/sly_text_333333" />
 
                 <TextView
                     android:id="@+id/tv_rmb"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="12dp"
-                    android:layout_toRightOf="@+id/tv_work_hour"
-                    android:text="¥"
-                    android:textSize="12sp"
-                    android:textColor="#394277" />
+                    android:layout_toLeftOf="@+id/tv_form_details_hourfree"
+                    android:text="¥ "
+                    android:textSize="14sp"
+                    android:textColor="@color/sly_money_394277" />
                 <TextView
-                    android:id="@+id/tv_money"
+                    android:id="@+id/tv_form_details_hourfree"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="5dp"
-                    android:layout_toRightOf="@+id/tv_rmb"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="15dp"
                     android:text="222"
-                    android:textSize="15sp"
-                    android:textColor="#394277" />
+                    android:textSize="14sp"
+                    android:textColor="@color/sly_money_394277" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -138,7 +137,7 @@
                     android:layout_marginLeft="15dp"
                     android:drawablePadding="10dp"
                     android:gravity="center_vertical"
-                    android:text="配件总费用: "
+                    android:text="备件总费用"
                     android:textSize="15sp"
                     android:textColor="#333333" />
 
@@ -147,61 +146,22 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="12dp"
-                    android:layout_toRightOf="@+id/tv_good_all"
-                    android:text="¥"
-                    android:textSize="12sp"
-                    android:textColor="#394277" />
+                    android:layout_toLeftOf="@+id/tv_form_details_sparesfree"
+                    android:text="¥ "
+                    android:textSize="14sp"
+                    android:textColor="@color/sly_money_394277" />
+
                 <TextView
-                    android:id="@+id/tv_money2"
+                    android:id="@+id/tv_form_details_sparesfree"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="5dp"
-                    android:layout_toRightOf="@+id/tv_rmb2"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="15dp"
                     android:text="222"
-                    android:textSize="15sp"
-                    android:textColor="#394277" />
+                    android:textSize="14sp"
+                    android:textColor="@color/sly_money_394277" />
             </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:background="#fff">
-
-                <TextView
-                    android:id="@+id/tv_billo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="15dp"
-                    android:drawablePadding="10dp"
-                    android:gravity="center_vertical"
-                    android:text="报单总费用: "
-                    android:textSize="15sp"
-                    android:textColor="#333333" />
-
-                <TextView
-                    android:id="@+id/tv_rmb3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="12dp"
-                    android:layout_toRightOf="@+id/tv_billo"
-                    android:text="¥"
-                    android:textSize="12sp"
-                    android:textColor="#333333" />
-                <TextView
-                    android:id="@+id/tv_money3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="5dp"
-                    android:layout_toRightOf="@+id/tv_rmb3"
-                    android:text="222"
-                    android:textSize="18sp"
-                    android:textColor="#202a54" />
-            </RelativeLayout>.
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -216,23 +176,25 @@
                     android:layout_marginLeft="15dp"
                     android:drawablePadding="10dp"
                     android:gravity="center_vertical"
-                    android:text="维 修 描 述: "
+                    android:text="维 修 描 述"
                     android:textSize="15sp"
                     android:textColor="#333333" />
 
                 <TextView
-                    android:id="@+id/tv_desciption"
+                    android:id="@+id/tv_form_details_desciption"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="12dp"
-                    android:layout_toRightOf="@+id/tv_descip"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="15dp"
                     android:text="零件损坏"
-                    android:textSize="15sp"
-                    android:textColor="#999999"
+                    android:textSize="12sp"
+                    android:textColor="@color/sly_money_394277"
                     android:maxWidth="200dp"
                     android:ellipsize="end"/>
             </RelativeLayout>
+
+            <include layout="@layout/gray_line"/>
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -240,29 +202,39 @@
                 android:background="#fff">
 
                 <TextView
-                    android:id="@+id/tv_note1"
+                    android:id="@+id/tv_allfree"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="15dp"
                     android:drawablePadding="10dp"
                     android:gravity="center_vertical"
-                    android:text="备 注: "
-                    android:textSize="15sp"
-                    android:textColor="#333333" />
+                    android:layout_toLeftOf="@+id/tv_rmb3"
+                    android:text="共计:"
+                    android:textSize="14sp"
+                    android:textColor="@color/sly_text_333333" />
 
                 <TextView
-                    android:id="@+id/tv_note"
+                    android:id="@+id/tv_rmb3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="12dp"
-                    android:layout_toRightOf="@+id/tv_note1"
-                    android:text="无"
-                    android:textSize="15sp"
-                    android:textColor="#999999"
-                    android:maxWidth="200dp"
-                    android:ellipsize="end"/>
+                    android:layout_toLeftOf="@+id/tv_form_details_allfree"
+                    android:text="¥ "
+                    android:textSize="18sp"
+                    android:textColor="@color/sly_money_f72a19" />
+
+                <TextView
+                    android:id="@+id/tv_form_details_allfree"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="15dp"
+                    android:text="222"
+                    android:textSize="18sp"
+                    android:textColor="@color/sly_money_f72a19" />
             </RelativeLayout>
 
         </LinearLayout>
@@ -283,7 +255,7 @@
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
             android:textSize="18sp"
-            android:background="@drawable/bg_add_btn"
+            android:background="@drawable/shape_btn_gradient_3dp"
             android:textColor="#ffffff"
             android:text="提交"/>
     </RelativeLayout>

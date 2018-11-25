@@ -1,13 +1,6 @@
 package com.sly.app.utils.http;
 
 
-import android.graphics.Color;
-import android.support.annotation.NonNull;
-
-import com.afollestad.materialdialogs.DialogAction;
-import com.afollestad.materialdialogs.MaterialDialog;
-import com.sly.app.activity.sly.mine.SlyRechargeActivity;
-import com.sly.app.utils.CommonUtil2;
 import com.sly.app.utils.StringHelper;
 
 import org.json.JSONException;

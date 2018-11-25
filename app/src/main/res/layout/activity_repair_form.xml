@@ -76,6 +76,7 @@
                     android:layout_marginLeft="15dp"
                     android:drawablePadding="10dp"
                     android:gravity="center_vertical"
+                    android:focusable="true"
                     android:text="数量"
                     android:textSize="15sp"
                     android:textColor="#333333" />
@@ -90,7 +91,7 @@
                     android:layout_marginRight="15dp"
                     android:background="@null"
                     android:textSize="15sp"
-                    android:hint="请输入"
+                    android:hint="请输入数量"
                     android:textColor="#333333"
                     android:textColorHint="@color/sly_text_999999" />
             </RelativeLayout>
@@ -123,12 +124,21 @@
                     android:layout_centerVertical="true"
                     android:gravity="right"
                     android:background="@null"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="15dp"
+                    android:layout_toLeftOf="@+id/tv_single_price_delete"
+                    android:layout_marginRight="7dp"
                     android:hint="请输入金额"
                     android:textSize="15sp"
                     android:textColor="#333333"
                     android:textColorHint="@color/sly_text_999999" />
+
+                <TextView
+                    android:id="@+id/tv_single_price_delete"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/delect_weixiudan_icon"/>
             </RelativeLayout>
 
             <View
@@ -151,7 +161,7 @@
                     android:layout_marginLeft="15dp"
                     android:layout_marginRight="15dp"
                     android:textSize="18sp"
-                    android:background="@drawable/bg_add_btn"
+                    android:background="@drawable/shape_btn_gradient_3dp"
                     android:textColor="#ffffff"
                     android:text="添加配件"/>
             </RelativeLayout>
@@ -185,28 +195,75 @@
                 android:background="#fff">
 
                 <TextView
+                    android:id="@+id/tv_gong"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@+id/tv_form_spares_num"
+                    android:drawablePadding="10dp"
+                    android:gravity="center_vertical"
+                    android:text="共"
+                    android:textSize="13sp"
+                    android:textColor="@color/sly_text_333333" />
+
+                <TextView
+                    android:id="@+id/tv_form_spares_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@+id/tv_jian"
+                    android:drawablePadding="10dp"
+                    android:gravity="center_vertical"
+                    android:text="0"
+                    android:textSize="13sp"
+                    android:textColor="@color/sly_text_333333" />
+
+                <TextView
+                    android:id="@+id/tv_jian"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@+id/tv_all"
+                    android:layout_marginRight="10dp"
+                    android:drawablePadding="10dp"
+                    android:gravity="center_vertical"
+                    android:text="件"
+                    android:textSize="13sp"
+                    android:textColor="@color/sly_text_333333" />
+
+                <TextView
                     android:id="@+id/tv_all"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="15dp"
+                    android:layout_toLeftOf="@+id/tv_rnb"
                     android:drawablePadding="10dp"
                     android:gravity="center_vertical"
                     android:text="总计: "
-                    android:textSize="15sp"
-                    android:textColor="#333333" />
+                    android:textSize="13sp"
+                    android:textColor="@color/sly_text_333333" />
 
                 <TextView
-                    android:id="@+id/tv_all_money"
+                    android:id="@+id/tv_rnb"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@+id/tv_form_spares_money"
+                    android:layout_centerVertical="true"
+                    android:text="¥ "
+                    android:textSize="15sp"
+                    android:textColor="@color/sly_money_fd643a"/>
+
+                <TextView
+                    android:id="@+id/tv_form_spares_money"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="15dp"
-                    android:layout_toRightOf="@+id/tv_all"
                     android:background="@null"
-                    android:text="¥ 0"
+                    android:text="0"
                     android:textSize="15sp"
-                    android:textColor="#fd643a" />
+                    android:textColor="@color/sly_money_fd643a" />
             </RelativeLayout>
 
             <View
@@ -281,63 +338,66 @@
 
             </LinearLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="10dp"
-                android:background="#f4f4f4"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#fff"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginLeft="15dp"
-                    android:text="备注"
-                    android:textSize="15sp"
-                    android:textColor="#333333" />
-
-                <EditText
-                    android:id="@+id/et_repair_note"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="15dp"
-                    android:layout_marginBottom="24dp"
-                    android:background="@null"
-                    android:textSize="15sp"
-                    android:hint="备注"
-                    android:textColorHint="@color/sly_text_999999"
-                    android:minLines="2"/>
-
-            </LinearLayout>
-
-
         </LinearLayout>
     </ScrollView>
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#fff">
+        android:background="#fff"
+        android:weightSum="2">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            android:layout_weight="0.6"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="15dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="总计: "
+                android:textSize="13sp"
+                android:textColor="@color/sly_text_333333" />
+
+            <TextView
+                android:id="@+id/tv_rnb2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="¥ "
+                android:textSize="15sp"
+                android:textColor="@color/sly_money_fd643a"/>
+
+            <TextView
+                android:id="@+id/tv_form_all_money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="15dp"
+                android:background="@null"
+                android:text="0"
+                android:textSize="15sp"
+                android:textColor="@color/sly_money_fd643a" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/tv_commit_bill"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1.4"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:gravity="center"
-            android:layout_height="40dp"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
             android:textSize="18sp"
-            android:background="@drawable/bg_add_btn"
+            android:background="@drawable/shape_btn_gradient_3dp"
             android:textColor="#ffffff"
             android:text="生成报单"/>
-    </RelativeLayout>
+    </LinearLayout>
 </LinearLayout>

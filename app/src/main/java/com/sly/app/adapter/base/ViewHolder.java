@@ -78,7 +78,7 @@ public class ViewHolder {
      * @param flag  Paint.STRIKE_THRU_TEXT_FLAG
      * @return
      */
-    public ViewHolder setText(int viewId, String text,int flag) {
+    public ViewHolder setText(int viewId, String text, int flag) {
         TextView tv = getView(viewId);
         tv.getPaint().setFlags(flag);
         tv.setText(text);
@@ -124,7 +124,7 @@ public class ViewHolder {
      * @param isFillet 是否圆角
      * @return
      */
-    public ViewHolder setImageResourceC(int viewId, int resId, boolean isFillet,int tag) {
+    public ViewHolder setImageResourceC(int viewId, int resId, boolean isFillet, int tag) {
         ImageView imageView = getView(viewId);
         if (isFillet) {
             Glide.with(mContext).load(resId).placeholder(R.drawable.common_details_carousel_placeholder).transform(new GlideRoundTransform(mContext,tag)).into(imageView);

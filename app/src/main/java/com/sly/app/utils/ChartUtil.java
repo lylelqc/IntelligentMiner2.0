@@ -4,7 +4,6 @@ import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
-import com.sly.app.model.sly.MDetailsPicDataBean;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,16 +47,16 @@ public class ChartUtil {
      * @param lineChart  曲线图表
      * @param color    曲线颜色
      */
-    public static void showLineChart(List<MDetailsPicDataBean> dataList, LineChart lineChart, int color) {
+    public static void showLineChart(List<?> dataList, LineChart lineChart, int color) {
         List<Entry> entries = new ArrayList<>();
         for (int i = 0; i < dataList.size(); i++) {
-            MDetailsPicDataBean data = dataList.get(i);
+//            MDetailsPicDataBean data = dataList.get(i);
             /**
              * 在此可查看 Entry构造方法，可发现 可传入数值 Entry(float x, float y)
              * 也可传入Drawable， Entry(float x, float y, Drawable icon) 可在XY轴交点 设置Drawable图像展示
              */
-            Entry entry = new Entry(i, (float) data.getMine63_NowCalcForce());
-            entries.add(entry);
+//            Entry entry = new Entry(i, (float) data.getMine63_NowCalcForce());
+//            entries.add(entry);
         }
         // 每一个LineDataSet代表一条线
         LineDataSet lineDataSet = new LineDataSet(entries, "");

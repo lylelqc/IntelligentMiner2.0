@@ -37,12 +37,33 @@
     <item type="id" name="statusbarutil_fake_status_bar_view" />
     <item type="id" name="statusbarutil_translucent_view" />
 
+    <!--流式布局-->
     <declare-styleable name="TagFlowLayout">
         <attr name="max_select" format="integer"></attr>
         <attr name="tag_gravity">
             <enum name="left" value="-1" />
             <enum name="center" value="0" />
             <enum name="right" value="1" />
+        </attr>
+    </declare-styleable>
+
+    <!--圆形进度条-->
+    <declare-styleable name="CustomCircleProgressBar">
+        <attr name="outside_color" format="color" />
+        <attr name="outside_radius" format="dimension" />
+        <attr name="inside_color" format="color" />
+        <attr name="progress_text_color" format="color" />
+        <attr name="progress_text_size" format="dimension" />
+        <attr name="progressbar_text_color" format="color" />
+        <attr name="progressbar_text_size" format="dimension" />
+        <attr name="progress_width" format="dimension" />
+        <attr name="max_progress" format="integer" />
+        <attr name="progress" format="float" />
+        <attr name="direction">
+            <enum name="left" value="0" />
+            <enum name="top" value="1" />
+            <enum name="right" value="2" />
+            <enum name="bottom" value="3" />
         </attr>
     </declare-styleable>
 </resources>
