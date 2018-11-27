@@ -116,4 +116,9 @@
         <item name="android:textColorPrimary">@color/sly_text_3a3a3a</item>
         <item name="android:textSize">17sp</item>
     </style>
+
+    <!--全选样式-->
+    <style name="CheckboxTheme" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/selector_checkbox_all_chose</item>
+    </style>
 </resources>

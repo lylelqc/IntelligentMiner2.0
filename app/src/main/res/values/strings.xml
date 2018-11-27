@@ -35,7 +35,12 @@
     <string name="repair_refuse_time">拒绝时间</string>
     <string name="repair_history">历史维修记录</string>
     <string name="machine_list">矿机列表</string>
+    <string name="machine_start">启用</string>
+    <string name="machine_stop">停机</string>
 
+    <string name="machine_change_pool">修改矿池</string>
+
+    <string name="manage_machine">管理矿机</string>
 
     <!--tips-->
     <string name="repair_than_time">结束时间不能大于起始时间</string>
@@ -44,12 +49,14 @@
     <string name="repair_choose_spares">请选择备件</string>
     <string name="repair_add_spares">请至少添加一种备件</string>
     <string name="repair_loading_spares">备件正在加载...</string>
+    <string name="manage_no_chose">请至少选择一个矿机</string>
 
 
     <!--dialog-->
     <string name="comfirm_success">提交成功</string>
     <string name="request_start_machine">确认是否重新启用</string>
     <string name="request_stop_machine">确认是否停机</string>
+    <string name="request_cancel_machine">确认是否注销</string>
     <string name="dialog_ok">确认</string>
     <string name="dialog_cancel">取消</string>
 

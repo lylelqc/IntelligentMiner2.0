@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include layout="@layout/main_title3" />
+
+        <LinearLayout
+            android:id="@+id/ll_manage_header"
+            android:layout_width="match_parent"
+            android:layout_height="46dp"
+            android:orientation="horizontal"
+            android:weightSum="4"
+            android:background="@color/white">
+
+            <RelativeLayout
+                android:id="@+id/rl_manage_all"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.2"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_manage_all"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="35dp"
+                    android:gravity="center"
+                    android:text="综合"
+                    android:textColor="@color/sly_text_1890ff"
+                    android:textSize="14sp" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_manage_status"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/tv_manage_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left|center_vertical"
+                    android:gravity="center"
+                    android:text="状态"
+                    android:textColor="@color/sly_text_244153"
+                    android:textSize="14sp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="6dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_manage_status_icon"
+                        android:layout_width="8dp"
+                        android:layout_height="6dp"
+                        android:background="@drawable/nojiantou_guanli_icon" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_manage_area"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.9">
+
+                <TextView
+                    android:id="@+id/tv_manage_area"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left|center_vertical"
+                    android:gravity="center"
+                    android:text="区域"
+                    android:textColor="@color/sly_text_244153"
+                    android:textSize="14sp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_manage_area_icon"
+                        android:layout_width="8dp"
+                        android:layout_height="6dp"
+                        android:background="@drawable/nojiantou_guanli_icon" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_manage_choose"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.9">
+                
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="20dp"
+                    android:background="#dbdbdb"
+                    android:layout_centerVertical="true"/>
+
+                <TextView
+                    android:id="@+id/tv_manage_choose"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:gravity="center"
+                    android:text="筛选"
+                    android:textColor="@color/sly_text_333333"
+                    android:textSize="14sp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="3dp"
+                    android:layout_toRightOf="@+id/tv_manage_choose"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_manage_choose_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:background="@drawable/noshaixuan_guanli_icon" />
+                </LinearLayout>
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="34dp"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/tv_shebei"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="总设备数："
+                android:textSize="13sp"
+                android:layout_centerVertical="true"
+                android:textColor="@color/sly_text_244153"/>
+            <TextView
+                android:id="@+id/tv_manage_all_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/tv_shebei"
+                android:layout_centerVertical="true"
+                android:textSize="13sp"
+                android:textColor="@color/sly_text_244153"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/tv_manage_all_count"
+                android:layout_centerVertical="true"
+                android:text="台"
+                android:textSize="13sp"
+                android:textColor="@color/sly_text_244153"/>
+
+        </RelativeLayout>
+
+        <include layout="@layout/gray_line" />
+
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_refresh_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginBottom="50dp"
+            android:background="@color/white">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                android:scrollbars="none" />
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+        <include layout="@layout/content_page_status" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="bottom">
+
+        <include layout="@layout/gray_line"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:weightSum="3.5"
+            android:background="@color/white">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.8">
+
+                <CheckBox
+                    android:id="@+id/cb_chose_all"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15dp"
+                    style="@style/CheckboxTheme"
+                    android:padding="9dp"
+                    android:text="全选"
+                    android:textSize="13sp"
+                    android:textColor="@color/sly_text_686868"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.75">
+
+                <TextView
+                    android:id="@+id/tv_manage_change_pool"
+                    android:layout_width="75dp"
+                    android:layout_height="34dp"
+                    android:background="@drawable/shape_btn_gradient_15dp"
+                    android:layout_centerVertical="true"
+                    android:gravity="center"
+                    android:text="修改矿池"
+                    android:textSize="14sp"
+                    android:textColor="@color/white"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.62">
+
+                <TextView
+                    android:id="@+id/tv_manage_start_machine"
+                    android:layout_width="60dp"
+                    android:layout_height="34dp"
+                    android:background="@drawable/shape_btn2_gradient_17dp"
+                    android:layout_centerVertical="true"
+                    android:gravity="center"
+                    android:text="启用"
+                    android:textSize="14sp"
+                    android:textColor="@color/white"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.62">
+
+                <TextView
+                    android:id="@+id/tv_manage_stop_machine"
+                    android:layout_width="60dp"
+                    android:layout_height="34dp"
+                    android:background="@drawable/shape_btn2_gradient_17dp"
+                    android:layout_centerVertical="true"
+                    android:gravity="center"
+                    android:text="停机"
+                    android:textSize="14sp"
+                    android:textColor="@color/white"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.6">
+
+                <TextView
+                    android:id="@+id/tv_manage_cancel_machine"
+                    android:layout_width="60dp"
+                    android:layout_height="34dp"
+                    android:background="@drawable/shape_btn2_gradient_17dp"
+                    android:layout_centerVertical="true"
+                    android:gravity="center"
+                    android:text="注销"
+                    android:textSize="14sp"
+                    android:textColor="@color/white"/>
+            </RelativeLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/ll_shadow"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"/>
+
+        <TextView
+            android:id="@+id/tv_shadow"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:alpha="0.5"
+            android:background="@color/black"/>
+    </LinearLayout>
+
+</FrameLayout>

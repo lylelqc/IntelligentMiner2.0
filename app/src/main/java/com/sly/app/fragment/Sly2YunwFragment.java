@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSON;
 import com.sly.app.R;
 import com.sly.app.activity.yunw.machine.MachineListActivity;
+import com.sly.app.activity.yunw.machine.MachineManageActivity;
 import com.sly.app.activity.yunw.repair.RepairBillActivity;
 import com.sly.app.comm.NetConstant;
 import com.sly.app.http.NetWorkCons;
@@ -256,14 +257,6 @@ public class Sly2YunwFragment extends BaseFragment implements ICommonViewUi{
             machineStatusList = (List<MachineNumRateInfo>) AppUtils.parseResult(result, MachineNumRateInfo.class);
             if(machineStatusList != null && machineStatusList.size() > 0){
                 tvOfflineNum.setVisibility(View.VISIBLE);
-                DecimalFormat df = new DecimalFormat("#.#");
-                df.setRoundingMode(RoundingMode.HALF_DOWN);
-
-                MachineNumRateInfo onlineInfo = machineStatusList.get(0);
-                tvOnlineNum.setText(onlineInfo.getMachineCount()+"");
-                String rate1 = df.format(onlineInfo.getRate()*100);
-                mProgressBar1.setProgress(rate1.contains(".") ? Float.parseFloat(rate1) : Integer.parseInt(rate1));
-
                 MachineNumRateInfo offlineInfo = machineStatusList.get(1);
                 if(offlineInfo.getMachineCount() > 9){
                     tvOfflineNum.setBackground(getResources().getDrawable(R.drawable.operation_bubble2));
@@ -275,6 +268,14 @@ public class Sly2YunwFragment extends BaseFragment implements ICommonViewUi{
                     tvOfflineNum.setBackground(getResources().getDrawable(R.drawable.operation_bubble1));
                     tvOfflineNum.setText(offlineInfo.getMachineCount()+"");
                 }
+
+                DecimalFormat df = new DecimalFormat("#.#");
+//                df.setRoundingMode(RoundingMode.HALF_DOWN);
+
+                MachineNumRateInfo onlineInfo = machineStatusList.get(0);
+                tvOnlineNum.setText(onlineInfo.getMachineCount()+"");
+                String rate1 = df.format(onlineInfo.getRate()*100);
+                mProgressBar1.setProgress(rate1.contains(".") ? Float.parseFloat(rate1) : Integer.parseInt(rate1));
 
                 tvOfflineNum2.setText(offlineInfo.getMachineCount()+"");
                 String rate2 = df.format(offlineInfo.getRate()*100);
@@ -289,11 +290,6 @@ public class Sly2YunwFragment extends BaseFragment implements ICommonViewUi{
                 tvStopNum.setText(stopInfo.getMachineCount()+"");
                 String rate4 = df.format(stopInfo.getRate()*100);
                 mProgressBar4.setProgress(rate4.contains(".") ? Float.parseFloat(rate4) : Integer.parseInt(rate4));
-                /*if(rate4.contains(".")){
-                    mProgressBar4.setProgress(Float.parseFloat(rate4));
-                }else{
-                    mProgressBar4.setProgress(Integer.parseInt(rate4));
-                }*/
             }
         }
     }
@@ -351,6 +347,7 @@ public class Sly2YunwFragment extends BaseFragment implements ICommonViewUi{
     public void onViewClicked(View view) {
         switch (view.getId()){
             case R.id.tv_operation_manage:
+                AppUtils.goActivity(mContext, MachineManageActivity.class);
                 break;
             case R.id.tv_offline_num:
             case R.id.ll_offline_machine:

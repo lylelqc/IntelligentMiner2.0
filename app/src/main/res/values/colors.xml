@@ -52,14 +52,22 @@
     <color name="sly_text_a6a6a6">#a6a6a6</color>
     <color name="sly_text_848689">#848689</color>
     <color name="sly_text_3a3a3a">#3a3a3a</color>
+    <color name="sly_text_1f1f1f">#1f1f1f</color>
     <color name="sly_money_fd643a">#fd643a</color>
     <color name="sly_money_394277">#394277</color>
     <color name="sly_money_f72a19">#f72a19</color>
     <color name="sly_line_ececec">#ececec</color>
 
+    <color name="sly_text_686868">#686868</color>
+    <color name="sly_text_a8abaf">#a8abaf</color>
+    <color name="sly_text_1890ff">#1890ff</color>
+    <color name="sly_text_4798f0">#4798f0</color>
+
+
     <color name="sly_gradient_4ca8f5">#4ca8f5</color>
     <color name="sly_gradient_4696ef">#4696ef</color>
     <color name="sly_gradient_62a5f4">#62a5f4</color>
+    <color name="sly_gradient_5c7ae8">#5c7ae8</color>
 
 
 </resources>

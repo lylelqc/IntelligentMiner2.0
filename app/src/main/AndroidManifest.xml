@@ -49,6 +49,8 @@
             android:name="com.sly.app.activity.mine.LoginActivity"
             android:windowSoftInputMode="adjustPan|stateHidden"
             android:launchMode="singleTask"/>
+        <activity android:name=".activity.sly.mine.SlySettingActivity" />
+        <activity android:name=".activity.loading.LoadingActivity" />
 
         <!-- 运维界面 -->
 
@@ -61,6 +63,9 @@
         <activity android:name=".activity.yunw.repair.RepairFormActivity" />
         <activity android:name=".activity.yunw.repair.RepairFormDetailsActivity" />
         <activity android:name=".activity.yunw.machine.MachineListActivity" />
+        <activity android:name=".activity.yunw.machine.MachineDetailsActivity" />
+        <activity android:name=".activity.yunw.machine.MachineChangePoolActivity" />
+        <activity android:name=".activity.yunw.machine.MachineManageActivity" />
 
 
         <!-- Rich push 核心功能 since 2.0.6-->

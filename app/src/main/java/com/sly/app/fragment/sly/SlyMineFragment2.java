@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSON;
 import com.sly.app.R;
 import com.sly.app.activity.mine.LoginActivity;
+import com.sly.app.activity.sly.mine.SlySettingActivity;
 import com.sly.app.activity.sly.mine.notice.Sly2NoticeActivity;
 import com.sly.app.comm.EventBusTags;
 import com.sly.app.fragment.BaseFragment;
@@ -223,6 +224,8 @@ public class SlyMineFragment2 extends BaseFragment {
                     showPopupWindow();
                     break;
                 case R.id.shezhi:
+                    intent.setClass(getActivity(), SlySettingActivity.class);
+                    startActivity(intent);
                     break;
                 case R.id.rl_my_shebei:
 //                    intent.setClass(getActivity(), MyMachineActivity.class);

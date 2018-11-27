@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.sly.app.R;
+import com.sly.app.activity.yunw.machine.MachineDetailsActivity;
 import com.sly.app.activity.yunw.repair.RepairBillDetailsActivity;
 import com.sly.app.model.yunw.machine.MachineListBean;
 import com.sly.app.utils.AppUtils;
@@ -43,14 +44,17 @@ public class MachineListRecyclerViewAdapter extends RecyclerView.Adapter{
         viewHolder.tvMachineListIP.setText(bean.getIP());
         if(bean.getStatusCode().equals("00")){
             viewHolder.tvMachineListStatus.setTextColor(mContext.getResources().getColor(R.color.color_27ae0c));
+            viewHolder.tvMachineListStatus.setText(bean.getStatusName());
         }else if(bean.getStatusCode().equals("01")){
             viewHolder.tvMachineListStatus.setTextColor(mContext.getResources().getColor(R.color.color_fb3a2d));
+            viewHolder.tvMachineListStatus.setText(bean.getStatusName().substring(0,2));
         }else if(bean.getStatusCode().equals("02")){
             viewHolder.tvMachineListStatus.setTextColor(mContext.getResources().getColor(R.color.color_f6a800));
+            viewHolder.tvMachineListStatus.setText(bean.getStatusName());
         }else{
             viewHolder.tvMachineListStatus.setTextColor(mContext.getResources().getColor(R.color.color_777777));
+            viewHolder.tvMachineListStatus.setText(bean.getStatusName());
         }
-        viewHolder.tvMachineListStatus.setText(bean.getStatusName());
 //        DecimalFormat df = new DecimalFormat("#.#");
 //        df.setRoundingMode(RoundingMode.HALF_DOWN);
 //        df.format(bean.getNowCal())
@@ -59,9 +63,9 @@ public class MachineListRecyclerViewAdapter extends RecyclerView.Adapter{
         viewHolder.llMachineListDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Bundle bundle = new Bundle();
-//                bundle.putString("BillNo", bean.getBillNo());
-//                AppUtils.goActivity(mContext, RepairBillDetailsActivity.class, bundle);
+                Bundle bundle = new Bundle();
+                bundle.putString("machineSysCode", bean.getMachineSysCode());
+                AppUtils.goActivity(mContext, MachineDetailsActivity.class, bundle);
             }
         });
 

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/cb_chose_item1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="15dp"
+                android:layout_gravity="center_vertical"
+                style="@style/CheckboxTheme"
+                android:paddingLeft="10dp"
+                android:text="离线"
+                android:textSize="13sp"
+                android:textColor="@color/sly_text_244153"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/cb_chose_item2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="15dp"
+                android:layout_gravity="center_vertical"
+                style="@style/CheckboxTheme"
+                android:paddingLeft="10dp"
+                android:text="算力异常"
+                android:textSize="13sp"
+                android:textColor="@color/sly_text_244153"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/cb_chose_item3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="15dp"
+                android:layout_gravity="center_vertical"
+                style="@style/CheckboxTheme"
+                android:paddingLeft="10dp"
+                android:text="在线"
+                android:textSize="13sp"
+                android:textColor="@color/sly_text_244153"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/cb_chose_item4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="15dp"
+                android:layout_gravity="center_vertical"
+                style="@style/CheckboxTheme"
+                android:paddingLeft="10dp"
+                android:text="停机"
+                android:textSize="13sp"
+                android:textColor="@color/sly_text_244153"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <TextView
+            android:id="@+id/tv_manage_status_reset"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="重置"
+            android:textColor="@color/sly_text_4798f0"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_manage_status_confirm"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/shape_btn_gradient_blue"
+            android:gravity="center"
+            android:text="确认"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+</LinearLayout>

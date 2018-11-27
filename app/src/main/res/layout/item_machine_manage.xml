@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white">
+
+    <RelativeLayout
+        android:id="@+id/rl_manage_details"
+        android:layout_width="match_parent"
+        android:layout_height="85dp"
+        android:orientation="vertical">
+
+        <CheckBox
+            android:id="@+id/cb_chose_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/CheckboxTheme"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="20dp"
+            android:textSize="14sp"/>
+
+        <TextView
+            android:id="@+id/tv_touxiang_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/touxiang_guanli_icon"
+            android:layout_toRightOf="@+id/cb_chose_status"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="13dp"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_toRightOf="@+id/tv_touxiang_icon"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="13dp"
+            android:layout_marginBottom="13dp">
+
+            <TextView
+                android:id="@+id/tv_manage_miner_code"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="13sp"
+                android:textColor="@color/sly_text_244153" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_manage_mahcine_area"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="6dp"
+                    android:textSize="12sp"
+                    android:textColor="@color/sly_text_a8abaf"/>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/sly_text_a8abaf"/>
+
+                <TextView
+                    android:id="@+id/tv_manage_machine_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="6dp"
+                    android:textSize="12sp"
+                    android:textColor="@color/sly_text_a8abaf"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_manage_mahcine_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="6dp"
+                    android:textSize="12sp"
+                    android:textColor="@color/sly_text_a8abaf"/>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/sly_text_a8abaf"/>
+
+                <TextView
+                    android:id="@+id/tv_manage_machine_cals"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="6dp"
+                    android:textSize="12sp"
+                    android:textColor="@color/sly_text_a8abaf"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tv_manage_mahcine_ip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="15dp"
+                android:textSize="13sp"
+                android:textColor="@color/sly_text_244153"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/tv_manage_mahcine_ip"
+                android:layout_centerVertical="true"
+                android:text="IP："
+                android:textSize="13sp"
+                android:textColor="@color/sly_text_244153"/>
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <include layout="@layout/gray_line"/>
+
+</RelativeLayout>

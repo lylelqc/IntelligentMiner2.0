@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <include layout="@layout/main_title2"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/white">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="35dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_centerVertical="true"
+                    android:text="矿池"
+                    android:textSize="12sp"
+                    android:textColor="@color/sly_text_666666"/>
+
+                <EditText
+                    android:id="@+id/et_change_mine1_pool"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="15dp"
+                    android:background="@null"
+                    android:hint="请输入"
+                    android:textSize="12sp"
+                    android:textColor="@color/sly_text_999999" />
+            </RelativeLayout>
+
+            <include layout="@layout/gray_line"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="35dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_centerVertical="true"
+                    android:text="矿工"
+                    android:textSize="12sp"
+                    android:textColor="@color/sly_text_666666"/>
+
+                <EditText
+                    android:id="@+id/et_change_miner1_code"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="15dp"
+                    android:background="@null"
+                    android:hint="请输入"
+                    android:textSize="12sp"
+                    android:textColor="@color/sly_text_999999" />
+            </RelativeLayout>
+            <include layout="@layout/gray_line"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="35dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_centerVertical="true"
+                    android:text="密码"
+                    android:textSize="12sp"
+                    android:textColor="@color/sly_text_666666"/>
+
+                <EditText
+                    android:id="@+id/et_change_pwd1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="15dp"
+                    android:background="@null"
+                    android:hint="请输入"
+                    android:textSize="12sp"
+                    android:textColor="@color/sly_text_999999" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <View android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="@color/sly_bg_f4f4f4"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/white">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="35dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_centerVertical="true"
+                    android:text="矿池"
+                    android:textSize="12sp"
+                    android:textColor="@color/sly_text_666666"/>
+
+                <EditText
+                    android:id="@+id/et_change_mine2_pool"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="15dp"
+                    android:background="@null"
+                    android:hint="请输入"
+                    android:textSize="12sp"
+                    android:textColor="@color/sly_text_999999" />
+            </RelativeLayout>
+
+            <include layout="@layout/gray_line"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="35dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_centerVertical="true"
+                    android:text="矿工"
+                    android:textSize="12sp"
+                    android:textColor="@color/sly_text_666666"/>
+
+                <EditText
+                    android:id="@+id/et_change_miner2_code"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="15dp"
+                    android:background="@null"
+                    android:hint="请输入"
+                    android:textSize="12sp"
+                    android:textColor="@color/sly_text_999999" />
+            </RelativeLayout>
+            <include layout="@layout/gray_line"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="35dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_centerVertical="true"
+                    android:text="密码"
+                    android:textSize="12sp"
+                    android:textColor="@color/sly_text_666666"/>
+
+                <EditText
+                    android:id="@+id/et_change_pwd2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="15dp"
+                    android:background="@null"
+                    android:hint="请输入"
+                    android:textSize="12sp"
+                    android:textColor="@color/sly_text_999999" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <View android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="@color/sly_bg_f4f4f4"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/white">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="35dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_centerVertical="true"
+                    android:text="矿池"
+                    android:textSize="12sp"
+                    android:textColor="@color/sly_text_666666"/>
+
+                <EditText
+                    android:id="@+id/et_change_mine3_pool"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="15dp"
+                    android:background="@null"
+                    android:hint="请输入"
+                    android:textSize="12sp"
+                    android:textColor="@color/sly_text_999999" />
+            </RelativeLayout>
+            <include layout="@layout/gray_line"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="35dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_centerVertical="true"
+                    android:text="矿工"
+                    android:textSize="12sp"
+                    android:textColor="@color/sly_text_666666"/>
+
+                <EditText
+                    android:id="@+id/et_change_miner3_code"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="15dp"
+                    android:background="@null"
+                    android:hint="请输入"
+                    android:textSize="12sp"
+                    android:textColor="@color/sly_text_999999" />
+            </RelativeLayout>
+            <include layout="@layout/gray_line"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="35dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_centerVertical="true"
+                    android:text="密码"
+                    android:textSize="12sp"
+                    android:textColor="@color/sly_text_666666"/>
+
+                <EditText
+                    android:id="@+id/et_change_pwd3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="15dp"
+                    android:background="@null"
+                    android:hint="请输入"
+                    android:textSize="12sp"
+                    android:textColor="@color/sly_text_999999" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <View android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="@color/sly_bg_f4f4f4"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:background="@color/white">
+
+            <TextView
+                android:id="@+id/tv_chosed_icon"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:background="@drawable/xunzhonh_guanli_icon"
+                />
+            <TextView
+                android:id="@+id/tv_before_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/tv_chosed_icon"
+                android:layout_centerVertical="true"
+                android:text="使用IP地址后的"
+                android:textSize="12sp"
+                android:textColor="@color/sly_text_666666"/>
+
+            <RelativeLayout
+                android:id="@+id/rl_spinner"
+                android:layout_width="47dp"
+                android:layout_height="23dp"
+                android:layout_toRightOf="@+id/tv_before_text"
+                android:layout_marginLeft="10dp"
+                android:layout_centerVertical="true"
+                android:background="@drawable/shape_gray_3dp">
+
+                <TextView
+                    android:id="@+id/tv_ip_duan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="14dp"
+                    android:text="4"
+                    android:textSize="12sp"
+                    android:textColor="@color/sly_text_333333"/>
+
+                <TextView
+                    android:layout_width="8dp"
+                    android:layout_height="5dp"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/tv_ip_duan"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/xiala_weixiudan_icon"/>
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/rl_spinner"
+                android:layout_centerVertical="true"
+                android:text="段作为矿机名后缀"
+                android:textSize="12sp"
+                android:textColor="@color/sly_text_666666"/>
+        </RelativeLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+
+        <TextView
+            android:id="@+id/tv_change_comfirm"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/shape_blue_3dp"
+            android:gravity="center"
+            android:text="确定"
+            android:textSize="16dp"
+            android:textColor="@color/white"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>
