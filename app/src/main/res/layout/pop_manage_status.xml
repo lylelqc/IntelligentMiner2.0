@@ -10,15 +10,15 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <LinearLayout
+        <RadioGroup
             android:layout_width="match_parent"
-            android:layout_height="44dp"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            <CheckBox
+            <com.sly.app.view.ToggleRadioButton
                 android:id="@+id/cb_chose_item1"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="44dp"
                 android:layout_marginLeft="15dp"
                 android:layout_gravity="center_vertical"
                 style="@style/CheckboxTheme"
@@ -27,17 +27,10 @@
                 android:textSize="13sp"
                 android:textColor="@color/sly_text_244153"/>
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="44dp"
-            android:orientation="horizontal">
-
-            <CheckBox
+            <com.sly.app.view.ToggleRadioButton
                 android:id="@+id/cb_chose_item2"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="44dp"
                 android:layout_marginLeft="15dp"
                 android:layout_gravity="center_vertical"
                 style="@style/CheckboxTheme"
@@ -45,17 +38,11 @@
                 android:text="算力异常"
                 android:textSize="13sp"
                 android:textColor="@color/sly_text_244153"/>
-        </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="44dp"
-            android:orientation="horizontal">
-
-            <CheckBox
+            <com.sly.app.view.ToggleRadioButton
                 android:id="@+id/cb_chose_item3"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="44dp"
                 android:layout_marginLeft="15dp"
                 android:layout_gravity="center_vertical"
                 style="@style/CheckboxTheme"
@@ -63,17 +50,11 @@
                 android:text="在线"
                 android:textSize="13sp"
                 android:textColor="@color/sly_text_244153"/>
-        </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="44dp"
-            android:orientation="horizontal">
-
-            <CheckBox
+            <com.sly.app.view.ToggleRadioButton
                 android:id="@+id/cb_chose_item4"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="44dp"
                 android:layout_marginLeft="15dp"
                 android:layout_gravity="center_vertical"
                 style="@style/CheckboxTheme"
@@ -81,8 +62,8 @@
                 android:text="停机"
                 android:textSize="13sp"
                 android:textColor="@color/sly_text_244153"/>
-        </LinearLayout>
 
+        </RadioGroup>
     </LinearLayout>
 
     <LinearLayout

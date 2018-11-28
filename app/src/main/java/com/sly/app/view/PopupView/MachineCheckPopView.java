@@ -153,12 +153,20 @@ public class MachineCheckPopView extends PopupWindow implements View.OnClickList
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.tv_machine_list_reset:
-
+                adapter.setIndexNull();
+                adapter.notifyDataSetChanged();
+                etMinerCode.setText("");
+                etVipCode.setText("");
+                etBeginIP.setText("");
+                etEndIP.setText("");
+                cbStatus1.setChecked(false);
+                cbStatus2.setChecked(false);
+                cbStatus3.setChecked(false);
+                cbStatus4.setChecked(false);
                 break;
             case R.id.tv_machine_list_confirm:
                 this.dismiss();
                 mOnSearchClickListener.onSearchClick(tvSearch, 0);
-
                 break;
         }
     }

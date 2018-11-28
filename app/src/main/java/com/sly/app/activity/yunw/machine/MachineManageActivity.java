@@ -11,6 +11,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
 import android.util.ArrayMap;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -56,6 +57,7 @@ import com.sly.app.utils.SharedPreferencesUtil;
 import com.sly.app.utils.ToastUtils;
 import com.sly.app.utils.http.HttpStatusUtil;
 import com.sly.app.view.PopupView.MachineCheckPopView;
+import com.sly.app.view.PopupView.ManageAllChoicePopView;
 import com.sly.app.view.PopupView.ManageAreaCheckPopView;
 import com.sly.app.view.PopupView.ManageStatusCheckPopView;
 import com.sly.app.view.iviews.ICommonViewUi;
@@ -77,7 +79,8 @@ import okhttp3.Request;
 import vip.devkit.library.Logcat;
 
 public class MachineManageActivity extends BaseActivity implements ICommonViewUi, IRecyclerViewUi, SwipeRefreshLayout.OnRefreshListener,
-        LoadMoreClickListener, ManageAreaCheckPopView.OnSearchClickListener, ManageStatusCheckPopView.OnSearchClickListener{
+        LoadMoreClickListener, ManageAreaCheckPopView.OnSearchClickListener, ManageStatusCheckPopView.OnSearchClickListener,
+        ManageAllChoicePopView.OnSearchClickListener{
 
     @BindView(R.id.ll_comm_layout)
     LinearLayout llComLayout;
@@ -139,9 +142,9 @@ public class MachineManageActivity extends BaseActivity implements ICommonViewUi
     TextView pageStatusTextTv;
 
     private String User, Token, FrSysCode, FMasterCode, MineCode, PersonSysCode, Key, LoginType;
-    private String areaCode = "";
     private String Model = "";
     private String Worker = "";
+    private String areaCode = "";
     private String minerSysCode = "";
     private String statusCode = "";
     private String machineCode = "";
@@ -167,10 +170,11 @@ public class MachineManageActivity extends BaseActivity implements ICommonViewUi
     private CommonRequestPresenterImpl iCommonRequestPresenter;
     
     private List<MachineManageAreaBean> areaList = new ArrayList<>();
+    private List<MachineTypeBean> machineTypeList = new ArrayList<>();
     private ManageAreaCheckPopView mAreaCheckPopView;
     private ManageStatusCheckPopView mStatusCheckPopView;
+    private ManageAllChoicePopView mAllChoicePopView;
 
-    private List<MachineTypeBean> machineTypeList = new ArrayList<>();
 
     @Override
     protected int getContentViewLayoutID() {
@@ -513,10 +517,6 @@ public class MachineManageActivity extends BaseActivity implements ICommonViewUi
         Model = "";
         Worker = "";
         minerSysCode = "";
-        machineCode = "";
-        ip = "";
-        beginip = "";
-        endip = "";
         orderField = "ip";
         orderBy = "ASC";
 
@@ -583,7 +583,9 @@ public class MachineManageActivity extends BaseActivity implements ICommonViewUi
                 break;
             case R.id.rl_manage_choose:
                 setListHeaderIcon(4);
-
+                mAllChoicePopView = new ManageAllChoicePopView(this, areaList, machineTypeList);
+                mAllChoicePopView.setAllChoiceSearchClickListener(this);
+                mAllChoicePopView.showFilterPopup(llManageHeader);
                 break;
             case R.id.cb_chose_all:
                 checkAll();
@@ -625,18 +627,60 @@ public class MachineManageActivity extends BaseActivity implements ICommonViewUi
     @Override
     public void onAreaSearchClick(View view, int position) {
         if(mAreaCheckPopView != null ){
-            Set<Integer> indexSet = mAreaCheckPopView.getAreaIndexSet();
-            Logcat.e(indexSet.toString());
-//            firstRefresh();
+            areaCode = mAreaCheckPopView.getManageAreaCode();
+            statusCode = "";
+            Model = "";
+            Worker = "";
+            minerSysCode = "";
+            firstRefresh();
         }
     }
 
     @Override
     public void onStatusSearchClick(View view, int position) {
         if(mStatusCheckPopView != null ){
-            Set<String> indexSet = mStatusCheckPopView.getStatusIndexSet();
-            Logcat.e(indexSet.toString());
-//            firstRefresh();
+            String[] info = mStatusCheckPopView.getStatusInfo();
+            if(info[0].equals("true")){
+                statusCode = "01";
+            }else if(info[1].equals("true")){
+                statusCode = "02";
+            }else if(info[2].equals("true")){
+                statusCode = "00";
+            }else if(info[3].equals("true")){
+                statusCode = "05";
+            }else {
+                statusCode = "";
+            }
+            areaCode = "";
+            Model = "";
+            Worker = "";
+            minerSysCode = "";
+            firstRefresh();
+        }
+    }
+
+    @Override
+    public void onAllChoiceSearchClick(View view, int position) {
+        if(mAllChoicePopView != null){
+            areaCode = mAllChoicePopView.getAllAreaCode();
+            Model = mAllChoicePopView.getAllTypeSet();
+
+            String[] info = mAllChoicePopView.getTextInfo();
+            Worker = AppUtils.isBlank(info[0]) ? "" : info[0];
+            minerSysCode = AppUtils.isBlank(info[1]) ? "" : info[1];
+
+            if(info[2].equals("true")){
+                statusCode = "00";
+            }else if(info[3].equals("true")){
+                statusCode = "01";
+            }else if(info[4].equals("true")){
+                statusCode = "02";
+            }else if(info[5].equals("true")){
+                statusCode = "05";
+            }else {
+                statusCode = "";
+            }
+            firstRefresh();
         }
     }
 

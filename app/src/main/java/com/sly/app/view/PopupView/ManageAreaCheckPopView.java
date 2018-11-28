@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.sly.app.R;
 import com.sly.app.adapter.yunw.machine.ManageAreaRecyclerViewAdapter;
 import com.sly.app.model.yunw.machine.MachineManageAreaBean;
+import com.sly.app.model.yunw.machine.MachineTypeBean;
 import com.sly.app.view.MyGridItemDecoration;
 import com.sly.app.view.MyStaggeredGridLayoutManager;
 
@@ -32,12 +33,12 @@ public class ManageAreaCheckPopView extends PopupWindow implements View.OnClickL
 
     private RecyclerView recyclerView;
     private Set<Integer> indexSet = new TreeSet<>();
-
-    private List<MachineManageAreaBean> machineTypeList;
+//    private Integer index = -1;
+    private List<MachineManageAreaBean> areaBeanList;
 
     public ManageAreaCheckPopView(final Activity context, List<MachineManageAreaBean> typeList){
         this.mContext = context;
-        this.machineTypeList = typeList;
+        this.areaBeanList = typeList;
 
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         contentView = inflater.inflate(R.layout.pop_manage_area, null);
@@ -48,7 +49,7 @@ public class ManageAreaCheckPopView extends PopupWindow implements View.OnClickL
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.addItemDecoration(lineVertical);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        adapter = new ManageAreaRecyclerViewAdapter(mContext, typeList, indexSet);
+        adapter = new ManageAreaRecyclerViewAdapter(mContext, typeList);
         recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
 
@@ -78,8 +79,12 @@ public class ManageAreaCheckPopView extends PopupWindow implements View.OnClickL
         }
     }
 
-    public Set<Integer> getAreaIndexSet(){
-        return indexSet;
+    public String getManageAreaCode(){
+        if(!adapter.getAreaSet().isEmpty()){
+            String areaCode = areaBeanList.get(adapter.getAreaSet().iterator().next()).getAreaSysCode();
+            return areaCode;
+        }
+        return "";
     }
 
     public void setAreaSearchClickListener(OnSearchClickListener listener) {
@@ -97,13 +102,17 @@ public class ManageAreaCheckPopView extends PopupWindow implements View.OnClickL
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.tv_manage_area_reset:
-                indexSet.clear();
-                adapter.notifyDataSetChanged();
+                clearAll();
                 break;
             case R.id.tv_manage_area_confirm:
                 this.dismiss();
                 mOnSearchClickListener.onAreaSearchClick(tvSearch, 0);
                 break;
         }
+    }
+
+    public void clearAll(){
+        adapter.setAreaSetNull();
+        adapter.notifyDataSetChanged();
     }
 }

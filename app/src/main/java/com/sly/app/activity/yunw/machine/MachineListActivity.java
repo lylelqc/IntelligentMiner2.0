@@ -485,7 +485,7 @@ public class MachineListActivity extends BaseActivity implements IRecyclerViewUi
             String[] info = mMachineCheckView.getTextInfo();
             Model = AppUtils.isBlank(info[0]) ? "" : info[0];
             Worker = AppUtils.isBlank(info[1]) ? "" : info[1];
-            String VipCode = AppUtils.isBlank(info[2]) ? "" : info[2];
+            minerSysCode = AppUtils.isBlank(info[2]) ? "" : info[2];
             beginip = AppUtils.isBlank(info[3]) ? "" : info[3];
             endip = AppUtils.isBlank(info[4]) ? "" : info[4];
 

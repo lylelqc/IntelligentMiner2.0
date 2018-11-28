@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.Toast;
@@ -39,14 +40,15 @@ public class MachineTypeRecyclerViewAdapter extends RecyclerView.Adapter {
         final MachineTypeBean bean = beanList.get(position);
 
         viewHolder.rbMachineTypeStatus.setText(bean.getModelName());
-        viewHolder.rbMachineTypeStatus.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        viewHolder.rbMachineTypeStatus.setChecked(position == index);
+        viewHolder.rbMachineTypeStatus.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
-                if(isChecked){
+            public void onClick(View view) {
+                index = -1;
+                if(((CheckBox)view).isChecked()){
                     index = position;
-                }else{
-                    index = -1;
                 }
+                notifyDataSetChanged();
             }
         });
     }
@@ -58,7 +60,7 @@ public class MachineTypeRecyclerViewAdapter extends RecyclerView.Adapter {
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.rb_machine_type_status)
-        RadioButton rbMachineTypeStatus;
+        CheckBox rbMachineTypeStatus;
 
         ViewHolder(View view) {
             super(view);
@@ -68,5 +70,9 @@ public class MachineTypeRecyclerViewAdapter extends RecyclerView.Adapter {
 
     public int getIndex() {
         return index;
+    }
+
+    public void setIndexNull() {
+        index = -1;
     }
 }

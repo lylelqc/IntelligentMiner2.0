@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.TextView;
+import android.widget.RadioButton;
 
 import com.sly.app.R;
 import com.sly.app.model.yunw.machine.MachineManageAreaBean;
@@ -18,21 +18,20 @@ import java.util.TreeSet;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ManageAreaRecyclerViewAdapter extends RecyclerView.Adapter {
+public class ManageAllAreaRecyclerViewAdapter extends RecyclerView.Adapter {
 
     private Context mContext;
     private List<MachineManageAreaBean> beanList;
     private Set<Integer> indexSet = new TreeSet<>();
-//    private Integer index;
 
-    public ManageAreaRecyclerViewAdapter(Context context, List<MachineManageAreaBean> beanList) {
+    public ManageAllAreaRecyclerViewAdapter(Context context, List<MachineManageAreaBean> beanList) {
         this.mContext = context;
         this.beanList = beanList;
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = View.inflate(parent.getContext(), R.layout.item_manage_area, null);
+        View v = View.inflate(parent.getContext(), R.layout.item_machine_type, null);
         return new ViewHolder(v);
     }
 
@@ -41,10 +40,9 @@ public class ManageAreaRecyclerViewAdapter extends RecyclerView.Adapter {
         final ViewHolder viewHolder = (ViewHolder) holder;
         final MachineManageAreaBean bean = beanList.get(position);
 
-        viewHolder.tvline.setVisibility(position % 2 == 1 ? View.VISIBLE : View.GONE);
-        viewHolder.cbChoseItem.setText(bean.getAreaName());
-        viewHolder.cbChoseItem.setChecked(indexSet.contains(position));
-        viewHolder.cbChoseItem.setOnClickListener(new View.OnClickListener() {
+        viewHolder.rbMachineTypeStatus.setText(bean.getAreaName());
+        viewHolder.rbMachineTypeStatus.setChecked(indexSet.contains(position));
+        viewHolder.rbMachineTypeStatus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 indexSet.clear();
@@ -64,11 +62,8 @@ public class ManageAreaRecyclerViewAdapter extends RecyclerView.Adapter {
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-
-        @BindView(R.id.v_manage_line)
-        View tvline;
-        @BindView(R.id.cb_chose_item)
-        CheckBox cbChoseItem;
+        @BindView(R.id.rb_machine_type_status)
+        CheckBox rbMachineTypeStatus;
 
         ViewHolder(View view) {
             super(view);
@@ -76,11 +71,11 @@ public class ManageAreaRecyclerViewAdapter extends RecyclerView.Adapter {
         }
     }
 
-    public Set<Integer> getAreaSet(){
+    public Set<Integer> getAllAreaSet(){
         return indexSet;
     }
 
-    public void setAreaSetNull(){
+    public void setAllAreaSetNull(){
         indexSet.clear();
     }
 }
