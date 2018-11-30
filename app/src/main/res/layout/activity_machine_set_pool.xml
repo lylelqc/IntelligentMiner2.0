@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include layout="@layout/main_title3" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="47dp"
+            android:orientation="horizontal"
+            android:weightSum="4">
+
+            <LinearLayout
+                android:id="@+id/ll_machine_offline_ip_icon"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.2"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_machine_offline_ip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left|center_vertical"
+                    android:layout_marginLeft="50dp"
+                    android:gravity="center"
+                    android:text="会员号"
+                    android:textColor="@color/sly_text_333333"
+                    android:textSize="13sp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_machine_offline_ip_up"
+                        android:layout_width="6dp"
+                        android:layout_height="4dp"
+                        android:background="@drawable/monitor_sort_upper1" />
+
+                    <TextView
+                        android:id="@+id/tv_machine_offline_ip_low"
+                        android:layout_width="6dp"
+                        android:layout_height="4dp"
+                        android:layout_marginTop="2dp"
+                        android:background="@drawable/monitor_sort_lower" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_machine_offline_type_icon"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.3"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/tv_machine_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left|center_vertical"
+                    android:gravity="center"
+                    android:text="IP"
+                    android:textColor="@color/sly_text_333333"
+                    android:textSize="13sp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_machine_offline_type_up"
+                        android:layout_width="6dp"
+                        android:layout_height="4dp"
+                        android:background="@drawable/monitor_sort_upper" />
+
+                    <TextView
+                        android:id="@+id/tv_machine_offline_type_low"
+                        android:layout_width="6dp"
+                        android:layout_height="4dp"
+                        android:layout_marginTop="2dp"
+                        android:background="@drawable/monitor_sort_lower" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_machine_offline_status_icon"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.75">
+
+                <TextView
+                    android:id="@+id/tv_machine_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left|center_vertical"
+                    android:gravity="center"
+                    android:text="状态"
+                    android:textColor="@color/sly_text_333333"
+                    android:textSize="13sp" />
+
+                <LinearLayout
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_machine_offline_status_up"
+                        android:layout_width="6dp"
+                        android:layout_height="4dp"
+                        android:background="@drawable/monitor_sort_upper" />
+
+                    <TextView
+                        android:id="@+id/tv_machine_offline_status_low"
+                        android:layout_width="6dp"
+                        android:layout_height="4dp"
+                        android:layout_marginTop="2dp"
+                        android:background="@drawable/monitor_sort_lower" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_machine_offline_area_icon"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.75">
+
+                <TextView
+                    android:id="@+id/tv_machine_area"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left|center_vertical"
+                    android:gravity="center"
+                    android:text="区域"
+                    android:textColor="@color/sly_text_333333"
+                    android:textSize="13sp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_machine_offline_area_up"
+                        android:layout_width="6dp"
+                        android:layout_height="4dp"
+                        android:background="@drawable/monitor_sort_upper" />
+
+                    <TextView
+                        android:id="@+id/tv_machine_offline_area_low"
+                        android:layout_width="6dp"
+                        android:layout_height="4dp"
+                        android:layout_marginTop="2dp"
+                        android:background="@drawable/monitor_sort_lower" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <include layout="@layout/gray_line" />
+
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_refresh_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginBottom="45dp"
+            android:background="@color/white">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                android:scrollbars="none" />
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+        <include layout="@layout/content_page_status" />
+
+    </LinearLayout>
+
+    <include layout="@layout/gray_line"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="bottom">
+
+        <include layout="@layout/gray_line"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            android:background="@color/white">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.3">
+
+                <CheckBox
+                    android:id="@+id/cb_chose_all"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15dp"
+                    style="@style/CheckboxTheme"
+                    android:paddingLeft="9dp"
+                    android:text="全选"
+                    android:textSize="14sp"
+                    android:textColor="@color/sly_text_686868"/>
+
+                <TextView
+                    android:id="@+id/tv_set_pool_gong"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/cb_chose_all"
+                    android:text="(共"
+                    android:textSize="14sp"
+                    android:textColor="@color/sly_text_686868"/>
+
+                <TextView
+                    android:id="@+id/tv_set_pool_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/tv_set_pool_gong"
+                    android:text="0"
+                    android:textSize="14sp"
+                    android:textColor="@color/sly_text_686868"/>
+
+                <TextView
+                    android:id="@+id/tv_offline_shebei"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/tv_set_pool_count"
+                    android:text="台设备)"
+                    android:textSize="14sp"
+                    android:textColor="@color/sly_text_686868"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.7">
+
+                <TextView
+                    android:id="@+id/tv_machine_set_pool_btn"
+                    android:layout_width="78dp"
+                    android:layout_height="34dp"
+                    android:background="@drawable/shape_btn2_gradient_17dp"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="15dp"
+                    android:gravity="center"
+                    android:text="修改矿池"
+                    android:textSize="14sp"
+                    android:textColor="@color/white"/>
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/ll_shadow"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"/>
+
+        <TextView
+            android:id="@+id/tv_shadow"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:alpha="0.5"
+            android:background="@color/black"/>
+    </LinearLayout>
+
+</FrameLayout>

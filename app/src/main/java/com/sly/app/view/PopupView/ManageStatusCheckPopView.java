@@ -40,9 +40,9 @@ public class ManageStatusCheckPopView extends PopupWindow implements View.OnClic
         contentView = inflater.inflate(R.layout.pop_manage_status, null);
 
         cbChoseItem1 = contentView.findViewById(R.id.cb_chose_item1);
-        cbChoseItem2 = contentView.findViewById(R.id.cb_chose_item1);
-        cbChoseItem3 = contentView.findViewById(R.id.cb_chose_item1);
-        cbChoseItem4 = contentView.findViewById(R.id.cb_chose_item1);
+        cbChoseItem2 = contentView.findViewById(R.id.cb_chose_item2);
+        cbChoseItem3 = contentView.findViewById(R.id.cb_chose_item3);
+        cbChoseItem4 = contentView.findViewById(R.id.cb_chose_item4);
 
         tvSearch = contentView.findViewById(R.id.tv_manage_status_reset);
         tvReSet = contentView.findViewById(R.id.tv_manage_status_confirm);

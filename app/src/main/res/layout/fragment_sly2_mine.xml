@@ -250,7 +250,7 @@
                             </LinearLayout>
 
                             <LinearLayout
-                                android:id="@+id/ll_online_machine"
+                                android:id="@+id/ll_goline_machine"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="23dp"
@@ -282,6 +282,7 @@
                     android:layout_height="5dp" />
 
                 <RelativeLayout
+                    android:id="@+id/rl_all_machine_count"
                     android:layout_width="match_parent"
                     android:layout_height="34dp"
                     android:background="@color/white"
@@ -619,6 +620,7 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/tv_home_clock_work"
         android:layout_width="45dp"
         android:layout_height="45dp"
         android:layout_gravity="bottom|right"

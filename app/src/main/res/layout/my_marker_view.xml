@@ -7,7 +7,7 @@
         android:id="@+id/rl_mark_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/shape_high_blue_5dp">
+        android:background="@drawable/shape_blue_5dp">
         <TextView
             android:id="@+id/tv_date_time"
             android:layout_width="wrap_content"

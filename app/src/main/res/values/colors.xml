@@ -27,11 +27,13 @@
     <!--导航栏颜色-->
     <color name="sly_navigation_bar">#3b7ce6</color>
     <color name="sly_text_white">#fff</color>
+    <color name="sly_one_dp">#ececec</color>
     <!--重点色-->
     <color name="sly_btn_blue">#2386e3</color>
-    <color name="sly_one_dp">#ececec</color>
     <color name="sly_bg_f4f4f4">#f4f4f4</color>
     <color name="sly_bg_f8f8f8">#f8f8f8</color>
+    <color name="sly_bg_f2f7ff">#f2f7ff</color>
+
     <color name="sly_text_333333">#333333</color>
     <color name="sly_text_666666">#666666</color>
     <color name="sly_text_999999">#999999</color>
@@ -57,11 +59,13 @@
     <color name="sly_money_394277">#394277</color>
     <color name="sly_money_f72a19">#f72a19</color>
     <color name="sly_line_ececec">#ececec</color>
+    <color name="sly_line_d7d7d7">#d7d7d7</color>
 
     <color name="sly_text_686868">#686868</color>
     <color name="sly_text_a8abaf">#a8abaf</color>
     <color name="sly_text_1890ff">#1890ff</color>
     <color name="sly_text_4798f0">#4798f0</color>
+    <color name="sly_text_aaaaaa">#aaaaaa</color>
 
 
     <color name="sly_gradient_4ca8f5">#4ca8f5</color>

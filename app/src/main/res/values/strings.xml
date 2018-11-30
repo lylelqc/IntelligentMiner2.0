@@ -37,10 +37,22 @@
     <string name="machine_list">矿机列表</string>
     <string name="machine_start">启用</string>
     <string name="machine_stop">停机</string>
-
+    <string name="manage_machine">管理矿机</string>
     <string name="machine_change_pool">修改矿池</string>
 
-    <string name="manage_machine">管理矿机</string>
+    <string name="machine_goline">矿机上线</string>
+    <string name="machine_scaned">已执行扫描</string>
+    <string name="machine_no_scaned">未执行扫描</string>
+
+    <string name="machine_scan_details">扫描详情</string>
+    <string name="machine_edit">编辑</string>
+    <string name="machine_manage">管理</string>
+    <string name="machine_finish">完成</string>
+    <string name="machine_no_bind">未绑定</string>
+    <string name="machine_bind_vip">绑定会员</string>
+    <string name="machine_change_vip">更改绑定</string>
+
+    <string name="machine_offline">矿机停机</string>
 
     <!--tips-->
     <string name="repair_than_time">结束时间不能大于起始时间</string>
@@ -50,10 +62,17 @@
     <string name="repair_add_spares">请至少添加一种备件</string>
     <string name="repair_loading_spares">备件正在加载...</string>
     <string name="manage_no_chose">请至少选择一个矿机</string>
+    <string name="area_no_chose">请至少选择一个区域</string>
+    <string name="vip_no_bind_no_commit">请先绑定会员再提交！</string>
+    <string name="bind_vip_success">绑定成功</string>
+    <string name="ip_than_before">结束IP不能大于起始IP</string>
 
 
     <!--dialog-->
     <string name="comfirm_success">提交成功</string>
+    <string name="delete_success">删除成功</string>
+    <string name="request_commit_plan">确认是否提交</string>
+    <string name="request_delete_plan">确认是否删除</string>
     <string name="request_start_machine">确认是否重新启用</string>
     <string name="request_stop_machine">确认是否停机</string>
     <string name="request_cancel_machine">确认是否注销</string>

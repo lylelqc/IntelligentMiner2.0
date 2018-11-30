@@ -3,7 +3,7 @@
     android:orientation="vertical"
     android:layout_width="47dp"
     android:layout_height="wrap_content"
-    android:background="@drawable/shape_gray_3dp">
+    android:background="@drawable/shape_f6f6f6_3dp">
 
     <TextView
         android:id="@+id/tv_ip_2"

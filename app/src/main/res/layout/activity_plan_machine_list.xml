@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include layout="@layout/main_title2"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/white">
+
+            <RelativeLayout
+                android:id="@+id/rl_plan_machine_header"
+                android:layout_width="match_parent"
+                android:layout_height="45dp">
+
+                <RelativeLayout
+                    android:id="@+id/rl_machine_list_area"
+                    android:layout_width="84dp"
+                    android:layout_height="27dp"
+                    android:background="@drawable/shape_btn_gradient_blue"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15dp"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/tv_plan_machine_area"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="按区域"
+                        android:textSize="15sp"
+                        android:textColor="@color/white"
+                        />
+                    <TextView
+                        android:layout_width="12dp"
+                        android:layout_height="7dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@+id/tv_plan_machine_area"
+                        android:background="@drawable/operation_drop_down"/>
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/tv_plan_machine_manage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="15dp"
+                    android:text="管理"
+                    android:textSize="16sp"
+                    android:textColor="@color/sly_text_666666"
+                    />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/white">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:orientation="horizontal"
+                android:weightSum="4">
+
+                <View
+                    android:visibility="gone"
+                    android:id="@+id/view_plan_machine_chose_header"
+                    android:layout_width="30dp"
+                    android:layout_height="match_parent"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="型号"
+                    android:textSize="13sp"
+                    android:textColor="@color/sly_text_333333"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="数量"
+                    android:textSize="13sp"
+                    android:textColor="@color/sly_text_333333"/>
+
+                <LinearLayout
+                    android:id="@+id/ll_plan_machine_miner_code"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="矿工号"
+                        android:textSize="13sp"
+                        android:textColor="@color/sly_text_333333"/>
+
+                    <TextView
+                        android:id="@+id/tv_plan_machine_miner_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="10dp"
+                        android:layout_marginLeft="5dp"
+                        android:background="@drawable/paixu_tingji_icon"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_plan_machine_vip_code"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="会员号"
+                        android:textSize="13sp"
+                        android:textColor="@color/sly_text_333333"/>
+
+                    <TextView
+                        android:id="@+id/tv_plan_machine_vip_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="10dp"
+                        android:layout_marginLeft="5dp"
+                        android:background="@drawable/paixu_tingji_icon"/>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_plan_machine_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+        </android.support.v7.widget.RecyclerView>
+
+        <RelativeLayout
+            android:id="@+id/rl_plan_machine_commit_plan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom">
+
+            <TextView
+                android:id="@+id/tv_plan_machine_commit"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:background="@drawable/shape_blue_3dp"
+                android:gravity="center"
+                android:text="提交"
+                android:textColor="@color/white"
+                android:textSize="16sp"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:visibility="gone"
+            android:id="@+id/rl_plan_machine_bind_vip"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="bottom"
+            android:background="@color/white">
+
+            <TextView
+                android:id="@+id/tv_plan_machine_bind_vip"
+                android:layout_width="80dp"
+                android:layout_height="34dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/shape_btn2_gradient_17dp"
+                android:gravity="center"
+                android:text="绑定会员"
+                android:textSize="14sp"
+                android:textColor="@color/white"/>
+
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/ll_shadow"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"/>
+
+        <TextView
+            android:id="@+id/tv_shadow"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:alpha="0.5"
+            android:background="@color/black"/>
+    </LinearLayout>
+
+</FrameLayout>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/ll_plan_machine_details"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:orientation="horizontal"
+        android:background="@color/white">
+
+        <RelativeLayout
+            android:visibility="gone"
+            android:id="@+id/rl_plan_machine_checkbox"
+            android:layout_width="30dp"
+            android:layout_height="match_parent"
+            android:gravity="right">
+
+            <CheckBox
+                android:id="@+id/cb_plan_machine_chose_item"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                style="@style/CheckboxTheme"/>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="4">
+
+            <TextView
+                android:id="@+id/tv_plan_mahcine_type"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="蚂蚁S9"
+                android:textSize="13sp"
+                android:textColor="@color/sly_text_666666"/>
+
+            <TextView
+                android:id="@+id/tv_plan_mahcine_count"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="12"
+                android:textSize="13sp"
+                android:textColor="@color/sly_text_666666"/>
+
+            <TextView
+                android:id="@+id/tv_plan_mahcine_miner_code"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="sunyang12"
+                android:textSize="13sp"
+                android:textColor="@color/sly_text_666666"/>
+
+            <TextView
+                android:id="@+id/tv_plan_mahcine_vip_code"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="M0000065"
+                android:textSize="13sp"
+                android:textColor="@color/sly_text_666666"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <include layout="@layout/gray_line"/>
+
+</LinearLayout>

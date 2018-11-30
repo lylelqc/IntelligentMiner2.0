@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="47dp"
+            android:orientation="horizontal"
+            android:weightSum="4">
+
+            <LinearLayout
+                android:id="@+id/ll_machine_offline_ip_icon"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.6"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:layout_width="36dp"
+                    android:layout_height="match_parent">
+
+                    <CheckBox
+                        android:id="@+id/cb_chose_item"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        style="@style/CheckboxTheme"/>
+
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/tv_machine_offline_ip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left|center_vertical"
+                    android:gravity="center"
+                    android:text="IP"
+                    android:textColor="@color/sly_text_333333"
+                    android:textSize="13sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_machine_offline_type_icon"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.8">
+
+                <TextView
+                    android:id="@+id/tv_machine_offline_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left|center_vertical"
+                    android:gravity="center"
+                    android:text="型号"
+                    android:textColor="@color/sly_text_333333"
+                    android:textSize="13sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_machine_offline_status_icon"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.8">
+
+                <TextView
+                    android:id="@+id/tv_machine_offline_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left|center_vertical"
+                    android:gravity="center"
+                    android:text="状态"
+                    android:textColor="@color/sly_text_333333"
+                    android:textSize="13sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_machine_offline_area_icon"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.9">
+
+                <TextView
+                    android:id="@+id/tv_machine_offline_area"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left|center_vertical"
+                    android:gravity="center"
+                    android:text="区域"
+                    android:textColor="@color/sly_text_333333"
+                    android:textSize="13sp" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <include layout="@layout/gray_line"/>
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/shape_f6f6f6_5dp"
+        android:state_checked="false" />
+    <item android:drawable="@drawable/shape_blue_5dp"
+        android:state_checked="true" />
+    <item android:drawable="@drawable/shape_blue_5dp"
+        android:state_selected="true" />
+    <item android:drawable="@drawable/shape_blue_5dp"
+        android:state_pressed="true" />
+</selector>

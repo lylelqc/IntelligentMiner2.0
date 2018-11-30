@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="21dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="矿机编号"
+                        android:textColor="@color/sly_text_353a3e"
+                        android:textSize="14sp" />
+
+                    <RelativeLayout
+                        android:layout_width="300dp"
+                        android:layout_height="29dp"
+                        android:layout_marginTop="15dp">
+
+                        <EditText
+                            android:id="@+id/et_list_machine_code"
+                            android:layout_width="match_parent"
+                            android:layout_height="28dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:background="@null"
+                            android:hint="请输入矿机编号"
+                            android:textColorHint="@color/sly_text_aaaaaa"
+                            android:textSize="12sp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_below="@+id/et_list_machine_code"
+                            android:background="@color/sly_line_d7d7d7" />
+                    </RelativeLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="21dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="矿工号"
+                        android:textColor="@color/sly_text_353a3e"
+                        android:textSize="14sp" />
+
+                    <RelativeLayout
+                        android:layout_width="300dp"
+                        android:layout_height="29dp"
+                        android:layout_marginTop="15dp">
+
+                        <EditText
+                            android:id="@+id/et_list_miner_code"
+                            android:layout_width="match_parent"
+                            android:layout_height="28dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:background="@null"
+                            android:hint="请输入矿工号"
+                            android:textColorHint="@color/sly_text_aaaaaa"
+                            android:textSize="12sp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_below="@+id/et_list_miner_code"
+                            android:background="@color/sly_line_d7d7d7" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="20dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="IP"
+                        android:textColor="#353a3e"
+                        android:textSize="14sp" />
+
+                    <RelativeLayout
+                        android:layout_width="300dp"
+                        android:layout_height="29dp"
+                        android:layout_marginTop="15dp">
+
+                        <EditText
+                            android:id="@+id/et_list_ip_code"
+                            android:layout_width="match_parent"
+                            android:layout_height="28dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:background="@null"
+                            android:hint="请输入IP"
+                            android:textColorHint="@color/sly_text_aaaaaa"
+                            android:textSize="12sp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_below="@+id/et_list_ip_code"
+                            android:background="@color/sly_line_d7d7d7" />
+                    </RelativeLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="21dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:text="IP段"
+                        android:textColor="@color/sly_text_353a3e"
+                        android:textSize="14sp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="12dp"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="109dp"
+                            android:layout_height="29dp"
+                            android:orientation="vertical">
+
+                            <EditText
+                                android:id="@+id/et_list_begin_ip"
+                                android:layout_width="match_parent"
+                                android:layout_height="28dp"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:background="@null"
+                                android:hint="请输入起始IP"
+                                android:textColorHint="@color/sly_text_aaaaaa"
+                                android:textSize="12sp" />
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_below="@+id/et_list_vip_code"
+                                android:background="@color/sly_line_d7d7d7" />
+                        </LinearLayout>
+
+
+                        <TextView
+                            android:layout_width="31dp"
+                            android:layout_height="29dp"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center"
+                            android:text="-"
+                            android:textColor="#3a3a3a"
+                            android:textSize="14sp" />
+
+                        <LinearLayout
+                            android:layout_width="109dp"
+                            android:layout_height="29dp"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <EditText
+                                android:id="@+id/et_list_end_ip"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:background="@null"
+                                android:hint="请输入结束IP"
+                                android:textColorHint="@color/sly_text_aaaaaa"
+                                android:textSize="12sp" />
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_below="@+id/et_list_vip_code"
+                                android:background="@color/sly_line_d7d7d7" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="20dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="矿机型号"
+                        android:textColor="@color/sly_text_353a3e"
+                        android:textSize="14sp" />
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/recycler_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp">
+
+                    </android.support.v7.widget.RecyclerView>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/ll_machine_offline_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="20dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="选择区域"
+                        android:textColor="@color/sly_text_353a3e"
+                        android:textSize="14sp" />
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/recycler_area_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp">
+
+                    </android.support.v7.widget.RecyclerView>
+
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <TextView
+            android:id="@+id/tv_machine_list_reset"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/shape_btn_gradient_blue"
+            android:gravity="center"
+            android:text="重置"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_machine_list_confirm"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/shape_btn_gradient_blue2"
+            android:gravity="center"
+            android:text="完成"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+
+</LinearLayout>

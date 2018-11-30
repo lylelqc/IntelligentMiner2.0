@@ -151,7 +151,7 @@ public class MachineManageActivity extends BaseActivity implements ICommonViewUi
     private String ip = "";
     private String beginip = "";
     private String endip = "";
-    private String orderField = "ip";
+    private String orderField = "IP";
     private String orderBy = "ASC";
 
     private boolean isRequesting = false;//标记，是否正在刷新
@@ -517,7 +517,7 @@ public class MachineManageActivity extends BaseActivity implements ICommonViewUi
         Model = "";
         Worker = "";
         minerSysCode = "";
-        orderField = "ip";
+        orderField = "IP";
         orderBy = "ASC";
 
         firstRefresh();
@@ -769,6 +769,7 @@ public class MachineManageActivity extends BaseActivity implements ICommonViewUi
         lp.width = WindowManager.LayoutParams.WRAP_CONTENT;
         lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
         dialog.getWindow().setAttributes(lp);
+        dialog.setCancelable(false);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         if(layout == R.layout.dialog_general_style){
             TextView tvDetails = dialog.findViewById(R.id.tv_dialog_content);

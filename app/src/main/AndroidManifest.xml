@@ -66,6 +66,13 @@
         <activity android:name=".activity.yunw.machine.MachineDetailsActivity" />
         <activity android:name=".activity.yunw.machine.MachineChangePoolActivity" />
         <activity android:name=".activity.yunw.machine.MachineManageActivity" />
+        <activity android:name=".activity.yunw.goline.MachineGolineActivity" />
+        <activity android:name=".activity.yunw.goline.GolinePlanActivity" />
+        <activity android:name=".activity.yunw.goline.PlanMachineListActivity" />
+        <activity android:name=".activity.yunw.goline.AllMachineListActivity" />
+        <activity android:name=".activity.yunw.offline.MachineOfflineActivity" />
+        <activity android:name=".activity.yunw.changepool.MachineSetPoolActivity" />
+        <activity android:name=".activity.yunw.ClockWorkActivity" />
 
 
         <!-- Rich push 核心功能 since 2.0.6-->

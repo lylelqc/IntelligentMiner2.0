@@ -9,8 +9,12 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.sly.app.R;
+import com.sly.app.activity.yunw.ClockWorkActivity;
+import com.sly.app.activity.yunw.changepool.MachineSetPoolActivity;
+import com.sly.app.activity.yunw.goline.MachineGolineActivity;
 import com.sly.app.activity.yunw.machine.MachineListActivity;
 import com.sly.app.activity.yunw.machine.MachineManageActivity;
+import com.sly.app.activity.yunw.offline.MachineOfflineActivity;
 import com.sly.app.activity.yunw.repair.RepairBillActivity;
 import com.sly.app.comm.NetConstant;
 import com.sly.app.http.NetWorkCons;
@@ -68,10 +72,12 @@ public class Sly2YunwFragment extends BaseFragment implements ICommonViewUi{
     LinearLayout llDownlineMachine;
     @BindView(R.id.ll_modify_mine)
     LinearLayout llModifyMine;
-    @BindView(R.id.ll_online_machine)
+    @BindView(R.id.ll_goline_machine)
     LinearLayout llOnlineMachine;
 
     //总台数
+    @BindView(R.id.rl_all_machine_count)
+    RelativeLayout rlAllMachineCount;
     @BindView(R.id.tv_all_num)
     TextView tvAllNum;
 
@@ -107,6 +113,9 @@ public class Sly2YunwFragment extends BaseFragment implements ICommonViewUi{
     //矿机监控
     @BindView(R.id.ll_monitor_area)
     LinearLayout llMonitorArea;
+    //打卡
+    @BindView(R.id.tv_home_clock_work)
+    TextView tvClockWork;
 
     public static String mContent = "???";
     private String User,LoginType, MineCode, PersonSysCode, Token, Key, PlanID;
@@ -195,8 +204,16 @@ public class Sly2YunwFragment extends BaseFragment implements ICommonViewUi{
             map.put("LoginType", LoginType);
             map.put("Rounter", NetConstant.GET_YUNW_ALL_NUM);
             map.put("User", User);
-            map.put("mineCode", MineCode);
             map.put("personSysCode", PersonSysCode);
+            map.put("areacode", "");
+            map.put("Model", "");
+            map.put("Worker", "");
+            map.put("minerSysCode", "");
+            map.put("statusCode", "");
+            map.put("machineCode", "");
+            map.put("ip", "");
+            map.put("beginip", "");
+            map.put("endip", "");
 
             Map<String, String> mapJson = new HashMap<>();
             mapJson.putAll(map);
@@ -257,7 +274,7 @@ public class Sly2YunwFragment extends BaseFragment implements ICommonViewUi{
             machineStatusList = (List<MachineNumRateInfo>) AppUtils.parseResult(result, MachineNumRateInfo.class);
             if(machineStatusList != null && machineStatusList.size() > 0){
                 tvOfflineNum.setVisibility(View.VISIBLE);
-                MachineNumRateInfo offlineInfo = machineStatusList.get(1);
+                MachineNumRateInfo offlineInfo = machineStatusList.get(2);
                 if(offlineInfo.getMachineCount() > 9){
                     tvOfflineNum.setBackground(getResources().getDrawable(R.drawable.operation_bubble2));
                     tvOfflineNum.setText(offlineInfo.getMachineCount()+"");
@@ -270,7 +287,7 @@ public class Sly2YunwFragment extends BaseFragment implements ICommonViewUi{
                 }
 
                 DecimalFormat df = new DecimalFormat("#.#");
-//                df.setRoundingMode(RoundingMode.HALF_DOWN);
+                df.setRoundingMode(RoundingMode.HALF_DOWN);
 
                 MachineNumRateInfo onlineInfo = machineStatusList.get(0);
                 tvOnlineNum.setText(onlineInfo.getMachineCount()+"");
@@ -281,7 +298,7 @@ public class Sly2YunwFragment extends BaseFragment implements ICommonViewUi{
                 String rate2 = df.format(offlineInfo.getRate()*100);
                 mProgressBar2.setProgress(rate2.contains(".") ? Float.parseFloat(rate2) : Integer.parseInt(rate2));
 
-                MachineNumRateInfo exceptionInfo = machineStatusList.get(2);
+                MachineNumRateInfo exceptionInfo = machineStatusList.get(1);
                 tvExceptionNum.setText(exceptionInfo.getMachineCount()+"");
                 String rate3 = df.format(exceptionInfo.getRate()*100);
                 mProgressBar3.setProgress(rate3.contains(".") ? Float.parseFloat(rate3) : Integer.parseInt(rate3));
@@ -342,8 +359,9 @@ public class Sly2YunwFragment extends BaseFragment implements ICommonViewUi{
 
     @OnClick({R.id.tv_operation_manage,R.id.tv_offline_num,R.id.tv_repair_num,
             R.id.ll_offline_machine, R.id.ll_repair_bill, R.id.ll_downline_machine,
-            R.id.ll_modify_mine, R.id.ll_online_machine, R.id.rl_online_machine,
-            R.id.rl_offline_machine,R.id.rl_exception_machine,R.id.rl_stop_machine})
+            R.id.ll_modify_mine, R.id.ll_goline_machine, R.id.rl_online_machine,
+            R.id.rl_offline_machine,R.id.rl_exception_machine,R.id.rl_stop_machine,
+            R.id.rl_all_machine_count, R.id.tv_home_clock_work})
     public void onViewClicked(View view) {
         switch (view.getId()){
             case R.id.tv_operation_manage:
@@ -351,16 +369,25 @@ public class Sly2YunwFragment extends BaseFragment implements ICommonViewUi{
                 break;
             case R.id.tv_offline_num:
             case R.id.ll_offline_machine:
+                Bundle bundleOff = new Bundle();
+                bundleOff.putString("statusCode", "01");
+                AppUtils.goActivity(mContext, MachineListActivity.class, bundleOff);
                 break;
             case R.id.tv_repair_num:
             case R.id.ll_repair_bill:
                 AppUtils.goActivity(mContext, RepairBillActivity.class);
                 break;
             case R.id.ll_downline_machine:
+                AppUtils.goActivity(mContext, MachineOfflineActivity.class);
                 break;
             case R.id.ll_modify_mine:
+                AppUtils.goActivity(mContext, MachineSetPoolActivity.class);
                 break;
-            case R.id.ll_online_machine:
+            case R.id.ll_goline_machine:
+                AppUtils.goActivity(mContext, MachineGolineActivity.class);
+                break;
+            case R.id.rl_all_machine_count:
+                AppUtils.goActivity(mContext, MachineListActivity.class, new Bundle());
                 break;
                 //百分比状态点击
             case R.id.rl_online_machine:
@@ -382,6 +409,9 @@ public class Sly2YunwFragment extends BaseFragment implements ICommonViewUi{
                 Bundle bundle4 = new Bundle();
                 bundle4.putString("statusCode", "05");
                 AppUtils.goActivity(mContext, MachineListActivity.class, bundle4);
+                break;
+            case R.id.tv_home_clock_work:
+                AppUtils.goActivity(mContext, ClockWorkActivity.class);
                 break;
         }
     }

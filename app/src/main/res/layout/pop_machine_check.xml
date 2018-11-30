@@ -72,7 +72,7 @@
                     android:layout_width="151dp"
                     android:layout_height="29dp"
                     android:layout_marginTop="18dp"
-                    android:background="@drawable/shape_gray_3dp">
+                    android:background="@drawable/shape_f6f6f6_3dp">
 
                     <EditText
                         android:id="@+id/et_list_miner_code"
@@ -105,7 +105,7 @@
                     android:layout_width="151dp"
                     android:layout_height="29dp"
                     android:layout_marginTop="18dp"
-                    android:background="@drawable/shape_gray_3dp">
+                    android:background="@drawable/shape_f6f6f6_3dp">
 
                     <EditText
                         android:id="@+id/et_list_vip_code"
@@ -154,7 +154,7 @@
                         android:id="@+id/ll_repair_begin_time"
                         android:layout_width="109dp"
                         android:layout_height="29dp"
-                        android:background="@drawable/shape_gray_3dp">
+                        android:background="@drawable/shape_f6f6f6_3dp">
 
                         <EditText
                             android:id="@+id/et_list_begin_ip"
@@ -184,7 +184,7 @@
                         android:layout_width="109dp"
                         android:layout_height="29dp"
                         android:gravity="center"
-                        android:background="@drawable/shape_gray_3dp">
+                        android:background="@drawable/shape_f6f6f6_3dp">
 
                         <EditText
                             android:id="@+id/et_list_end_ip"

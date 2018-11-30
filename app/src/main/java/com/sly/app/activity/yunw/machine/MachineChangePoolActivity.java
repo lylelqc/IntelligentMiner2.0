@@ -221,6 +221,7 @@ public class MachineChangePoolActivity extends BaseActivity implements ICommonVi
         lp.width = WindowManager.LayoutParams.WRAP_CONTENT;
         lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
         dialog.getWindow().setAttributes(lp);
+        dialog.setCancelable(false);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         if(layout == R.layout.dialog_general_style){
             TextView tvDetails = dialog.findViewById(R.id.tv_dialog_content);

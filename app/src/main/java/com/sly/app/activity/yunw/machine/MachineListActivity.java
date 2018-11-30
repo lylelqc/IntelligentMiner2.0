@@ -129,7 +129,7 @@ public class MachineListActivity extends BaseActivity implements IRecyclerViewUi
     private String ip = "";
     private String beginip = "";
     private String endip = "";
-    private String orderField = "ip";
+    private String orderField = "IP";
     private String orderBy = "ASC";
 
     private int mIpCount = 1;
@@ -148,8 +148,8 @@ public class MachineListActivity extends BaseActivity implements IRecyclerViewUi
     IRecyclerViewPresenter iRecyclerViewPresenter;
     private List<MachineListBean> mResultList = new ArrayList<>();
 
-    private boolean isAreaTransfer = true;
-    private boolean isStatusTransfer = true;
+    private boolean isAreaTransfer = false;
+    private boolean isStatusTransfer = false;
     private MachineCheckPopView mMachineCheckView;
     private List<MachineTypeBean> machineTypeList = new ArrayList<>();
 
@@ -175,13 +175,24 @@ public class MachineListActivity extends BaseActivity implements IRecyclerViewUi
     protected void initViewsAndEvents() {
         areaCode = getIntent().getExtras().getString("areaCode");
         statusCode = getIntent().getExtras().getString("statusCode");
+
+        // 点击区域进来
         if(AppUtils.isBlank(areaCode)){
             areaCode = "";
-            isAreaTransfer = false;
+        }else{
+            isAreaTransfer = true;
+            llListAreaIcon.setClickable(false);
+            tvListAreaUp.setVisibility(View.GONE);
+            tvListAreaLow.setVisibility(View.GONE);
         }
+        // 点击状态进来的
         if(AppUtils.isBlank(statusCode)){
             statusCode = "";
-            isStatusTransfer = false;
+        }else{
+            isStatusTransfer = true;
+            llListStatusIcon.setClickable(false);
+            tvListStatusUp.setVisibility(View.GONE);
+            tvListStatusLow.setVisibility(View.GONE);
         }
 
         tvMainTitle.setText(getString(R.string.machine_list));
@@ -473,7 +484,7 @@ public class MachineListActivity extends BaseActivity implements IRecyclerViewUi
                 break;
             case R.id.ll_machine_list_area_icon:
                 mAreaCount ++;
-                setListHeaderIcon("AreaCode", mAreaCount % 2);
+                setListHeaderIcon("AreaName", mAreaCount % 2);
                 firstRefresh();
                 break;
         }
@@ -560,7 +571,7 @@ public class MachineListActivity extends BaseActivity implements IRecyclerViewUi
             tvListStatusLow.setBackground(drawableLow);
             tvListAreaUp.setBackground(drawableUp);
             tvListAreaLow.setBackground(drawableLow);
-        }else if(tag.equals("AreaCode")) {
+        }else if(tag.equals("AreaName")) {
             orderField = tag;
             if (count == 1) {
                 tvListAreaUp.setBackground(drawableUp1);
