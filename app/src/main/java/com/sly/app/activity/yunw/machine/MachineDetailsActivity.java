@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -34,12 +35,14 @@ import com.sly.app.model.PostResult;
 import com.sly.app.model.ReturnBean;
 import com.sly.app.model.yunw.machine.MachineDetailsAllCalBean;
 import com.sly.app.model.yunw.machine.MachineDetailsHeaderBean;
+import com.sly.app.model.yunw.machine.MachineDetailsPicBean;
 import com.sly.app.model.yunw.machine.MachineDetailsPoolBean;
 import com.sly.app.model.yunw.repair.RepairBillDetailsBean;
 import com.sly.app.presenter.ICommonRequestPresenter;
 import com.sly.app.presenter.impl.CommonRequestPresenterImpl;
 import com.sly.app.utils.ApiSIgnUtil;
 import com.sly.app.utils.AppUtils;
+import com.sly.app.utils.ChartUtil;
 import com.sly.app.utils.EncryptUtil;
 import com.sly.app.utils.SharedPreferencesUtil;
 import com.sly.app.utils.ToastUtils;
@@ -81,6 +84,12 @@ public class MachineDetailsActivity extends BaseActivity implements ICommonViewU
     @BindView(R.id.tv_machine_details_btc)
     TextView tvDetailsBtc;
 
+    @BindView(R.id.tv_machine_details_suanli)
+    TextView tvDetailsSuanli;
+    @BindView(R.id.btn_machine_details_hours)
+    Button btnDetailsHours;
+    @BindView(R.id.btn_machine_details_month)
+    Button btnDetailsMonth;
     @BindView(R.id.lc_cal_power_pic)
     LineChart lcCalPowerPic;
 
@@ -117,6 +126,8 @@ public class MachineDetailsActivity extends BaseActivity implements ICommonViewU
 
     private String User,LoginType, MineCode, PersonSysCode, Token, Key, machineSysCode;
     private String reason = "";
+    private MachineDetailsAllCalBean allCalbean;
+    private List<MachineDetailsPicBean> mPicListBean = new ArrayList<>();
 
     @Override
     protected boolean isBindEventBusHere() {
@@ -145,7 +156,8 @@ public class MachineDetailsActivity extends BaseActivity implements ICommonViewU
         toRequest(NetConstant.EventTags.GET_MACHINE_DEATAILS_HEADER);
         toRequest(NetConstant.EventTags.GET_MACHINE_DEATAILS_MINE_POOL);
         toRequest(NetConstant.EventTags.GET_MACHINE_DETAILS_ALL_SUANLI);
-
+        toRequest(NetConstant.EventTags.GET_MACHINE_DETAILS_24_SUANLI);
+//        toRequest(NetConstant.EventTags.GET_MACHINE_DETAILS_30_SUANLI);
     }
 
     private void intitNewsCount() {
@@ -245,17 +257,23 @@ public class MachineDetailsActivity extends BaseActivity implements ICommonViewU
         }
         else if(eventTag == NetConstant.EventTags.GET_MACHINE_DETAILS_ALL_SUANLI){
             //所有算力
-            MachineDetailsAllCalBean bean =
+            allCalbean =
                     ((List<MachineDetailsAllCalBean>) AppUtils.parseRowsResult(result, MachineDetailsAllCalBean.class)).get(0);
-            Logcat.e(bean.getHoursCalcForce() + " - " +bean.getMonthCalcForce());
+            btnDetailsHours.performClick();
+            tvDetailsSuanli.setText("(" + allCalbean.getHoursCalcForce() + "T)");
         }
         else if(eventTag == NetConstant.EventTags.GET_MACHINE_DETAILS_24_SUANLI){
             //24小时算力
-
+            mPicListBean =
+                    (List<MachineDetailsPicBean>) AppUtils.parseRowsResult(result, MachineDetailsPicBean.class);
+            ChartUtil.initCalPowerPic(this, lcCalPowerPic, mPicListBean);
+            ChartUtil.showLineChart(mPicListBean, lcCalPowerPic, this.getResources().getColor(R.color.sly_text_4a96f2),
+                    this.getResources().getColor(R.color.sly_bg_f5fbff));
         }
         else if(eventTag == NetConstant.EventTags.GET_MACHINE_DETAILS_30_SUANLI){
             //30天算力
-
+            mPicListBean =
+                    (List<MachineDetailsPicBean>) AppUtils.parseRowsResult(result, MachineDetailsPicBean.class);
         }
     }
 
@@ -322,7 +340,7 @@ public class MachineDetailsActivity extends BaseActivity implements ICommonViewU
     }
 
     @OnClick({R.id.btn_main_back, R.id.tv_machine_details_start_stop, R.id.rl_machine_details_change,
-            R.id.rl_machine_details_history, R.id.rl_notice})
+            R.id.rl_machine_details_history, R.id.rl_notice, R.id.btn_machine_details_hours, R.id.btn_machine_details_month})
     public void onViewClicked(View view){
         switch(view.getId()){
             case R.id.btn_main_back:
@@ -343,6 +361,12 @@ public class MachineDetailsActivity extends BaseActivity implements ICommonViewU
                 }else{
                     showCustomDialog(this, R.layout.dialog_general_style, 2, getString(R.string.request_start_machine),1);
                 }
+                break;
+            case R.id.btn_machine_details_hours:
+                tvDetailsSuanli.setText("(" + allCalbean.getHoursCalcForce() + "T)");
+                break;
+            case R.id.btn_machine_details_month:
+                tvDetailsSuanli.setText("(" + allCalbean.getMonthCalcForce() + "T)");
                 break;
             case R.id.rl_machine_details_change:
                 // 注意 - s

@@ -3,10 +3,10 @@ minSdkVersion 19
 targetSdkVersion 25
  signingConfigs {
         config {
-            keyAlias 'dqcsign'
-            keyPassword 'www.dqc100.com'
-            storeFile file('../appInfo/dqcSign.jks')
-            storePassword 'www.dqc100.com'
+            keyAlias 'slyMiner2.0'
+            keyPassword 'sly123'
+            storeFile file('../appInfo/slyIminer2.0.jks')
+            storePassword 'sly123'
         }
     }
 

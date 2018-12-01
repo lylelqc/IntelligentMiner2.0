@@ -10,6 +10,7 @@ import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.utils.MPPointF;
 import com.sly.app.R;
+import com.sly.app.model.yunw.machine.MachineDetailsPicBean;
 
 import java.util.List;
 
@@ -19,7 +20,7 @@ public class MyMarkerView extends MarkerView {
     private TextView tvValue;
     private List<?> mPicDataList;
 
-    public MyMarkerView(Context context, IAxisValueFormatter xAxisValueFormatter, List<?> list) {
+    public MyMarkerView(Context context, IAxisValueFormatter xAxisValueFormatter, List<MachineDetailsPicBean> list) {
         super(context, R.layout.my_marker_view);
         this.mPicDataList = list;
 
@@ -33,9 +34,9 @@ public class MyMarkerView extends MarkerView {
         //展示自定义X轴值 后的X轴内容
 //        tvDate.setText(xAxisValueFormatter.getFormattedValue(e.getX(), null));
         int position = (int)e.getX();
-//        MDetailsPicDataBean bean = mPicDataList.get(position);
-//        tvValue.setText(String.format("%.2f",e.getY()/1024) +"T");
-//        tvDate.setText(bean.getMine63_DataTime());
+        MachineDetailsPicBean bean = (MachineDetailsPicBean) mPicDataList.get(position);
+        tvValue.setText(bean.getNowCalcForce() +"T");
+        tvDate.setText(bean.getDataTime());
         super.refreshContent(e, highlight);
     }
 

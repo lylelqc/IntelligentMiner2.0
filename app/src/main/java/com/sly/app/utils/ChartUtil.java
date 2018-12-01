@@ -13,14 +13,24 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
+import com.sly.app.R;
+import com.sly.app.model.yunw.machine.MachineDetailsPicBean;
 import com.sly.app.view.MyMarkerView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class ChartUtil {
 
-    private static void initCalPowerPic(Context context, LineChart lineChart, List<?> list) {
+
+    /**
+     * 曲线图初始化
+     * @param context
+     * @param lineChart
+     * @param list
+     */
+    public static void initCalPowerPic(Context context, LineChart lineChart, List<MachineDetailsPicBean> list) {
         //显示边界
         /***图表设置***/
         //右下角标题设无
@@ -66,11 +76,15 @@ public class ChartUtil {
         //保证Y轴从0开始，不然会上移一点
         leftYAxis.setAxisMinimum(0f);
         rightYaxis.setAxisMinimum(0f);
-        leftYAxis.setXOffset(-45);
+        int color = context.getResources().getColor(R.color.sly_text_999999);
+        leftYAxis.setTextColor(color);
+//        leftYAxis.setXOffset(-45);
 
         //禁止网格线
         xAxis.setDrawGridLines(false);
         leftYAxis.setDrawGridLines(true);
+        int color1 = context.getResources().getColor(R.color.sly_bg_f4f4f4);
+        leftYAxis.setGridColor(color1);
         leftYAxis.setDrawAxisLine(false);
         //设置网格虚线
 //        leftYAxis.enableGridDashedLine(10f, 0f, 0f);
@@ -90,11 +104,11 @@ public class ChartUtil {
         });
 
         //自定义y轴的值
-        leftYAxis.setLabelCount(4, true);
+        leftYAxis.setLabelCount(6);
         leftYAxis.setValueFormatter(new IAxisValueFormatter() {
             @Override
             public String getFormattedValue(float value, AxisBase axis) {
-                return Math.round((value / 1000)) + "T±5% ";
+                return Math.round((value / 1000)) + "T";
             }
         });
 
@@ -124,31 +138,33 @@ public class ChartUtil {
      *
      * @param dataList 数据集合
      * @param lineChart  曲线图表
-     * @param color    曲线颜色
+     * @param lineColor    曲线颜色
+     * @param bgColor    背景颜色
      */
-    public static void showLineChart(List<?> dataList, LineChart lineChart, int color) {
+    public static void showLineChart(List<MachineDetailsPicBean> dataList, LineChart lineChart, int lineColor, int bgColor) {
         List<Entry> entries = new ArrayList<>();
         for (int i = 0; i < dataList.size(); i++) {
-//            MDetailsPicDataBean data = dataList.get(i);
+            MachineDetailsPicBean data = dataList.get(i);
+            float yValue = Float.parseFloat(data.getNowCalcForce());
             /**
              * 在此可查看 Entry构造方法，可发现 可传入数值 Entry(float x, float y)
              * 也可传入Drawable， Entry(float x, float y, Drawable icon) 可在XY轴交点 设置Drawable图像展示
              */
-//            Entry entry = new Entry(i, (float) data.getMine63_NowCalcForce());
-//            entries.add(entry);
+            Entry entry = new Entry(i, yValue);
+            entries.add(entry);
         }
         // 每一个LineDataSet代表一条线
         LineDataSet lineDataSet = new LineDataSet(entries, "");
-        initLineDataSet(lineDataSet, color, null);
+        initLineDataSet(lineDataSet, lineColor, bgColor);
         LineData lineData = new LineData(lineDataSet);
         lineChart.setData(lineData);
     }
 
-    private static void initLineDataSet(LineDataSet lineDataSet, int color, LineDataSet.Mode mode) {
-        lineDataSet.setColor(color);
-        lineDataSet.setCircleColor(color);
+    private static void initLineDataSet(LineDataSet lineDataSet, int lineColor, int bgColor) {
+        lineDataSet.setColor(lineColor);
+        lineDataSet.setCircleColor(lineColor);
         lineDataSet.setLineWidth(2.f);
-        lineDataSet.setCircleRadius(2.f);
+        lineDataSet.setCircleRadius(1.f);
         //设置曲线值的圆点是实心还是空心
         lineDataSet.setDrawCircleHole(false);
         //是否画高亮线
@@ -159,17 +175,15 @@ public class ChartUtil {
         lineDataSet.setDrawVerticalHighlightIndicator(true);
 //        lineDataSet.setValueTextSize(10f);
         lineDataSet.setHighlightLineWidth(2.0f);
-        lineDataSet.setHighLightColor(color);
+        lineDataSet.setHighLightColor(lineColor);
         //设置折线图填充
         lineDataSet.setDrawFilled(true);
+        lineDataSet.setFillColor(bgColor);
         lineDataSet.setFormLineWidth(1f);
         lineDataSet.setFormSize(10.f);
-        if (mode == null) {
-            //设置曲线展示为圆滑曲线（如果不设置则默认折线）
-            lineDataSet.setMode(LineDataSet.Mode.CUBIC_BEZIER);
-        } else {
-            lineDataSet.setMode(mode);
-        }
+        //设置曲线条
+        lineDataSet.setMode(LineDataSet.Mode.CUBIC_BEZIER);
+
         //设置是否显示值
         lineDataSet.setDrawValues(false);
     }

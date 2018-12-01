@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/shape_left_circle_white_15dp" />
+
+    <item android:drawable="@drawable/shape_left_circle_blue_15dp"
+        android:state_pressed="true" />
+</selector>

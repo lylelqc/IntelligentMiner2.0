@@ -4,10 +4,10 @@ apply plugin: 'realm-android'
 android {
     signingConfigs {
         config {
-            keyAlias 'dqcsign'
-            keyPassword 'www.dqc100.com'
-            storeFile file('../appInfo/dqcSign.jks')
-            storePassword 'www.dqc100.com'
+            keyAlias 'slyMiner2.0'
+            keyPassword 'sly123'
+            storeFile file('../appInfo/slyIminer2.0.jks')
+            storePassword 'sly123'
         }
     }
     compileSdkVersion 26
@@ -18,7 +18,7 @@ android {
         targetSdkVersion 26
         resConfigs "zh"
         versionCode 1
-        versionName "1.0.0"
+        versionName "2.0.0"
         signingConfig signingConfigs.config
         manifestPlaceholders = [
                 qq_id: "1106535201",
