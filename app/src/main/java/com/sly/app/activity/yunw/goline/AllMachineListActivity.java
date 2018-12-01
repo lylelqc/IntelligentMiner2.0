@@ -7,12 +7,14 @@ import android.support.v7.widget.RecyclerView;
 import android.util.ArrayMap;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.liucanwen.app.headerfooterrecyclerview.HeaderAndFooterRecyclerViewAdapter;
 import com.liucanwen.app.headerfooterrecyclerview.RecyclerViewUtils;
 import com.sly.app.R;
 import com.sly.app.activity.BaseActivity;
+import com.sly.app.activity.sly.mine.notice.Sly2NoticeActivity;
 import com.sly.app.adapter.yunw.goline.AllMachineListRecyclerViewAdapter;
 import com.sly.app.base.Contants;
 import com.sly.app.comm.EventBusTags;
@@ -50,8 +52,10 @@ public class AllMachineListActivity extends BaseActivity implements IRecyclerVie
     LinearLayout btnMainBack;
     @BindView(R.id.tv_main_title)
     TextView tvMainTitle;
-//    @BindView(R.id.tv_main_right_left)
-//    TextView tvMainRightLeft;
+    @BindView(R.id.rl_notice)
+    RelativeLayout rlNotice;
+    @BindView(R.id.tv_red_num)
+    TextView tvRedNum;
 
     @BindView(R.id.recycler_all_machine_view)
     RecyclerView recyclerAllMachineView;
@@ -118,7 +122,17 @@ public class AllMachineListActivity extends BaseActivity implements IRecyclerVie
         LoginType = SharedPreferencesUtil.getString(mContext, "LoginType", "None");
         swipeRefreshLayout.setVisibility(View.GONE);
 
+        intitNewsCount();
         firstRefresh();
+    }
+
+    private void intitNewsCount() {
+        String count = AppUtils.getNewsCount(this);
+        if("0".equals(count)){
+            tvRedNum.setVisibility(View.GONE);
+        }else{
+            tvRedNum.setText(count);
+        }
     }
 
     private void firstRefresh() {
@@ -318,12 +332,16 @@ public class AllMachineListActivity extends BaseActivity implements IRecyclerVie
         recyclerAllMachineView.setLayoutManager(layoutManager);
     }
 
-    @OnClick({R.id.btn_main_back,})
+    @OnClick({R.id.btn_main_back, R.id.rl_notice})
     public void onViewClicked(View view) {
         switch (view.getId()){
             case R.id.btn_main_back:
                 finish();
                 break;
+            case R.id.rl_notice:
+                AppUtils.goActivity(this, Sly2NoticeActivity.class);
+                break;
+
         }
     }
 

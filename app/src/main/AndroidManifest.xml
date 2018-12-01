@@ -57,6 +57,7 @@
         <!--version 2.0-->
         <activity android:name=".activity.sly.mine.notice.Sly2NoticeActivity" />
         <activity android:name=".activity.sly.mine.notice.NoticeNewDetailsActivity" />
+        <activity android:name=".activity.sly.mine.notice.NoticeOldDetailsActivity" />
         <activity android:name=".activity.yunw.repair.RepairBillActivity" />
         <activity android:name=".activity.yunw.repair.RepairBillDetailsActivity" />
         <activity android:name=".activity.yunw.repair.RepairHistoryActivity" />

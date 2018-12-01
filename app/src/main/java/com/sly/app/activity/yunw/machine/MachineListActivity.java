@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
@@ -21,6 +22,7 @@ import com.sly.app.R;
 import com.sly.app.activity.BaseActivity;
 import com.sly.app.activity.MainActivity;
 import com.sly.app.activity.mine.LoginActivity;
+import com.sly.app.activity.sly.mine.notice.Sly2NoticeActivity;
 import com.sly.app.activity.yunw.repair.RepairBillActivity;
 import com.sly.app.adapter.yunw.machine.MachineListRecyclerViewAdapter;
 import com.sly.app.adapter.yunw.repair.RepairBillRecycleViewAdapter;
@@ -78,6 +80,10 @@ public class MachineListActivity extends BaseActivity implements IRecyclerViewUi
     LinearLayout btnMainBack;
     @BindView(R.id.tv_main_title)
     TextView tvMainTitle;
+    @BindView(R.id.rl_notice)
+    RelativeLayout rlNotice;
+    @BindView(R.id.tv_red_num)
+    TextView tvRedNum;
     @BindView(R.id.tv_main_right_left)
     TextView tvMainRightLeft;
 
@@ -213,8 +219,19 @@ public class MachineListActivity extends BaseActivity implements IRecyclerViewUi
         LoginType = SharedPreferencesUtil.getString(mContext, "LoginType", "None");
         swipeRefreshLayout.setVisibility(View.GONE);
 
+        intitNewsCount();
         toRequestMachineType();
         firstRefresh();
+    }
+
+    private void intitNewsCount() {
+        String count = AppUtils.getNewsCount(this);
+        if("0".equals(count)){
+            tvRedNum.setVisibility(View.GONE);
+        }else{
+            tvRedNum.setVisibility(View.VISIBLE);
+            tvRedNum.setText(count);
+        }
     }
 
     private void firstRefresh() {
@@ -445,11 +462,14 @@ public class MachineListActivity extends BaseActivity implements IRecyclerViewUi
     }
 
     @OnClick({R.id.btn_main_back, R.id.tv_main_right_left, R.id.ll_machine_list_ip_icon, R.id.ll_machine_list_status_icon,
-            R.id.ll_machine_list_suanli_icon, R.id.ll_machine_list_area_icon})
+            R.id.ll_machine_list_suanli_icon, R.id.ll_machine_list_area_icon, R.id.rl_notice})
     public void onViewClicked(View view) {
         switch (view.getId()){
             case R.id.btn_main_back:
                 finish();
+                break;
+            case R.id.rl_notice:
+                AppUtils.goActivity(this, Sly2NoticeActivity.class);
                 break;
             case R.id.tv_main_right_left:
                 mMachineCheckView = new MachineCheckPopView(this, machineTypeList);

@@ -11,11 +11,14 @@ import android.widget.TextView;
 import com.liucanwen.app.headerfooterrecyclerview.HeaderAndFooterRecyclerViewAdapter;
 import com.liucanwen.app.headerfooterrecyclerview.RecyclerViewUtils;
 import com.sly.app.R;
+import com.sly.app.adapter.notice.MinerMasterNoticeOldAdapter;
 import com.sly.app.base.Contants;
+import com.sly.app.comm.NetConstant;
 import com.sly.app.fragment.BaseFragment;
 import com.sly.app.http.NetWorkCons;
 import com.sly.app.listener.LoadMoreClickListener;
 import com.sly.app.listener.OnRecyclerViewListener;
+import com.sly.app.model.notice.YunwNoticeOldListBean;
 import com.sly.app.presenter.IRecyclerViewPresenter;
 import com.sly.app.presenter.impl.RecyclerViewPresenterImpl;
 import com.sly.app.utils.ApiSIgnUtil;
@@ -57,9 +60,9 @@ public class NoticeOldFragment extends BaseFragment implements IRecyclerViewUi, 
     private View loadMoreView = null;
 
     IRecyclerViewPresenter iRecyclerViewPresenter;
-//    private List<MinerNoticeListBean> mResultList = new ArrayList<>();
+    //    private List<MinerNoticeListBean> mResultList = new ArrayList<>();
 //    private List<MinerMasterNoticeListBean> mMinerMasterList = new ArrayList<>();
-//    private List<OperationBean> mOperationList = new ArrayList<>();
+    private List<YunwNoticeOldListBean> mResultList = new ArrayList<>();
 
     @Override
     protected void onFirstUserVisible() {
@@ -93,10 +96,12 @@ public class NoticeOldFragment extends BaseFragment implements IRecyclerViewUi, 
         loadMoreView = iLoadView.inflate();
         swipeRefreshLayout.setOnRefreshListener(this);
         recyclerView.addOnScrollListener(new MyScrollListener());
+
         User = SharedPreferencesUtil.getString(mContext, "User", "None");
         FrSysCode = SharedPreferencesUtil.getString(mContext, "FrSysCode", "None");
         FMasterCode = SharedPreferencesUtil.getString(mContext, "FMasterCode", "None");
-        PersonSysCode = SharedPreferencesUtil.getString(mContext,"PersonSysCode","None");
+        PersonSysCode = SharedPreferencesUtil.getString(mContext, "PersonSysCode", "None");
+
         Token = SharedPreferencesUtil.getString(mContext, "Token", "None");
         Key = SharedPreferencesUtil.getString(mContext, "Key", "None");
         LoginType = SharedPreferencesUtil.getString(mContext, "LoginType", "None");
@@ -123,9 +128,9 @@ public class NoticeOldFragment extends BaseFragment implements IRecyclerViewUi, 
                 }, NetWorkCons.Integers.PAGE_LAZY_LOAD_DELAY_TIME_MS);
             }
         } else {
-//            if (mResultList != null && mResultList.size() > 0) {
-//                return;
-//            }
+            if (mResultList != null && mResultList.size() > 0) {
+                return;
+            }
             showRefreshRetry(Contants.NetStatus.NETWORK_MAYBE_DISABLE);
         }
     }
@@ -146,16 +151,16 @@ public class NoticeOldFragment extends BaseFragment implements IRecyclerViewUi, 
         mCurrentPage = 1;
 
         Map map = new HashMap();
-        if ("Miner".equals(mineType)) {
-            map.put("Rounter", NetWorkCons.GET_MINER_NOTICE_LIST);
-            map.put("minerSysCode", FrSysCode);
-        } else if ("MinerMaster".equals(mineType)){
-            map.put("Rounter", NetWorkCons.GET_MINEMASTER_NOTICE_LIST);
-            map.put("minerMasterCode", FMasterCode);
-        }else {
-            map.put("Rounter", NetWorkCons.GET_OPERATION_NOTICE_LIST);
-            map.put("personSysCode", PersonSysCode);
-        }
+//        if ("Miner".equals(mineType)) {
+//            map.put("Rounter", NetWorkCons.GET_MINER_NOTICE_LIST);
+//            map.put("minerSysCode", FrSysCode);
+//        }
+//        else if ("MinerMaster".equals(mineType)){
+//            map.put("Rounter", NetWorkCons.GET_MINEMASTER_NOTICE_LIST);
+//            map.put("minerMasterCode", FMasterCode);
+//        }else {
+        map.put("Rounter", NetConstant.GET_COMMON_NOTICE);
+//        }
         map.put("Token", Token);
         map.put("LoginType", LoginType);
         map.put("User", User);
@@ -181,25 +186,20 @@ public class NoticeOldFragment extends BaseFragment implements IRecyclerViewUi, 
             return;
         }
 
-//        if (mResultList.size() < NetWorkCons.Request.PAGE_NUMBER) {
-//            return;
-//        }
-
         mCurrentPage++;
 
         iLoadView.showLoadingView(loadMoreView);
 
         Map map = new HashMap();
-        if ("Miner".equals(mineType)) {
-            map.put("Rounter", NetWorkCons.GET_MINER_NOTICE_LIST);
-            map.put("minerSysCode", FrSysCode);
-        } else if ("MinerMaster".equals(mineType)){
-            map.put("Rounter", NetWorkCons.GET_MINEMASTER_NOTICE_LIST);
-            map.put("minerMasterCode", FMasterCode);
-        }else {
-            map.put("Rounter", NetWorkCons.GET_OPERATION_NOTICE_LIST);
-            map.put("personSysCode", PersonSysCode);
-        }
+//        if ("Miner".equals(mineType)) {
+//            map.put("Rounter", NetWorkCons.GET_MINER_NOTICE_LIST);
+//            map.put("minerSysCode", FrSysCode);
+//        } else if ("MinerMaster".equals(mineType)){
+//            map.put("Rounter", NetWorkCons.GET_MINEMASTER_NOTICE_LIST);
+//            map.put("minerMasterCode", FMasterCode);
+//        }else {
+        map.put("Rounter", NetConstant.GET_COMMON_NOTICE);
+//        }
         map.put("Token", Token);
         map.put("LoginType", LoginType);
         map.put("User", User);
@@ -218,86 +218,34 @@ public class NoticeOldFragment extends BaseFragment implements IRecyclerViewUi, 
     @Override
     public void getRefreshData(int eventTag, String result) {
         Logcat.e("返回参数 - " + result);
-        if ("Miner".equals(mineType)) {
-//            List<MinerNoticeListBean> resultList =
-//                    (List<MinerNoticeListBean>) AppUtils.parseRowsResult(result, MinerNoticeListBean.class);
-//            mResultList.clear();
-//            if (resultList != null && resultList.size() != 0) {
-//                mResultList.addAll(resultList);
-//                pageStatusTextTv.setVisibility(View.GONE);
-//                swipeRefreshLayout.setVisibility(View.VISIBLE);
-//                showPageStatusView(getString(R.string.request_data));
-//                refreshListView();
-//            } else {
-//                pageStatusTextTv.setText(getString(R.string.no_data));
-//                pageStatusTextTv.setVisibility(View.VISIBLE);
-//                swipeRefreshLayout.setVisibility(View.GONE);
-//            }
-        } else if("MinerMaster".equals(mineType)){
-//            List<MinerMasterNoticeListBean> resultList =
-//                    (List<MinerMasterNoticeListBean>) AppUtils.parseRowsResult(result, MinerMasterNoticeListBean.class);
-//
-//            mMinerMasterList.clear();
-//            if (resultList != null && resultList.size() != 0) {
-//                mMinerMasterList.addAll(resultList);
-//                pageStatusTextTv.setVisibility(View.GONE);
-//                swipeRefreshLayout.setVisibility(View.VISIBLE);
-//                showPageStatusView(getString(R.string.request_data));
-//                refreshListView();
-//            } else {
-//                pageStatusTextTv.setText(getString(R.string.no_data));
-//                pageStatusTextTv.setVisibility(View.VISIBLE);
-//                swipeRefreshLayout.setVisibility(View.GONE);
-//            }
-        }else {
-//            List<OperationBean> resultList =
-//                    (List<OperationBean>) AppUtils.parseRowsResult(result,OperationBean.class);
-//
-//            mOperationList.clear();
-//            if (resultList != null && resultList.size() != 0) {
-//                mOperationList.addAll(resultList);
-//                pageStatusTextTv.setVisibility(View.GONE);
-//                swipeRefreshLayout.setVisibility(View.VISIBLE);
-//                showPageStatusView(getString(R.string.request_data));
-//                refreshListView();
-//            } else {
-//                pageStatusTextTv.setText(getString(R.string.no_data));
-//                pageStatusTextTv.setVisibility(View.VISIBLE);
-//                swipeRefreshLayout.setVisibility(View.GONE);
-//            }
+
+        List<YunwNoticeOldListBean> resultList =
+                (List<YunwNoticeOldListBean>) AppUtils.parseRowsResult(result, YunwNoticeOldListBean.class);
+
+        mResultList.clear();
+        if (resultList != null && resultList.size() != 0) {
+            mResultList.addAll(resultList);
+            pageStatusTextTv.setVisibility(View.GONE);
+            swipeRefreshLayout.setVisibility(View.VISIBLE);
+            showPageStatusView(getString(R.string.request_data));
+            refreshListView();
+        } else {
+            pageStatusTextTv.setText(getString(R.string.no_data));
+            pageStatusTextTv.setVisibility(View.VISIBLE);
+            swipeRefreshLayout.setVisibility(View.GONE);
         }
     }
 
     @Override
     public void getLoadMoreData(int eventTag, String result) {
-//        if ("Miner".equals(mineType)) {
-//            List<MinerNoticeListBean> resultList =
-//                    (List<MinerNoticeListBean>) AppUtils.parseRowsResult(result, MinerNoticeListBean.class);
-//
-//            if (resultList.size() == 0) {
-//                iLoadView.showFinishView(loadMoreView);
-//            }
-//            mResultList.addAll(resultList);
-//            adapter.notifyDataSetChanged();
-//        } else if ("MinerMaster".equals(mineType)){
-//            List<MinerMasterNoticeListBean> resultList =
-//                    (List<MinerMasterNoticeListBean>) AppUtils.parseRowsResult(result, MinerMasterNoticeListBean.class);
-//
-//            if (resultList.size() == 0) {
-//                iLoadView.showFinishView(loadMoreView);
-//            }
-//            mMinerMasterList.addAll(resultList);
-//            adapter.notifyDataSetChanged();
-//        }else{
-//            List<OperationBean> resultList =
-//                    (List<OperationBean>) AppUtils.parseRowsResult(result,OperationBean.class);
-//
-//            if (resultList.size() == 0) {
-//                iLoadView.showFinishView(loadMoreView);
-//            }
-//            mOperationList.addAll(resultList);
-//            adapter.notifyDataSetChanged();
-//        }
+        List<YunwNoticeOldListBean> resultList =
+                (List<YunwNoticeOldListBean>) AppUtils.parseRowsResult(result, YunwNoticeOldListBean.class);
+
+        if (resultList.size() == 0) {
+            iLoadView.showFinishView(loadMoreView);
+        }
+        mResultList.addAll(resultList);
+        adapter.notifyDataSetChanged();
     }
 
     @Override
@@ -342,37 +290,16 @@ public class NoticeOldFragment extends BaseFragment implements IRecyclerViewUi, 
     }
 
     public void refreshListView() {
-//        if ("Miner".equals(mineType)) {
-//            MinerMasterNoticeAdapter mIntermediary = new MinerMasterNoticeAdapter(mContext, mResultList, mineType);
-//            adapter = new HeaderAndFooterRecyclerViewAdapter(mIntermediary);
-//            recyclerView.setAdapter(adapter);
-//            if (mResultList.size() >= NetWorkCons.Request.PAGE_NUMBER) {
-//                RecyclerViewUtils.setFooterView(recyclerView, loadMoreView);
-//            }
-//            LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
-//            layoutManager.setOrientation(OrientationHelper.VERTICAL);
-//            recyclerView.setLayoutManager(layoutManager);
-//        } else if ("MinerMaster".equals(mineType)){
-//            MinerMasterNoticeAdapter mIntermediary = new MinerMasterNoticeAdapter(mContext, mineType, mMinerMasterList);
-//            adapter = new HeaderAndFooterRecyclerViewAdapter(mIntermediary);
-//            recyclerView.setAdapter(adapter);
-//            if (mMinerMasterList.size() >= NetWorkCons.Request.PAGE_NUMBER) {
-//                RecyclerViewUtils.setFooterView(recyclerView, loadMoreView);
-//            }
-//            LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
-//            layoutManager.setOrientation(OrientationHelper.VERTICAL);
-//            recyclerView.setLayoutManager(layoutManager);
-//        }else{
-//            MinerMasterNoticeAdapter mIntermediary = new MinerMasterNoticeAdapter(mOperationList, mContext, mineType);
-//            adapter = new HeaderAndFooterRecyclerViewAdapter(mIntermediary);
-//            recyclerView.setAdapter(adapter);
-//            if (mMinerMasterList.size() >= NetWorkCons.Request.PAGE_NUMBER) {
-//                RecyclerViewUtils.setFooterView(recyclerView, loadMoreView);
-//            }
-//            LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
-//            layoutManager.setOrientation(OrientationHelper.VERTICAL);
-//            recyclerView.setLayoutManager(layoutManager);
-//        }
+
+        MinerMasterNoticeOldAdapter mIntermediary = new MinerMasterNoticeOldAdapter(mContext, mResultList);
+        adapter = new HeaderAndFooterRecyclerViewAdapter(mIntermediary);
+        recyclerView.setAdapter(adapter);
+        if (mResultList.size() >= NetWorkCons.Request.PAGE_NUMBER) {
+            RecyclerViewUtils.setFooterView(recyclerView, loadMoreView);
+        }
+        LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
+        layoutManager.setOrientation(OrientationHelper.VERTICAL);
+        recyclerView.setLayoutManager(layoutManager);
     }
 
     public class MyScrollListener extends OnRecyclerViewListener {

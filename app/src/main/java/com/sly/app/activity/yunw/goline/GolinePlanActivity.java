@@ -19,6 +19,7 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSON;
 import com.sly.app.R;
 import com.sly.app.activity.BaseActivity;
+import com.sly.app.activity.sly.mine.notice.Sly2NoticeActivity;
 import com.sly.app.adapter.yunw.goline.GolinePlanRecyclerViewAdapter;
 import com.sly.app.comm.NetConstant;
 import com.sly.app.http.NetWorkCons;
@@ -50,8 +51,10 @@ public class GolinePlanActivity extends BaseActivity implements ICommonViewUi, G
     LinearLayout btnMainBack;
     @BindView(R.id.tv_main_title)
     TextView tvMainTitle;
-//    @BindView(R.id.tv_main_right)
-//    TextView tvMainRight;
+    @BindView(R.id.rl_notice)
+    RelativeLayout rlNotice;
+    @BindView(R.id.tv_red_num)
+    TextView tvRedNum;
     @BindView(R.id.tv_main_right_left)
     TextView tvMainRightLeft;
 
@@ -103,7 +106,17 @@ public class GolinePlanActivity extends BaseActivity implements ICommonViewUi, G
         MineCode = SharedPreferencesUtil.getString(this, "MineCode","None");
         PersonSysCode = SharedPreferencesUtil.getString(this, "PersonSysCode","None");
 
+        intitNewsCount();
         toRequest(NetConstant.EventTags.GET_GOLINE_PLAN_LIST);
+    }
+
+    private void intitNewsCount() {
+        String count = AppUtils.getNewsCount(this);
+        if("0".equals(count)){
+            tvRedNum.setVisibility(View.GONE);
+        }else{
+            tvRedNum.setText(count);
+        }
     }
 
     @Override
@@ -172,11 +185,14 @@ public class GolinePlanActivity extends BaseActivity implements ICommonViewUi, G
 
     }
 
-    @OnClick({R.id.btn_main_back, R.id.tv_main_right_left, R.id.tv_goline_plan_delete })
+    @OnClick({R.id.btn_main_back, R.id.tv_main_right_left, R.id.tv_goline_plan_delete, R.id.rl_notice })
     public void onViewClicked(View view) {
         switch (view.getId()){
             case R.id.btn_main_back:
                 finish();
+                break;
+            case R.id.rl_notice:
+                AppUtils.goActivity(this, Sly2NoticeActivity.class);
                 break;
             case R.id.tv_main_right_left:
                 clickCount++;

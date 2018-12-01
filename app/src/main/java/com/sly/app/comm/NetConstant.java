@@ -79,18 +79,28 @@ public class NetConstant {
 
     public static final String GET_YUNW_WORK_TIME = "SlyTwo.037";
 
+    public static final String GET_NEW_NOTICE_LIST = "SlyTwo.038";
+
+    public static final String GET_NEW_NOTICE_DETAILS = "SlyTwo.039";
+
 
     public static final String SET_DETAILS_AND_MANAGE_POOL = "SlyTwo.041";
 
 
     public static final String GET_PLAN_MACHINE_AREA = "SlyTwo.043";
 
-
     public static final String GET_NAME_BY_VIP_CODE = "SlyTwo.044";
 
     public static final String GET_MACHINE_GOLINE_AREA = "SlyTwo.045";
 
     public static final String GOLINE_COMMIT_PLAN = "SlyTwo.046";
+
+    public static final String CAHNGE_NEWS_STATUS = "SlyTwo.047";
+
+    public static final String GET_YUNW_NEWS_COUNT = "SlyTwo.048";
+
+
+    public static final String GET_COMMON_NOTICE = "SlyTwo.201";
 
 
 
@@ -178,6 +188,16 @@ public class NetConstant {
         public static final int GET_YUNW_SET_NO_WORK_STATUS = BEGIN_EVENT + 68; // 下班打卡
 
         public static final int GET_YUNW_WORK_TIME = BEGIN_EVENT + 69; // 上班、下班时间
+
+        public static final int GET_NEW_NOTICE_LIST = BEGIN_EVENT + 70; // 获取人员未读消息列表
+
+        public static final int GET_NEW_NOTICE_DETAILS = BEGIN_EVENT + 71; // 消息详情
+
+        public static final int GET_COMMON_NOTICE = BEGIN_EVENT + 72; // 获取公告
+
+        public static final int CAHNGE_NEWS_STATUS = BEGIN_EVENT + 73; // 修改人员消息为已读接口
+
+        public static final int GET_YUNW_NEWS_COUNT = BEGIN_EVENT + 74; // 查看运维未读消息数量
 
 
     }

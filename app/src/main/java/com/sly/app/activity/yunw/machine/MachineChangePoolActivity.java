@@ -17,6 +17,7 @@ import com.alibaba.fastjson.JSON;
 import com.sly.app.Helper.ActivityHelper;
 import com.sly.app.R;
 import com.sly.app.activity.BaseActivity;
+import com.sly.app.activity.sly.mine.notice.Sly2NoticeActivity;
 import com.sly.app.comm.EventBusTags;
 import com.sly.app.comm.NetConstant;
 import com.sly.app.http.NetWorkCons;
@@ -25,6 +26,7 @@ import com.sly.app.model.ReturnBean;
 import com.sly.app.presenter.ICommonRequestPresenter;
 import com.sly.app.presenter.impl.CommonRequestPresenterImpl;
 import com.sly.app.utils.ApiSIgnUtil;
+import com.sly.app.utils.AppUtils;
 import com.sly.app.utils.EncryptUtil;
 import com.sly.app.utils.SharedPreferencesUtil;
 import com.sly.app.utils.ToastUtils;
@@ -45,6 +47,10 @@ public class MachineChangePoolActivity extends BaseActivity implements ICommonVi
     LinearLayout btnMainBack;
     @BindView(R.id.tv_main_title)
     TextView tvMainTitle;
+    @BindView(R.id.rl_notice)
+    RelativeLayout rlNotice;
+    @BindView(R.id.tv_red_num)
+    TextView tvRedNum;
 
     @BindView(R.id.et_change_mine1_pool)
     EditText etChangeMine1Pool;
@@ -113,8 +119,19 @@ public class MachineChangePoolActivity extends BaseActivity implements ICommonVi
         LoginType = SharedPreferencesUtil.getString(this, "LoginType", "None");
         MineCode = SharedPreferencesUtil.getString(this, "MineCode", "None");
         PersonSysCode = SharedPreferencesUtil.getString(this, "PersonSysCode", "None");
+
+        intitNewsCount();
         toRequest(NetConstant.EventTags.SET_DETAILS_AND_MANAGE_POOL);
 
+    }
+
+    private void intitNewsCount() {
+        String count = AppUtils.getNewsCount(this);
+        if("0".equals(count)){
+            tvRedNum.setVisibility(View.GONE);
+        }else{
+            tvRedNum.setText(count);
+        }
     }
 
     @Override
@@ -185,11 +202,14 @@ public class MachineChangePoolActivity extends BaseActivity implements ICommonVi
 //        toRequest();
     }
 
-    @OnClick({R.id.btn_main_back, R.id.tv_change_comfirm, R.id.rl_spinner})
+    @OnClick({R.id.btn_main_back, R.id.tv_change_comfirm, R.id.rl_spinner, R.id.rl_notice})
     public void onViewClicked(View view){
         switch(view.getId()){
             case R.id.btn_main_back:
                 finish();
+                break;
+            case R.id.rl_notice:
+                AppUtils.goActivity(this, Sly2NoticeActivity.class);
                 break;
             case R.id.tv_change_comfirm:
                 getEtData();

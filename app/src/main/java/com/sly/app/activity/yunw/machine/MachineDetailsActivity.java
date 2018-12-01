@@ -24,6 +24,7 @@ import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.sly.app.Helper.ActivityHelper;
 import com.sly.app.R;
 import com.sly.app.activity.BaseActivity;
+import com.sly.app.activity.sly.mine.notice.Sly2NoticeActivity;
 import com.sly.app.activity.yunw.repair.RepairFormActivity;
 import com.sly.app.activity.yunw.repair.RepairHistoryActivity;
 import com.sly.app.comm.EventBusTags;
@@ -60,6 +61,10 @@ public class MachineDetailsActivity extends BaseActivity implements ICommonViewU
     LinearLayout btnMainBack;
     @BindView(R.id.tv_main_title)
     TextView tvMainTitle;
+    @BindView(R.id.rl_notice)
+    RelativeLayout rlNotice;
+    @BindView(R.id.tv_red_num)
+    TextView tvRedNum;
 
     @BindView(R.id.tv_machine_details_status)
     TextView tvDetailsStatus;
@@ -111,7 +116,7 @@ public class MachineDetailsActivity extends BaseActivity implements ICommonViewU
     ICommonRequestPresenter iCommonRequestPresenter;
 
     private String User,LoginType, MineCode, PersonSysCode, Token, Key, machineSysCode;
-    private String reason;
+    private String reason = "";
 
     @Override
     protected boolean isBindEventBusHere() {
@@ -126,7 +131,6 @@ public class MachineDetailsActivity extends BaseActivity implements ICommonViewU
     @Override
     protected void initViewsAndEvents() {
         iCommonRequestPresenter = new CommonRequestPresenterImpl(mContext, this);
-//        tvMainTitle.setText(getString(R.string.repair_details));
 
         machineSysCode = getIntent().getExtras().getString("machineSysCode");
         User = SharedPreferencesUtil.getString(this, "User", "None");
@@ -135,10 +139,29 @@ public class MachineDetailsActivity extends BaseActivity implements ICommonViewU
         LoginType = SharedPreferencesUtil.getString(this, "LoginType", "None");
         MineCode = SharedPreferencesUtil.getString(this, "MineCode", "None");
         PersonSysCode = SharedPreferencesUtil.getString(this, "PersonSysCode", "None");
+
+        intitNewsCount();
+
         toRequest(NetConstant.EventTags.GET_MACHINE_DEATAILS_HEADER);
         toRequest(NetConstant.EventTags.GET_MACHINE_DEATAILS_MINE_POOL);
         toRequest(NetConstant.EventTags.GET_MACHINE_DETAILS_ALL_SUANLI);
 
+    }
+
+    private void intitNewsCount() {
+        String count = AppUtils.getNewsCount(this);
+        if("0".equals(count)){
+            tvRedNum.setVisibility(View.GONE);
+        }else{
+            tvRedNum.setVisibility(View.VISIBLE);
+            tvRedNum.setText(count);
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        toRequest(NetConstant.EventTags.GET_MACHINE_DEATAILS_MINE_POOL);
     }
 
     @Override
@@ -298,11 +321,15 @@ public class MachineDetailsActivity extends BaseActivity implements ICommonViewU
 
     }
 
-    @OnClick({R.id.btn_main_back, R.id.tv_machine_details_start_stop, R.id.rl_machine_details_change, R.id.rl_machine_details_history})
+    @OnClick({R.id.btn_main_back, R.id.tv_machine_details_start_stop, R.id.rl_machine_details_change,
+            R.id.rl_machine_details_history, R.id.rl_notice})
     public void onViewClicked(View view){
         switch(view.getId()){
             case R.id.btn_main_back:
                 finish();
+                break;
+            case R.id.rl_notice:
+                AppUtils.goActivity(this, Sly2NoticeActivity.class);
                 break;
             case R.id.rl_machine_details_history:
                 Bundle bundle1 = new Bundle();

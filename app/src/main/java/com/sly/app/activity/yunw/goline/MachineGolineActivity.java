@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSON;
 import com.sly.app.R;
 import com.sly.app.activity.BaseActivity;
+import com.sly.app.activity.sly.mine.notice.Sly2NoticeActivity;
 import com.sly.app.activity.yunw.machine.MachineChangePoolActivity;
 import com.sly.app.adapter.yunw.goline.GolinePlanRecyclerViewAdapter;
 import com.sly.app.adapter.yunw.goline.MachineGolineRecyclerViewAdapter;
@@ -24,6 +25,7 @@ import com.sly.app.http.NetWorkCons;
 import com.sly.app.model.ReturnBean;
 import com.sly.app.model.yunw.goline.GolineAreaBean;
 import com.sly.app.model.yunw.goline.GolinePlanListBean;
+import com.sly.app.model.yunw.machine.MachineManageAreaBean;
 import com.sly.app.presenter.ICommonRequestPresenter;
 import com.sly.app.presenter.impl.CommonRequestPresenterImpl;
 import com.sly.app.utils.ApiSIgnUtil;
@@ -51,6 +53,10 @@ public class MachineGolineActivity extends BaseActivity implements ICommonViewUi
     LinearLayout btnMainBack;
     @BindView(R.id.tv_main_title)
     TextView tvMainTitle;
+    @BindView(R.id.rl_notice)
+    RelativeLayout rlNotice;
+    @BindView(R.id.tv_red_num)
+    TextView tvRedNum;
     @BindView(R.id.tv_main_right_left)
     TextView tvMainRightLeft;
 
@@ -71,7 +77,7 @@ public class MachineGolineActivity extends BaseActivity implements ICommonViewUi
     private String PersonSysCode;
     private String areaCodes;
 
-    private List<GolineAreaBean> mGolineaAreaList = new ArrayList<>();
+    private List<MachineManageAreaBean> mGolineaAreaList = new ArrayList<>();
     ICommonRequestPresenter iCommonRequestPresenter;
     private MachineGolineRecyclerViewAdapter adapter;
 
@@ -98,37 +104,48 @@ public class MachineGolineActivity extends BaseActivity implements ICommonViewUi
         MineCode = SharedPreferencesUtil.getString(this, "MineCode","None");
         PersonSysCode = SharedPreferencesUtil.getString(this, "PersonSysCode","None");
 
-        toRequest(NetConstant.EventTags.GET_MACHINE_GOLINE_AREA);
+        intitNewsCount();
+        toRequest(NetConstant.EventTags.GET_YUNW_MANAGE_AREA);
+    }
+
+    private void intitNewsCount() {
+        String count = AppUtils.getNewsCount(this);
+        if("0".equals(count)){
+            tvRedNum.setVisibility(View.GONE);
+        }else{
+            tvRedNum.setText(count);
+        }
     }
 
     @Override
     public void toRequest(int eventTag) {
         Map map = new HashMap();
-        if(eventTag == NetConstant.EventTags.GET_MACHINE_GOLINE_AREA){
-            map.put("Rounter", NetConstant.GET_MACHINE_GOLINE_AREA);
+        if(eventTag == NetConstant.EventTags.GET_YUNW_MANAGE_AREA){
+            map.put("Rounter", NetConstant.GET_YUNW_MANAGE_AREA);
         }else{
             map.put("Rounter", NetConstant.GOLINE_COMMIT_PLAN);
             map.put("areaCodes", areaCodes);
+            map.put("mineCode", MineCode);
         }
 
         map.put("Token", Token);
         map.put("LoginType", LoginType);
         map.put("User", User);
-        map.put("mineCode", MineCode);
         map.put("personSysCode", PersonSysCode);
 
         Map<String, String> mapJson = new HashMap<>();
         mapJson.putAll(map);
         mapJson.put("Sign", EncryptUtil.MD5(ApiSIgnUtil.init(this).getSign(map, Key)));
+
         iCommonRequestPresenter.request(eventTag, mContext, NetWorkCons.BASE_URL, mapJson);
         Logcat.e("提交参数" + mapJson);
     }
 
     @Override
     public void getRequestData(int eventTag, String result) {
-        if(eventTag == NetConstant.EventTags.GET_MACHINE_GOLINE_AREA){
+        if(eventTag == NetConstant.EventTags.GET_YUNW_MANAGE_AREA){
             mGolineaAreaList =
-                    (List<GolineAreaBean>) AppUtils.parseRowsResult(result, GolineAreaBean.class);
+                    (List<MachineManageAreaBean>) AppUtils.parseRowsResult(result, MachineManageAreaBean.class);
             refreshListView();
         }else{
             ReturnBean returnBean = JSON.parseObject(result, ReturnBean.class);
@@ -174,11 +191,14 @@ public class MachineGolineActivity extends BaseActivity implements ICommonViewUi
         super.onPause();
     }
 
-    @OnClick({R.id.btn_main_back, R.id.tv_main_right_left, R.id.tv_goline_commit_plan })
+    @OnClick({R.id.btn_main_back, R.id.tv_main_right_left, R.id.tv_goline_commit_plan, R.id.rl_notice })
     public void onViewClicked(View view) {
         switch (view.getId()){
             case R.id.btn_main_back:
                 finish();
+                break;
+            case R.id.rl_notice:
+                AppUtils.goActivity(this, Sly2NoticeActivity.class);
                 break;
             case R.id.tv_main_right_left:
                 AppUtils.goActivity(this, GolinePlanActivity.class);
@@ -200,9 +220,9 @@ public class MachineGolineActivity extends BaseActivity implements ICommonViewUi
         for(Integer in : set){
             count ++;
             if(count > 1){
-                builder.append(","+ mGolineaAreaList.get(in).getMine06_MineSysAreaCode());
+                builder.append(","+ mGolineaAreaList.get(in).getAreaSysCode());
             }else{
-                builder.append(mGolineaAreaList.get(in).getMine06_MineSysAreaCode());
+                builder.append(mGolineaAreaList.get(in).getAreaSysCode());
             }
         }
         areaCodes = builder.toString();

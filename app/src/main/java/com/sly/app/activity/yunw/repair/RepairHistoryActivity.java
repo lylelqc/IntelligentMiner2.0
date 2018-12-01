@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.sly.app.R;
 import com.sly.app.activity.BaseActivity;
+import com.sly.app.activity.sly.mine.notice.Sly2NoticeActivity;
 import com.sly.app.fragment.yunw.repair_bill.TreatedFragment;
 import com.sly.app.utils.AppUtils;
 import com.sly.app.view.PopupView.RepairCheckPopView;
@@ -23,6 +24,11 @@ public class RepairHistoryActivity extends BaseActivity implements RepairCheckPo
     LinearLayout btnMainBack;
     @BindView(R.id.tv_main_title)
     TextView tvMainTitle;
+    @BindView(R.id.rl_notice)
+    RelativeLayout rlNotice;
+    @BindView(R.id.tv_red_num)
+    TextView tvRedNum;
+
     @BindView(R.id.rl_repair_history_check)
     RelativeLayout rlRepairHistoryCheck;
     @BindView(R.id.tv_repair_check)
@@ -47,6 +53,7 @@ public class RepairHistoryActivity extends BaseActivity implements RepairCheckPo
     protected void initViewsAndEvents() {
         tvMainTitle.setText(getString(R.string.repair_history));
         mTreatedFragment = new TreatedFragment();
+        intitNewsCount();
         // 传入矿机编号
         mTreatedFragment.modifyMachineSysCode(getIntent().getExtras().getString("MachineSysCode"));
         getSupportFragmentManager().beginTransaction()
@@ -54,11 +61,24 @@ public class RepairHistoryActivity extends BaseActivity implements RepairCheckPo
 
     }
 
-    @OnClick({R.id.btn_main_back, R.id.rl_repair_history_check, R.id.tv_shadow})
+    private void intitNewsCount() {
+        String count = AppUtils.getNewsCount(this);
+        if("0".equals(count)){
+            tvRedNum.setVisibility(View.GONE);
+        }else{
+            tvRedNum.setVisibility(View.VISIBLE);
+            tvRedNum.setText(count);
+        }
+    }
+
+    @OnClick({R.id.btn_main_back, R.id.rl_repair_history_check, R.id.tv_shadow, R.id.rl_notice})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_main_back:
                 finish();
+                break;
+            case R.id.rl_notice:
+                AppUtils.goActivity(this, Sly2NoticeActivity.class);
                 break;
             case R.id.rl_repair_history_check:
                 tvRepairCheck.setTextColor(Color.parseColor("#4789f0"));

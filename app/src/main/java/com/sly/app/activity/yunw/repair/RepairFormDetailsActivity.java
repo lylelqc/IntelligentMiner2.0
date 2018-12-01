@@ -8,12 +8,14 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.sly.app.Helper.ActivityHelper;
 import com.sly.app.R;
 import com.sly.app.activity.BaseActivity;
+import com.sly.app.activity.sly.mine.notice.Sly2NoticeActivity;
 import com.sly.app.comm.EventBusTags;
 import com.sly.app.comm.NetConstant;
 import com.sly.app.http.NetWorkCons;
@@ -22,6 +24,7 @@ import com.sly.app.model.PostResult;
 import com.sly.app.model.ReturnBean;
 import com.sly.app.presenter.impl.CommonRequestPresenterImpl;
 import com.sly.app.utils.ApiSIgnUtil;
+import com.sly.app.utils.AppUtils;
 import com.sly.app.utils.EncryptUtil;
 import com.sly.app.utils.SharedPreferencesUtil;
 import com.sly.app.utils.ToastUtils;
@@ -43,6 +46,11 @@ public class RepairFormDetailsActivity extends BaseActivity implements ICommonVi
     LinearLayout btnMainBack;
     @BindView(R.id.tv_main_title)
     TextView tvMainTitle;
+    @BindView(R.id.rl_notice)
+    RelativeLayout rlNotice;
+    @BindView(R.id.tv_red_num)
+    TextView tvRedNum;
+
     @BindView(R.id.ll_form_details_additem)
     LinearLayout llFormDetailsAddItem;
     @BindView(R.id.tv_form_details_hourfree)
@@ -99,7 +107,18 @@ public class RepairFormDetailsActivity extends BaseActivity implements ICommonVi
         iCommonRequestPresenter = new CommonRequestPresenterImpl(mContext, this);
         tvMainTitle.setText(getString(R.string.repair_form));
 
+        intitNewsCount();
         setDataForView();
+    }
+
+    private void intitNewsCount() {
+        String count = AppUtils.getNewsCount(this);
+        if("0".equals(count)){
+            tvRedNum.setVisibility(View.GONE);
+        }else{
+            tvRedNum.setVisibility(View.VISIBLE);
+            tvRedNum.setText(count);
+        }
     }
 
     private void setDataForView() {
@@ -148,11 +167,14 @@ public class RepairFormDetailsActivity extends BaseActivity implements ICommonVi
         llFormDetailsAddItem.addView(goodItemView);
     }
 
-    @OnClick({R.id.btn_main_back,R.id.tv_commit})
+    @OnClick({R.id.btn_main_back,R.id.tv_commit, R.id.rl_notice})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_main_back:
                 finish();
+                break;
+            case R.id.rl_notice:
+                AppUtils.goActivity(this, Sly2NoticeActivity.class);
                 break;
             case R.id.tv_commit:
 //                showCustomDialog(this, getString(R.string.comfirm_success));

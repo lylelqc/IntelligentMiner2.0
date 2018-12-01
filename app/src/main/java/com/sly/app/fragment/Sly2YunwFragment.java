@@ -1,14 +1,18 @@
 package com.sly.app.fragment;
 
+import android.app.Activity;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.sly.app.R;
+import com.sly.app.activity.sly.mine.notice.Sly2NoticeActivity;
 import com.sly.app.activity.yunw.ClockWorkActivity;
 import com.sly.app.activity.yunw.changepool.MachineSetPoolActivity;
 import com.sly.app.activity.yunw.goline.MachineGolineActivity;
@@ -43,7 +47,6 @@ import vip.devkit.library.Logcat;
 
 public class Sly2YunwFragment extends BaseFragment implements ICommonViewUi{
 
-
     @BindView(R.id.rl_user_type)
     RelativeLayout rlUserType;
     @BindView(R.id.tv_user_type)
@@ -58,8 +61,12 @@ public class Sly2YunwFragment extends BaseFragment implements ICommonViewUi{
     TextView tvRedNum;
 
     //离线、维修单消息数量
+    @BindView(R.id.rl_offline_num)
+    RelativeLayout rlOfflineNum;
     @BindView(R.id.tv_offline_num)
     TextView tvOfflineNum;
+    @BindView(R.id.rl_repair_num)
+    RelativeLayout rlRepairNum;
     @BindView(R.id.tv_repair_num)
     TextView tvRepairNum;
 
@@ -135,7 +142,7 @@ public class Sly2YunwFragment extends BaseFragment implements ICommonViewUi{
 
     @Override
     protected void onUserVisible() {
-
+        toRequest(NetConstant.EventTags.GET_YUNW_NEWS_COUNT);
     }
 
     @Override
@@ -145,6 +152,12 @@ public class Sly2YunwFragment extends BaseFragment implements ICommonViewUi{
 
     @Override
     protected void initViewsAndEvents() {
+        // 设置状态栏颜色
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            int color = getResources().getColor(R.color.sly_status_bar);
+            ((Activity) mContext).getWindow().setStatusBarColor(color);
+        }
+
         iCommonRequestPresenter = new CommonRequestPresenterImpl(mContext, this);
         User = SharedPreferencesUtil.getString(mContext, "User", "None");
         Token = SharedPreferencesUtil.getString(mContext, "Token", "None");
@@ -157,6 +170,7 @@ public class Sly2YunwFragment extends BaseFragment implements ICommonViewUi{
         toRequest(NetConstant.EventTags.GET_YUNW_ALL_NUM);
         toRequest(NetConstant.EventTags.GET_YUNW_MACHINE_NUM_RATE);
         toRequest(NetConstant.EventTags.GET_MINE_AREA_INFO);
+        toRequest(NetConstant.EventTags.GET_YUNW_NEWS_COUNT);
     }
 
     @Override
@@ -171,39 +185,22 @@ public class Sly2YunwFragment extends BaseFragment implements ICommonViewUi{
 
     @Override
     public void toRequest(int eventTag) {
-        if(eventTag == NetConstant.EventTags.GET_MINE_AREA_INFO){
-            Map map = new HashMap();
-            map.put("Token", Token);
-            map.put("LoginType", LoginType);
-            map.put("Rounter", NetConstant.GET_MINE_AREA_INFO);
-            map.put("User", User);
-            map.put("personSysCode", PersonSysCode);
+        Map map = new HashMap();
+        map.put("Token", Token);
+        map.put("LoginType", LoginType);
+        map.put("User", User);
 
-            Map<String, String> mapJson = new HashMap<>();
-            mapJson.putAll(map);
-            mapJson.put("Sign", EncryptUtil.MD5(ApiSIgnUtil.init(mContext).getSign(map, Key)));
-            iCommonRequestPresenter.request(NetConstant.EventTags.GET_MINE_AREA_INFO, mContext, NetWorkCons.BASE_URL, mapJson);
+        if(eventTag == NetConstant.EventTags.GET_MINE_AREA_INFO){
+            map.put("Rounter", NetConstant.GET_MINE_AREA_INFO);
+            map.put("personSysCode", PersonSysCode);
         }
         else if(eventTag == NetConstant.EventTags.GET_NEW_REPAIR_NUM){
-            Map map = new HashMap();
-            map.put("Token", Token);
-            map.put("LoginType", LoginType);
             map.put("Rounter", NetConstant.GET_NEW_REPAIR_NUM);
-            map.put("User", User);
             map.put("mineCode", MineCode);
             map.put("personSysCode", PersonSysCode);
-
-            Map<String, String> mapJson = new HashMap<>();
-            mapJson.putAll(map);
-            mapJson.put("Sign", EncryptUtil.MD5(ApiSIgnUtil.init(mContext).getSign(map, Key)));
-            iCommonRequestPresenter.request(NetConstant.EventTags.GET_NEW_REPAIR_NUM, mContext, NetWorkCons.BASE_URL, mapJson);
         }
         else if(eventTag == NetConstant.EventTags.GET_YUNW_ALL_NUM){
-            Map map = new HashMap();
-            map.put("Token", Token);
-            map.put("LoginType", LoginType);
             map.put("Rounter", NetConstant.GET_YUNW_ALL_NUM);
-            map.put("User", User);
             map.put("personSysCode", PersonSysCode);
             map.put("areacode", "");
             map.put("Model", "");
@@ -214,26 +211,21 @@ public class Sly2YunwFragment extends BaseFragment implements ICommonViewUi{
             map.put("ip", "");
             map.put("beginip", "");
             map.put("endip", "");
-
-            Map<String, String> mapJson = new HashMap<>();
-            mapJson.putAll(map);
-            mapJson.put("Sign", EncryptUtil.MD5(ApiSIgnUtil.init(mContext).getSign(map, Key)));
-            iCommonRequestPresenter.request(NetConstant.EventTags.GET_YUNW_ALL_NUM, mContext, NetWorkCons.BASE_URL, mapJson);
         }
         else if(eventTag == NetConstant.EventTags.GET_YUNW_MACHINE_NUM_RATE){
-            Map map = new HashMap();
-            map.put("Token", Token);
-            map.put("LoginType", LoginType);
-                map.put("Rounter", NetConstant.GET_YUNW_MACHINE_NUM_RATE);
-            map.put("User", User);
+            map.put("Rounter", NetConstant.GET_YUNW_MACHINE_NUM_RATE);
             map.put("mineCode", MineCode);
             map.put("personSysCode", PersonSysCode);
-
-            Map<String, String> mapJson = new HashMap<>();
-            mapJson.putAll(map);
-            mapJson.put("Sign", EncryptUtil.MD5(ApiSIgnUtil.init(mContext).getSign(map, Key)));
-            iCommonRequestPresenter.request(NetConstant.EventTags.GET_YUNW_MACHINE_NUM_RATE, mContext, NetWorkCons.BASE_URL, mapJson);
         }
+        else if(eventTag == NetConstant.EventTags.GET_YUNW_NEWS_COUNT){
+            map.put("Rounter", NetConstant.GET_YUNW_NEWS_COUNT);
+            map.put("personSysCode", PersonSysCode);
+        }
+
+        Map<String, String> mapJson = new HashMap<>();
+        mapJson.putAll(map);
+        mapJson.put("Sign", EncryptUtil.MD5(ApiSIgnUtil.init(mContext).getSign(map, Key)));
+        iCommonRequestPresenter.request(eventTag, mContext, NetWorkCons.BASE_URL, mapJson);
     }
 
     @Override
@@ -251,16 +243,23 @@ public class Sly2YunwFragment extends BaseFragment implements ICommonViewUi{
         else if(eventTag == NetConstant.EventTags.GET_NEW_REPAIR_NUM){
             ReturnBean returnBean = JSON.parseObject(result, ReturnBean.class);
             if (returnBean.getStatus().equals("1") && returnBean.getMsg().equals("成功")) {
-                tvRepairNum.setVisibility(View.VISIBLE);
-                if(returnBean.getData().length() == 2){
-                    tvRepairNum.setBackground(getResources().getDrawable(R.drawable.operation_bubble2));
-                    tvRepairNum.setText(returnBean.getData());
-                }else if(returnBean.getData().length() == 3){
-                    tvRepairNum.setBackground(getResources().getDrawable(R.drawable.operation_bubble3));
-                    tvRepairNum.setText("99+");
-                }else{
+                rlRepairNum.setVisibility(View.VISIBLE);
+                if(Integer.parseInt(returnBean.getData()) == 0){
+                    rlRepairNum.setVisibility(View.GONE);
+                    return ;
+                }
+
+                if(returnBean.getData().length() == 1){
                     tvRepairNum.setBackground(getResources().getDrawable(R.drawable.operation_bubble1));
                     tvRepairNum.setText(returnBean.getData());
+                }
+                else if(returnBean.getData().length() == 2){
+                    tvRepairNum.setBackground(getResources().getDrawable(R.drawable.operation_bubble2));
+                    tvRepairNum.setText(returnBean.getData());
+                }
+                else if(returnBean.getData().length() >= 3){
+                    tvRepairNum.setBackground(getResources().getDrawable(R.drawable.operation_bubble3));
+                    tvRepairNum.setText("99+");
                 }
             }
         }
@@ -273,39 +272,76 @@ public class Sly2YunwFragment extends BaseFragment implements ICommonViewUi{
         else if(eventTag == NetConstant.EventTags.GET_YUNW_MACHINE_NUM_RATE){
             machineStatusList = (List<MachineNumRateInfo>) AppUtils.parseResult(result, MachineNumRateInfo.class);
             if(machineStatusList != null && machineStatusList.size() > 0){
-                tvOfflineNum.setVisibility(View.VISIBLE);
-                MachineNumRateInfo offlineInfo = machineStatusList.get(2);
-                if(offlineInfo.getMachineCount() > 9){
-                    tvOfflineNum.setBackground(getResources().getDrawable(R.drawable.operation_bubble2));
-                    tvOfflineNum.setText(offlineInfo.getMachineCount()+"");
-                }else if(offlineInfo.getMachineCount() > 99){
-                    tvOfflineNum.setBackground(getResources().getDrawable(R.drawable.operation_bubble3));
-                    tvOfflineNum.setText("99+");
-                }else{
-                    tvOfflineNum.setBackground(getResources().getDrawable(R.drawable.operation_bubble1));
-                    tvOfflineNum.setText(offlineInfo.getMachineCount()+"");
+                setPorgressInfo();
+            }
+        }
+        else if(eventTag == NetConstant.EventTags.GET_YUNW_NEWS_COUNT){
+            ReturnBean returnBean = JSON.parseObject(result, ReturnBean.class);
+            if (returnBean.getStatus().equals("1") && returnBean.getMsg().equals("成功")) {
+                rlNotice.setVisibility(View.VISIBLE);
+
+                int count = Integer.parseInt(returnBean.getData());
+                if(count == 0){
+                    rlNotice.setVisibility(View.GONE);
+                }
+                else if(count > 99){
+                    tvRedNum.setText("99+");
+                }
+                else{
+                    tvRedNum.setText(returnBean.getData());
+                }
+                SharedPreferencesUtil.putString(mContext, "NewsCount", returnBean.getData());
+            }
+        }
+    }
+
+    private void setPorgressInfo() {
+        DecimalFormat df = new DecimalFormat("#.#");
+        df.setRoundingMode(RoundingMode.HALF_DOWN);
+
+        for(int i = 0; i < machineStatusList.size(); i++){
+            MachineNumRateInfo info = machineStatusList.get(i);
+            // 在线
+            if("00".equals(info.getStatusCode())){
+                tvOnlineNum.setText(info.getMachineCount()+"");
+                String rate1 = df.format(info.getRate()*100);
+                mProgressBar1.setProgress(rate1.contains(".") ? Float.parseFloat(rate1) : Integer.parseInt(rate1));
+            }
+            //离线
+            else if("01".equals(info.getStatusCode())){
+                rlOfflineNum.setVisibility(View.VISIBLE);
+                if(info.getMachineCount() == 0){
+                    rlOfflineNum.setVisibility(View.GONE);
+                    return ;
                 }
 
-                DecimalFormat df = new DecimalFormat("#.#");
-                df.setRoundingMode(RoundingMode.HALF_DOWN);
+                if(info.getMachineCount() < 10){
+                    tvOfflineNum.setBackground(getResources().getDrawable(R.drawable.operation_bubble1));
+                    tvOfflineNum.setText(info.getMachineCount()+"");
+                }
+                else if(info.getMachineCount() > 9 && info.getMachineCount() < 100){
+                    tvOfflineNum.setBackground(getResources().getDrawable(R.drawable.operation_bubble2));
+                    tvOfflineNum.setText(info.getMachineCount()+"");
+                }
+                else if(info.getMachineCount() > 99 ){
+                    tvOfflineNum.setBackground(getResources().getDrawable(R.drawable.operation_bubble3));
+                    tvOfflineNum.setText("99+");
+                }
 
-                MachineNumRateInfo onlineInfo = machineStatusList.get(0);
-                tvOnlineNum.setText(onlineInfo.getMachineCount()+"");
-                String rate1 = df.format(onlineInfo.getRate()*100);
-                mProgressBar1.setProgress(rate1.contains(".") ? Float.parseFloat(rate1) : Integer.parseInt(rate1));
-
-                tvOfflineNum2.setText(offlineInfo.getMachineCount()+"");
-                String rate2 = df.format(offlineInfo.getRate()*100);
+                tvOfflineNum2.setText(info.getMachineCount()+"");
+                String rate2 = df.format(info.getRate()*100);
                 mProgressBar2.setProgress(rate2.contains(".") ? Float.parseFloat(rate2) : Integer.parseInt(rate2));
-
-                MachineNumRateInfo exceptionInfo = machineStatusList.get(1);
-                tvExceptionNum.setText(exceptionInfo.getMachineCount()+"");
-                String rate3 = df.format(exceptionInfo.getRate()*100);
+            }
+            // 算力异常
+            else if("02".equals(info.getStatusCode())){
+                tvExceptionNum.setText(info.getMachineCount()+"");
+                String rate3 = df.format(info.getRate()*100);
                 mProgressBar3.setProgress(rate3.contains(".") ? Float.parseFloat(rate3) : Integer.parseInt(rate3));
-
-                MachineNumRateInfo stopInfo = machineStatusList.get(3);
-                tvStopNum.setText(stopInfo.getMachineCount()+"");
-                String rate4 = df.format(stopInfo.getRate()*100);
+            }
+            // 停机
+            else if("05".equals(info.getStatusCode())){
+                tvStopNum.setText(info.getMachineCount()+"");
+                String rate4 = df.format(info.getRate()*100);
                 mProgressBar4.setProgress(rate4.contains(".") ? Float.parseFloat(rate4) : Integer.parseInt(rate4));
             }
         }
@@ -357,7 +393,7 @@ public class Sly2YunwFragment extends BaseFragment implements ICommonViewUi{
         llMonitorArea.addView(itemView);
     }
 
-    @OnClick({R.id.tv_operation_manage,R.id.tv_offline_num,R.id.tv_repair_num,
+    @OnClick({R.id.tv_operation_manage,R.id.rl_notice, R.id.tv_offline_num,R.id.tv_repair_num,
             R.id.ll_offline_machine, R.id.ll_repair_bill, R.id.ll_downline_machine,
             R.id.ll_modify_mine, R.id.ll_goline_machine, R.id.rl_online_machine,
             R.id.rl_offline_machine,R.id.rl_exception_machine,R.id.rl_stop_machine,
@@ -366,6 +402,9 @@ public class Sly2YunwFragment extends BaseFragment implements ICommonViewUi{
         switch (view.getId()){
             case R.id.tv_operation_manage:
                 AppUtils.goActivity(mContext, MachineManageActivity.class);
+                break;
+            case R.id.rl_notice:
+                AppUtils.goActivity(mContext, Sly2NoticeActivity.class);
                 break;
             case R.id.tv_offline_num:
             case R.id.ll_offline_machine:

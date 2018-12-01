@@ -1,6 +1,7 @@
 package com.sly.app.adapter.notice;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,7 +9,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.sly.app.R;
+import com.sly.app.activity.sly.mine.notice.NoticeNewDetailsActivity;
+import com.sly.app.activity.sly.mine.notice.NoticeOldDetailsActivity;
+import com.sly.app.model.notice.YunwNoticeNewDetailsBean;
+import com.sly.app.model.notice.YunwNoticeOldListBean;
+import com.sly.app.utils.AppUtils;
 
+import java.io.Serializable;
 import java.util.List;
 
 import butterknife.BindView;
@@ -17,28 +24,12 @@ import butterknife.ButterKnife;
 public class MinerMasterNoticeOldAdapter extends RecyclerView.Adapter {
 
     private Context mContext;
-    private String type;
-//    private List<MinerNoticeListBean> list;
-//    private List<MinerMasterNoticeListBean> notes;
-//    private List<OperationBean> queues;
+    private List<YunwNoticeOldListBean> list;
 
-//    public MinerMasterNoticeOldAdapter(Context Context, String loginType, List<MinerMasterNoticeListBean> mResultList) {
-//        mContext = Context;
-//        notes = mResultList;
-//        type = loginType;
-//    }
-//
-//    public MinerMasterNoticeOldAdapter(Context Context, List<MinerNoticeListBean> mResultList, String loginType) {
-//        mContext = Context;
-//        list = mResultList;
-//        type = loginType;
-//    }
-//
-//    public MinerMasterNoticeOldAdapter(List<OperationBean> mResultList, Context Context, String loginType) {
-//        mContext = Context;
-//        queues = mResultList;
-//        type = loginType;
-//    }
+    public MinerMasterNoticeOldAdapter(Context Context, List<YunwNoticeOldListBean> mResultList) {
+        mContext = Context;
+        list = mResultList;
+    }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -48,31 +39,23 @@ public class MinerMasterNoticeOldAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
-//        MinerMasterNoticeAdapter.ViewHolder viewHolder = (MinerMasterNoticeAdapter.ViewHolder) holder;
-        String MessageID = "";
-        if ("Miner".equals(type)) {
-
-
-        } else if("MinerMaster".equals(type)){
-
-        }else{
-
-        }
-
-        final String finalMessageID = MessageID;
-
+        ViewHolder viewHolder = (ViewHolder) holder;
+        final YunwNoticeOldListBean bean = list.get(position);
+        viewHolder.tvNoticeOldTime.setText(bean.getMine85_Time());
+        viewHolder.tvNoticeOldContent.setText(bean.getMine85_Content());
+        viewHolder.llNoticeOldDetails.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("CommonNoticeInfo", (Serializable) bean);
+                AppUtils.goActivity(mContext, NoticeOldDetailsActivity.class, bundle);
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
-//        if ("Miner".equals(type)) {
-//            return list.size();
-//        } else if("MinerMaster".equals(type)){
-//            return notes.size();
-//        }else{
-//            return queues.size();
-//        }
-        return 0;
+        return list.size();
     }
 
 
@@ -88,7 +71,5 @@ public class MinerMasterNoticeOldAdapter extends RecyclerView.Adapter {
             super(view);
             ButterKnife.bind(this, view);
         }
-
-
     }
 }

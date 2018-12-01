@@ -19,6 +19,7 @@ import com.alibaba.fastjson.JSON;
 import com.sly.app.Helper.ActivityHelper;
 import com.sly.app.R;
 import com.sly.app.activity.BaseActivity;
+import com.sly.app.activity.sly.mine.notice.Sly2NoticeActivity;
 import com.sly.app.comm.EventBusTags;
 import com.sly.app.comm.NetConstant;
 import com.sly.app.http.NetWorkCons;
@@ -44,12 +45,17 @@ import butterknife.OnClick;
 import de.greenrobot.event.EventBus;
 import vip.devkit.library.Logcat;
 
-public class RepairBillDetailsActivity extends BaseActivity implements ICommonViewUi {
+public class
+RepairBillDetailsActivity extends BaseActivity implements ICommonViewUi {
 
     @BindView(R.id.btn_main_back)
     LinearLayout btnMainBack;
     @BindView(R.id.tv_main_title)
     TextView tvMainTitle;
+    @BindView(R.id.rl_notice)
+    RelativeLayout rlNotice;
+    @BindView(R.id.tv_red_num)
+    TextView tvRedNum;
 
     @BindView(R.id.tv_repair_details_type)
     TextView tvDetailsType;
@@ -149,7 +155,19 @@ public class RepairBillDetailsActivity extends BaseActivity implements ICommonVi
         LoginType = SharedPreferencesUtil.getString(this, "LoginType", "None");
         MineCode = SharedPreferencesUtil.getString(this, "MineCode", "None");
         PersonSysCode = SharedPreferencesUtil.getString(this, "PersonSysCode", "None");
+
+        intitNewsCount();
         toRequest(NetConstant.EventTags.GET_YUNW_REPAIR_DETAILS);
+    }
+
+    private void intitNewsCount() {
+        String count = AppUtils.getNewsCount(this);
+        if("0".equals(count)){
+            tvRedNum.setVisibility(View.GONE);
+        }else{
+            tvRedNum.setVisibility(View.VISIBLE);
+            tvRedNum.setText(count);
+        }
     }
 
     @Override
@@ -327,11 +345,14 @@ public class RepairBillDetailsActivity extends BaseActivity implements ICommonVi
 
     @OnClick({R.id.btn_main_back, R.id.tv_repair_details_start_machine, R.id.tv_repair_details_stop_machine,
             R.id.ll_repair_history, R.id.tv_repair_details_start, R.id.tv_repair_details_form,
-            R.id.tv_repair_details_dealed})
+            R.id.tv_repair_details_dealed, R.id.rl_notice})
     public void onViewClicked(View view){
         switch(view.getId()){
             case R.id.btn_main_back:
                 finish();
+                break;
+            case R.id.rl_notice:
+                AppUtils.goActivity(this, Sly2NoticeActivity.class);
                 break;
             case R.id.tv_repair_details_start_machine:
                 showCustomDialog(this, R.layout.dialog_general_style, 2, getString(R.string.request_start_machine), 1);

@@ -18,8 +18,10 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.sly.app.Helper.ActivityHelper;
 import com.sly.app.R;
 import com.sly.app.activity.MainActivity;
+import com.sly.app.activity.mine.LoginActivity;
 import com.sly.app.base.BaseActivity;
 import com.sly.app.utils.SharedPreferencesUtil;
 
@@ -158,8 +160,10 @@ public class SlySettingActivity extends BaseActivity {
 //                SharedPreferencesUtil.putString(SlySettingActivity.this, "User", null);
                 SharedPreferencesUtil.putString(mContext,"mineType","None");
                 SharedPreferencesUtil.putString(mContext,"RegistrationID", "None");
-                startActivityWithoutExtras(MainActivity.class);
+                startActivityWithoutExtras(LoginActivity.class);
+
                 finish();
+                ActivityHelper.getInstance().popMoreActivity(1);
             }
         });
     }

@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.sly.app.fragment.notice.NoticeNewFragment;
+import com.sly.app.fragment.notice.NoticeOldFragment;
 import com.sly.app.fragment.sly.SlyHomeFragment;
 import com.sly.app.fragment.sly.SlyMineFragment2;
 
@@ -33,7 +34,7 @@ public class NoticeFragmentPagerAdapter extends FragmentPagerAdapter {
             case 0:
                 return new NoticeNewFragment();
             case 1:
-                return new SlyHomeFragment();
+                return new NoticeOldFragment();
         }
         return null;
     }

@@ -15,13 +15,16 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.sly.app.Helper.ActivityHelper;
 import com.sly.app.R;
 import com.sly.app.activity.mine.LoginActivity;
 import com.sly.app.comm.AppContext;
+import com.sly.app.fragment.EmptyFragment;
 import com.sly.app.fragment.Sly2YunwFragment;
 import com.sly.app.fragment.sly.SlyHomeFragment;
 import com.sly.app.fragment.sly.SlyMineFragment2;
 import com.sly.app.listener.OnPopupItemOnClickListener;
+import com.sly.app.utils.AppUtils;
 import com.sly.app.utils.CommonUtil2;
 import com.sly.app.utils.LoginMsgHelper;
 import com.sly.app.view.NoScrollViewpager;
@@ -71,6 +74,8 @@ public class MainActivity extends BaseActivity implements OnPopupItemOnClickList
         /**检测app版本**/
 //        Beta.checkUpgrade(false, true);
         requestPermission();
+
+        ActivityHelper.getInstance().pushOneActivity(this);
 
     }
 
@@ -221,13 +226,13 @@ public class MainActivity extends BaseActivity implements OnPopupItemOnClickList
         public Fragment getItem(int position) {
 
             if (position == 0) {
-                return SlyHomeFragment.newInstance(tabCount[position % tabCount.length]);
-            } else if (position == 1) {
                 return Sly2YunwFragment.newInstance(tabCount[position % tabCount.length]);
+            } else if (position == 1) {
+                return EmptyFragment.newInstance("1");
             } else if (position == 2) {
-                return SlyMineFragment2.newInstance(tabCount[position % tabCount.length]);
+                return EmptyFragment.newInstance("2");
             } else {
-                return SlyMineFragment2.newInstance(tabCount[position % tabCount.length]);
+                return EmptyFragment.newInstance("3");
             }
 
         }

@@ -215,7 +215,54 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="45dp">
+
+                    <TextView
+                        android:id="@+id/tv_suanli_icon"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="15dp"
+                        android:background="@drawable/monitor_modify"
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_suanli"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/tv_suanli_icon"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
+                        android:text="算力"
+                        android:textSize="14sp"
+                        android:textColor="@color/sly_text_333333"/>
+
+                    <TextView
+                        android:id="@+id/tv_machine_details_suanli"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/tv_suanli"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="5dp"
+                        android:textSize="13sp"
+                        android:textColor="@color/sly_text_4a96f2"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="15dp"
+                        android:textSize="14sp" />
+
+                </RelativeLayout>
+
+                <include layout="@layout/gray_line"/>
 
                 <com.github.mikephil.charting.charts.LineChart
                     android:id="@+id/lc_cal_power_pic"

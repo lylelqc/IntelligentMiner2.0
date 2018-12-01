@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -134,6 +135,32 @@ public class AppUtils {
     public static boolean isBlank(String str) {
         return (str == null || str.trim().length() == 0);
     }
+
+
+    /**
+     * list 是否为空
+     * @param list
+     * @return
+     */
+    public static boolean isListBlank(List<?> list) {
+        return (list == null || list.size() == 0);
+    }
+
+
+    /**
+     * 获取未读消息数量
+     * @param context
+     * @return
+     */
+    public static String getNewsCount(Context context){
+        String newsCount = SharedPreferencesUtil.getString(context, "NewsCount", "0");
+        int count = Integer.parseInt(newsCount);
+        if(count > 99){
+            return "99+";
+        }
+        return newsCount;
+    }
+
 
     /**
      * dp转px

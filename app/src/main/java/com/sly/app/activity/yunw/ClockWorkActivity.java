@@ -3,11 +3,13 @@ package com.sly.app.activity.yunw;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.sly.app.R;
 import com.sly.app.activity.BaseActivity;
+import com.sly.app.activity.sly.mine.notice.Sly2NoticeActivity;
 import com.sly.app.comm.NetConstant;
 import com.sly.app.http.NetWorkCons;
 import com.sly.app.model.ReturnBean;
@@ -35,20 +37,27 @@ public class ClockWorkActivity extends BaseActivity implements ICommonViewUi {
     LinearLayout btnMainBack;
     @BindView(R.id.tv_main_title)
     TextView tvMainTitle;
-    @BindView(R.id.tv_begin_work_time)
-    TextView tvBeginTime;
+    @BindView(R.id.rl_notice)
+    RelativeLayout rlNotice;
+    @BindView(R.id.tv_red_num)
+    TextView tvRedNum;
+
     @BindView(R.id.tv_work_yuan)
     TextView tvWorkYuan;
     @BindView(R.id.tv_work_line)
     TextView tvWorkLine;
-    @BindView(R.id.tv_time1)
-    TextView tvTime1;
+
+    @BindView(R.id.ll_clock_in_time)
+    LinearLayout llClockInTime;
+    @BindView(R.id.tv_begin_work_time)
+    TextView tvBeginTime;
     @BindView(R.id.btn_begin_work)
     Button btnBeginWork;
-    @BindView(R.id.btn_end_work)
-    Button btnEndWork;
+
     @BindView(R.id.ll_end_work)
     LinearLayout llEndWork;
+    @BindView(R.id.btn_end_work)
+    Button btnEndWork;
 
     private String User, LoginType, MineCode, PersonSysCode, Token, Key;
     ICommonRequestPresenter iCommonRequestPresenter;
@@ -65,7 +74,7 @@ public class ClockWorkActivity extends BaseActivity implements ICommonViewUi {
 
     @Override
     protected void initViewsAndEvents() {
-        tvMainTitle.setText("上下班打卡");
+        tvMainTitle.setText(getString(R.string.machine_clock_work));
         iCommonRequestPresenter = new CommonRequestPresenterImpl(mContext, this);
         User = SharedPreferencesUtil.getString(this, "User", "None");
         Token = SharedPreferencesUtil.getString(this, "Token", "None");
@@ -73,9 +82,21 @@ public class ClockWorkActivity extends BaseActivity implements ICommonViewUi {
         LoginType = SharedPreferencesUtil.getString(this, "LoginType", "None");
         MineCode = SharedPreferencesUtil.getString(this, "MineCode", "None");
         PersonSysCode = SharedPreferencesUtil.getString(this, "PersonSysCode", "None");
+
+        intitNewsCount();
         toRequest(NetConstant.EventTags.GET_YUNW_BEGIN_WORK_STATUS);
-        toRequest(NetConstant.EventTags.GET_YUNW_END_WORK_STATUS);
+//        toRequest(NetConstant.EventTags.GET_YUNW_END_WORK_STATUS);
         toRequest(NetConstant.EventTags.GET_YUNW_WORK_TIME);
+    }
+
+    private void intitNewsCount() {
+        String count = AppUtils.getNewsCount(this);
+        if("0".equals(count)){
+            tvRedNum.setVisibility(View.GONE);
+        }else{
+            tvRedNum.setVisibility(View.VISIBLE);
+            tvRedNum.setText(count);
+        }
     }
 
     @Override
@@ -90,10 +111,10 @@ public class ClockWorkActivity extends BaseActivity implements ICommonViewUi {
         if (NetConstant.EventTags.GET_YUNW_BEGIN_WORK_STATUS == eventTag) {
             map.put("Rounter", NetConstant.GET_YUNW_BEGIN_WORK_STATUS);
 
-        } else if (NetConstant.EventTags.GET_YUNW_END_WORK_STATUS == eventTag) {
+        } /*else if (NetConstant.EventTags.GET_YUNW_END_WORK_STATUS == eventTag) {
             map.put("Rounter", NetConstant.GET_YUNW_END_WORK_STATUS);
 
-        } else if (NetConstant.EventTags.GET_YUNW_SET_WORK_STATUS == eventTag) {
+        }*/ else if (NetConstant.EventTags.GET_YUNW_SET_WORK_STATUS == eventTag) {
             map.put("Rounter", NetConstant.GET_YUNW_SET_WORK_STATUS);
 
         } else if (NetConstant.EventTags.GET_YUNW_SET_NO_WORK_STATUS == eventTag) {
@@ -118,28 +139,21 @@ public class ClockWorkActivity extends BaseActivity implements ICommonViewUi {
             final ReturnBean returnBean = JSON.parseObject(result, ReturnBean.class);
             if (returnBean.getStatus().equals("1")) {
                 if ((returnBean.getData()).equals("true")) {
-                    tvWorkYuan.setVisibility(View.VISIBLE);
-                    tvWorkLine.setVisibility(View.GONE);
-                    btnBeginWork.setVisibility(View.VISIBLE);
+                    showIsWorkView(false);
                 } else {
-                    tvTime1.setVisibility(View.GONE);
-                    tvBeginTime.setVisibility(View.GONE);
-                    tvWorkYuan.setVisibility(View.GONE);
-                    tvWorkLine.setVisibility(View.VISIBLE);
-                    btnBeginWork.setVisibility(View.GONE);
+                    showIsWorkView(true);
                 }
             } else {
                 ToastUtils.showToast(returnBean.getMsg());
             }
 
-        } else if (NetConstant.EventTags.GET_YUNW_END_WORK_STATUS == eventTag) {
+        } /*else if (NetConstant.EventTags.GET_YUNW_END_WORK_STATUS == eventTag) {
             final ReturnBean returnBean = JSON.parseObject(result, ReturnBean.class);
             if (returnBean.getStatus().equals("1")) {
                 if ((returnBean.getData()).equals("true")) {
                     tvWorkYuan.setVisibility(View.GONE);
                     tvWorkLine.setVisibility(View.VISIBLE);
-                    tvTime1.setVisibility(View.VISIBLE);
-                    tvBeginTime.setVisibility(View.VISIBLE);
+                    llClockInTime.setVisibility(View.VISIBLE);
                     llEndWork.setVisibility(View.VISIBLE);
                 } else {
                     tvWorkYuan.setVisibility(View.VISIBLE);
@@ -150,38 +164,37 @@ public class ClockWorkActivity extends BaseActivity implements ICommonViewUi {
                 ToastUtils.showToast(returnBean.getMsg());
             }
 
-        } else if (NetConstant.EventTags.GET_YUNW_SET_WORK_STATUS == eventTag) {
+        }*/ else if (NetConstant.EventTags.GET_YUNW_SET_WORK_STATUS == eventTag) {
             final ReturnBean returnBean = JSON.parseObject(result, ReturnBean.class);
             if (returnBean.getStatus().equals("1")) {
-                toRequest(NetWorkCons.EventTags.GET_WORK_TIME);
-                tvWorkYuan.setVisibility(View.GONE);
-                tvWorkLine.setVisibility(View.VISIBLE);
-                tvTime1.setVisibility(View.VISIBLE);
-                tvBeginTime.setVisibility(View.VISIBLE);
-                llEndWork.setVisibility(View.VISIBLE);
-                btnBeginWork.setVisibility(View.GONE);
+                toRequest(NetConstant.EventTags.GET_YUNW_WORK_TIME);
+                showIsWorkView(true);
             }
 
         } else if (NetConstant.EventTags.GET_YUNW_SET_NO_WORK_STATUS == eventTag) {
             final ReturnBean returnBean = JSON.parseObject(result, ReturnBean.class);
             if (returnBean.getStatus().equals("1")) {
-                tvWorkLine.setVisibility(View.GONE);
-                tvWorkYuan.setVisibility(View.VISIBLE);
-                llEndWork.setVisibility(View.GONE);
-                tvTime1.setVisibility(View.GONE);
-                tvBeginTime.setVisibility(View.GONE);
-                btnBeginWork.setVisibility(View.VISIBLE);
+                showIsWorkView(false);
             }
         } else if (NetConstant.EventTags.GET_YUNW_WORK_TIME == eventTag) {
             List<ClockWorkBean> beanList =
                     (List<ClockWorkBean>) AppUtils.parseRowsResult(result, ClockWorkBean.class);
-            if(beanList != null && beanList.size() > 0){
+            if (beanList != null && beanList.size() > 0) {
                 ClockWorkBean bean = beanList.get(0);
                 if (bean.getMine84_BeginTime() != null) {
                     tvBeginTime.setText(bean.getMine84_BeginTime());
                 }
             }
         }
+    }
+
+    private void showIsWorkView(boolean isWork) {
+        tvWorkYuan.setVisibility(isWork ? View.GONE : View.VISIBLE);
+        tvWorkLine.setVisibility(isWork ? View.VISIBLE : View.GONE);
+        llClockInTime.setVisibility(isWork ? View.VISIBLE : View.GONE);
+        llEndWork.setVisibility(isWork ? View.VISIBLE : View.GONE);
+        btnBeginWork.setVisibility(isWork ? View.GONE : View.VISIBLE);
+        btnEndWork.setVisibility(isWork ? View.VISIBLE : View.GONE);
     }
 
     @Override
@@ -199,11 +212,14 @@ public class ClockWorkActivity extends BaseActivity implements ICommonViewUi {
 
     }
 
-    @OnClick({R.id.btn_main_back, R.id.btn_begin_work, R.id.btn_end_work})
+    @OnClick({R.id.btn_main_back, R.id.btn_begin_work, R.id.btn_end_work, R.id.rl_notice})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_main_back:
                 finish();
+                break;
+            case R.id.rl_notice:
+                AppUtils.goActivity(this, Sly2NoticeActivity.class);
                 break;
             case R.id.btn_begin_work:
                 toRequest(NetConstant.EventTags.GET_YUNW_SET_WORK_STATUS);

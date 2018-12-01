@@ -50,7 +50,9 @@
                     android:id="@+id/tv_notice_new_reason"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:maxWidth="140dp"
                     android:maxLines="1"
+                    android:singleLine="true"
                     android:ellipsize="end"
                     android:textSize="14sp"
                     android:textColor="@color/sly_text_666666"/>

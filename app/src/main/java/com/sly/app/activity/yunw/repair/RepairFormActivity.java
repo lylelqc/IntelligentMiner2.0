@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.sly.app.Helper.ActivityHelper;
 import com.sly.app.R;
 import com.sly.app.activity.BaseActivity;
+import com.sly.app.activity.sly.mine.notice.Sly2NoticeActivity;
 import com.sly.app.adapter.DialogListAdapter;
 import com.sly.app.comm.NetConstant;
 import com.sly.app.http.NetWorkCons;
@@ -44,6 +45,10 @@ public class RepairFormActivity extends BaseActivity implements ICommonViewUi, D
     LinearLayout btnMainBack;
     @BindView(R.id.tv_main_title)
     TextView tvMainTitle;
+    @BindView(R.id.rl_notice)
+    RelativeLayout rlNotice;
+    @BindView(R.id.tv_red_num)
+    TextView tvRedNum;
 
     @BindView(R.id.rl_choose)
     RelativeLayout rlChoose;
@@ -138,7 +143,19 @@ public class RepairFormActivity extends BaseActivity implements ICommonViewUi, D
             }
         });
 
+        intitNewsCount();
+
         toRequest(NetConstant.EventTags.GET_YUNW_REPAIR_SPARES);
+    }
+
+    private void intitNewsCount() {
+        String count = AppUtils.getNewsCount(this);
+        if("0".equals(count)){
+            tvRedNum.setVisibility(View.GONE);
+        }else{
+            tvRedNum.setVisibility(View.VISIBLE);
+            tvRedNum.setText(count);
+        }
     }
 
     @Override
@@ -184,11 +201,14 @@ public class RepairFormActivity extends BaseActivity implements ICommonViewUi, D
     }
 
 
-    @OnClick({R.id.btn_main_back, R.id.rl_choose, R.id.tv_add_goods, R.id.tv_commit_bill})
+    @OnClick({R.id.btn_main_back, R.id.rl_choose, R.id.tv_add_goods, R.id.tv_commit_bill, R.id.rl_notice})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_main_back:
                 finish();
+                break;
+            case R.id.rl_notice:
+                AppUtils.goActivity(this, Sly2NoticeActivity.class);
                 break;
             case R.id.rl_choose:
                 if(sparesList.size() == 0){

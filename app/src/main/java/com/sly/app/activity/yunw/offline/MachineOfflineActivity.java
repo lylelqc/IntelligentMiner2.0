@@ -18,6 +18,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
@@ -25,6 +26,7 @@ import com.liucanwen.app.headerfooterrecyclerview.HeaderAndFooterRecyclerViewAda
 import com.liucanwen.app.headerfooterrecyclerview.RecyclerViewUtils;
 import com.sly.app.R;
 import com.sly.app.activity.BaseActivity;
+import com.sly.app.activity.sly.mine.notice.Sly2NoticeActivity;
 import com.sly.app.adapter.yunw.offline.MachineOfflineRecyclerViewAdapter;
 import com.sly.app.base.Contants;
 import com.sly.app.comm.EventBusTags;
@@ -73,6 +75,10 @@ public class MachineOfflineActivity extends BaseActivity implements IRecyclerVie
     LinearLayout btnMainBack;
     @BindView(R.id.tv_main_title)
     TextView tvMainTitle;
+    @BindView(R.id.rl_notice)
+    RelativeLayout rlNotice;
+    @BindView(R.id.tv_red_num)
+    TextView tvRedNum;
     @BindView(R.id.tv_main_right_left)
     TextView tvMainRightLeft;
 
@@ -199,9 +205,20 @@ public class MachineOfflineActivity extends BaseActivity implements IRecyclerVie
         LoginType = SharedPreferencesUtil.getString(mContext, "LoginType", "None");
         swipeRefreshLayout.setVisibility(View.GONE);
 
+        intitNewsCount();
         toRequest(NetConstant.EventTags.GET_YUNW_MANAGE_AREA);
         toRequest(NetConstant.EventTags.GET_MACHINE_TYPE);
         firstRefresh();
+    }
+
+    private void intitNewsCount() {
+        String count = AppUtils.getNewsCount(this);
+        if("0".equals(count)){
+            tvRedNum.setVisibility(View.GONE);
+        }else{
+            tvRedNum.setVisibility(View.VISIBLE);
+            tvRedNum.setText(count);
+        }
     }
 
     private void firstRefresh() {
@@ -343,8 +360,6 @@ public class MachineOfflineActivity extends BaseActivity implements IRecyclerVie
             pageStatusTextTv.setVisibility(View.VISIBLE);
             swipeRefreshLayout.setVisibility(View.GONE);
         }
-        tvOfflineCount.setText("(" + mResultList.size() + ")");
-
     }
 
     @Override
@@ -357,7 +372,6 @@ public class MachineOfflineActivity extends BaseActivity implements IRecyclerVie
         }
         mResultList.addAll(resultList);
         cbChoseAll.setChecked(resultList.size() == 0 ? true : false);
-        tvOfflineCount.setText("(" + mResultList.size() + ")");
         adapter.notifyDataSetChanged();
     }
 
@@ -396,6 +410,7 @@ public class MachineOfflineActivity extends BaseActivity implements IRecyclerVie
         if (eventTag == NetConstant.EventTags.GET_YUNW_REPAIR_STOP_MACHINE) {
             if (returnBean.getStatus().equals("1") && returnBean.getMsg().equals("成功")) {
                 ToastUtils.showToast(getString(R.string.comfirm_success));
+                firstRefresh();
             } else {
                 ToastUtils.showToast(returnBean.getMsg());
             }
@@ -483,11 +498,14 @@ public class MachineOfflineActivity extends BaseActivity implements IRecyclerVie
 
     @OnClick({R.id.btn_main_back, R.id.tv_main_right_left, R.id.ll_machine_offline_ip_icon,
             R.id.ll_machine_offline_type_icon, R.id.ll_machine_offline_status_icon, R.id.ll_machine_offline_area_icon,
-            R.id.cb_chose_all, R.id.tv_machine_offline_btn})
+            R.id.cb_chose_all, R.id.tv_machine_offline_btn, R.id.rl_notice})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_main_back:
                 finish();
+                break;
+            case R.id.rl_notice:
+                AppUtils.goActivity(this, Sly2NoticeActivity.class);
                 break;
             case R.id.tv_main_right_left:
                 mOfflineCheckPopView = new OfflineCheckPopView(this, machineTypeList, areaList);
@@ -563,6 +581,7 @@ public class MachineOfflineActivity extends BaseActivity implements IRecyclerVie
                 indexSet.add(i);
             }
         }
+        tvOfflineCount.setText("("+ indexSet.size() + ")");
         if (adapter != null) {
             adapter.notifyDataSetChanged();
         }

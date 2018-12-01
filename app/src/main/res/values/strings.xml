@@ -21,7 +21,7 @@
     <!--version 2.0-->
     <!--消息中心-->
     <string name="sly_notice">消息中心</string>
-    <string name="notice_new">待办</string>
+    <string name="notice_new">消息</string>
     <string name="notice_old">公告</string>
     <!--维修单-->
     <string name="repair_bill">维修单</string>
@@ -53,6 +53,7 @@
     <string name="machine_change_vip">更改绑定</string>
 
     <string name="machine_offline">矿机停机</string>
+    <string name="machine_clock_work">上下班打卡</string>
 
     <!--tips-->
     <string name="repair_than_time">结束时间不能大于起始时间</string>

@@ -8,6 +8,7 @@ import android.widget.CheckBox;
 
 import com.sly.app.R;
 import com.sly.app.model.yunw.goline.GolineAreaBean;
+import com.sly.app.model.yunw.machine.MachineManageAreaBean;
 
 import java.util.List;
 import java.util.Set;
@@ -19,10 +20,10 @@ import butterknife.ButterKnife;
 public class MachineGolineRecyclerViewAdapter extends RecyclerView.Adapter {
 
     private Context mContext;
-    private List<GolineAreaBean> beanList;
+    private List<MachineManageAreaBean> beanList;
     private Set<Integer> indexSet = new TreeSet<>();
 
-    public MachineGolineRecyclerViewAdapter(Context context, List<GolineAreaBean> beanList) {
+    public MachineGolineRecyclerViewAdapter(Context context, List<MachineManageAreaBean> beanList) {
         this.mContext = context;
         this.beanList = beanList;
     }
@@ -36,9 +37,9 @@ public class MachineGolineRecyclerViewAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         final ViewHolder viewHolder = (ViewHolder) holder;
-        final GolineAreaBean bean = beanList.get(position);
+        final MachineManageAreaBean bean = beanList.get(position);
 
-        viewHolder.cbGolinePlan.setText(bean.getMine06_MineAreaName());
+        viewHolder.cbGolinePlan.setText(bean.getAreaName());
         viewHolder.cbGolinePlan.setChecked(indexSet.contains(position));
         viewHolder.cbGolinePlan.setOnClickListener(new View.OnClickListener() {
             @Override

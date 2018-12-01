@@ -28,6 +28,7 @@ import com.liucanwen.app.headerfooterrecyclerview.HeaderAndFooterRecyclerViewAda
 import com.liucanwen.app.headerfooterrecyclerview.RecyclerViewUtils;
 import com.sly.app.R;
 import com.sly.app.activity.BaseActivity;
+import com.sly.app.activity.sly.mine.notice.Sly2NoticeActivity;
 import com.sly.app.adapter.yunw.machine.MachineListRecyclerViewAdapter;
 import com.sly.app.adapter.yunw.machine.MachineManageRecyclerViewAdapter;
 import com.sly.app.base.Contants;
@@ -88,6 +89,10 @@ public class MachineManageActivity extends BaseActivity implements ICommonViewUi
     LinearLayout btnMainBack;
     @BindView(R.id.tv_main_title)
     TextView tvMainTitle;
+    @BindView(R.id.rl_notice)
+    RelativeLayout rlNotice;
+    @BindView(R.id.tv_red_num)
+    TextView tvRedNum;
 
     @BindView(R.id.ll_manage_header)
     LinearLayout llManageHeader;
@@ -224,6 +229,7 @@ public class MachineManageActivity extends BaseActivity implements ICommonViewUi
         LoginType = SharedPreferencesUtil.getString(mContext, "LoginType", "None");
         swipeRefreshLayout.setVisibility(View.GONE);
 
+        intitNewsCount();
         toRequest(NetConstant.EventTags.GET_YUNW_MANAGE_AREA);
         toRequest(NetConstant.EventTags.GET_MACHINE_TYPE);
         toRequest(NetConstant.EventTags.GET_YUNW_ALL_NUM);
@@ -231,6 +237,15 @@ public class MachineManageActivity extends BaseActivity implements ICommonViewUi
         firstRefresh();
     }
 
+    private void intitNewsCount() {
+        String count = AppUtils.getNewsCount(this);
+        if("0".equals(count)){
+            tvRedNum.setVisibility(View.GONE);
+        }else{
+            tvRedNum.setVisibility(View.VISIBLE);
+            tvRedNum.setText(count);
+        }
+    }
 
     // 列表请求数据
     private void firstRefresh() {
@@ -457,6 +472,7 @@ public class MachineManageActivity extends BaseActivity implements ICommonViewUi
                 || eventTag == NetConstant.EventTags.GET_YUNW_REPAIR_CANCEL_MACHINE){
             if (returnBean.getStatus().equals("1") && returnBean.getMsg().equals("成功")) {
                 ToastUtils.showToast(getString(R.string.comfirm_success));
+                firstRefresh();
             }else{
                 ToastUtils.showToast(returnBean.getMsg());
             }
@@ -537,11 +553,14 @@ public class MachineManageActivity extends BaseActivity implements ICommonViewUi
 
     @OnClick({R.id.btn_main_back, R.id.rl_manage_all, R.id.ll_manage_status, R.id.ll_manage_area,
             R.id.rl_manage_choose, R.id.cb_chose_all, R.id.tv_manage_change_pool, R.id.tv_manage_start_machine,
-            R.id.tv_manage_stop_machine, R.id.tv_manage_cancel_machine})
+            R.id.tv_manage_stop_machine, R.id.tv_manage_cancel_machine, R.id.rl_notice})
     public void onViewClicked(View view) {
         switch (view.getId()){
             case R.id.btn_main_back:
                 finish();
+                break;
+            case R.id.rl_notice:
+                AppUtils.goActivity(this, Sly2NoticeActivity.class);
                 break;
             case R.id.rl_manage_all:
                 setListHeaderIcon(1);
