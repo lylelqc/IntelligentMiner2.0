@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <include layout="@layout/view_comm_title"/>
+    <include layout="@layout/view_divider"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:src="@drawable/home_oyg_banner"
+                android:scaleType="fitXY"
+                android:layout_height="550dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:gravity="center"
+                android:background="#1f76b0"
+                android:paddingBottom="9dp"
+                android:layout_height="37dp">
+
+                <ImageView
+                    android:layout_width="170dp"
+                    android:src="@drawable/home_oyg_title"
+                    android:scaleType="fitXY"
+                    android:layout_height="19dp"/>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1.5dp"
+                android:background="#ffffff"/>
+
+            <com.sly.app.view.ListViewForScrollView
+                android:id="@+id/lv_z_list"
+                android:layout_width="match_parent"
+                android:dividerHeight="1.5dp"
+                android:divider="#ffff"
+                android:layout_height="wrap_content"></com.sly.app.view.ListViewForScrollView>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

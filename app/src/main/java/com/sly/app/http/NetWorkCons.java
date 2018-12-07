@@ -18,6 +18,8 @@ public class NetWorkCons {
 
     public static final String GET_MINER_REPAIR_TAKET = "Miner.009";//获取矿工维修单
 
+    public static final String GET_MASTER_REPAIR_TAKET = "MineMaster.011";//获取矿主维修单
+
     public static final String GET_RECOURD_LIST = "Member.006";//获取用户钱包流水
 
     public static final String GET_RECHARGE_LIST = "Miner.032";//获取用户钱包流水
@@ -110,7 +112,9 @@ public class NetWorkCons {
 
     public static final String GET_JPUSH_REGISTRATION_ID = "Sly.027";//检查更新JPUSH注册ID接口
 
-    public static final String GET_MACHINE_LIST = "Sly.030";//获取矿主的设备列表的接口。
+    public static final String GET_MASTER_MINE_LIST = "Sly.028";//获取矿主的矿场区域
+
+    public static final String GET_MACHINE_LIST = "Sly.030";//矿主按矿场型号分组后所有设备
 
     public static final String GET_OPERATION_NOTICE_LIST = "Sly.037";//获取矿主的设备列表的接口。
 
@@ -124,7 +128,7 @@ public class NetWorkCons {
 
     public static final String GET_WORK_TIME = "Sly.043";//获取上下班时间
 
-
+    public static final String GET_MANAGE_MACHINE_MINE_DETAILS_HEAR = "Sly.046";//获取矿工设备详情头部
 
 
 
@@ -243,6 +247,10 @@ public class NetWorkCons {
         public static final int SET_NO_WORK = BEGIN_EVENT + 72;//下班打卡
 
         public static final int GET_WORK_TIME = BEGIN_EVENT + 74;//获取上下班时间
+
+        public static final int GET_MANAGE_MACHINE_MINE_DETAILS_HEAR = BEGIN_EVENT + 75;//获取上下班时间
+
+        public static final int GET_MASTER_MINE_LIST = BEGIN_EVENT + 76;//获取矿主的矿场区域
 
 
 

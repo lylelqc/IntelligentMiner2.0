@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" android:background="#ffffff"
+    android:orientation="vertical">
+    <include layout="@layout/main_title"/>
+    <include layout="@layout/gray_line"/>
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="164dp"
+                android:layout_height="61dp"
+                android:src="@drawable/register_logo"
+                android:layout_marginTop="53dp"
+                android:layout_marginBottom="27dp"
+                android:layout_gravity="center_horizontal"/>
+            <include layout="@layout/gray_line"/>
+            <TextView
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/About_us_top"
+                android:lineSpacingExtra="10dp"
+                android:textSize="15sp"
+                android:textColor="#c3999999"/>
+            <TextView
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="32dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="[实现功能]"
+                android:lineSpacingExtra="10dp"
+                android:textSize="15sp"
+                android:textColor="#c3999999"/>
+            <TextView
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="10dp"
+                android:text="矿场分级管理--解决矿场运维管理；\n\r按时计费结算--解决矿场结算难问题；\n\r设备状态监控—实现矿机故障实时诊断；\n\r设备远程管理—支持远程重启、一键上机；\n\r智能统计报表--提供数据分析依据；\n\r矿位资讯共享—整合行业资讯。"
+                android:textSize="15sp"
+                android:textColor="#c3999999"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:textColor="#999999"
+                android:textSize="11sp"
+                android:text="广州算力云区块链科技有限公司 版权所有"
+                android:layout_marginTop="80dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:textColor="#999999"
+                android:textSize="11sp"
+                android:text="网站备案号：粤ICP备18016852号-1"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="30dp"/>
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+</LinearLayout>

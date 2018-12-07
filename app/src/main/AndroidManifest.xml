@@ -44,13 +44,103 @@
             </intent-filter>
         </activity>
         <activity android:name="com.sly.app.activity.MainActivity" />
+        <activity
+            android:name="com.sly.app.activity.qrc.SaoErWeiMaActivity"
+            android:launchMode="standard" />
+        <activity
+            android:name="com.sly.app.activity.qrc.ShareActivity"
+            android:launchMode="standard" />
+        <activity android:name="com.sly.app.activity.qrc.ShareRecordActivity" />
+        <activity android:name="com.sly.app.activity.qrc.ScanResultActivity" />
+        <activity android:name="com.sly.app.activity.order.OrderPayActivity" />
+        <activity android:name="com.sly.app.activity.mine.AccountActivity" />
+        <activity android:name="com.sly.app.activity.mine.SettingActivity" />
+        <activity android:name="com.sly.app.activity.mine.AboutActivity" />
+        <activity android:name="com.sly.app.activity.mine.DefendActivity" />
+        <activity android:name="com.sly.app.activity.mine.RelationDQCActivity" />
+        <activity android:name="com.sly.app.activity.mine.DistributionActivity" />
+        <activity android:name="com.sly.app.activity.mine.address.SettingAddress" />
+        <activity android:name="com.sly.app.activity.mine.address.AddressActivity" />
+        <activity android:name="com.sly.app.activity.mine.UpDataPwActivity" />
+        <activity android:name="com.sly.app.activity.mine.PasswordActivity" />
+        <activity android:name="com.sly.app.activity.mine.ForgetActivity" />
+        <activity android:name="com.sly.app.activity.mine.ForgetStep1Activity" />
+        <activity android:name="com.sly.app.activity.mine.ForgetStep2Activity" />
+        <activity android:name="com.sly.app.activity.sly.mine.SlySettingActivity" />
+        <activity android:name="com.sly.app.activity.sly.mine.SlyConsumerActivity" />
+        <activity android:name="com.sly.app.activity.sly.mine.SlyUserInfoActivity" />
+        <activity android:name="com.sly.app.activity.sly.mine.SetPayPwdActivity" />
+        <activity android:name="com.sly.app.activity.sly.MachineDetailActivity" />
+        <activity android:name="com.sly.app.activity.sly.mine.SlyMineBalanceActivity" />
+        <activity android:name="com.sly.app.activity.sly.mine.SlyRechargeRecordActivity" />
+        <activity android:name="com.sly.app.activity.sly.mine.SlyNoticeActivity" />
+        <activity android:name="com.sly.app.activity.sly.NoticeDetailActivity" />
 
+        <activity
+            android:name="com.sly.app.activity.mine.RegisterActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity
             android:name="com.sly.app.activity.mine.LoginActivity"
             android:windowSoftInputMode="adjustPan|stateHidden"
             android:launchMode="singleTask"/>
-        <activity android:name=".activity.sly.mine.SlySettingActivity" />
-        <activity android:name=".activity.loading.LoadingActivity" />
+        <activity android:name="com.sly.app.activity.mine.CustomerServiceActivity" />
+        <activity android:name="com.sly.app.activity.mine.AssociationActivity" />
+        <activity android:name="com.sly.app.activity.mine.FeedbackActivity" />
+        <activity android:name="com.sly.app.activity.mine.ForgetMemberActivity" />
+        <activity android:name="com.sly.app.activity.mine.wallet.ConsumerActivity" />
+        <activity android:name="com.sly.app.activity.mine.wallet.WithdrawActivity" />
+        <activity android:name="com.sly.app.activity.mine.wallet.WRecordActivity" />
+        <activity android:name="com.sly.app.activity.mine.wallet.RechargeActivity" />
+        <activity android:name="com.sly.app.activity.mine.wallet.CurrencyInfo" />
+        <activity android:name="com.sly.app.activity.mine.wallet.UserPointActivity" />
+        <activity android:name="com.sly.app.activity.mine.wallet.PointRuleActivity" />
+        <activity android:name="com.sly.app.activity.mine.wallet.RAccountActivity" />
+        <activity android:name="com.sly.app.activity.mine.wallet.WithdrawAccountActivity" />
+        <activity android:name="com.sly.app.activity.mine.wallet.WithdrawDetailActivity" />
+        <activity android:name="com.sly.app.activity.mine.wallet.FundActivity" />
+        <activity android:name="com.sly.app.activity.mine.FavouriteActivity" />
+        <activity android:name="com.sly.app.activity.mine.ProtocolActivity" />
+        <activity android:name="com.sly.app.activity.mine.league.JoinInActivity" />
+        <activity android:name="com.sly.app.activity.order.ShopOrder" />
+        <activity android:name="com.sly.app.activity.order.AffirmOrder" />
+        <activity android:name="com.sly.app.activity.order.OrderPayFinish" />
+        <activity android:name="com.sly.app.activity.order.OrderDetails" />
+        <activity android:name="com.sly.app.activity.notice.NoticeActivity" />
+        <activity android:name="com.sly.app.activity.notice.MsgInfoActivity" />
+        <activity android:name="com.sly.app.activity.point.PointActivity" />
+        <activity android:name="com.sly.app.activity.point.PointMallTypeActivity" />
+        <activity android:name="com.sly.app.activity.point.PointComDetailActivity" />
+        <activity android:name="com.sly.app.activity.point.PointMallAffirmOrder" />
+        <activity android:name="com.sly.app.activity.point.MPSCActivity" />
+        <activity android:name="com.sly.app.activity.mine.league.JoinLevelActivity" />
+        <activity android:name="com.sly.app.activity.mine.league.JoinPolicyActivity" />
+        <activity android:name="com.sly.app.activity.mine.league.JoinOrderPayActivity" />
+        <activity android:name="com.sly.app.push.SplashActivity" />
+        <activity android:name="com.sly.app.activity.machineSeat.MachineSeatDetailActivity" />
+        <activity android:name="com.sly.app.activity.mine.MyMachineActivity" />
+        <activity android:name="com.sly.app.activity.mine.TaketDetailActivity" />
+        <activity android:name="com.sly.app.activity.mine.ReplareTaketActivity" />
+        <activity android:name="com.sly.app.activity.sly.SlyHomeMsgDetailActivity" />
+        <activity
+            android:name=".activity.sly.mine.UserInfoEditActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.sly.app.activity.sly.mine.IdCardActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name="com.sly.app.activity.sly.mine.SlyCalerActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name="com.sly.app.activity.machineSeat.ReleaseOreActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+
+
+        <activity android:name=".activity.sly.mine.SlyRechargeActivity" />
+        <activity android:name=".activity.device.MinersDeviceActivity" />
+        <activity android:name=".activity.sly.mine.SlyRecordActivity" />
+        <activity android:name=".activity.sly.mine.FaultMachineActivity" />
+        <activity android:name=".activity.sly.SlyBannerDetailsActivity" />
+        <activity android:name=".activity.sly.mine.MineMachineDetailActivity" />
 
         <!-- 运维界面 -->
 

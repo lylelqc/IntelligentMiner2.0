@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#E9E9E9"/>
+    <LinearLayout
+        android:id="@+id/ll_item_rapare"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:weightSum="5">
+
+        <TextView
+            android:id="@+id/tv_model_name"
+            android:layout_gravity="center"
+            android:gravity="center_horizontal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="12sp"
+            android:textColor="#666666"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="蚂蚁S9 14T" />
+
+        <TextView
+            android:id="@+id/tv_machine_count"
+            android:layout_gravity="center"
+            android:gravity="center_horizontal"
+            android:layout_width="0dp"
+            android:textSize="12sp"
+            android:textColor="#666666"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="10000" />
+
+        <TextView
+            android:id="@+id/tv_run_hours"
+            android:layout_gravity="center"
+            android:gravity="center_horizontal"
+            android:layout_width="0dp"
+            android:textSize="12sp"
+            android:textColor="#666666"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="2018-08-16\n11:55" />
+
+        <TextView
+            android:id="@+id/tv_run_rate"
+            android:layout_gravity="center"
+            android:gravity="center_horizontal"
+            android:layout_width="0dp"
+            android:textSize="12sp"
+            android:textColor="#666666"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="100%" />
+
+        <TextView
+            android:id="@+id/tv_mine_name"
+            android:layout_gravity="center"
+            android:gravity="center_horizontal"
+            android:layout_width="0dp"
+            android:textSize="12sp"
+            android:textColor="#666666"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="NB矿场" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -19,7 +19,6 @@ import com.sly.app.view.MyMarkerView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 public class ChartUtil {
 
@@ -76,15 +75,19 @@ public class ChartUtil {
         //保证Y轴从0开始，不然会上移一点
         leftYAxis.setAxisMinimum(0f);
         rightYaxis.setAxisMinimum(0f);
+        // 设置Y轴字体大小、颜色
         int color = context.getResources().getColor(R.color.sly_text_999999);
         leftYAxis.setTextColor(color);
+        leftYAxis.setTextSize(12f);
 //        leftYAxis.setXOffset(-45);
 
-        //禁止网格线
+        //禁止网格线,设置线条颜色
+        int color1 = context.getResources().getColor(R.color.sly_line_ececec);
+        xAxis.setGridColor(color1);
         xAxis.setDrawGridLines(false);
-        leftYAxis.setDrawGridLines(true);
-        int color1 = context.getResources().getColor(R.color.sly_bg_f4f4f4);
+        xAxis.setDrawAxisLine(false);
         leftYAxis.setGridColor(color1);
+        leftYAxis.setDrawGridLines(true);
         leftYAxis.setDrawAxisLine(false);
         //设置网格虚线
 //        leftYAxis.enableGridDashedLine(10f, 0f, 0f);
@@ -94,8 +97,7 @@ public class ChartUtil {
         //自定义X轴的值
         // 设置X轴分割数量
         xAxis.setLabelCount(6,false);
-//        formatXData();
-//        setDataToView();
+//        formatXValues(list);
         xAxis.setValueFormatter(new IAxisValueFormatter() {
             @Override
             public String getFormattedValue(float value, AxisBase axis) {
@@ -108,7 +110,7 @@ public class ChartUtil {
         leftYAxis.setValueFormatter(new IAxisValueFormatter() {
             @Override
             public String getFormattedValue(float value, AxisBase axis) {
-                return Math.round((value / 1000)) + "T";
+                return Math.round(value) + "T";
             }
         });
 

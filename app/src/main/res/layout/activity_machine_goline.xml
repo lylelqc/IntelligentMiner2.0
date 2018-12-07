@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:background="@color/white">
 
-    <include layout="@layout/main_title5" />
+    <include layout="@layout/head_title5" />
 
     <LinearLayout
         android:id="@+id/ll_allArea"

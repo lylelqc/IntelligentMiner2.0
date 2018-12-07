@@ -36,10 +36,11 @@
 
                 <TextView
                     android:id="@+id/tv_machine_offline_ip"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="left|center_vertical"
-                    android:gravity="center"
+                    android:layout_marginRight="5dp"
+                    android:gravity="center_vertical"
                     android:text="IP"
                     android:textColor="@color/sly_text_333333"
                     android:textSize="13sp" />
@@ -54,10 +55,11 @@
 
                 <TextView
                     android:id="@+id/tv_machine_offline_type"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="left|center_vertical"
-                    android:gravity="center"
+                    android:layout_marginRight="5dp"
+                    android:gravity="center_vertical"
                     android:text="型号"
                     android:textColor="@color/sly_text_333333"
                     android:textSize="13sp" />
@@ -72,10 +74,12 @@
 
                 <TextView
                     android:id="@+id/tv_machine_offline_status"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="left|center_vertical"
-                    android:gravity="center"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="5dp"
+                    android:gravity="center_vertical"
                     android:text="状态"
                     android:textColor="@color/sly_text_333333"
                     android:textSize="13sp" />
@@ -90,13 +94,15 @@
 
                 <TextView
                     android:id="@+id/tv_machine_offline_area"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="left|center_vertical"
-                    android:gravity="center"
+                    android:layout_marginRight="5dp"
+                    android:gravity="left|center_vertical"
                     android:text="区域"
                     android:textColor="@color/sly_text_333333"
-                    android:textSize="13sp" />
+                    android:textSize="13sp"
+                    android:ellipsize="end"/>
 
             </LinearLayout>
         </LinearLayout>

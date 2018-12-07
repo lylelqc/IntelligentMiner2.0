@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.sly.app.R;
 import com.sly.app.activity.BaseActivity;
+import com.sly.app.adapter.yunw.offline.MachineOfflineRecyclerViewAdapter;
 import com.sly.app.model.yunw.machine.MachineListBean;
 
 import java.util.List;
@@ -18,7 +19,7 @@ import java.util.Set;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MachineSetPoolRecyclerViewAdapter extends RecyclerView.Adapter {
+public class MachineSetPoolRecyclerViewAdapter extends RecyclerView.Adapter implements View.OnClickListener{
 
     private Context mContext;
     private List<MachineListBean> list;
@@ -58,26 +59,32 @@ public class MachineSetPoolRecyclerViewAdapter extends RecyclerView.Adapter {
         viewHolder.tvMachineSetPoolVipcode.setText(bean.getMinerSysCode());
         viewHolder.tvMachineSetPoolArea.setText(bean.getAreaName());
 
+        viewHolder.cbChoseItem.setTag(position);
         viewHolder.cbChoseItem.setChecked(indexSet.contains(position));
-        viewHolder.cbChoseItem.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
-                if(isChecked){
-                    if(!indexSet.contains(position)){
-                        indexSet.add(position);
-                    }
-                }else{
-                    if(indexSet.contains(position)){
-                        indexSet.remove(position);
-                    }
-                }
-            }
-        });
+        viewHolder.cbChoseItem.setOnClickListener(this);
     }
 
     @Override
     public int getItemCount() {
         return list.size();
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.mOnItemClickListener = listener;
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (mOnItemClickListener != null) {
+            mOnItemClickListener.onItemClick(v, (int) v.getTag());
+        }
+    }
+
+    private OnItemClickListener mOnItemClickListener = null;
+
+    //define interface
+    public static interface OnItemClickListener {
+        void onItemClick(View view, int position);
     }
 
 

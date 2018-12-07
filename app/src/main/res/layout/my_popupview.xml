@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <View
+        android:id="@+id/popup_goods_noview"
+        android:layout_width="75dp"
+        android:layout_height="match_parent"
+        android:background="#88000000" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffffff"
+        android:orientation="vertical">
+
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:visibility="gone"
+                    android:id="@+id/tv_emtry"
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="19dp"/>
+
+                <LinearLayout
+                    android:id="@+id/ll_area_no"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="9dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="33dp"
+                        android:text="区域编号"
+                        android:textSize="12sp"
+                        android:textColor="#828a8c"/>
+
+                    <com.sly.app.view.FlowLayout.TagFlowLayout
+                        android:id="@+id/flow_manage_area"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                    </com.sly.app.view.FlowLayout.TagFlowLayout>
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/view_line1"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#e5e5e5"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="9dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="13dp"
+                        android:text="机器型号"
+                        android:textSize="12sp"
+                        android:textColor="#828a8c"/>
+
+                    <com.sly.app.view.FlowLayout.TagFlowLayout
+                        android:id="@+id/flow_machine_type"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                    </com.sly.app.view.FlowLayout.TagFlowLayout>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#e5e5e5"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="9dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="13dp"
+                        android:text="矿工号"
+                        android:textSize="12sp"
+                        android:textColor="#292e40"/>
+
+                    <EditText
+                        android:id="@+id/et_miner_code"
+                        android:layout_width="220dp"
+                        android:layout_height="29dp"
+                        android:layout_marginTop="13dp"
+                        android:layout_marginBottom="13dp"
+                        android:hint="请输入矿工号"
+                        android:background="@drawable/bg_edit_info"
+                        android:textColor="#323232"
+                        android:drawablePadding="16dp"
+                        android:singleLine="true"
+                        android:textSize="12sp"
+                        android:paddingLeft="20dp"
+                        android:textColorHint="@color/sly_text_999999"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#e5e5e5"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="9dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="13dp"
+                        android:text="手机/邮箱"
+                        android:textSize="12sp"
+                        android:textColor="#292e40"/>
+
+                    <EditText
+                        android:id="@+id/et_user"
+                        android:layout_width="220dp"
+                        android:layout_height="29dp"
+                        android:layout_marginTop="13dp"
+                        android:layout_marginBottom="13dp"
+                        android:background="@drawable/bg_edit_info"
+                        android:hint="请输入手机号或邮箱"
+                        android:textColor="#323232"
+                        android:drawablePadding="16dp"
+                        android:singleLine="true"
+                        android:textSize="12sp"
+                        android:paddingLeft="20dp"
+                        android:textColorHint="@color/sly_text_999999"/>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#e5e5e5"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="9dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="13dp"
+                        android:text="选择状态"
+                        android:textSize="12sp"
+                        android:textColor="#828a8c"/>
+
+                    <com.sly.app.view.FlowLayout.TagFlowLayout
+                        android:id="@+id/flow_machine_status"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                    </com.sly.app.view.FlowLayout.TagFlowLayout>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#e5e5e5"/>
+
+            </LinearLayout>
+        </android.support.v4.widget.NestedScrollView>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_search_list"
+                android:layout_width="168dp"
+                android:layout_height="34dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="21dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/bg_search_btn"
+                android:gravity="center"
+                android:text="查询"
+                android:textColor="#ffffff"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

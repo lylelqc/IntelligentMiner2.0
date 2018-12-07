@@ -14,15 +14,14 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.google.gson.Gson;
 import com.sly.app.R;
 import com.sly.app.activity.MainActivity;
 import com.sly.app.base.BaseActivity;
-import com.sly.app.comm.AppContext;
-import com.sly.app.comm.EventBusTags;
+import com.sly.app.base.EventBusTags;
+import com.sly.app.comm.BusEvent;
 import com.sly.app.http.NetWorkCons;
 import com.sly.app.http.type1.HttpClient;
 import com.sly.app.http.type1.HttpResponseHandler;
@@ -31,7 +30,6 @@ import com.sly.app.model.ReturnBean;
 import com.sly.app.model.sly.KgFullInfoBean;
 import com.sly.app.model.sly.LoginInfoBean;
 import com.sly.app.model.sly.MinerMasterInfoBean;
-import com.sly.app.model.sly.YwFullInfoBean;
 import com.sly.app.utils.ApiSIgnUtil;
 import com.sly.app.utils.CommonUtils;
 import com.sly.app.utils.EncryptUtil;
@@ -96,17 +94,16 @@ public class LoginActivity extends BaseActivity {
             if (mBundle != null) {
                 MemberCode = mBundle.getString("MemberCode");
             }
-        } else {
-            MemberCode = SharedPreferencesUtil.getString(LoginActivity.this, "User", null);
+        }else{
+            MemberCode = SharedPreferencesUtil.getString(LoginActivity.this,"User",null);
         }
     }
 
     @Override
     protected void initView() {
         mTvMainTitle.setText("登录");
-        mBtnMainBack.setVisibility(View.GONE);
-        MemberCode = SharedPreferencesUtil.getString(LoginActivity.this, "User", null);
-        if (!CommonUtils.isBlank(MemberCode) && !"None".equals(MemberCode)) {
+        MemberCode = SharedPreferencesUtil.getString(LoginActivity.this,"User",null);
+        if (!CommonUtils.isBlank(MemberCode)&&!"None".equals(MemberCode)) {
             mEtUsername.setText(MemberCode);
             mEtUsername.clearFocus();
         }
@@ -144,7 +141,7 @@ public class LoginActivity extends BaseActivity {
         Map map = new HashMap();
 
         map.put("Token", "None");
-        map.put("LoginType", "None");
+        map.put("LoginType", "None" );
 //        map.put("Rounter", "Member.002");
         map.put("Rounter", "Sly.009");
         map.put("User", MemberCode);
@@ -186,25 +183,25 @@ public class LoginActivity extends BaseActivity {
 //                                if(loginInfoBean.getRole().equals("MineMaster")){
 //                                    SharedPreferencesUtil.putString(LoginActivity.this,"LoginType","MinerMaster");
 //                                }else{
-                                SharedPreferencesUtil.putString(LoginActivity.this, "LoginType", loginInfoBean.getRole());
-                                SharedPreferencesUtil.putString(LoginActivity.this, "mineType", loginInfoBean.getRole());
+                                SharedPreferencesUtil.putString(LoginActivity.this,"LoginType",loginInfoBean.getRole());
+                                SharedPreferencesUtil.putString(LoginActivity.this,"mineType",loginInfoBean.getRole());
 //                                }
 
 
                                 String sysCode = "None";
-                                String role = SharedPreferencesUtil.getString(mContext, "LoginType", "None");
-                                if (role.equals("Miner")) {
-                                    sysCode = SharedPreferencesUtil.getString(mContext, "FrSysCode", "None");
-                                } else if (role.equals("MinerMaster")) {
-                                    sysCode = SharedPreferencesUtil.getString(mContext, "FMasterCode", "None");
-                                } else {
-                                    sysCode = SharedPreferencesUtil.getString(mContext, "PersonSysCode", "None");
+                                String role = SharedPreferencesUtil.getString(mContext, "LoginType","None");
+                                if(role.equals("Miner")){
+                                    sysCode = SharedPreferencesUtil.getString(mContext, "FrSysCode","None");
+                                }else if(role.equals("MinerMaster")){
+                                    sysCode = SharedPreferencesUtil.getString(mContext, "FMasterCode","None");
+                                }else{
+                                    sysCode = SharedPreferencesUtil.getString(mContext, "PersonSysCode","None");
                                 }
-                                getUserInfo(mContext, SharedPreferencesUtil.getString(mContext, "LoginType", "None"), SharedPreferencesUtil.getString(mContext, "User", "None"),
-                                        sysCode, SharedPreferencesUtil.getString(mContext, "Key", "None"),
-                                        SharedPreferencesUtil.getString(mContext, "Token", "None"));
+                                getUserInfo(mContext, SharedPreferencesUtil.getString(mContext, "LoginType","None"), SharedPreferencesUtil.getString(mContext, "User","None"),
+                                        sysCode, SharedPreferencesUtil.getString(mContext, "Key","None"),
+                                        SharedPreferencesUtil.getString(mContext, "Token","None"));
 //                                RxBus.getInstance().post(BusEvent.UPDATE_HOSTING_DATA);
-                                EventBus.getDefault().post(new PostResult(EventBusTags.UPDATE_HOSTING_DATA));
+                                EventBus.getDefault().post(new PostResult(BusEvent.UPDATE_HOSTING_DATA));
                                 EventBus.getDefault().post(new PostResult(EventBusTags.LOGIN_SUCCESS));
                             } else {
                                 SharedPreferencesUtil.putString(LoginActivity.this, "User", null);
@@ -214,8 +211,8 @@ public class LoginActivity extends BaseActivity {
                                 SharedPreferencesUtil.putString(LoginActivity.this, "PersonSysCode", null);
 
                                 /**角色Role**/
-                                SharedPreferencesUtil.putString(LoginActivity.this, "LoginType", null);
-                                SharedPreferencesUtil.putString(LoginActivity.this, "mineType", null);
+                                SharedPreferencesUtil.putString(LoginActivity.this,"LoginType",null);
+                                SharedPreferencesUtil.putString(LoginActivity.this,"mineType",null);
                                 SharedPreferencesUtil.putString(LoginActivity.this, "Key", null);
                                 ToastUtils.showToast("请确认账号密码是否正确");
                             }
@@ -227,8 +224,8 @@ public class LoginActivity extends BaseActivity {
                             SharedPreferencesUtil.putString(LoginActivity.this, "FMasterCode", null);
                             SharedPreferencesUtil.putString(LoginActivity.this, "PersonSysCode", null);
                             /**角色Role**/
-                            SharedPreferencesUtil.putString(LoginActivity.this, "LoginType", null);
-                            SharedPreferencesUtil.putString(LoginActivity.this, "mineType", null);
+                            SharedPreferencesUtil.putString(LoginActivity.this,"LoginType",null);
+                            SharedPreferencesUtil.putString(LoginActivity.this,"mineType",null);
                             SharedPreferencesUtil.putString(LoginActivity.this, "Key", null);
                         }
                         return false;
@@ -244,7 +241,7 @@ public class LoginActivity extends BaseActivity {
                         SharedPreferencesUtil.putString(LoginActivity.this, "FMasterCode", null);
                         SharedPreferencesUtil.putString(LoginActivity.this, "PersonSysCode", null);
                         /**角色Role**/
-                        SharedPreferencesUtil.putString(LoginActivity.this, "LoginType", null);
+                        SharedPreferencesUtil.putString(LoginActivity.this,"LoginType",null);
                         SharedPreferencesUtil.putString(LoginActivity.this, "Key", null);
                         Logcat.e("错误信息：" + request.toString() + "/" + e);
                     }
@@ -254,13 +251,12 @@ public class LoginActivity extends BaseActivity {
     }
 
     //V8955979
-    private void getUserInfo(final Context mContext, final String loginType, final String user,
-                             final String sysCode, final String userKey, final String token) {
+    private void getUserInfo(final Context mContext, final String loginType, final String user, final String sysCode, final String userKey, String token) {
         Map map = new HashMap();
-        if (loginType.equals("MinerMaster")) {
+        if (loginType.equals("MinerMaster")){
             mRounter = "MineMaster.002";
             map.put("mineMasterCode", sysCode);
-        } else {
+        }else{
             mRounter = "Miner.002";
             map.put("minerSysCode", sysCode);
         }
@@ -280,98 +276,32 @@ public class LoginActivity extends BaseActivity {
                         super.onSuccess(statusCode, content);
                         Logcat.i("API 地址：" + NetWorkCons.BASE_URL + "\n返回码:" + statusCode + "\n返回参数:" + CommonUtils.proStr(content) + "\n提交的内容：" + json);
                         final ReturnBean returnBean = JSON.parseObject(CommonUtils.proStr(content), ReturnBean.class);
-                        if (returnBean.getStatus().equals("1") && returnBean.getMsg().equals("成功")) {
-                            if (loginType.equals("Miner")) {
-                                KgFullInfoBean userInfoBean = CommonUtils.GsonToObject(returnBean.getData(), KgFullInfoBean.class);
-                                SharedPreferencesUtil.putString(LoginActivity.this, "UserHeadImg", userInfoBean.getF18_ImageURl());
-                                SharedPreferencesUtil.putString(LoginActivity.this, "NickName", userInfoBean.getF18_NickName());
-                                SharedPreferencesUtil.putString(LoginActivity.this, "Name", userInfoBean.getF20_Name());
-                                SharedPreferencesUtil.putString(LoginActivity.this, "Phone", userInfoBean.getF20_Mobile());
-                                SharedPreferencesUtil.putString(LoginActivity.this, "Email", userInfoBean.getF20_Email());
-                            } else {
-                                MinerMasterInfoBean userInfoBean = CommonUtils.GsonToObject(returnBean.getData(), MinerMasterInfoBean.class);
-                                SharedPreferencesUtil.putString(LoginActivity.this, "UserHeadImg", userInfoBean.getF35_Pic());
-                                SharedPreferencesUtil.putString(LoginActivity.this, "NickName", userInfoBean.getF35_NickName());
-                                SharedPreferencesUtil.putString(LoginActivity.this, "Name", userInfoBean.getF36_Name());
-                                SharedPreferencesUtil.putString(LoginActivity.this, "Phone", userInfoBean.getF36_Mobile());
-                                SharedPreferencesUtil.putString(LoginActivity.this, "Email", userInfoBean.getF36_Email());
+                            if (returnBean.getStatus().equals("1")&& returnBean.getMsg().equals("成功")) {
+                                if (loginType.equals("Miner")) {
+                                    KgFullInfoBean userInfoBean = CommonUtils.GsonToObject(returnBean.getData(), KgFullInfoBean.class);
+                                    SharedPreferencesUtil.putString(LoginActivity.this,"UserHeadImg",userInfoBean.getF18_ImageURl());
+                                    SharedPreferencesUtil.putString(LoginActivity.this,"NickName",userInfoBean.getF18_NickName());
+                                    SharedPreferencesUtil.putString(LoginActivity.this,"Name",userInfoBean.getF20_Name());
+                                    SharedPreferencesUtil.putString(LoginActivity.this,"Phone",userInfoBean.getF20_Mobile());
+                                    SharedPreferencesUtil.putString(LoginActivity.this,"Email",userInfoBean.getF20_Email());
+                                } else {
+                                    MinerMasterInfoBean userInfoBean = CommonUtils.GsonToObject(returnBean.getData(), MinerMasterInfoBean.class);
+                                    SharedPreferencesUtil.putString(LoginActivity.this,"UserHeadImg",userInfoBean.getF35_Pic());
+                                    SharedPreferencesUtil.putString(LoginActivity.this,"NickName",userInfoBean.getF35_NickName());
+                                    SharedPreferencesUtil.putString(LoginActivity.this,"Name",userInfoBean.getF36_Name());
+                                    SharedPreferencesUtil.putString(LoginActivity.this,"Phone",userInfoBean.getF36_Mobile());
+                                    SharedPreferencesUtil.putString(LoginActivity.this,"Email",userInfoBean.getF36_Email());
+                                }
+                                startActivityWithoutExtras(MainActivity.class);
+                                finish();
+                            }else{
+                                SharedPreferencesUtil.putString(LoginActivity.this,"UserHeadImg",null);
+                                SharedPreferencesUtil.putString(LoginActivity.this,"NickName",null);
+                                SharedPreferencesUtil.putString(LoginActivity.this,"Name",null);
+                                SharedPreferencesUtil.putString(LoginActivity.this,"Phone",null);
+                                SharedPreferencesUtil.putString(LoginActivity.this,"Email",null);
                             }
-                            getYunwInfo(mContext, loginType, user, sysCode, userKey, token);
-//                                startActivityWithoutExtras(MainActivity.class);
-//                            finish();
-                        } else {
-                            SharedPreferencesUtil.putString(LoginActivity.this, "UserHeadImg", null);
-                            SharedPreferencesUtil.putString(LoginActivity.this, "NickName", null);
-                            SharedPreferencesUtil.putString(LoginActivity.this, "Name", null);
-                            SharedPreferencesUtil.putString(LoginActivity.this, "Phone", null);
-                            SharedPreferencesUtil.putString(LoginActivity.this, "Email", null);
-                        }
 
-                    }
-
-                    @Override
-                    public void onFailure(Request request, IOException e) {
-                        super.onFailure(request, e);
-                        Logcat.e("网络连接失败:" + e);
-                    }
-                }
-        );
-    }
-
-    private void getYunwInfo(final Context mContext, final String loginType, final String user, final String sysCode, final String userKey, String token) {
-        Map map = new HashMap();
-        mRounter = "Sly.003";
-        String personSysCode = SharedPreferencesUtil.getString(mContext, "PersonSysCode", "None");
-        map.put("personSysCode", personSysCode);
-
-        map.put("Token", token);
-        map.put("LoginType", loginType);
-        map.put("Rounter", mRounter);
-        map.put("User", user);
-
-        Logcat.i("获取信息");
-        Map<String, String> jsonMap = new HashMap<>();
-        jsonMap.putAll(map);
-        jsonMap.put("Sign", EncryptUtil.MD5(ApiSIgnUtil.init(mContext).getSign(map, userKey)));
-        final String json = CommonUtils.GsonToJson(jsonMap);
-        HttpClient.postJson(NetWorkCons.BASE_URL, json, new HttpResponseHandler() {
-                    @Override
-                    public boolean onSuccess(int statusCode, Headers headers, String content) {
-                        super.onSuccess(statusCode, headers, content);
-                        String backlogJsonStr = content;
-                        backlogJsonStr = backlogJsonStr.replace("\\", "");
-                        backlogJsonStr = backlogJsonStr.replace("null", "\"null\"");//替换空字符串
-                        backlogJsonStr = backlogJsonStr.substring(1, backlogJsonStr.length() - 1);
-                        Logcat.e("返回码:" + statusCode + "返回参数:" + backlogJsonStr + "提交的内容：" + json + " headers :" + headers);
-                        final ReturnBean returnBean = JSON.parseObject(backlogJsonStr, ReturnBean.class);
-
-                        if (returnBean.getStatus().equals("1") && returnBean.getData() != null) {
-                            YwFullInfoBean userInfoBean = CommonUtils.GsonToObject(returnBean.getData(), YwFullInfoBean.class);
-                            SharedPreferencesUtil.putString(mContext, "MinePersonCode", userInfoBean.getF23_MinePersonCode());
-                            SharedPreferencesUtil.putString(mContext, "MineName", userInfoBean.getF23_MineName());
-                            SharedPreferencesUtil.putString(mContext, "Notes", userInfoBean.getF23_Optime());
-                            SharedPreferencesUtil.putString(mContext, "PersonSysClassCode", userInfoBean.getF23_PersonSysClassCode());
-                            SharedPreferencesUtil.putString(mContext, "PersonStatusCode", userInfoBean.getF23_PersonStatusCode());
-                            SharedPreferencesUtil.putString(mContext, "PersonClassCode", userInfoBean.getF23_PersonSysClassCode());
-                            SharedPreferencesUtil.putString(mContext, "BeginHour    ", userInfoBean.getF23_BeginHour());
-                            SharedPreferencesUtil.putString(mContext, "EndHour", userInfoBean.getF23_EndHour());
-                            SharedPreferencesUtil.putString(mContext, "IsSetPermission", userInfoBean.getF23_IsSetPermission());
-                            SharedPreferencesUtil.putString(mContext, "PermissionUserSysCode", userInfoBean.getF23_PermissionUserSysCode());
-                            SharedPreferencesUtil.putString(mContext, "MineCode", userInfoBean.getF23_MineCode());
-                            SharedPreferencesUtil.putString(mContext, "Oper", userInfoBean.getF23_Oper());
-                            SharedPreferencesUtil.putString(mContext, "Optime", userInfoBean.getF23_Optime());
-
-                            startActivityWithoutExtras(MainActivity.class);
-                            finish();
-                        } else {
-                            SharedPreferencesUtil.putString(mContext, "UserHeadImg", null);
-                            SharedPreferencesUtil.putString(mContext, "NickName", null);
-                            SharedPreferencesUtil.putString(mContext, "Name", null);
-                            SharedPreferencesUtil.putString(mContext, "Phone", null);
-                            SharedPreferencesUtil.putString(mContext, "Email", null);
-                        }
-//                        ToastUtils.showToast(returnBean.getMsg());
-                        return false;
                     }
 
                     @Override
@@ -393,16 +323,16 @@ public class LoginActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.tv_register:
-//                intent.setClass(LoginActivity.this, RegisterActivity.class);
-//                startActivity(intent);
+                intent.setClass(LoginActivity.this, RegisterActivity.class);
+                startActivity(intent);
                 break;
             case R.id.tv_forget_pwd:
-//                intent.setClass(LoginActivity.this, ForgetStep1Activity.class);
-//                startActivity(intent);
+                intent.setClass(LoginActivity.this, ForgetStep1Activity.class);
+                startActivity(intent);
                 break;
             case R.id.tv_forget_account:
-//                intent.setClass(LoginActivity.this, ForgetMemberActivity.class);
-//                startActivity(intent);
+                intent.setClass(LoginActivity.this, ForgetMemberActivity.class);
+                startActivity(intent);
                 break;
             case R.id.bt_login:
                 login();
@@ -440,30 +370,13 @@ public class LoginActivity extends BaseActivity {
 
     }
 
-    /*@Override
+    @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             startActivityWithoutExtras(MainActivity.class);
             finish();
         }
         return false;
-    }*/
-
-    private long exitTime = 0;
-
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
-            if ((System.currentTimeMillis() - exitTime) > 2000) {
-                Toast.makeText(getApplicationContext(), "再按一次退出程序", Toast.LENGTH_SHORT).show();
-                exitTime = System.currentTimeMillis();
-
-            } else {
-                ((AppContext) getApplication()).exit();
-            }
-            return true;
-        }
-        return super.onKeyDown(keyCode, event);
     }
 
     @Override

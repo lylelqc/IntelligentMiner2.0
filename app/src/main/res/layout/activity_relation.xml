@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <include layout="@layout/main_title"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:background="#f2f2f2"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginBottom="18dp"
+            android:textSize="14sp"
+            android:textColor="#e35151"
+            android:layout_height="wrap_content"
+            android:text="绑定美好地球村账号登陆更安全"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:background="#ffffff"
+            android:layout_height="50dp">
+
+            <TextView
+                android:layout_width="120dp"
+                android:layout_marginLeft="12dp"
+                android:textSize="15sp"
+                android:textColor="#333333"
+                android:text="美好地球村账号"
+                android:layout_height="wrap_content"/>
+
+            <EditText
+                android:id="@+id/et_account"
+                android:layout_width="match_parent"
+                android:background="@null"
+                android:textSize="15sp"
+                android:layout_marginLeft="15dp"
+                android:hint="请输入账号"
+                android:layout_height="match_parent"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:background="#ffffff"
+            android:layout_marginTop="1dp"
+            android:layout_height="50dp">
+
+            <TextView
+                android:layout_width="120dp"
+                android:layout_marginLeft="12dp"
+                android:textSize="15sp"
+                android:textColor="#333333"
+                android:text="账户密码"
+                android:layout_height="wrap_content"/>
+
+            <EditText
+                android:id="@+id/et_pwd"
+                android:layout_width="match_parent"
+                android:background="@null"
+                android:textSize="15sp"
+                android:layout_marginLeft="15dp"
+            android:hint="请输入账户密码" android:inputType="textPassword"
+            android:layout_height="match_parent"/>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:background="#ffffff"
+            android:layout_marginTop="15dp"
+            android:layout_height="50dp">
+
+            <TextView
+                android:layout_width="120dp"
+                android:layout_marginLeft="12dp"
+                android:textSize="15sp"
+                android:textColor="#333333"
+                android:gravity="left|center"
+                android:text="验证码"
+                android:layout_height="match_parent"
+                android:id="@+id/textView3"/>
+
+            <EditText
+                android:id="@+id/et_code"
+                android:layout_width="wrap_content"
+                android:background="@null"
+                android:layout_marginLeft="15dp"
+                android:hint="请输入验证码"
+                android:layout_height="match_parent"
+                android:textSize="15sp"
+                android:layout_toStartOf="@+id/btn_get_code"
+            android:layout_toEndOf="@+id/textView3"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:text="获取验证码"
+                android:layout_alignParentRight="true"
+                android:gravity="center"
+                android:textColor="#0aaadc"
+                android:textSize="14sp"
+                android:layout_marginRight="15dp"
+                android:background="#ffffff"
+                android:layout_height="match_parent"
+                android:id="@+id/btn_get_code"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

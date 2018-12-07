@@ -57,7 +57,11 @@ public class CommonUtil2 {
      * @return
      */
     public static boolean isEmpty(String str) {
-        return str == null || str.length() == 0 || str.equalsIgnoreCase("null") || str.isEmpty() || str.equals("");
+        if (str == null || str.length() == 0 || str.equalsIgnoreCase("null") || str.isEmpty() || str.equals("")) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -314,7 +318,10 @@ public class CommonUtil2 {
      */
     public static boolean hasLogin(Activity activity) {
         LoginInfoBean loginMsg = LoginMsgHelper.getResult(activity);
-        return loginMsg != null;
+        if (loginMsg == null) {
+            return false;
+        }
+        return true;
     }
 
     /**

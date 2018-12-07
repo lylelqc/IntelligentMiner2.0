@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/view_plan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_plan_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/operation_idicon"/>
+
+        <TextView
+            android:id="@+id/tv_plan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:text="计划ID: "
+            android:layout_toRightOf="@id/iv_plan_image"
+            android:textColor="@color/text_color_normal"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/tv_plan_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="7dp"
+            android:layout_toRightOf="@id/tv_plan"
+            android:text="M0000022"
+            android:maxWidth="120dp"
+            android:textSize="13sp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textColor="@color/text_color_normal"/>
+
+        <TextView
+            android:id="@+id/tv_check_area"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_toLeftOf="@+id/tv_machine_list"
+            android:background="@drawable/btn_check_area"
+            android:text="查看区域"
+            android:textColor="@color/app_text_blue2"
+            android:textSize="11sp" />
+
+        <TextView
+            android:id="@+id/tv_machine_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/btn_check_area"
+            android:text="设备列表"
+            android:textColor="@color/app_text_blue2"
+            android:textSize="11sp" />
+    </RelativeLayout>
+    
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/sly_line_gray"/>
+
+    <RelativeLayout
+        android:id="@+id/rl_details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/view_plan">
+
+        <RelativeLayout
+            android:id="@+id/rl_scan_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tv_s_c"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="19dp"
+                android:text="扫描数量: "
+                android:textSize="17sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/tv_scan_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="19dp"
+                android:layout_toRightOf="@+id/tv_s_c"
+                android:text="5000"
+                android:textSize="17sp"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/tv_tai"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="19dp"
+                android:layout_toRightOf="@+id/tv_scan_count"
+                android:text="台"
+                android:textSize="17sp"
+                android:textStyle="bold"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_execute"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rl_scan_count">
+            <TextView
+                android:id="@+id/tv_start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
+                android:text="是否已执行: "
+                android:textSize="12sp"
+                android:textColor="#999999"/>
+
+            <TextView
+                android:id="@+id/tv_execute"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@+id/tv_start"
+                android:text="已执行"
+                android:textSize="12sp"
+                android:textColor="#999999"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rl_execute">
+            <TextView
+                android:id="@+id/tv_start_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp"
+                android:text="执行时间: "
+                android:textSize="12sp"
+                android:textColor="#999999"/>
+
+            <TextView
+                android:id="@+id/tv_execute_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp"
+                android:layout_toRightOf="@+id/tv_start_time"
+                android:text="2018-10-9 10:45"
+                android:textSize="12sp"
+                android:textColor="#999999" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/rl_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp">
+
+            <TextView
+                android:id="@+id/tv_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:text="状态: "
+                android:textSize="12sp"
+                android:textColor="#999999"/>
+
+            <TextView
+                android:id="@+id/tv_bind_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/tv_status"
+                android:text="部分绑定"
+                android:textSize="12sp"
+                android:textColor="#999999"/>
+
+            <ImageView
+                android:id="@+id/tv_status_details"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/tv_bind_status"
+                android:src="@drawable/operation_next_step" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@color/theme_color"/>
+
+</LinearLayout>

@@ -3,8 +3,11 @@ package com.sly.app.utils;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+
+import com.sly.app.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -159,6 +162,13 @@ public class AppUtils {
             return "99+";
         }
         return newsCount;
+    }
+
+    public static void setStatusBarColor(Activity activity, int color){
+        // 设置状态栏颜色
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            activity.getWindow().setStatusBarColor(color);
+        }
     }
 
 

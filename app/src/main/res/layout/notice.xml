@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="#f2f2f2"
+    android:layout_marginLeft="25dp"
+    android:layout_marginRight="25dp">
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="49dp"
+    android:text="提现须知"
+    android:textSize="17dp"
+    android:textColor="#666666"
+    android:gravity="center"
+    android:background="#ffffff"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:textColor="#666666"
+        android:background="#ffffff"
+        android:layout_marginTop="1dp"
+        android:paddingTop="31dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="80dp"
+        android:lineSpacingExtra="10dp"
+        android:text="为了保证您的账户安全，您的提现申请提交后，我们会在2个工作日内进行人工审核，审核通过后，申请金额会转入您的系统默认提现账户。"/>
+</LinearLayout>

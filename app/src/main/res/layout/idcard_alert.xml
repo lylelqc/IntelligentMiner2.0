@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:id="@+id/ll_layout"
+              android:background="@color/transparent"
+              >
+
+    <LinearLayout
+        android:layout_width="245dp"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/dialog_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="15dp"
+                android:text="title"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:visibility="gone"/>
+
+            <include layout="@layout/view_divider"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="12dp"
+            android:gravity="center"
+            android:text="温馨提示"
+            android:textColor="#080705"
+            android:textSize="14sp"/>
+
+        <TextView
+            android:id="@+id/tv_dialog_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:gravity="center"
+            android:text="提交审核资料后，1个工作日完成审核，请耐心等候"
+            android:textColor="#676767"
+            android:textSize="14sp"/>
+
+        <include layout="@layout/view_divider"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/cancel_action"
+                android:layout_width="0dp"
+                android:layout_height="38dp"
+                android:layout_weight="1"
+                android:background="@drawable/left_rounded_corner"
+                android:gravity="center"
+                android:text="返回"
+                android:textColor="#1e1e21"/>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="#f2f2f2"/>
+
+            <Button
+                android:id="@+id/confirm_action"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="确定"
+                android:background="#ffffff"
+                android:textColor="@color/app_text_blue2"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

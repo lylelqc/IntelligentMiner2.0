@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+    <ListView
+        android:id="@+id/lv_m_list"
+        android:layout_width="match_parent"
+        android:dividerHeight="0dp"
+        android:layout_below="@+id/title"
+        android:divider="@null"
+        android:layout_height="match_parent"></ListView>
+
+    <LinearLayout
+        android:id="@+id/ll_layout_null"
+        android:layout_below="@+id/title"
+        android:layout_width="match_parent"
+        android:visibility="gone"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_marginTop="150dp"
+            android:gravity="center"
+            android:text="商品卖完了\n\n去看看其他分类吧"
+            android:textColor="#333333"
+            android:textSize="20sp"
+            android:layout_height="wrap_content"/>
+
+
+    </LinearLayout>
+
+    <include
+        android:id="@+id/title"
+        layout="@layout/main_title"/>
+
+    <ImageView
+        android:id="@+id/iv_toTop"
+        android:layout_width="25dp"
+        android:src="@drawable/ic_top"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="25dp"
+        android:layout_height="25dp"/>
+</RelativeLayout>

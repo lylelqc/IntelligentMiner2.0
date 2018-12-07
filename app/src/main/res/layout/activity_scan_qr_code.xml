@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent">
+
+    <FrameLayout
+        android:id="@+id/fl_my_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></FrameLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="360dp"
+        android:gravity="center"
+        android:text="对准二维码进行扫描"
+        android:textColor="#ffff"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <LinearLayout
+            android:id="@+id/ll_layout"
+            android:layout_width="match_parent"
+            android:layout_height="49dp"
+            android:background="@drawable/home_nav_img_bg"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/btn_main_back"
+                android:layout_width="70dp"
+                android:layout_height="match_parent"
+                android:clickable="true"
+                android:paddingRight="25dp">
+
+                <ImageView
+                    android:layout_width="49dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/home_submenu_nav_btn_back"
+                    android:padding="13dp"
+                    />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_main_title"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="扫码"
+                android:textColor="#fff"
+                android:textSize="16dp"/>
+
+            <LinearLayout
+                android:id="@+id/ll_title_right"
+                android:layout_width="70dp"
+                android:layout_height="match_parent"
+                android:clickable="true"
+                android:paddingLeft="20dp"
+                >
+
+                <TextView
+                    android:id="@+id/tv_main_right"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="14dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="14dp"
+                    android:gravity="center"
+                    android:textColor="#555"/>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <CheckBox
+        android:id="@+id/second_button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:layout_marginBottom="50dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="30dp"
+        android:button="@null"
+        android:clickable="false"
+        android:drawableLeft="@drawable/btn_torch_check"
+        />
+</FrameLayout>

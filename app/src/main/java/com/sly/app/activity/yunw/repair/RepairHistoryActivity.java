@@ -13,7 +13,7 @@ import com.sly.app.activity.BaseActivity;
 import com.sly.app.activity.sly.mine.notice.Sly2NoticeActivity;
 import com.sly.app.fragment.yunw.repair_bill.TreatedFragment;
 import com.sly.app.utils.AppUtils;
-import com.sly.app.view.PopupView.RepairCheckPopView;
+import com.sly.app.view.PopupView.Yunw.RepairCheckPopView;
 
 import butterknife.BindView;
 import butterknife.OnClick;

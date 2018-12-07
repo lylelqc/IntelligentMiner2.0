@@ -11,7 +11,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
 import android.util.ArrayMap;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -29,15 +28,11 @@ import com.liucanwen.app.headerfooterrecyclerview.RecyclerViewUtils;
 import com.sly.app.R;
 import com.sly.app.activity.BaseActivity;
 import com.sly.app.activity.sly.mine.notice.Sly2NoticeActivity;
-import com.sly.app.adapter.yunw.machine.MachineListRecyclerViewAdapter;
 import com.sly.app.adapter.yunw.machine.MachineManageRecyclerViewAdapter;
 import com.sly.app.base.Contants;
 import com.sly.app.comm.EventBusTags;
 import com.sly.app.comm.NetConstant;
 import com.sly.app.http.NetWorkCons;
-import com.sly.app.http.type1.HttpClient;
-import com.sly.app.http.type1.HttpResponseHandler;
-import com.sly.app.interactor.ICommonRequestInteractor;
 import com.sly.app.listener.LoadMoreClickListener;
 import com.sly.app.listener.OnRecyclerViewListener;
 import com.sly.app.model.PostResult;
@@ -50,23 +45,18 @@ import com.sly.app.presenter.impl.CommonRequestPresenterImpl;
 import com.sly.app.presenter.impl.RecyclerViewPresenterImpl;
 import com.sly.app.utils.ApiSIgnUtil;
 import com.sly.app.utils.AppUtils;
-import com.sly.app.utils.CommonUtils;
 import com.sly.app.utils.EncryptUtil;
-import com.sly.app.utils.LoginMsgHelper;
 import com.sly.app.utils.NetUtils;
 import com.sly.app.utils.SharedPreferencesUtil;
 import com.sly.app.utils.ToastUtils;
-import com.sly.app.utils.http.HttpStatusUtil;
-import com.sly.app.view.PopupView.MachineCheckPopView;
-import com.sly.app.view.PopupView.ManageAllChoicePopView;
-import com.sly.app.view.PopupView.ManageAreaCheckPopView;
-import com.sly.app.view.PopupView.ManageStatusCheckPopView;
+import com.sly.app.view.PopupView.Yunw.ManageAllChoicePopView;
+import com.sly.app.view.PopupView.Yunw.ManageAreaCheckPopView;
+import com.sly.app.view.PopupView.Yunw.ManageStatusCheckPopView;
 import com.sly.app.view.iviews.ICommonViewUi;
 import com.sly.app.view.iviews.ILoadView;
 import com.sly.app.view.iviews.ILoadViewImpl;
 import com.sly.app.view.iviews.IRecyclerViewUi;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -76,7 +66,6 @@ import java.util.TreeSet;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import okhttp3.Request;
 import vip.devkit.library.Logcat;
 
 public class MachineManageActivity extends BaseActivity implements ICommonViewUi, IRecyclerViewUi, SwipeRefreshLayout.OnRefreshListener,
@@ -179,6 +168,7 @@ public class MachineManageActivity extends BaseActivity implements ICommonViewUi
     private ManageAreaCheckPopView mAreaCheckPopView;
     private ManageStatusCheckPopView mStatusCheckPopView;
     private ManageAllChoicePopView mAllChoicePopView;
+    private String reason = "";
 
 
     @Override
@@ -430,19 +420,19 @@ public class MachineManageActivity extends BaseActivity implements ICommonViewUi
             map.put("Rounter", NetConstant.GET_YUNW_REPAIR_START_MACHINE);
             map.put("mineCode", MineCode);
             map.put("machineSysCode", getAllMachineSysCode());
-            map.put("reason", "");
+            map.put("reason", getString(R.string.machine_start));
         }else if(eventTag == NetConstant.EventTags.GET_YUNW_REPAIR_STOP_MACHINE){
             //设备停机
             map.put("Rounter", NetConstant.GET_YUNW_REPAIR_STOP_MACHINE);
             map.put("mineCode", MineCode);
             map.put("machineSysCode", getAllMachineSysCode());
-            map.put("reason", "");
+            map.put("reason", reason);
         }else if(eventTag == NetConstant.EventTags.GET_YUNW_REPAIR_CANCEL_MACHINE){
             //设备注销
             map.put("Rounter", NetConstant.GET_YUNW_REPAIR_CANCEL_MACHINE);
             map.put("mineCode", MineCode);
             map.put("machineSysCode", getAllMachineSysCode());
-            map.put("reason", "");
+            map.put("reason", getString(R.string.machine_cancel));
         }
         else if(eventTag == NetConstant.EventTags.GET_YUNW_MANAGE_AREA){
             //负责区域列表
@@ -472,6 +462,7 @@ public class MachineManageActivity extends BaseActivity implements ICommonViewUi
                 || eventTag == NetConstant.EventTags.GET_YUNW_REPAIR_CANCEL_MACHINE){
             if (returnBean.getStatus().equals("1") && returnBean.getMsg().equals("成功")) {
                 ToastUtils.showToast(getString(R.string.comfirm_success));
+                indexSet.clear();
                 firstRefresh();
             }else{
                 ToastUtils.showToast(returnBean.getMsg());
@@ -628,7 +619,7 @@ public class MachineManageActivity extends BaseActivity implements ICommonViewUi
                 break;
             case R.id.tv_manage_stop_machine:
                 if(indexSet.size() > 0){
-                    showCustomDialog(this, R.layout.dialog_general_style, 2, getString(R.string.request_stop_machine), 2);
+                    showCustomDialog(this, R.layout.dialog_stop_machine, 2, getString(R.string.request_stop_machine), 2);
                 }else{
                     ToastUtils.showToast(getString(R.string.manage_no_chose));
                 }
@@ -790,9 +781,14 @@ public class MachineManageActivity extends BaseActivity implements ICommonViewUi
         dialog.getWindow().setAttributes(lp);
         dialog.setCancelable(false);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        // 获取控件
+        TextView title = dialog.findViewById(R.id.tv_dialog_title);
         if(layout == R.layout.dialog_general_style){
             TextView tvDetails = dialog.findViewById(R.id.tv_dialog_content);
             tvDetails.setText(content);
+        }
+        else if(layout == R.layout.dialog_stop_machine){
+            title.setText(content);
         }
         final EditText etDescriptions = dialog.findViewById(R.id.et_dialog_content);
 
@@ -819,6 +815,7 @@ public class MachineManageActivity extends BaseActivity implements ICommonViewUi
                     if(tag == 1){
                         toRequest(NetConstant.EventTags.GET_YUNW_REPAIR_START_MACHINE);
                     }else if(tag == 2){
+                        reason = etDescriptions.getText().toString().trim();
                         toRequest(NetConstant.EventTags.GET_YUNW_REPAIR_STOP_MACHINE);
                     }else if(tag == 3){
                         toRequest(NetConstant.EventTags.GET_YUNW_REPAIR_CANCEL_MACHINE);

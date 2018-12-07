@@ -40,8 +40,8 @@ public class LoadingDialog extends Dialog {
         WindowManager.LayoutParams params = window.getAttributes();
         params.gravity = Gravity.CENTER;
         window.setAttributes(params);
-        loding_Iv = findViewById(R.id.loding_Iv);
-        tip_Tv = findViewById(R.id.tip_Tv);
+        loding_Iv = (ImageView) findViewById(R.id.loding_Iv);
+        tip_Tv = (TextView) findViewById(R.id.tip_Tv);
         Animation hyperspaceJumpAnimation = AnimationUtils.loadAnimation(
                 context, R.anim.loading_animation);
         hyperspaceJumpAnimation.setInterpolator(new LinearInterpolator());
@@ -57,8 +57,8 @@ public class LoadingDialog extends Dialog {
         WindowManager.LayoutParams params = window.getAttributes();
         params.gravity = Gravity.CENTER;
         window.setAttributes(params);
-        loding_Iv = findViewById(R.id.loding_Iv);
-        tip_Tv = findViewById(R.id.tip_Tv);
+        loding_Iv = (ImageView) findViewById(R.id.loding_Iv);
+        tip_Tv = (TextView) findViewById(R.id.tip_Tv);
         tip_Tv.setTextColor(context.getResources().getColor(R.color.bot_text_color_selected));
         Animation hyperspaceJumpAnimation = AnimationUtils.loadAnimation(
                 context, R.anim.loading_animation);

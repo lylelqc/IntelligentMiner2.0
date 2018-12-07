@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="160dp"
+    android:layout_gravity="center_horizontal"
+    android:gravity="center_horizontal"
+    android:orientation="horizontal"
+    android:padding="10dp">
+
+    <com.sly.app.view.WheelView
+        android:id="@+id/province_wv"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        app:itemNumber="3"
+        app:lineColor="#e5e5e5"
+        app:maskHight="32dp"
+        app:noEmpty="true"
+        app:normalTextColor="#615e5e"
+        app:normalTextSize="13sp"
+        app:selectedTextColor="#111"
+        app:selectedTextSize="16sp"
+        app:unitHight="50dp" />
+
+    <com.sly.app.view.WheelView
+        android:id="@+id/city_wv"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        app:itemNumber="3"
+        app:lineColor="#e5e5e5"
+        app:maskHight="32dp"
+        app:noEmpty="true"
+        app:normalTextColor="#615e5e"
+        app:normalTextSize="13sp"
+        app:selectedTextColor="#111"
+        app:selectedTextSize="16sp"
+        app:unitHight="50dp"
+        />
+    <com.sly.app.view.WheelView
+        android:id="@+id/distric_wv"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        app:itemNumber="3"
+        app:lineColor="#e5e5e5"
+        app:maskHight="32dp"
+        app:noEmpty="true"
+        app:normalTextColor="#615e5e"
+        app:normalTextSize="13sp"
+        app:selectedTextColor="#111"
+        app:selectedTextSize="16sp"
+        app:unitHight="50dp"
+        />
+</LinearLayout>

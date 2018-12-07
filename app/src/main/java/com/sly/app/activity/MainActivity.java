@@ -15,16 +15,16 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.sly.app.Helper.ActivityHelper;
 import com.sly.app.R;
 import com.sly.app.activity.mine.LoginActivity;
 import com.sly.app.comm.AppContext;
-import com.sly.app.fragment.EmptyFragment;
-import com.sly.app.fragment.Sly2YunwFragment;
+import com.sly.app.fragment.Sly2MasterFragment;
+import com.sly.app.fragment.sly.MachineSeatFragment2;
 import com.sly.app.fragment.sly.SlyHomeFragment;
+import com.sly.app.fragment.sly.SlyHostingFragment;
 import com.sly.app.fragment.sly.SlyMineFragment2;
+import com.sly.app.fragment.sly.hosting.SlyHostingFragment2;
 import com.sly.app.listener.OnPopupItemOnClickListener;
-import com.sly.app.utils.AppUtils;
 import com.sly.app.utils.CommonUtil2;
 import com.sly.app.utils.LoginMsgHelper;
 import com.sly.app.view.NoScrollViewpager;
@@ -74,8 +74,6 @@ public class MainActivity extends BaseActivity implements OnPopupItemOnClickList
         /**检测app版本**/
 //        Beta.checkUpgrade(false, true);
         requestPermission();
-
-        ActivityHelper.getInstance().pushOneActivity(this);
 
     }
 
@@ -148,10 +146,8 @@ public class MainActivity extends BaseActivity implements OnPopupItemOnClickList
     public void onClcik(View view) {
         switch (view.getId()) {
             case R.id.ll_home:
-//                toolbarRightBtn.setVisibility(View.GONE);
                 vpager.setCurrentItem(0);
                 tabSelected(llHome);
-//                toolbarLayout.setVisibility(View.VISIBLE);
                 break;
             case R.id.ll_tuoguan:
                 if (LoginMsgHelper.isLogin(mContext)) {
@@ -160,31 +156,14 @@ public class MainActivity extends BaseActivity implements OnPopupItemOnClickList
                 } else {
                     CommonUtil2.goActivity(mContext, LoginActivity.class);
                 }
-//                vpager.setCurrentItem(1);
-//                tabSelected(llTuoguan);
-//                toolbarLayout.setVisibility(View.VISIBLE);
-//                toolbarRightBtn.setVisibility(View.GONE);
                 break;
             case R.id.ll_jiwei:
                 vpager.setCurrentItem(2);
                 tabSelected(llJiwei);
-//                toolbarLayout.setVisibility(View.VISIBLE);
-//                if (LoginMsgHelper.isLogin(mContext) && LoginMsgHelper.getResult(mContext).getStore() != null && !StringHelper.isEmpty(LoginMsgHelper.getResult(mContext).getStore().getS_id())) {
-//                    toolbarRightBtn.setVisibility(View.VISIBLE);
-//                } else {
-//                    toolbarRightBtn.setVisibility(View.GONE);
-//                }
                 break;
             case R.id.ll_mine:
-//                if (LoginMsgHelper.isLogin(mContext)) {
-//
-//                } else {
-//                    CommonUtil2.goActivity(mContext, LoginActivity.class);
-//                }
                 vpager.setCurrentItem(3);
                 tabSelected(llMine);
-//                toolbarLayout.setVisibility(View.VISIBLE);
-//                toolbarRightBtn.setVisibility(View.GONE);
                 break;
         }
     }
@@ -226,13 +205,13 @@ public class MainActivity extends BaseActivity implements OnPopupItemOnClickList
         public Fragment getItem(int position) {
 
             if (position == 0) {
-                return Sly2YunwFragment.newInstance(tabCount[position % tabCount.length]);
+                return SlyHomeFragment.newInstance(tabCount[position % tabCount.length]);
             } else if (position == 1) {
-                return EmptyFragment.newInstance("1");
+                return SlyHostingFragment.newInstance(tabCount[position % tabCount.length]);
             } else if (position == 2) {
-                return EmptyFragment.newInstance("2");
+                return MachineSeatFragment2.newInstance(tabCount[position % tabCount.length]);
             } else {
-                return EmptyFragment.newInstance("3");
+                return SlyMineFragment2.newInstance(tabCount[position % tabCount.length]);
             }
 
         }

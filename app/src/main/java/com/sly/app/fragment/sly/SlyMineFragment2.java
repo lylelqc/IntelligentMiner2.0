@@ -1,7 +1,9 @@
 package com.sly.app.fragment.sly;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,21 +15,34 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.sly.app.R;
+import com.sly.app.activity.device.MinersDeviceActivity;
 import com.sly.app.activity.mine.LoginActivity;
+import com.sly.app.activity.sly.mine.IdCardActivity;
+import com.sly.app.activity.sly.mine.SlyAttendanceActivity;
+import com.sly.app.activity.sly.mine.SlyMachineManagerActivity;
+import com.sly.app.activity.sly.mine.SlyMachineMonitorActivity;
+import com.sly.app.activity.sly.mine.SlyMachineOnlineActivity;
+import com.sly.app.activity.sly.mine.SlyMineBalanceActivity;
+import com.sly.app.activity.sly.mine.SlyNoticeActivity;
+import com.sly.app.activity.sly.mine.SlyRepairDocActivity;
 import com.sly.app.activity.sly.mine.SlySettingActivity;
-import com.sly.app.activity.sly.mine.notice.Sly2NoticeActivity;
-import com.sly.app.comm.EventBusTags;
+import com.sly.app.activity.sly.mine.UserInfoEditActivity;
+import com.sly.app.base.EventBusTags;
+import com.sly.app.comm.BusEvent;
 import com.sly.app.fragment.BaseFragment;
 import com.sly.app.http.NetWorkCons;
 import com.sly.app.http.type1.HttpClient;
 import com.sly.app.http.type1.HttpResponseHandler;
 import com.sly.app.model.PostResult;
 import com.sly.app.model.ReturnBean;
+import com.sly.app.model.sly.AllDMinerMasterTableBean;
+import com.sly.app.model.sly.AllDMinerTableBean;
 import com.sly.app.model.sly.KgFullInfoBean;
 import com.sly.app.model.sly.MinerMasterInfoBean;
-import com.sly.app.model.sly.SlyReturnListBean;
 import com.sly.app.model.sly.YwFullInfoBean;
+import com.sly.app.model.sly.balance.SlyReturnListBean;
 import com.sly.app.utils.ApiSIgnUtil;
+import com.sly.app.utils.AppUtils;
 import com.sly.app.utils.CommonUtil2;
 import com.sly.app.utils.CommonUtils;
 import com.sly.app.utils.EncryptUtil;
@@ -129,8 +144,6 @@ public class SlyMineFragment2 extends BaseFragment {
     @BindView(R.id.tv_new_msg_status)
     TextView tvNewsStatus;
 
-
-//    private String User, SysCode, CusCode, Token, Key;
     private String User, FrSysCode, FMasterCode, PersonSysCode, Token, Key;
     private String LoginType = "None";
     private String mRounter = "";
@@ -144,23 +157,27 @@ public class SlyMineFragment2 extends BaseFragment {
 
     public static SlyMineFragment2 newInstance(String content) {
         SlyMineFragment2 fragment = new SlyMineFragment2();
-        mContent = content;
+        fragment.mContent = content;
         return fragment;
     }
 
     @Override
     protected void onFirstUserVisible() {
-
+        AppUtils.setStatusBarColor(getActivity(), getResources().getColor(R.color.colorPrimary));
     }
 
     @Override
     protected void onUserVisible() {
-        if (CommonUtils.isBlank(User) || CommonUtils.isBlank(Token)) {
+        User = SharedPreferencesUtil.getString(mContext, "User");
+        Token = SharedPreferencesUtil.getString(mContext, "Token");
+        FrSysCode = SharedPreferencesUtil.getString(mContext, "FrSysCode");
+        FMasterCode = SharedPreferencesUtil.getString(mContext, "FMasterCode");
+        PersonSysCode = SharedPreferencesUtil.getString(mContext,"PersonSysCode");
+        Key = SharedPreferencesUtil.getString(mContext, "Key");
+        LoginType = SharedPreferencesUtil.getString(mContext, "LoginType", "None");
 
-        } else {
-//            String SysCode = LoginType.equals("Miner") ? FrSysCode : FMasterCode;
-//            getUserInfo(mContext, LoginType, User, SysCode, Key, Token);//更新数据
-        }
+        // 设置状态栏颜色
+        AppUtils.setStatusBarColor(getActivity(), getResources().getColor(R.color.colorPrimary));
     }
 
     @Override
@@ -170,6 +187,7 @@ public class SlyMineFragment2 extends BaseFragment {
 
     @Override
     protected void initViewsAndEvents() {
+
         User = SharedPreferencesUtil.getString(mContext, "User");
         Token = SharedPreferencesUtil.getString(mContext, "Token");
         FrSysCode = SharedPreferencesUtil.getString(mContext, "FrSysCode");
@@ -180,11 +198,8 @@ public class SlyMineFragment2 extends BaseFragment {
         SharedPreferencesUtil.putString(getActivity(), "MainFlag", "01");
         mineType = SharedPreferencesUtil.getString(mContext, "mineType");
 
-        Logcat.i("FrSysCode:" + FrSysCode + "FMasterCode:" + FMasterCode + "PersonSysCode:" + PersonSysCode +
-                "\n\t" + "Token:" + Token + "\n\t" + "UserInfo:");
-        if(LoginType != null && !LoginType.equals("None")){
+        AppUtils.setStatusBarColor(getActivity(), getResources().getColor(R.color.colorPrimary));
 
-        }
     }
 
     @Override
@@ -210,7 +225,7 @@ public class SlyMineFragment2 extends BaseFragment {
 
     @OnClick({R.id.shezhi, R.id.msg, R.id.rl_member, R.id.rl_balance,
             R.id.rl_weixiu, R.id.rl_tongji, R.id.rl_smrenzheng, R.id.rl_shebeicount,
-            R.id.rl_my_shebei, R.id.rl_tobe_manager,R.id.mine, R.id.rl_online, R.id.rl_offline,
+            R.id.rl_my_shebei, R.id.rl_tobe_manager, R.id.mine, R.id.rl_online, R.id.rl_offline,
             R.id.rl_shebeiManager, R.id.rl_weixiudanManager, R.id.rl_monitor, R.id.rl_spinner, R.id.rl_attendance})
     public void onViewClicked(View view) {
         Intent intent = new Intent();
@@ -232,17 +247,24 @@ public class SlyMineFragment2 extends BaseFragment {
 //                    startActivity(intent);
                     break;
                 case R.id.msg:
-                    CommonUtil2.goActivity(mContext,Sly2NoticeActivity.class);
+                    CommonUtil2.goActivity(mContext,SlyNoticeActivity.class);
                     break;
                 case R.id.rl_member:
+                    //startActivityWithoutExtras(ShareRecordActivity.class);
+                    intent.setClass(getActivity(), UserInfoEditActivity.class);
+                    startActivity(intent);
                     break;
                 case R.id.rl_balance:
+                    intent.setClass(getActivity(), SlyMineBalanceActivity.class);
+                    startActivity(intent);
                     break;
                 case R.id.rl_weixiu:
 //                    intent.setClass(getActivity(), ReplareTaketActivity.class);
 //                    startActivity(intent);
                     break;
                 case R.id.rl_tongji:
+                    intent.setClass(getActivity(), MinersDeviceActivity.class);
+                    startActivity(intent);
                     break;
                 case R.id.rl_smrenzheng:
                     checkRzStatus(02);
@@ -259,21 +281,30 @@ public class SlyMineFragment2 extends BaseFragment {
 //                    intent.putExtra("tag",01);
 //                    startActivity(intent);
                     break;
-                case R.id.rl_shebeicount:
-                    break;
-                case R.id.rl_online:
-                    break;
-                case R.id.rl_offline:
-                    break;
-                case R.id.rl_shebeiManager:
-                    break;
-                case R.id.rl_weixiudanManager:
-                    break;
-                case R.id.rl_monitor:
-                    break;
-                case R.id.rl_attendance:
-                    break;
-
+//                case R.id.rl_shebeicount:
+//                    break;
+//                case R.id.rl_online:
+//                    intent.setClass(getActivity(), SlyMachineOnlineActivity.class);
+//                    startActivity(intent);
+//                    break;
+//                case R.id.rl_offline:
+//                    break;
+//                case R.id.rl_shebeiManager:
+//                    intent.setClass(getActivity(), SlyMachineManagerActivity.class);
+//                    startActivity(intent);
+//                    break;
+//                case R.id.rl_weixiudanManager:
+//                    intent.setClass(getActivity(), SlyRepairDocActivity.class);
+//                    startActivity(intent);
+//                    break;
+//                case R.id.rl_monitor:
+//                    intent.setClass(getActivity(), SlyMachineMonitorActivity.class);
+//                    startActivity(intent);
+//                    break;
+//                case R.id.rl_attendance:
+//                    intent.setClass(getActivity(), SlyAttendanceActivity.class);
+//                    startActivity(intent);
+//                    break;
             }
         }
 
@@ -402,6 +433,18 @@ public class SlyMineFragment2 extends BaseFragment {
                     SlyReturnListBean mReturnBean = JSON.parseObject(CommonUtils.proStr(content), SlyReturnListBean.class);
 
                     if (mReturnBean.getStatus().equals("1") && mReturnBean.getData().getRows().size() > 0) {
+                        if (LoginType.equals("Miner")) {
+                            List<AllDMinerTableBean> chartList = JSON.parseArray(mReturnBean.getData().getRows().toString(), AllDMinerTableBean.class);
+                            Logcat.e(chartList.toString());
+                            AllDMinerTableBean allDataTableBean = chartList.get(0);
+                            tvShebeiCount.setText(allDataTableBean.getMachineCount() + "台");
+
+                        } else {
+                            List<AllDMinerMasterTableBean> chartList = JSON.parseArray(mReturnBean.getData().getRows().toString(), AllDMinerMasterTableBean.class);
+                            Logcat.e(chartList.toString());
+                            AllDMinerMasterTableBean allDataTableBean = chartList.get(0);
+                            tvShebeiCount.setText(allDataTableBean.getMachineCount() + "台");
+                        }
 
                     } else {
 //                            ToastUtils.showToast(mReturnBean.getMsg());
@@ -456,7 +499,9 @@ public class SlyMineFragment2 extends BaseFragment {
                                     if("false".equals(data)){
                                         ToastUtils.showToast("成为矿场主认证审核中，请耐心等候");
                                     }else{
-
+                                        intent.setClass(mContext, IdCardActivity.class);
+                                        intent.putExtra("tag", tag);
+                                        startActivity(intent);
                                     }
                                     /*switch (Integer.valueOf(data)) {
                                         case 0:
@@ -490,6 +535,9 @@ public class SlyMineFragment2 extends BaseFragment {
                                     ReturnBean returnBean = JSON.parseObject(CommonUtils.proStr(content), ReturnBean.class);
                                     if (returnBean.getStatus().equals("1")) {
                                         if(returnBean.getData().equals("true")){
+                                            intent.setClass(mContext, IdCardActivity.class);
+                                            intent.putExtra("tag", tag);
+                                            startActivity(intent);
                                         }else{
                                             ToastUtils.showToast("您的实名认证还在审核中哦，请耐心等候");
                                         }
@@ -726,24 +774,21 @@ public class SlyMineFragment2 extends BaseFragment {
         } else {
             tvMainUsername.setText(name);
         }
-        tvMainMsg.setText("ID:" + userSysCodeId);
+//        tvMainMsg.setText("ID:" + userSysCodeId);
         if (loginType.equals("Miner")) {
-//            rlMyShebei.setVisibility(View.VISIBLE);
+            tvMainMsg.setText("ID:" + userSysCodeId);
             rlBalance.setVisibility(View.VISIBLE);
-//            rlWeixiu.setVisibility(View.VISIBLE);
             rlTongji.setVisibility(View.VISIBLE);
-//            rlShebeicount.setVisibility(View.GONE);
             rlSmrenzheng.setVisibility(View.VISIBLE);
             rlTobeManager.setVisibility(View.VISIBLE);
         } else if (loginType.equals("MinerMaster")){
-//            rlMyShebei.setVisibility(View.GONE);
+            tvMainMsg.setText("ID:" + userSysCodeId);
             rlBalance.setVisibility(View.VISIBLE);
-//            rlWeixiu.setVisibility(View.VISIBLE);
             rlTongji.setVisibility(View.VISIBLE);
-//            rlShebeicount.setVisibility(View.VISIBLE);
             rlSmrenzheng.setVisibility(View.VISIBLE);
             rlTobeManager.setVisibility(View.GONE);
         }else{
+            tvMainMsg.setText("");
             showMenuForRole();
         }
     }
@@ -753,7 +798,8 @@ public class SlyMineFragment2 extends BaseFragment {
     public void onResume() {
         super.onResume();
         mineType = SharedPreferencesUtil.getString(mContext,"mineType","None");
-        if (CommonUtils.isBlank(User) || CommonUtils.isBlank(Token)) {
+        if (CommonUtils.isBlank(User) || CommonUtils.isBlank(Token)
+                || ("None").equals(User) || ("None").equals(Token)) {
             mine.setText("我的");
             tvXiala.setVisibility(View.GONE);
         } else {
@@ -813,7 +859,7 @@ public class SlyMineFragment2 extends BaseFragment {
                         LoginType = SharedPreferencesUtil.getString(mContext, "LoginType","None");
                     }
                     getUserInfo(mContext, LoginType, User, FrSysCode, Key, Token);//更新数据
-                    EventBus.getDefault().post(new PostResult(EventBusTags.UPDATE_HOSTING_MINER_DATA));
+                    EventBus.getDefault().post(new PostResult(BusEvent.UPDATE_HOSTING_MINER_DATA));
                     showMenuForRole();
                     getNewsCount();
                 }
@@ -831,7 +877,7 @@ public class SlyMineFragment2 extends BaseFragment {
                             LoginType = SharedPreferencesUtil.getString(mContext, "LoginType","None");
                         }
                         getUserInfo(mContext, LoginType, User, FMasterCode, Key, Token);//更新数据
-                        EventBus.getDefault().post(new PostResult(EventBusTags.UPDATE_HOSTING_MASTER_DATA));
+                        EventBus.getDefault().post(new PostResult(BusEvent.UPDATE_HOSTING_MASTER_DATA));
                         showMenuForRole();
                         getNewsCount();
                     }
@@ -850,7 +896,7 @@ public class SlyMineFragment2 extends BaseFragment {
                         SharedPreferencesUtil.putString(mContext, "mineType", "Operation");
                         String SysCode = LoginType.equals("Miner") ? FrSysCode : FMasterCode;
                         getUserInfo(mContext, LoginType, User, SysCode, Key, Token);//更新数据
-                        EventBus.getDefault().post(new PostResult(EventBusTags.UPDATE_HOSTING_OPERATION_DATA));
+                        EventBus.getDefault().post(new PostResult(BusEvent.UPDATE_HOSTING_OPERATION_DATA));
                         showMenuForRole();
                         getNewsCount();
                     }
@@ -875,11 +921,11 @@ public class SlyMineFragment2 extends BaseFragment {
 //        rlShebeicount.setVisibility(View.GONE);
         rlSmrenzheng.setVisibility(View.GONE);
         rlTobeManager.setVisibility(View.GONE);
-        rlOnline.setVisibility(View.GONE);
-        rlOffline.setVisibility(View.GONE);
-        rlShebeiManager.setVisibility(View.GONE);
-        rlWeixiudangManager.setVisibility(View.GONE);
-        rlAttendance.setVisibility(View.GONE);
+//        rlOnline.setVisibility(View.GONE);
+//        rlOffline.setVisibility(View.GONE);
+//        rlShebeiManager.setVisibility(View.GONE);
+//        rlWeixiudangManager.setVisibility(View.GONE);
+//        rlAttendance.setVisibility(View.GONE);
 //        rlMonitor.setVisibility(View.GONE);
 
         mineType = SharedPreferencesUtil.getString(mContext, "mineType","None");
@@ -899,11 +945,11 @@ public class SlyMineFragment2 extends BaseFragment {
             rlSmrenzheng.setVisibility(View.VISIBLE);
 
         } else if (mineType.equals("Operation")) {
-            rlOnline.setVisibility(View.VISIBLE);
-            rlOffline.setVisibility(View.VISIBLE);
-            rlShebeiManager.setVisibility(View.VISIBLE);
-            rlWeixiudangManager.setVisibility(View.VISIBLE);
-            rlAttendance.setVisibility(View.VISIBLE);
+//            rlOnline.setVisibility(View.VISIBLE);
+//            rlOffline.setVisibility(View.VISIBLE);
+//            rlShebeiManager.setVisibility(View.VISIBLE);
+//            rlWeixiudangManager.setVisibility(View.VISIBLE);
+//            rlAttendance.setVisibility(View.VISIBLE);
 //            rlMonitor.setVisibility(View.VISIBLE);
         }
 

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:orientation="vertical">
 
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -13,7 +14,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <include layout="@layout/main_title4"/>
+            <include layout="@layout/head_title4" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -26,49 +27,42 @@
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="20dp"
                     android:text="矿机状态"
-                    android:textSize="14sp"
-                    android:textColor="@color/sly_text_353a3e"/>
+                    android:textColor="@color/sly_text_353a3e"
+                    android:textSize="14sp" />
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tv_status"
-                    android:layout_marginTop="10dp"
                     android:layout_marginBottom="14dp"
-                    android:layout_marginLeft="15dp">
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="10dp">
 
                     <TextView
                         android:id="@+id/tv_machine_details_status"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="离线"
-                        android:textSize="17sp"
-                        android:textColor="@color/color_fb3a2d"/>
+                        android:textColor="@color/color_fb3a2d"
+                        android:textSize="17sp" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="8dp"
                         android:layout_centerVertical="true"
+                        android:layout_marginLeft="8dp"
+                        android:layout_toRightOf="@+id/tv_machine_details_status"
+                        android:background="@drawable/monitor_function_bg"
                         android:gravity="center"
                         android:paddingLeft="5dp"
-                        android:paddingRight="5dp"
-                        android:background="@drawable/monitor_function_bg"
-                        android:layout_toRightOf="@+id/tv_machine_details_status">
+                        android:paddingRight="5dp">
 
-                        <TextView
-                            android:id="@+id/tv_ip"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="IP："
-                            android:textSize="13sp"
-                            android:textColor="@color/sly_text_666666"/>
                         <TextView
                             android:id="@+id/tv_machine_details_ip"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="13sp"
-                            android:textColor="@color/sly_text_666666"/>
+                            android:textColor="@color/sly_text_666666"
+                            android:textSize="13sp" />
                     </LinearLayout>
                 </RelativeLayout>
 
@@ -79,16 +73,16 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="15dp"
+                    android:background="@drawable/shape_btn_gradient_15dp"
                     android:gravity="center"
-                    android:textSize="16sp"
-                    android:textColor="@color/white"
                     android:paddingLeft="15dp"
                     android:paddingRight="15dp"
-                    android:background="@drawable/shape_btn_gradient_15dp"/>
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
 
             </RelativeLayout>
 
-            <include layout="@layout/gray_line"/>
+            <include layout="@layout/gray_line" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -99,8 +93,8 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_weight="0.9">
+                    android:layout_weight="0.9"
+                    android:orientation="vertical">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -113,54 +107,55 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="区域："
-                            android:textSize="12sp"
-                            android:textColor="@color/sly_text_666666"/>
+                            android:textColor="@color/sly_text_666666"
+                            android:textSize="12sp" />
 
                         <TextView
                             android:id="@+id/tv_machine_details_area"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text=""
-                            android:textSize="14sp"
-                            android:textColor="@color/sly_text_1f1f1f"/>
+                            android:textColor="@color/sly_text_1f1f1f"
+                            android:textSize="14sp" />
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="18dp"
                         android:layout_marginLeft="15dp"
                         android:layout_marginTop="10dp"
-                        android:layout_marginBottom="18dp"
                         android:orientation="horizontal">
 
                         <TextView
+                            android:id="@+id/tv_details_month_rate"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="本月运行率："
-                            android:textSize="12sp"
-                            android:textColor="@color/sly_text_666666"/>
+                            android:textColor="@color/sly_text_666666"
+                            android:textSize="12sp" />
 
                         <TextView
                             android:id="@+id/tv_machine_details_monthrate"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text=""
-                            android:textSize="14sp"
-                            android:textColor="@color/sly_text_1f1f1f"/>
+                            android:textColor="@color/sly_text_1f1f1f"
+                            android:textSize="14sp" />
                     </LinearLayout>
                 </LinearLayout>
 
                 <View
                     android:layout_width="1dp"
                     android:layout_height="36dp"
-                    android:background="@color/sly_bg_f4f4f4"
-                    android:layout_gravity="center_vertical"/>
+                    android:layout_gravity="center_vertical"
+                    android:background="@color/sly_bg_f4f4f4" />
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_weight="1.1">
+                    android:layout_weight="1.1"
+                    android:orientation="vertical">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -173,134 +168,186 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="会员号："
-                            android:textSize="12sp"
-                            android:textColor="@color/sly_text_666666"/>
+                            android:textColor="@color/sly_text_666666"
+                            android:textSize="12sp" />
 
                         <TextView
                             android:id="@+id/tv_machine_details_vip_code"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text=""
-                            android:textSize="14sp"
-                            android:textColor="@color/sly_text_1f1f1f"/>
+                            android:textColor="@color/sly_text_1f1f1f"
+                            android:textSize="14sp" />
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="18dp"
                         android:layout_marginLeft="31dp"
                         android:layout_marginTop="10dp"
-                        android:layout_marginBottom="18dp"
                         android:orientation="horizontal">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="币种："
-                            android:textSize="12sp"
-                            android:textColor="@color/sly_text_666666"/>
+                            android:textColor="@color/sly_text_666666"
+                            android:textSize="12sp" />
 
                         <TextView
                             android:id="@+id/tv_machine_details_btc"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text=""
-                            android:textSize="14sp"
-                            android:textColor="@color/sly_text_1f1f1f"/>
+                            android:textColor="@color/sly_text_1f1f1f"
+                            android:textSize="14sp" />
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
 
-            <include layout="@layout/gray_line"/>
+            <include layout="@layout/gray_line" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="45dp">
+
+                <TextView
+                    android:id="@+id/tv_suanli_icon"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15dp"
+                    android:background="@drawable/mine_owner_chart" />
+
+                <TextView
+                    android:id="@+id/tv_suanli"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/tv_suanli_icon"
+                    android:text="算力"
+                    android:textColor="@color/sly_text_333333"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tv_machine_details_suanli"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@+id/tv_suanli"
+                    android:textColor="@color/sly_text_4a96f2"
+                    android:textSize="13sp" />
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="45dp">
+                    android:layout_height="30dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="15dp">
 
                     <TextView
-                        android:id="@+id/tv_suanli_icon"
-                        android:layout_width="18dp"
-                        android:layout_height="18dp"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="15dp"
-                        android:background="@drawable/monitor_icon"
-                        />
-
-                    <TextView
-                        android:id="@+id/tv_suanli"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_toRightOf="@+id/tv_suanli_icon"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="10dp"
-                        android:text="算力"
-                        android:textSize="14sp"
-                        android:textColor="@color/sly_text_333333"/>
-
-                    <TextView
-                        android:id="@+id/tv_machine_details_suanli"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_toRightOf="@+id/tv_suanli"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="5dp"
-                        android:textSize="13sp"
-                        android:textColor="@color/sly_text_4a96f2"/>
-
-                    <RelativeLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="30dp"
+                        android:id="@+id/btn_machine_details_month"
+                        android:layout_width="64dp"
+                        android:layout_height="match_parent"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
-                        android:layout_marginRight="15dp">
+                        android:background="@drawable/shape_right_circle_white_15dp"
+                        android:gravity="center"
+                        android:text="本月"
+                        android:textColor="@color/sly_text_666666"
+                        android:textSize="14sp" />
 
-                        <Button
-                            android:id="@+id/btn_machine_details_month"
-                            android:layout_width="64dp"
-                            android:layout_height="match_parent"
-                            android:layout_alignParentRight="true"
-                            android:layout_centerVertical="true"
-                            android:background="@drawable/selector_bg_right_circle"
-                            android:gravity="center"
-                            android:textSize="14sp"
-                            android:text="本月"
-                            android:textColor="@color/select_text_color"/>
-
-                        <Button
-                            android:id="@+id/btn_machine_details_hours"
-                            android:layout_width="64dp"
-                            android:layout_height="match_parent"
-                            android:layout_toLeftOf="@+id/btn_machine_details_month"
-                            android:layout_centerVertical="true"
-                            android:background="@drawable/selector_bg_left_circle"
-                            android:gravity="center"
-                            android:textSize="14sp"
-                            android:text="24小时"
-                            android:textColor="@color/select_text_color"/>
-
-                    </RelativeLayout>
+                    <TextView
+                        android:id="@+id/btn_machine_details_hours"
+                        android:layout_width="64dp"
+                        android:layout_height="match_parent"
+                        android:layout_centerVertical="true"
+                        android:layout_toLeftOf="@+id/btn_machine_details_month"
+                        android:background="@drawable/layer_left_circle_blue_15dp"
+                        android:gravity="center"
+                        android:text="24小时"
+                        android:textColor="@color/white"
+                        android:textSize="14sp" />
 
                 </RelativeLayout>
 
-                <include layout="@layout/gray_line"/>
+            </RelativeLayout>
+
+            <include layout="@layout/gray_line" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp">
 
                 <com.github.mikephil.charting.charts.LineChart
                     android:id="@+id/lc_cal_power_pic"
                     android:layout_width="match_parent"
                     android:layout_height="232dp">
+
                 </com.github.mikephil.charting.charts.LineChart>
 
-            </LinearLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_begintime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="10dp"
+                        android:textSize="10sp"
+                        android:textColor="@color/sly_text_999999"/>
+
+                    <!--<TextView
+                        android:id="@+id/tv_time2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="45dp"
+                        android:layout_toRightOf="@+id/tv_begintime"
+                        android:textSize="10sp"
+                        android:textColor="#000"/>
+
+                    <TextView
+                        android:id="@+id/tv_time3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="50dp"
+                        android:layout_toRightOf="@+id/tv_time2"
+                        android:textSize="10sp"
+                        android:textColor="#000"/>
+
+                    <TextView
+                        android:id="@+id/tv_time4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="50dp"
+                        android:layout_toRightOf="@+id/tv_time3"
+                        android:textSize="10sp"
+                        android:textColor="#000"/>-->
+
+                    <TextView
+                        android:id="@+id/tv_endtime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="10dp"
+                        android:textSize="10sp"
+                        android:textColor="@color/sly_text_999999" />
+                </RelativeLayout>
+            </RelativeLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="15dp"
-                android:background="@color/sly_bg_f4f4f4"/>
+                android:background="@color/sly_bg_f4f4f4" />
 
             <RelativeLayout
                 android:id="@+id/rl_machine_details_history"
@@ -311,35 +358,35 @@
                     android:id="@+id/tv_history_icon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/jilu_weixiudan_icon"/>
+                    android:background="@drawable/jilu_weixiudan_icon" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
                     android:layout_toRightOf="@+id/tv_history_icon"
                     android:text="历史维修记录"
-                    android:textSize="14sp"
-                    android:textColor="@color/sly_text_333333"/>
+                    android:textColor="@color/sly_text_333333"
+                    android:textSize="14sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/news_net"
                     android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
                     android:layout_marginRight="15dp"
-                    android:layout_centerVertical="true"/>
+                    android:background="@drawable/news_net" />
             </RelativeLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="10dp"
-                android:background="@color/sly_bg_f4f4f4"/>
+                android:background="@color/sly_bg_f4f4f4" />
 
 
             <RelativeLayout
@@ -352,8 +399,8 @@
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="15dp"
                     android:text="挖矿配置"
-                    android:textSize="14sp"
-                    android:textColor="@color/sly_text_333333"/>
+                    android:textColor="@color/sly_text_333333"
+                    android:textSize="14sp" />
 
                 <RelativeLayout
                     android:id="@+id/rl_machine_details_change"
@@ -372,12 +419,12 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="7dp"
                         android:layout_centerVertical="true"
+                        android:layout_marginLeft="7dp"
                         android:layout_toRightOf="@+id/tv_change_icon"
                         android:text="修改"
-                        android:textSize="14sp"
-                        android:textColor="#199bff"/>
+                        android:textColor="#199bff"
+                        android:textSize="14sp" />
                 </RelativeLayout>
             </RelativeLayout>
 
@@ -386,7 +433,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <include layout="@layout/gray_line"/>
+                <include layout="@layout/gray_line" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -397,22 +444,22 @@
                         android:id="@+id/tv_mine1_icon"
                         android:layout_width="15dp"
                         android:layout_height="15dp"
-                        android:layout_marginLeft="15dp"
                         android:layout_centerVertical="true"
+                        android:layout_marginLeft="15dp"
                         android:background="@drawable/monitor_icon" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
                         android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
                         android:layout_toRightOf="@+id/tv_mine1_icon"
                         android:text="矿池一"
                         android:textColor="@color/sly_text_333333"
                         android:textSize="14sp" />
                 </RelativeLayout>
 
-                <include layout="@layout/gray_line"/>
+                <include layout="@layout/gray_line" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -421,25 +468,24 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
                         android:layout_centerVertical="true"
+                        android:layout_marginLeft="15dp"
                         android:text="矿池"
-                        android:textSize="12sp"
                         android:textColor="@color/sly_text_666666"
-                        />
+                        android:textSize="12sp" />
 
                     <TextView
                         android:id="@+id/tv_machine_details_mine1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="15dp"
-                        android:layout_centerVertical="true"
                         android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="15dp"
                         android:textColor="@color/sly_text_333333"
                         android:textSize="12sp" />
                 </RelativeLayout>
 
-                <include layout="@layout/gray_line"/>
+                <include layout="@layout/gray_line" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -448,25 +494,24 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
                         android:layout_centerVertical="true"
+                        android:layout_marginLeft="15dp"
                         android:text="矿工号"
-                        android:textSize="12sp"
                         android:textColor="@color/sly_text_666666"
-                        />
+                        android:textSize="12sp" />
 
                     <TextView
                         android:id="@+id/tv_machine_details_miner1_code"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="15dp"
-                        android:layout_centerVertical="true"
                         android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="15dp"
                         android:textColor="@color/sly_text_333333"
                         android:textSize="12sp" />
                 </RelativeLayout>
 
-                <include layout="@layout/gray_line"/>
+                <include layout="@layout/gray_line" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -475,20 +520,19 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
                         android:layout_centerVertical="true"
+                        android:layout_marginLeft="15dp"
                         android:text="密码"
-                        android:textSize="12sp"
                         android:textColor="@color/sly_text_666666"
-                        />
+                        android:textSize="12sp" />
 
                     <TextView
                         android:id="@+id/tv_machine_details_pwd1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="15dp"
-                        android:layout_centerVertical="true"
                         android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="15dp"
                         android:textColor="@color/sly_text_333333"
                         android:textSize="12sp" />
                 </RelativeLayout>
@@ -500,7 +544,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <include layout="@layout/gray_line"/>
+                <include layout="@layout/gray_line" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -511,22 +555,22 @@
                         android:id="@+id/tv_mine2_icon"
                         android:layout_width="15dp"
                         android:layout_height="15dp"
-                        android:layout_marginLeft="15dp"
                         android:layout_centerVertical="true"
+                        android:layout_marginLeft="15dp"
                         android:background="@drawable/monitor_icon" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
                         android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
                         android:layout_toRightOf="@+id/tv_mine2_icon"
                         android:text="矿池二"
                         android:textColor="@color/sly_text_333333"
                         android:textSize="14sp" />
                 </RelativeLayout>
 
-                <include layout="@layout/gray_line"/>
+                <include layout="@layout/gray_line" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -535,25 +579,24 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
                         android:layout_centerVertical="true"
+                        android:layout_marginLeft="15dp"
                         android:text="矿池"
-                        android:textSize="12sp"
                         android:textColor="@color/sly_text_666666"
-                        />
+                        android:textSize="12sp" />
 
                     <TextView
                         android:id="@+id/tv_machine_details_mine2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="15dp"
-                        android:layout_centerVertical="true"
                         android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="15dp"
                         android:textColor="@color/sly_text_333333"
                         android:textSize="12sp" />
                 </RelativeLayout>
 
-                <include layout="@layout/gray_line"/>
+                <include layout="@layout/gray_line" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -562,25 +605,24 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
                         android:layout_centerVertical="true"
+                        android:layout_marginLeft="15dp"
                         android:text="矿工号"
-                        android:textSize="12sp"
                         android:textColor="@color/sly_text_666666"
-                        />
+                        android:textSize="12sp" />
 
                     <TextView
                         android:id="@+id/tv_machine_details_miner2_code"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="15dp"
-                        android:layout_centerVertical="true"
                         android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="15dp"
                         android:textColor="@color/sly_text_333333"
                         android:textSize="12sp" />
                 </RelativeLayout>
 
-                <include layout="@layout/gray_line"/>
+                <include layout="@layout/gray_line" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -589,20 +631,19 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
                         android:layout_centerVertical="true"
+                        android:layout_marginLeft="15dp"
                         android:text="密码"
-                        android:textSize="12sp"
                         android:textColor="@color/sly_text_666666"
-                        />
+                        android:textSize="12sp" />
 
                     <TextView
                         android:id="@+id/tv_machine_details_pwd2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="15dp"
-                        android:layout_centerVertical="true"
                         android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="15dp"
                         android:textColor="@color/sly_text_333333"
                         android:textSize="12sp" />
                 </RelativeLayout>
@@ -614,7 +655,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <include layout="@layout/gray_line"/>
+                <include layout="@layout/gray_line" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -625,22 +666,22 @@
                         android:id="@+id/tv_mine3_icon"
                         android:layout_width="15dp"
                         android:layout_height="15dp"
-                        android:layout_marginLeft="15dp"
                         android:layout_centerVertical="true"
+                        android:layout_marginLeft="15dp"
                         android:background="@drawable/monitor_icon" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
                         android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
                         android:layout_toRightOf="@+id/tv_mine3_icon"
                         android:text="矿池三"
                         android:textColor="@color/sly_text_333333"
                         android:textSize="14sp" />
                 </RelativeLayout>
 
-                <include layout="@layout/gray_line"/>
+                <include layout="@layout/gray_line" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -649,25 +690,24 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
                         android:layout_centerVertical="true"
+                        android:layout_marginLeft="15dp"
                         android:text="矿池"
-                        android:textSize="12sp"
                         android:textColor="@color/sly_text_666666"
-                        />
+                        android:textSize="12sp" />
 
                     <TextView
                         android:id="@+id/tv_machine_details_mine3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="15dp"
-                        android:layout_centerVertical="true"
                         android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="15dp"
                         android:textColor="@color/sly_text_333333"
                         android:textSize="12sp" />
                 </RelativeLayout>
 
-                <include layout="@layout/gray_line"/>
+                <include layout="@layout/gray_line" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -676,25 +716,24 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
                         android:layout_centerVertical="true"
+                        android:layout_marginLeft="15dp"
                         android:text="矿工号"
-                        android:textSize="12sp"
                         android:textColor="@color/sly_text_666666"
-                        />
+                        android:textSize="12sp" />
 
                     <TextView
                         android:id="@+id/tv_machine_details_miner3_code"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="15dp"
-                        android:layout_centerVertical="true"
                         android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="15dp"
                         android:textColor="@color/sly_text_333333"
                         android:textSize="12sp" />
                 </RelativeLayout>
 
-                <include layout="@layout/gray_line"/>
+                <include layout="@layout/gray_line" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -703,20 +742,19 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
                         android:layout_centerVertical="true"
+                        android:layout_marginLeft="15dp"
                         android:text="密码"
-                        android:textSize="12sp"
                         android:textColor="@color/sly_text_666666"
-                        />
+                        android:textSize="12sp" />
 
                     <TextView
                         android:id="@+id/tv_machine_details_pwd3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="15dp"
-                        android:layout_centerVertical="true"
                         android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="15dp"
                         android:textColor="@color/sly_text_333333"
                         android:textSize="12sp" />
                 </RelativeLayout>

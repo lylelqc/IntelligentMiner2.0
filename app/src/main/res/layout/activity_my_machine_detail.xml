@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/main_title"/>
+   <android.support.v4.widget.NestedScrollView
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content">
+     <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:orientation="vertical">
+         <RelativeLayout
+             android:id="@+id/rl_item_rapare"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content">
+
+             <LinearLayout
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:orientation="vertical">
+                 <LinearLayout
+                     android:id="@+id/ll_top"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_marginLeft="15dp"
+                     android:layout_marginTop="25dp"
+                     android:orientation="horizontal">
+
+                     <TextView
+                         android:id="@+id/tv_4"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:text="设备编号："
+                         android:textColor="#333333"
+                         android:textSize="18sp" />
+
+                     <TextView
+                         android:id="@+id/tv_machine_code"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:gravity="start"
+                         android:layout_marginRight="35dp"
+                         android:text="2018201928"
+                         android:textColor="#333333"
+                         android:textSize="18sp" />
+                 </LinearLayout>
+                 <LinearLayout
+                     android:id="@+id/ll_machine_type"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_marginLeft="15dp"
+                     android:layout_marginTop="5dp"
+                     android:orientation="horizontal">
+
+                     <TextView
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:text="设备型号："
+                         android:textColor="#333333"
+                         android:textSize="14sp" />
+
+                     <TextView
+                         android:id="@+id/tv_machine_type"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:gravity="start"
+                         android:layout_marginRight="35dp"
+                         android:text="设备型号"
+                         android:textColor="#333333"
+                         android:textSize="14sp" />
+                 </LinearLayout>
+             </LinearLayout>
+
+         </RelativeLayout>
+
+         <LinearLayout
+             android:id="@+id/ll_L1"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_marginLeft="15dp"
+             android:layout_marginTop="25dp"
+             android:orientation="horizontal">
+
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_gravity="center"
+                 android:gravity="center_horizontal"
+                 android:text="矿场名称:"
+                 android:textColor="#acacac"
+                 android:textSize="14sp" />
+
+             <TextView
+                 android:id="@+id/tv_machine_name"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_gravity="center"
+                 android:layout_marginLeft="10dp"
+                 android:gravity="center_horizontal"
+                 android:text="矿场名称"
+                 android:textColor="#666666"
+                 android:textSize="14sp" />
+
+         </LinearLayout>
+         <LinearLayout
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_marginLeft="15dp"
+             android:layout_marginTop="10dp"
+             android:orientation="horizontal"
+             android:visibility="gone">
+
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_gravity="center"
+                 android:gravity="center_horizontal"
+                 android:text="设备能耗比:"
+                 android:textColor="#acacac"
+                 android:textSize="14sp" />
+
+             <TextView
+                 android:id="@+id/tv_machine_energy"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_gravity="center"
+                 android:layout_marginLeft="10dp"
+                 android:gravity="center_horizontal"
+                 android:text="设备能耗比:"
+                 android:textColor="#666666"
+                 android:textSize="14sp" />
+
+         </LinearLayout>
+         <LinearLayout
+             android:id="@+id/ll_L2"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_marginLeft="15dp"
+             android:layout_marginTop="10dp"
+             android:orientation="horizontal">
+
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_gravity="center"
+                 android:gravity="center_horizontal"
+                 android:text="运行时长:"
+                 android:textColor="#acacac"
+                 android:textSize="14sp" />
+
+             <TextView
+                 android:id="@+id/tv_run_hours"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_gravity="center"
+                 android:layout_marginLeft="10dp"
+                 android:gravity="center_horizontal"
+                 android:text="运行时长:"
+                 android:textColor="#666666"
+                 android:textSize="14sp" />
+
+         </LinearLayout>
+
+         <LinearLayout
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_marginLeft="15dp"
+             android:layout_marginTop="10dp"
+             android:orientation="horizontal">
+
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_gravity="center"
+                 android:gravity="center_horizontal"
+                 android:text="运行率:"
+                 android:textColor="#acacac"
+                 android:textSize="14sp" />
+
+             <TextView
+                 android:id="@+id/tv_run_rate"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_gravity="center"
+                 android:layout_marginLeft="10dp"
+                 android:gravity="center_horizontal"
+                 android:text="运行率:"
+                 android:textColor="#666666"
+                 android:textSize="14sp" />
+
+         </LinearLayout>
+
+         <LinearLayout
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_marginLeft="15dp"
+             android:layout_marginTop="10dp"
+             android:orientation="horizontal">
+
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_gravity="center"
+                 android:gravity="center_horizontal"
+                 android:text="运行状态:"
+                 android:textColor="#acacac"
+                 android:textSize="14sp" />
+
+             <TextView
+                 android:id="@+id/tv_run_status"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_gravity="center"
+                 android:layout_marginLeft="10dp"
+                 android:gravity="center_horizontal"
+                 android:text="运行状态:"
+                 android:textColor="#666666"
+                 android:textSize="14sp" />
+
+         </LinearLayout>
+
+         <LinearLayout
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_marginLeft="15dp"
+             android:layout_marginTop="10dp"
+             android:orientation="horizontal"
+             android:visibility="gone">
+
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_gravity="center"
+                 android:gravity="center_horizontal"
+                 android:text="服务费单价:"
+                 android:textColor="#acacac"
+                 android:textSize="14sp" />
+
+             <TextView
+                 android:id="@+id/tv_power_sum"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_gravity="center"
+                 android:layout_marginLeft="10dp"
+                 android:gravity="center_horizontal"
+                 android:text="服务费单价:"
+                 android:textColor="#666666"
+                 android:textSize="14sp" />
+
+         </LinearLayout>
+         <LinearLayout
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_marginLeft="15dp"
+             android:layout_marginTop="10dp"
+             android:orientation="horizontal">
+
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_gravity="center"
+                 android:gravity="center_horizontal"
+                 android:text="合计服务费:"
+                 android:textColor="#acacac"
+                 android:textSize="14sp" />
+
+             <TextView
+                 android:id="@+id/tv_power_sum_total"
+                 android:layout_width="wrap_content"
+                 android:layout_height="match_parent"
+                 android:layout_gravity="center"
+                 android:layout_marginLeft="10dp"
+                 android:gravity="center_horizontal"
+                 android:text="合计服务费:"
+                 android:textColor="#666666"
+                 android:textSize="14sp" />
+
+         </LinearLayout>
+         <LinearLayout
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_marginLeft="15dp"
+             android:layout_marginRight="15dp"
+             android:layout_marginTop="10dp"
+             android:orientation="horizontal"
+             android:visibility="gone">
+
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:gravity="center_horizontal"
+                 android:text="矿池:"
+                 android:textColor="#acacac"
+                 android:textSize="14sp" />
+
+             <TextView
+                 android:id="@+id/tv_pools"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_marginLeft="10dp"
+                 android:gravity="left"
+                 android:text="矿池:矿池:矿池:矿池:矿池:矿池:矿池:矿池:矿池:矿池:矿池:矿池:矿池:矿池:矿池:矿池:"
+                 android:textColor="#666666"
+                 android:textSize="14sp" />
+
+         </LinearLayout>
+
+         <TextView
+             android:id="@+id/tv_next"
+             style="@style/default_btn"
+             android:visibility="gone"
+             android:layout_gravity="center"
+             android:layout_marginTop="92dp"
+             android:background="@drawable/bg_taket_btn"
+             android:gravity="center_horizontal"
+             android:text="通知处理"
+             android:textColor="#ffffff"
+             android:clickable="true"
+             android:textSize="19sp" />
+         <TextView
+             android:id="@+id/tv_fee"
+             style="@style/default_btn"
+             android:visibility="gone"
+             android:layout_gravity="center"
+             android:layout_marginTop="92dp"
+             android:background="@drawable/bg_taket_btn"
+             android:gravity="center_horizontal"
+             android:text="确认付款"
+             android:textColor="#ffffff"
+             android:clickable="true"
+             android:textSize="19sp" />
+
+     </LinearLayout>
+   </android.support.v4.widget.NestedScrollView>
+
+
+</LinearLayout>

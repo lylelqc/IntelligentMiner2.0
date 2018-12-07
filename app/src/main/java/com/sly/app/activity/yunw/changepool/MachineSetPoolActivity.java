@@ -31,6 +31,7 @@ import com.sly.app.listener.OnRecyclerViewListener;
 import com.sly.app.model.PostResult;
 import com.sly.app.model.yunw.machine.MachineListBean;
 import com.sly.app.model.yunw.machine.MachineManageAreaBean;
+import com.sly.app.model.yunw.machine.MachineStatusBean;
 import com.sly.app.presenter.IRecyclerViewPresenter;
 import com.sly.app.presenter.impl.CommonRequestPresenterImpl;
 import com.sly.app.presenter.impl.RecyclerViewPresenterImpl;
@@ -40,7 +41,7 @@ import com.sly.app.utils.EncryptUtil;
 import com.sly.app.utils.NetUtils;
 import com.sly.app.utils.SharedPreferencesUtil;
 import com.sly.app.utils.ToastUtils;
-import com.sly.app.view.PopupView.SetPoolCheckPopView;
+import com.sly.app.view.PopupView.Yunw.SetPoolCheckPopView;
 import com.sly.app.view.iviews.ICommonViewUi;
 import com.sly.app.view.iviews.ILoadView;
 import com.sly.app.view.iviews.ILoadViewImpl;
@@ -58,7 +59,7 @@ import butterknife.OnClick;
 import vip.devkit.library.Logcat;
 
 public class MachineSetPoolActivity extends BaseActivity implements IRecyclerViewUi, SwipeRefreshLayout.OnRefreshListener,
-        LoadMoreClickListener, ICommonViewUi, SetPoolCheckPopView.OnSearchClickListener {
+        LoadMoreClickListener, ICommonViewUi, SetPoolCheckPopView.OnSearchClickListener, MachineSetPoolRecyclerViewAdapter.OnItemClickListener {
 
     @BindView(R.id.ll_comm_layout)
     LinearLayout llComLayout;
@@ -153,6 +154,7 @@ public class MachineSetPoolActivity extends BaseActivity implements IRecyclerVie
 
     private List<MachineManageAreaBean> areaList = new ArrayList<>();
     private SetPoolCheckPopView mSetPoolCheckPopView;
+    private List<MachineStatusBean> machineStatusList = new ArrayList<>();
 
     @Override
     protected int getContentViewLayoutID() {
@@ -195,7 +197,7 @@ public class MachineSetPoolActivity extends BaseActivity implements IRecyclerVie
         swipeRefreshLayout.setVisibility(View.GONE);
 
         intitNewsCount();
-
+        toRequest(NetConstant.EventTags.GET_YUNW_MACHINE_LIST_STATUS);
         toRequest(NetConstant.EventTags.GET_YUNW_MANAGE_AREA);
         firstRefresh();
     }
@@ -368,6 +370,9 @@ public class MachineSetPoolActivity extends BaseActivity implements IRecyclerVie
         if(eventTag == NetConstant.EventTags.GET_YUNW_MANAGE_AREA){
             //负责区域列表
             map.put("Rounter", NetConstant.GET_YUNW_MANAGE_AREA);
+        }else{
+            //运维负责的区域状态
+            map.put("Rounter", NetConstant.GET_YUNW_MACHINE_LIST_STATUS);
         }
         Map<String, String> mapJson = new HashMap<>();
         mapJson.putAll(map);
@@ -379,6 +384,10 @@ public class MachineSetPoolActivity extends BaseActivity implements IRecyclerVie
     public void getRequestData(int eventTag, String result) {
         if(eventTag == NetConstant.EventTags.GET_YUNW_MANAGE_AREA){
             areaList = (List<MachineManageAreaBean>) AppUtils.parseRowsResult(result, MachineManageAreaBean.class);
+        }
+        else{
+            machineStatusList =
+                    (List<MachineStatusBean>) AppUtils.parseRowsResult(result, MachineStatusBean.class);
         }
     }
 
@@ -450,6 +459,7 @@ public class MachineSetPoolActivity extends BaseActivity implements IRecyclerVie
         if (mResultList.size() >= NetWorkCons.Request.PAGE_NUMBER) {
             RecyclerViewUtils.setFooterView(recyclerView, loadMoreView);
         }
+        mIntermediary.setOnItemClickListener(this);
         LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
         layoutManager.setOrientation(OrientationHelper.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
@@ -542,6 +552,20 @@ public class MachineSetPoolActivity extends BaseActivity implements IRecyclerVie
     }
 
     @Override
+    public void onItemClick(View view, int position) {
+        if(((CheckBox)view).isChecked()){
+            if(!indexSet.contains(position)){
+                indexSet.add(position);
+            }
+        }else{
+            if(indexSet.contains(position)){
+                indexSet.remove(position);
+            }
+        }
+        tvSetPoolCount.setText(indexSet.size()+"");
+    }
+
+    @Override
     public void onSearchClick(View view, int position) {
         if (mSetPoolCheckPopView != null) {
             String[] info = mSetPoolCheckPopView.getTextInfo();
@@ -595,14 +619,13 @@ public class MachineSetPoolActivity extends BaseActivity implements IRecyclerVie
             tvOfflineAreaLow.setBackground(drawableLow);
         } else if (tag.equals("StatusCode")) {
             orderField = tag;
-            if (count == 1) {
+            setOrderBy(count);
+            if(count == 1 || count == 3){
                 tvOfflineStatusUp.setBackground(drawableUp1);
                 tvOfflineStatusLow.setBackground(drawableLow);
-                orderBy = "ASC";
-            } else if (count == 0) {
+            } else if (count == 0 || count == 2) {
                 tvOfflineStatusUp.setBackground(drawableUp);
                 tvOfflineStatusLow.setBackground(drawableLow1);
-                orderBy = "DESC";
             }
             tvOfflineIpUp.setBackground(drawableUp);
             tvOfflineIpLow.setBackground(drawableLow);
@@ -627,6 +650,39 @@ public class MachineSetPoolActivity extends BaseActivity implements IRecyclerVie
             tvOfflineTypeLow.setBackground(drawableLow);
             tvOfflineStatusUp.setBackground(drawableUp);
             tvOfflineStatusLow.setBackground(drawableLow);
+        }
+    }
+
+    private void setOrderBy(int count) {
+        if(machineStatusList.size() == 1){
+            orderBy = machineStatusList.get(0).getStatusCode();
+        }
+        else if(machineStatusList.size() == 2){
+            if(count == 1){
+                orderBy = machineStatusList.get(0).getStatusCode();
+            }else{
+                orderBy = machineStatusList.get(1).getStatusCode();
+            }
+        }
+        else if(machineStatusList.size() == 3){
+            if(count == 1){
+                orderBy = machineStatusList.get(0).getStatusCode();
+            }else if(count == 2){
+                orderBy = machineStatusList.get(1).getStatusCode();
+            }else{
+                orderBy = machineStatusList.get(2).getStatusCode();
+            }
+        }
+        else if(machineStatusList.size() == 4){
+            if(count == 1){
+                orderBy = machineStatusList.get(0).getStatusCode();
+            }else if(count == 2){
+                orderBy = machineStatusList.get(1).getStatusCode();
+            }else if(count == 3){
+                orderBy = machineStatusList.get(2).getStatusCode();
+            }else{
+                orderBy = machineStatusList.get(3).getStatusCode();
+            }
         }
     }
 

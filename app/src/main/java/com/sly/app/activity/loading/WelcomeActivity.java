@@ -8,7 +8,6 @@ import android.content.pm.PackageManager;
 
 import com.sly.app.R;
 import com.sly.app.activity.MainActivity;
-import com.sly.app.activity.mine.LoginActivity;
 import com.sly.app.base.BaseActivity;
 
 import java.util.Timer;
@@ -123,7 +122,7 @@ public class WelcomeActivity extends BaseActivity {
                 if (isFirst) {
                     startActivity(new Intent(mContext, LoadingActivity.class));
                 } else {
-                    startActivity(new Intent(mContext, LoginActivity.class));
+                    startActivity(new Intent(mContext, MainActivity.class));
                 }
                 finish();
             }

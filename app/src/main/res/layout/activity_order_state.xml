@@ -1,0 +1,81 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical">
+<include layout="@layout/main_title"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#f3f6f6" />
+
+    <com.sly.app.view.MainBottomBar
+        android:id="@+id/bottom_odetail_bar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:weightSum="5">
+
+        <TextView
+            android:id="@+id/btn_allorder"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawableBottom="@drawable/order_btn_select"
+            android:gravity="center"
+            android:text="全部"
+            android:textColor="@drawable/nav_bg_txt_color"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/btn_staypay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawableBottom="@drawable/order_btn_select"
+            android:gravity="center"
+            android:text="待付款"
+            android:textColor="@drawable/nav_bg_txt_color"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/btn_staydelivery"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawableBottom="@drawable/order_btn_select"
+            android:gravity="center"
+            android:text="已付款"
+            android:textColor="@drawable/nav_bg_txt_color"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/btn_stayreceive"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawableBottom="@drawable/order_btn_select"
+            android:gravity="center"
+            android:text="待收货"
+            android:textColor="@drawable/nav_bg_txt_color"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/btn_evaluation"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawableBottom="@drawable/order_btn_select"
+            android:gravity="center"
+            android:text="交易成功"
+            android:textColor="@drawable/nav_bg_txt_color"
+            android:textSize="16sp" />
+
+    </com.sly.app.view.MainBottomBar>
+
+    <FrameLayout
+        android:id="@+id/fl_details"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:drawableBottom="@drawable/order_line1"></FrameLayout>
+</LinearLayout>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/main_title" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"/>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="19dp">
+            <com.sly.app.view.FlowLayout.TagFlowLayout
+                android:id="@+id/fl_check_area_Name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </com.sly.app.view.FlowLayout.TagFlowLayout>
+        </ScrollView>
+
+</LinearLayout>

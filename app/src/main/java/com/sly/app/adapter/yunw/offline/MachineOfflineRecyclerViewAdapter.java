@@ -17,7 +17,7 @@ import java.util.Set;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MachineOfflineRecyclerViewAdapter extends RecyclerView.Adapter {
+public class MachineOfflineRecyclerViewAdapter extends RecyclerView.Adapter implements View.OnClickListener{
 
     private Context mContext;
     private List<MachineListBean> list;
@@ -57,21 +57,27 @@ public class MachineOfflineRecyclerViewAdapter extends RecyclerView.Adapter {
         viewHolder.tvMachineOfflineType.setText(bean.getModel());
         viewHolder.tvMachineOfflineArea.setText(bean.getAreaName());
 
+        viewHolder.cbChoseItem.setTag(position);
         viewHolder.cbChoseItem.setChecked(indexSet.contains(position));
-        viewHolder.cbChoseItem.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
-                if(isChecked){
-                    if(!indexSet.contains(position)){
-                        indexSet.add(position);
-                    }
-                }else{
-                    if(indexSet.contains(position)){
-                        indexSet.remove(position);
-                    }
-                }
-            }
-        });
+        viewHolder.cbChoseItem.setOnClickListener(this);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.mOnItemClickListener = listener;
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (mOnItemClickListener != null) {
+            mOnItemClickListener.onItemClick(v, (int) v.getTag());
+        }
+    }
+
+    private OnItemClickListener mOnItemClickListener = null;
+
+    //define interface
+    public static interface OnItemClickListener {
+        void onItemClick(View view, int position);
     }
 
     @Override

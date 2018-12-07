@@ -9,7 +9,7 @@
         android:background="@color/white"
         android:orientation="vertical">
 
-        <include layout="@layout/main_title2"/>
+        <include layout="@layout/head_title2"/>
 
         <RelativeLayout
             android:layout_width="match_parent"

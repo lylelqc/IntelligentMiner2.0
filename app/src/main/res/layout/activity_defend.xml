@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:background="#f2f2f2">
+
+    <include layout="@layout/main_title"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="47dp"
+        android:background="#fff"
+        android:clickable="true"
+        android:layout_marginTop="9dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="9dp"
+            android:layout_centerVertical="true"
+            android:text="安全"
+            android:textColor="#0aaadc"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:text="账户保护"
+            android:textColor="#282828"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="47dp"
+        android:background="#fff"
+        android:clickable="true"
+        android:layout_marginTop="9dp">
+
+        <TextView
+            android:id="@+id/tv_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="9dp"
+            android:layout_centerVertical="true"
+            android:text="1234567890"
+            android:textColor="#666666"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:text="当前登录账号"
+            android:textColor="#282828"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="47dp"
+        android:background="#fff"
+        android:clickable="true"
+        android:layout_marginTop="1dp">
+
+        <TextView
+            android:id="@+id/tv_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="9dp"
+            android:layout_centerVertical="true"
+            android:text="1234567890"
+            android:textColor="#666666"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:text="手机号"
+            android:textColor="#282828"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_binding"
+        android:layout_width="match_parent"
+        android:layout_height="47dp"
+        android:background="#fff"
+        android:clickable="true"
+        android:layout_marginTop="9dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="9dp"
+            android:layout_marginTop="17dp"
+            android:layout_marginBottom="17dp"
+            android:src="@drawable/category_first_arrow"
+            android:id="@+id/iv_relation"/>
+
+        <TextView
+            android:id="@+id/tv_dqc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:text="绑定美好地球村账号"
+            android:textColor="#282828"/>
+
+        <TextView
+            android:id="@+id/tv_dqc_account"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp" android:gravity="center"
+            android:text=""
+            android:visibility="visible"
+            android:textColor="#282828"
+            android:layout_toStartOf="@+id/iv_relation"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_password"
+        android:layout_width="match_parent"
+        android:layout_height="47dp"
+        android:background="#fff"
+        android:clickable="true"
+        android:layout_marginTop="1dp"
+        >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="9dp"
+            android:layout_marginTop="17dp"
+            android:layout_marginBottom="17dp"
+            android:src="@drawable/category_first_arrow"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:text="设置密码"
+            android:textColor="#282828"/>
+    </RelativeLayout>
+</LinearLayout>

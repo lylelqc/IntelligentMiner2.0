@@ -172,7 +172,7 @@ public class StringHelper {
             return new String[]{"0.","0"};
         }
 
-        String[] array = new String[2];
+        String[] array = new String[2];;
         if(str.split("\\.").length>1){
             array[0] = str.split("\\.")[0]+".";
             array[1] = str.split("\\.")[1];

@@ -191,14 +191,14 @@ RepairBillDetailsActivity extends BaseActivity implements ICommonViewUi {
             map.put("Rounter", NetConstant.GET_YUNW_REPAIR_START_MACHINE);
             map.put("personSysCode", PersonSysCode);
             map.put("mineCode", MineCode);
-            map.put("machineSysCode", machineSysCode);
-            map.put("reason", reason);
+            map.put("machineSysCode", machineSysCode + ",");
+            map.put("reason", getString(R.string.machine_start));
         }else if(eventTag == NetConstant.EventTags.GET_YUNW_REPAIR_STOP_MACHINE){
             //设备停机
             map.put("Rounter", NetConstant.GET_YUNW_REPAIR_STOP_MACHINE);
             map.put("personSysCode", PersonSysCode);
             map.put("mineCode", MineCode);
-            map.put("machineSysCode", machineSysCode);
+            map.put("machineSysCode", machineSysCode + ",");
             map.put("reason", reason);
         }else{
             //维修单详情
@@ -250,7 +250,7 @@ RepairBillDetailsActivity extends BaseActivity implements ICommonViewUi {
         RepairBillDetailsBean bean = mResultList.get(0);
 
         machineSysCode = bean.getMachineSysCode();
-        reason = bean.getRepairInfo();
+//        reason = bean.getRepairInfo();
         String BillStatus = bean.getResultCode();
         if("00".equals(BillStatus)
                 || "02".equals(BillStatus) || "03".equals(BillStatus)){
@@ -358,7 +358,7 @@ RepairBillDetailsActivity extends BaseActivity implements ICommonViewUi {
                 showCustomDialog(this, R.layout.dialog_general_style, 2, getString(R.string.request_start_machine), 1);
                 break;
             case R.id.tv_repair_details_stop_machine:
-                showCustomDialog(this, R.layout.dialog_general_style, 2, getString(R.string.request_stop_machine), 2);
+                showCustomDialog(this, R.layout.dialog_stop_machine, 2, getString(R.string.request_stop_machine), 2);
                 break;
             case R.id.ll_repair_history:
                 Bundle bundle = new Bundle();
@@ -394,9 +394,14 @@ RepairBillDetailsActivity extends BaseActivity implements ICommonViewUi {
         dialog.getWindow().setAttributes(lp);
         dialog.setCancelable(false);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        // 获取控件
+        TextView title = dialog.findViewById(R.id.tv_dialog_title);
         if(layout == R.layout.dialog_general_style){
             TextView tvDetails = dialog.findViewById(R.id.tv_dialog_content);
             tvDetails.setText(content);
+        }else{
+            title.setText(content);
         }
         final EditText etDescriptions = dialog.findViewById(R.id.et_dialog_content);
 
@@ -423,6 +428,7 @@ RepairBillDetailsActivity extends BaseActivity implements ICommonViewUi {
                     if(tag == 1){
                         toRequest(NetConstant.EventTags.GET_YUNW_REPAIR_START_MACHINE);
                     }else if(tag == 2){
+                        reason = etDescriptions.getText().toString().trim();
                         toRequest(NetConstant.EventTags.GET_YUNW_REPAIR_STOP_MACHINE);
                     }else if(tag == 3){
                         remark = etDescriptions.getText().toString().trim();

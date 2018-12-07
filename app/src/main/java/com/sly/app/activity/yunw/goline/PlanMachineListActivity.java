@@ -2,14 +2,10 @@ package com.sly.app.activity.yunw.goline;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.ColorFilter;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
@@ -43,8 +39,7 @@ import com.sly.app.utils.AppUtils;
 import com.sly.app.utils.EncryptUtil;
 import com.sly.app.utils.SharedPreferencesUtil;
 import com.sly.app.utils.ToastUtils;
-import com.sly.app.view.PopupView.ManageAreaCheckPopView;
-import com.sly.app.view.PopupView.PlanAreaCheckPopView;
+import com.sly.app.view.PopupView.Yunw.PlanAreaCheckPopView;
 import com.sly.app.view.iviews.ICommonViewUi;
 
 import java.util.ArrayList;
@@ -244,12 +239,18 @@ public class PlanMachineListActivity extends BaseActivity implements ICommonView
             List<UserNameBean> list =
                     (List<UserNameBean>) AppUtils.parseRowsResult(result, UserNameBean.class);
             if(vipName != null && list != null && list.size() > 0){
-                vipName.setText(list.get(0).getName());
+                if("True".equals(list.get(0).getIsAuthentication())){
+                    vipName.setText(list.get(0).getName());
+                }
+                else{
+                    ToastUtils.showToast(list.get(0).getName());
+                }
             }
         }else if(eventTag == NetConstant.EventTags.BIND_VIP_CODE){
             ReturnBean returnBean = JSON.parseObject(result, ReturnBean.class);
             if (returnBean.getStatus().equals("1") ) {
                 ToastUtils.showToast(getString(R.string.bind_vip_success));
+                toRequest(NetConstant.EventTags.GET_PLAN_MACHINE_LIST);
             }else{
                 ToastUtils.showToast(returnBean.getMsg());
             }

@@ -1,7 +1,5 @@
 package com.sly.app.activity.yunw.machine;
 
-import android.content.Context;
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,34 +13,26 @@ import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.alibaba.fastjson.JSON;
 import com.liucanwen.app.headerfooterrecyclerview.HeaderAndFooterRecyclerViewAdapter;
 import com.liucanwen.app.headerfooterrecyclerview.RecyclerViewUtils;
 import com.sly.app.R;
 import com.sly.app.activity.BaseActivity;
-import com.sly.app.activity.MainActivity;
-import com.sly.app.activity.mine.LoginActivity;
 import com.sly.app.activity.sly.mine.notice.Sly2NoticeActivity;
-import com.sly.app.activity.yunw.repair.RepairBillActivity;
 import com.sly.app.adapter.yunw.machine.MachineListRecyclerViewAdapter;
-import com.sly.app.adapter.yunw.repair.RepairBillRecycleViewAdapter;
 import com.sly.app.base.Contants;
 import com.sly.app.comm.EventBusTags;
 import com.sly.app.comm.NetConstant;
-import com.sly.app.fragment.yunw.repair_bill.TreatedFragment;
 import com.sly.app.http.NetWorkCons;
 import com.sly.app.http.type1.HttpClient;
 import com.sly.app.http.type1.HttpResponseHandler;
 import com.sly.app.listener.LoadMoreClickListener;
 import com.sly.app.listener.OnRecyclerViewListener;
 import com.sly.app.model.PostResult;
-import com.sly.app.model.ReturnBean;
-import com.sly.app.model.sly.KgFullInfoBean;
-import com.sly.app.model.sly.MinerMasterInfoBean;
 import com.sly.app.model.yunw.machine.MachineListBean;
+import com.sly.app.model.yunw.machine.MachineStatusBean;
 import com.sly.app.model.yunw.machine.MachineTypeBean;
-import com.sly.app.model.yunw.repair.RepairBillBean;
 import com.sly.app.presenter.IRecyclerViewPresenter;
+import com.sly.app.presenter.impl.CommonRequestPresenterImpl;
 import com.sly.app.presenter.impl.RecyclerViewPresenterImpl;
 import com.sly.app.utils.ApiSIgnUtil;
 import com.sly.app.utils.AppUtils;
@@ -53,8 +43,8 @@ import com.sly.app.utils.NetUtils;
 import com.sly.app.utils.SharedPreferencesUtil;
 import com.sly.app.utils.ToastUtils;
 import com.sly.app.utils.http.HttpStatusUtil;
-import com.sly.app.view.PopupView.MachineCheckPopView;
-import com.sly.app.view.PopupView.RepairCheckPopView;
+import com.sly.app.view.PopupView.Yunw.MachineCheckPopView;
+import com.sly.app.view.iviews.ICommonViewUi;
 import com.sly.app.view.iviews.ILoadView;
 import com.sly.app.view.iviews.ILoadViewImpl;
 import com.sly.app.view.iviews.IRecyclerViewUi;
@@ -67,11 +57,10 @@ import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import de.greenrobot.event.EventBus;
 import okhttp3.Request;
 import vip.devkit.library.Logcat;
 
-public class MachineListActivity extends BaseActivity implements IRecyclerViewUi, SwipeRefreshLayout.OnRefreshListener,
+public class MachineListActivity extends BaseActivity implements ICommonViewUi, IRecyclerViewUi, SwipeRefreshLayout.OnRefreshListener,
         LoadMoreClickListener, MachineCheckPopView.OnSearchClickListener{
 
     @BindView(R.id.ll_comm_layout)
@@ -152,12 +141,14 @@ public class MachineListActivity extends BaseActivity implements IRecyclerViewUi
     private View loadMoreView = null;
 
     IRecyclerViewPresenter iRecyclerViewPresenter;
+    private CommonRequestPresenterImpl iCommonRequestPresenter;
     private List<MachineListBean> mResultList = new ArrayList<>();
 
     private boolean isAreaTransfer = false;
     private boolean isStatusTransfer = false;
     private MachineCheckPopView mMachineCheckView;
     private List<MachineTypeBean> machineTypeList = new ArrayList<>();
+    private List<MachineStatusBean> machineStatusList = new ArrayList<>();
 
     @Override
     protected int getContentViewLayoutID() {
@@ -203,6 +194,7 @@ public class MachineListActivity extends BaseActivity implements IRecyclerViewUi
 
         tvMainTitle.setText(getString(R.string.machine_list));
         tvMainRightLeft.setText(getString(R.string.repair_check));
+        iCommonRequestPresenter = new CommonRequestPresenterImpl(mContext, this);
         iRecyclerViewPresenter = new RecyclerViewPresenterImpl(mContext, this);
         iLoadView = new ILoadViewImpl(mContext, this);
         loadMoreView = iLoadView.inflate();
@@ -220,7 +212,8 @@ public class MachineListActivity extends BaseActivity implements IRecyclerViewUi
         swipeRefreshLayout.setVisibility(View.GONE);
 
         intitNewsCount();
-        toRequestMachineType();
+        toRequest(NetConstant.EventTags.GET_YUNW_MACHINE_LIST_STATUS);
+        toRequest(NetConstant.EventTags.GET_MACHINE_TYPE);
         firstRefresh();
     }
 
@@ -494,7 +487,7 @@ public class MachineListActivity extends BaseActivity implements IRecyclerViewUi
                 break;
             case R.id.ll_machine_list_status_icon:
                 mStatusCount ++;
-                setListHeaderIcon("StatusCode", mStatusCount % 2);
+                setListHeaderIcon("StatusCode", mStatusCount % machineStatusList.size());
                 firstRefresh();
                 break;
             case R.id.ll_machine_list_suanli_icon:
@@ -559,14 +552,13 @@ public class MachineListActivity extends BaseActivity implements IRecyclerViewUi
             tvListAreaLow.setBackground(drawableLow);
         }else if(tag.equals("StatusCode")){
             orderField = tag;
-            if(count == 1){
+            setOrderBy(count);
+            if(count == 1 || count == 3){
                 tvListStatusUp.setBackground(drawableUp1);
                 tvListStatusLow.setBackground(drawableLow);
-                orderBy = "ASC";
-            }else if(count == 0){
+            }else if(count == 0 || count == 2) {
                 tvListStatusUp.setBackground(drawableUp);
                 tvListStatusLow.setBackground(drawableLow1);
-                orderBy = "DESC";
             }
             tvListIpUp.setBackground(drawableUp);
             tvListIpLow.setBackground(drawableLow);
@@ -608,6 +600,71 @@ public class MachineListActivity extends BaseActivity implements IRecyclerViewUi
             tvListStatusLow.setBackground(drawableLow);
             tvListSuanliUp.setBackground(drawableUp);
             tvListSuanliLow.setBackground(drawableLow);
+        }
+    }
+
+    private void setOrderBy(int count) {
+        if(machineStatusList.size() == 1){
+            orderBy = machineStatusList.get(0).getStatusCode();
+        }
+        else if(machineStatusList.size() == 2){
+            if(count == 1){
+                orderBy = machineStatusList.get(0).getStatusCode();
+            }else{
+                orderBy = machineStatusList.get(1).getStatusCode();
+            }
+        }
+        else if(machineStatusList.size() == 3){
+            if(count == 1){
+                orderBy = machineStatusList.get(0).getStatusCode();
+            }else if(count == 2){
+                orderBy = machineStatusList.get(1).getStatusCode();
+            }else{
+                orderBy = machineStatusList.get(2).getStatusCode();
+            }
+        }
+        else if(machineStatusList.size() == 4){
+            if(count == 1){
+                orderBy = machineStatusList.get(0).getStatusCode();
+            }else if(count == 2){
+                orderBy = machineStatusList.get(1).getStatusCode();
+            }else if(count == 3){
+                orderBy = machineStatusList.get(2).getStatusCode();
+            }else{
+                orderBy = machineStatusList.get(3).getStatusCode();
+            }
+        }
+    }
+
+    @Override
+    public void toRequest(int eventTag) {
+        Map map = new HashMap();
+
+        map.put("Token", Token);
+        map.put("LoginType", LoginType);
+        map.put("User", User);
+        map.put("personSysCode", PersonSysCode);
+
+        if(eventTag == NetConstant.EventTags.GET_MACHINE_TYPE){
+            map.put("Rounter", NetConstant.GET_MACHINE_TYPE);
+        }else {
+            map.put("Rounter", NetConstant.GET_YUNW_MACHINE_LIST_STATUS);
+        }
+
+        Map<String, String> jsonMap = new HashMap<>();
+        jsonMap.putAll(map);
+        jsonMap.put("Sign", EncryptUtil.MD5(ApiSIgnUtil.init(this).getSign(map, Key)));
+        iCommonRequestPresenter.request(eventTag, mContext, NetWorkCons.BASE_URL, jsonMap);
+    }
+
+    @Override
+    public void getRequestData(int eventTag, String result) {
+        if(eventTag == NetConstant.EventTags.GET_MACHINE_TYPE){
+            machineTypeList =
+                    (List<MachineTypeBean>) AppUtils.parseRowsResult(result, MachineTypeBean.class);
+        }else {
+            machineStatusList =
+                    (List<MachineStatusBean>) AppUtils.parseRowsResult(result, MachineStatusBean.class);
         }
     }
 

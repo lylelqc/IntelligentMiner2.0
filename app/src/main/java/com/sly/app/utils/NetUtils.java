@@ -12,7 +12,7 @@ import java.util.Locale;
  */
 public class NetUtils {
 
-	public enum NetType {
+	public static enum NetType {
 		WIFI, CMNET, CMWAP, NONE
 	}
 

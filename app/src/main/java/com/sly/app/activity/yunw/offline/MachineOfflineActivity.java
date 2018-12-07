@@ -38,6 +38,7 @@ import com.sly.app.model.PostResult;
 import com.sly.app.model.sly.ReturnBean;
 import com.sly.app.model.yunw.machine.MachineListBean;
 import com.sly.app.model.yunw.machine.MachineManageAreaBean;
+import com.sly.app.model.yunw.machine.MachineStatusBean;
 import com.sly.app.model.yunw.machine.MachineTypeBean;
 import com.sly.app.presenter.IRecyclerViewPresenter;
 import com.sly.app.presenter.impl.CommonRequestPresenterImpl;
@@ -48,8 +49,7 @@ import com.sly.app.utils.EncryptUtil;
 import com.sly.app.utils.NetUtils;
 import com.sly.app.utils.SharedPreferencesUtil;
 import com.sly.app.utils.ToastUtils;
-import com.sly.app.view.PopupView.MachineCheckPopView;
-import com.sly.app.view.PopupView.OfflineCheckPopView;
+import com.sly.app.view.PopupView.Yunw.OfflineCheckPopView;
 import com.sly.app.view.iviews.ICommonViewUi;
 import com.sly.app.view.iviews.ILoadView;
 import com.sly.app.view.iviews.ILoadViewImpl;
@@ -67,7 +67,8 @@ import butterknife.OnClick;
 import vip.devkit.library.Logcat;
 
 public class MachineOfflineActivity extends BaseActivity implements IRecyclerViewUi, SwipeRefreshLayout.OnRefreshListener,
-        LoadMoreClickListener, ICommonViewUi, OfflineCheckPopView.OnSearchClickListener {
+        LoadMoreClickListener, ICommonViewUi, OfflineCheckPopView.OnSearchClickListener,
+        MachineOfflineRecyclerViewAdapter.OnItemClickListener {
 
     @BindView(R.id.ll_comm_layout)
     LinearLayout llComLayout;
@@ -162,6 +163,7 @@ public class MachineOfflineActivity extends BaseActivity implements IRecyclerVie
 
     private List<MachineManageAreaBean> areaList = new ArrayList<>();
     private List<MachineTypeBean> machineTypeList = new ArrayList<>();
+    private List<MachineStatusBean> machineStatusList = new ArrayList<>();
 
     private OfflineCheckPopView mOfflineCheckPopView;
 
@@ -206,6 +208,7 @@ public class MachineOfflineActivity extends BaseActivity implements IRecyclerVie
         swipeRefreshLayout.setVisibility(View.GONE);
 
         intitNewsCount();
+        toRequest(NetConstant.EventTags.GET_YUNW_MACHINE_LIST_STATUS);
         toRequest(NetConstant.EventTags.GET_YUNW_MANAGE_AREA);
         toRequest(NetConstant.EventTags.GET_MACHINE_TYPE);
         firstRefresh();
@@ -397,19 +400,25 @@ public class MachineOfflineActivity extends BaseActivity implements IRecyclerVie
         else if(eventTag == NetConstant.EventTags.GET_MACHINE_TYPE){
             //设备型号
             map.put("Rounter", NetConstant.GET_MACHINE_TYPE);
+        }else{
+            //运维负责的区域状态
+            map.put("Rounter", NetConstant.GET_YUNW_MACHINE_LIST_STATUS);
         }
         Map<String, String> mapJson = new HashMap<>();
         mapJson.putAll(map);
         mapJson.put("Sign", EncryptUtil.MD5(ApiSIgnUtil.init(this).getSign(map, Key)));
         iCommonRequestPresenter.request(eventTag, mContext, NetWorkCons.BASE_URL, mapJson);
+        Logcat.e("提交参数 - " + mapJson);
     }
 
     @Override
     public void getRequestData(int eventTag, String result) {
+        Logcat.e("返回参数 - " + result);
         ReturnBean returnBean = JSON.parseObject(result, ReturnBean.class);
         if (eventTag == NetConstant.EventTags.GET_YUNW_REPAIR_STOP_MACHINE) {
             if (returnBean.getStatus().equals("1") && returnBean.getMsg().equals("成功")) {
                 ToastUtils.showToast(getString(R.string.comfirm_success));
+                indexSet.clear();
                 firstRefresh();
             } else {
                 ToastUtils.showToast(returnBean.getMsg());
@@ -420,6 +429,10 @@ public class MachineOfflineActivity extends BaseActivity implements IRecyclerVie
         }
         else if(eventTag == NetConstant.EventTags.GET_MACHINE_TYPE){
             machineTypeList = (List<MachineTypeBean>) AppUtils.parseRowsResult(result, MachineTypeBean.class);
+        }
+        else{
+            machineStatusList =
+                    (List<MachineStatusBean>) AppUtils.parseRowsResult(result, MachineStatusBean.class);
         }
     }
 
@@ -491,6 +504,7 @@ public class MachineOfflineActivity extends BaseActivity implements IRecyclerVie
         if (mResultList.size() >= NetWorkCons.Request.PAGE_NUMBER) {
             RecyclerViewUtils.setFooterView(recyclerView, loadMoreView);
         }
+        mIntermediary.setOnItemClickListener(this);
         LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
         layoutManager.setOrientation(OrientationHelper.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
@@ -559,18 +573,25 @@ public class MachineOfflineActivity extends BaseActivity implements IRecyclerVie
     }
 
     private String getAllMachineSysCode() {
-        int count = 0;
         StringBuilder builder = new StringBuilder();
         for (Integer in : indexSet) {
-            count++;
-            if (count > 1) {
-                builder.append("," + mResultList.get(in).getMachineSysCode());
-            } else {
-                builder.append(mResultList.get(in).getMachineSysCode());
-            }
-
+            builder.append(mResultList.get(in).getMachineSysCode() + ",");
         }
         return builder.toString();
+    }
+
+    @Override
+    public void onItemClick(View view, int position) {
+        if(((CheckBox)view).isChecked()){
+            if(!indexSet.contains(position)){
+                indexSet.add(position);
+            }
+        }else{
+            if(indexSet.contains(position)){
+                indexSet.remove(position);
+            }
+        }
+        tvOfflineCount.setText("("+ indexSet.size() + ")");
     }
 
     // 全选按钮操作
@@ -644,14 +665,13 @@ public class MachineOfflineActivity extends BaseActivity implements IRecyclerVie
             tvOfflineAreaLow.setBackground(drawableLow);
         } else if (tag.equals("StatusCode")) {
             orderField = tag;
-            if (count == 1) {
+            setOrderBy(count);
+            if(count == 1 || count == 3){
                 tvOfflineStatusUp.setBackground(drawableUp1);
                 tvOfflineStatusLow.setBackground(drawableLow);
-                orderBy = "ASC";
-            } else if (count == 0) {
+            } else if (count == 0 || count == 2) {
                 tvOfflineStatusUp.setBackground(drawableUp);
                 tvOfflineStatusLow.setBackground(drawableLow1);
-                orderBy = "DESC";
             }
             tvOfflineIpUp.setBackground(drawableUp);
             tvOfflineIpLow.setBackground(drawableLow);
@@ -676,6 +696,39 @@ public class MachineOfflineActivity extends BaseActivity implements IRecyclerVie
             tvOfflineTypeLow.setBackground(drawableLow);
             tvOfflineStatusUp.setBackground(drawableUp);
             tvOfflineStatusLow.setBackground(drawableLow);
+        }
+    }
+
+    private void setOrderBy(int count) {
+        if(machineStatusList.size() == 1){
+            orderBy = machineStatusList.get(0).getStatusCode();
+        }
+        else if(machineStatusList.size() == 2){
+            if(count == 1){
+                orderBy = machineStatusList.get(0).getStatusCode();
+            }else{
+                orderBy = machineStatusList.get(1).getStatusCode();
+            }
+        }
+        else if(machineStatusList.size() == 3){
+            if(count == 1){
+                orderBy = machineStatusList.get(0).getStatusCode();
+            }else if(count == 2){
+                orderBy = machineStatusList.get(1).getStatusCode();
+            }else{
+                orderBy = machineStatusList.get(2).getStatusCode();
+            }
+        }
+        else if(machineStatusList.size() == 4){
+            if(count == 1){
+                orderBy = machineStatusList.get(0).getStatusCode();
+            }else if(count == 2){
+                orderBy = machineStatusList.get(1).getStatusCode();
+            }else if(count == 3){
+                orderBy = machineStatusList.get(2).getStatusCode();
+            }else{
+                orderBy = machineStatusList.get(3).getStatusCode();
+            }
         }
     }
 

@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="#2F3F61">
+        android:background="@color/sly_navigation_bar">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -28,7 +28,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="18sp"
-                    android:textColor="#cdcdcd"
+                    android:textColor="@color/white"
                     android:layout_alignParentLeft="true"
                     android:text="我的"/>
 
@@ -63,7 +63,7 @@
                         android:paddingLeft="14dp"
                         android:paddingRight="14dp"
                         android:paddingTop="20dp"
-                        android:textColor="#cdcdcd"
+                        android:textColor="@color/white"
                         android:text="消息"/>
 
                     <TextView
@@ -84,7 +84,7 @@
                 <View
                     android:layout_width="1dp"
                     android:layout_height="14dp"
-                    android:background="#cdcdcd"/>
+                    android:background="@color/white"/>
                 <TextView
                     android:id="@+id/shezhi"
                     android:layout_width="wrap_content"
@@ -93,7 +93,7 @@
                     android:paddingLeft="14dp"
                     android:paddingRight="14dp"
                     android:paddingTop="20dp"
-                    android:textColor="#cdcdcd"
+                    android:textColor="@color/white"
                     android:text="设置"/>
 
             </LinearLayout>
@@ -106,7 +106,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
             android:visibility="visible"
-            android:background="#2F3F61">
+            android:background="@color/sly_navigation_bar">
 
             <ImageView
                 android:id="@+id/iv_head_icon"
@@ -137,7 +137,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="立即登录"
-                        android:textColor="#e4c27b"
+                        android:textColor="@color/white"
                         android:textSize="18sp"/>
 
                     <TextView
@@ -146,7 +146,7 @@
                         android:layout_height="wrap_content"
                         android:text="登陆后可享受更多特权"
                         android:layout_marginTop="10dp"
-                        android:textColor="#cdcdcd"
+                        android:textColor="@color/white"
                         android:textSize="12sp"/>
                 </LinearLayout>
 
@@ -409,6 +409,7 @@
                     android:src="@drawable/category_first_arrow"/>
 
                 <TextView
+                    android:id="@+id/tv_shebeiManager"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_alignParentRight="true"
@@ -449,6 +450,7 @@
                     android:src="@drawable/category_first_arrow"/>
 
                 <TextView
+                    android:id="@+id/tv_online"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_alignParentRight="true"
@@ -489,6 +491,7 @@
                     android:src="@drawable/category_first_arrow"/>
 
                 <TextView
+                    android:id="@+id/tv_offline"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_alignParentRight="true"
@@ -529,6 +532,7 @@
                     android:src="@drawable/category_first_arrow"/>
 
                 <TextView
+                    android:id="@+id/tv_monitor"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_alignParentRight="true"
@@ -569,6 +573,7 @@
                     android:src="@drawable/category_first_arrow"/>
 
                 <TextView
+                    android:id="@+id/tv_weixiudanManager"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_alignParentRight="true"

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include layout="@layout/main_title"/>
+    <include layout="@layout/head_title"/>
 
     <android.support.design.widget.TabLayout
         android:id="@+id/heath_tab"

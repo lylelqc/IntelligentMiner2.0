@@ -5,23 +5,64 @@
     <color name="colorAccent">#3b7ce6</color>
 
     <!--布局颜色-->
+    <color name="transparent">#50000000</color>
     <color name="sc_transparent_background">#00111111</color>
+    <color name="background_color">#fff8f8f8</color>
     <color name="bot_text_color_selected">#FEFFFF</color>
     <!-- 主背景色值 -->
-    <color name="theme">#3d78da</color>
+    <color name="theme">#2F3F61</color>
+
+    <!-- 字体颜色值 -->
+    <color name="text_color_white">#ffffff</color>
+    <color name="text_red">#f22a2a</color>
+
+
+    <!-- 设计规范颜色值 end-->
+    <color name="divider">#ffd2d2d2</color>
+    <!-- 黑白色值 -->
+    <color name="orange">#FFA500</color>
+
     <!-- 灰色 -->
     <color name="grey_color1">#333333</color>
+
+    <!-- 亮蓝灰 -->
+
+    <!-- 帮助中心-常见问题 -->
+    <color name="result_view">#b0000000</color>
+    <color name="viewfinder_mask">#60000000</color>
+    <color name="possible_result_points">#c0ffff00</color>
+    <!-- 右边菜单点击颜色 -->
+    <color name="bot_text_color_norm">#1e1e21</color>
+    <!-- 银色 -->
+
+    <color name="jfdh_buy">#0aaadc</color>
+
+    <!--算力云主要色-->
+    <color name="app_text_blue">#3d78da</color>
+    <color name="app_text_blue2">#1d8fe1</color>
+    <color name="app_text_9c9c9c">#9c9c9c</color>
+    <color name="bg_barchart">#f4f4f4</color>
+    <!--重点色-->
+    <color name="app_btn_blue">#1d8fe1</color>
+    <color name="app_btn_bgb6b6b6">#b6b6b6</color>
+    <color name="sly_line_gray">#e5e5e5</color>
+    <color name="theme_color">#f2f2f2</color>
+
+    <color name="sly_text_e7e7e7">#e7e7e7</color>
+    <color name="text_color_normal">#333333</color>
+    <color name="bar_chart_color">#78a5f6</color>
+
+    <color name="d_f4">#f4f4f4</color>
+    <color name="d_f2">#f2f2f2</color>
+    <color name="multiple_image_select_primaryDark">#2F3F61</color>
+
+    <color name="btn_commit_plan">#5769bb</color>
 
     <!--算力云主要色-->
     <color name="sly_text_blue">#3d78da</color>
     <color name="sly_text_blue2">#1d8fe1</color>
 
     <color name="sly_btn_bgb6b6b6">#b6b6b6</color>
-    <color name="sly_line_gray">#e5e5e5</color>
-
-    <color name="text_color_normal">#333333</color>
-
-    <color name="multiple_image_select_primaryDark">#2F3F61</color>
 
     <!--version 2.0-->
     <!--导航栏颜色-->
@@ -71,6 +112,8 @@
     <color name="sly_text_1890ff">#1890ff</color>
     <color name="sly_text_4798f0">#4798f0</color>
     <color name="sly_text_aaaaaa">#aaaaaa</color>
+    <color name="sly_text_4085ea">#4085ea</color>
+    <color name="sly_text_d6e7ff">#d6e7ff</color>
 
 
     <color name="sly_gradient_4ca8f5">#4ca8f5</color>

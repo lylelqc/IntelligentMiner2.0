@@ -18,10 +18,11 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.sly.app.Helper.ActivityHelper;
 import com.sly.app.R;
 import com.sly.app.activity.MainActivity;
-import com.sly.app.activity.mine.LoginActivity;
+import com.sly.app.activity.mine.AboutActivity;
+import com.sly.app.activity.mine.CustomerServiceActivity;
+import com.sly.app.activity.mine.ForgetStep1Activity;
 import com.sly.app.base.BaseActivity;
 import com.sly.app.utils.SharedPreferencesUtil;
 
@@ -160,10 +161,8 @@ public class SlySettingActivity extends BaseActivity {
 //                SharedPreferencesUtil.putString(SlySettingActivity.this, "User", null);
                 SharedPreferencesUtil.putString(mContext,"mineType","None");
                 SharedPreferencesUtil.putString(mContext,"RegistrationID", "None");
-                startActivityWithoutExtras(LoginActivity.class);
-
+                startActivityWithoutExtras(MainActivity.class);
                 finish();
-                ActivityHelper.getInstance().popMoreActivity(1);
             }
         });
     }
@@ -199,24 +198,24 @@ public class SlySettingActivity extends BaseActivity {
                 backLogin();
                 break;
             case R.id.rl_user_info:
-//                intent.setClass(this, UserInfoEditActivity.class);
-//                startActivity(intent);
+                intent.setClass(this, UserInfoEditActivity.class);
+                startActivity(intent);
                 break;
             case R.id.rl_update_login_pwd:
-//                intent.setClass(this, ForgetStep1Activity.class);
-//                startActivity(intent);
+                intent.setClass(this, ForgetStep1Activity.class);
+                startActivity(intent);
                 break;
             case R.id.rl_set_pay_pw:
-//                intent.setClass(this, SetPayPwdActivity.class);
-//                startActivity(intent);
+                intent.setClass(this, SetPayPwdActivity.class);
+                startActivity(intent);
                 break;
             case R.id.rl_about_us:
-//                intent.setClass(this, AboutActivity.class);
-//                startActivity(intent);
+                intent.setClass(this, AboutActivity.class);
+                startActivity(intent);
                 break;
             case R.id.rl_kefu:
-//                intent.setClass(this, CustomerServiceActivity.class);
-//                startActivity(intent);
+                intent.setClass(this, CustomerServiceActivity.class);
+                startActivity(intent);
                 break;
 
         }

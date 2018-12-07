@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/nsv_view"
+        android:layout_width="match_parent"
+        android:background="#ffffff"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp">
+
+                <vip.devkit.view.common.banner.BannerV
+                    android:id="@+id/bv_micro"
+                    android:layout_width="match_parent"
+                    app:banner_image_scale_type="fit_xy"
+                    android:layout_height="200dp">
+                </vip.devkit.view.common.banner.BannerV>
+            </RelativeLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#f2f2f2"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:weightSum="3"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_height="33dp">
+
+                <TextView
+                    android:id="@+id/dtv_group"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:paddingLeft="10dp"
+                    android:drawablePadding="7dp"
+                    android:gravity="left|center_vertical"
+                    android:text="微店保障"
+                    android:textColor="#333333"
+                    android:textSize="12sp"
+                    android:drawableLeft="@drawable/mall_wmall_msg_tick"
+                    />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:paddingLeft="10dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:drawablePadding="7dp"
+                    android:gravity="left|center_vertical"
+                    android:text="闪电发货"
+                    android:textColor="#333333"
+                    android:textSize="12sp"
+                    android:drawableLeft="@drawable/mall_wmall_msg_tick"
+                    />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:paddingLeft="10dp"
+                    android:layout_weight="1"
+                    android:drawablePadding="7dp"
+                    android:gravity="left|center_vertical"
+                    android:text="优选好货"
+                    android:textColor="#333333"
+                    android:textSize="12sp"
+                    android:drawableLeft="@drawable/mall_wmall_msg_tick"
+                    />
+
+            </LinearLayout>
+
+            <include layout="@layout/layout_mall_lb"/>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="#f2f2f2"/>
+
+
+            <com.sly.app.view.ListViewForScrollView
+                android:id="@+id/lv_microMall"
+                android:layout_width="match_parent"
+                android:dividerHeight="0dp"
+                android:divider="@null"
+                android:layout_height="wrap_content"></com.sly.app.view.ListViewForScrollView>
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+
+    <LinearLayout
+        android:id="@+id/ll_layout_bar"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+
+        <LinearLayout
+            android:id="@+id/btn_title_back"
+            android:layout_width="70dp"
+            android:layout_height="40dp"
+            android:clickable="true"
+            android:paddingRight="25dp">
+
+            <ImageView
+                android:layout_width="49dp"
+                android:layout_height="49dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/mall_g_d_btn_return"
+                android:padding="10dp"
+                />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/btn_title_text"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="#fff"
+            android:textSize="16dp"/>
+
+        <LinearLayout
+            android:layout_width="70dp"
+            android:layout_height="40dp"
+            android:clickable="true"
+            android:paddingLeft="20dp"
+            >
+
+            <ImageView
+                android:id="@+id/iv_m_mall_cart"
+                android:layout_width="49dp"
+                android:layout_height="49dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="15dp"
+                android:src="@drawable/mall_g_d_btn_scart"
+                android:padding="10dp"
+                />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

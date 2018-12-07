@@ -137,11 +137,12 @@ public class Sly2YunwFragment extends BaseFragment implements ICommonViewUi{
 
     @Override
     protected void onFirstUserVisible() {
-
+        AppUtils.setStatusBarColor(getActivity(), getResources().getColor(R.color.sly_status_bar));
     }
 
     @Override
     protected void onUserVisible() {
+        AppUtils.setStatusBarColor(getActivity(), getResources().getColor(R.color.sly_status_bar));
         toRequest(NetConstant.EventTags.GET_YUNW_NEWS_COUNT);
     }
 
@@ -152,12 +153,6 @@ public class Sly2YunwFragment extends BaseFragment implements ICommonViewUi{
 
     @Override
     protected void initViewsAndEvents() {
-        // 设置状态栏颜色
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            int color = getResources().getColor(R.color.sly_status_bar);
-            ((Activity) mContext).getWindow().setStatusBarColor(color);
-        }
-
         iCommonRequestPresenter = new CommonRequestPresenterImpl(mContext, this);
         User = SharedPreferencesUtil.getString(mContext, "User", "None");
         Token = SharedPreferencesUtil.getString(mContext, "Token", "None");
@@ -166,11 +161,14 @@ public class Sly2YunwFragment extends BaseFragment implements ICommonViewUi{
         MineCode = SharedPreferencesUtil.getString(mContext, "MineCode", "None");
         PersonSysCode = SharedPreferencesUtil.getString(mContext, "PersonSysCode", "None");
 
+        AppUtils.setStatusBarColor(getActivity(), getResources().getColor(R.color.sly_status_bar));
+
         toRequest(NetConstant.EventTags.GET_NEW_REPAIR_NUM);
         toRequest(NetConstant.EventTags.GET_YUNW_ALL_NUM);
         toRequest(NetConstant.EventTags.GET_YUNW_MACHINE_NUM_RATE);
         toRequest(NetConstant.EventTags.GET_MINE_AREA_INFO);
         toRequest(NetConstant.EventTags.GET_YUNW_NEWS_COUNT);
+
     }
 
     @Override
@@ -278,17 +276,18 @@ public class Sly2YunwFragment extends BaseFragment implements ICommonViewUi{
         else if(eventTag == NetConstant.EventTags.GET_YUNW_NEWS_COUNT){
             ReturnBean returnBean = JSON.parseObject(result, ReturnBean.class);
             if (returnBean.getStatus().equals("1") && returnBean.getMsg().equals("成功")) {
-                rlNotice.setVisibility(View.VISIBLE);
 
                 int count = Integer.parseInt(returnBean.getData());
                 if(count == 0){
-                    rlNotice.setVisibility(View.GONE);
+                    tvRedNum.setVisibility(View.GONE);
                 }
                 else if(count > 99){
                     tvRedNum.setText("99+");
+                    tvRedNum.setVisibility(View.VISIBLE);
                 }
                 else{
                     tvRedNum.setText(returnBean.getData());
+                    tvRedNum.setVisibility(View.VISIBLE);
                 }
                 SharedPreferencesUtil.putString(mContext, "NewsCount", returnBean.getData());
             }

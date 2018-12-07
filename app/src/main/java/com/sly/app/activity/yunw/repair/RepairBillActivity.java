@@ -20,7 +20,7 @@ import com.sly.app.fragment.yunw.repair_bill.TreatingFragment;
 import com.sly.app.fragment.yunw.repair_bill.UntreatedFragment;
 import com.sly.app.model.PostResult;
 import com.sly.app.utils.AppUtils;
-import com.sly.app.view.PopupView.RepairCheckPopView;
+import com.sly.app.view.PopupView.Yunw.RepairCheckPopView;
 
 import java.lang.reflect.Field;
 

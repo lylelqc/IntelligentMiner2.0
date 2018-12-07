@@ -21,7 +21,6 @@ import android.widget.LinearLayout;
 
 import com.sly.app.R;
 import com.sly.app.activity.MainActivity;
-import com.sly.app.activity.mine.LoginActivity;
 import com.sly.app.adapter.GuidePageAdapter;
 import com.sly.app.base.BaseActivity;
 
@@ -158,7 +157,7 @@ public class LoadingActivity extends BaseActivity implements ViewPager.OnPageCha
 
     @OnClick(R.id.guide_iv)
     public void onViewClicked() {
-        startActivityWithoutExtras(LoginActivity.class);
+        startActivityWithoutExtras(MainActivity.class);
         finish();
     }
 }

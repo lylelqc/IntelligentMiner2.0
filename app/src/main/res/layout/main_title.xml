@@ -6,9 +6,9 @@
     <LinearLayout
         android:id="@+id/ll_comm_layout"
         android:layout_width="match_parent"
-        android:layout_height="46dp"
+        android:layout_height="49dp"
         android:orientation="horizontal"
-        android:background="@color/sly_navigation_bar">
+        android:background="@color/white">
 
       <RelativeLayout
           android:layout_width="match_parent"
@@ -25,9 +25,9 @@
 
               <Button
                   android:layout_width="10dp"
-                  android:layout_height="17dp"
+                  android:layout_height="16dp"
                   android:layout_gravity="center_vertical"
-                  android:background="@drawable/news_return"
+                  android:background="@drawable/register_return"
                   android:padding="10dp"
                   android:paddingLeft="10dp"/>
 
@@ -40,8 +40,8 @@
               android:layout_centerHorizontal="true"
               android:gravity="center"
               android:text="首页"
-              android:textColor="@color/sly_text_white"
-              android:textSize="17sp" />
+              android:textColor="@color/sly_text_666666"
+              android:textSize="16sp" />
 
 
           <LinearLayout

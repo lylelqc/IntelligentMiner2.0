@@ -65,6 +65,7 @@ public class MachineListRecyclerViewAdapter extends RecyclerView.Adapter{
             public void onClick(View view) {
                 Bundle bundle = new Bundle();
                 bundle.putString("machineSysCode", bean.getMachineSysCode());
+                bundle.putBoolean("isMaster", false);
                 AppUtils.goActivity(mContext, MachineDetailsActivity.class, bundle);
             }
         });

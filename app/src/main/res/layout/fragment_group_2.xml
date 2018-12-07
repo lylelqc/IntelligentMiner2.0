@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:background="#ffffff">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#00a0e8">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:gravity="center"
+            android:layout_marginLeft="10dp"
+            android:textColor="#ffffff"
+            android:text="佣金总额："
+            android:layout_height="match_parent"/>
+        <TextView
+            android:id="@+id/tv_sum"
+            android:layout_width="wrap_content"
+            android:gravity="center"
+            android:layout_marginLeft="10dp"
+            android:textColor="#ffffff"
+            android:text="0.00"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:weightSum="4"
+        >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:layout_marginLeft="15dp"
+            android:text="序号"
+            android:gravity="center"
+            android:textSize="12sp"
+            android:textColor="#333333"/>
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="#E5E5E5"/>
+
+        <TextView
+            android:id="@+id/tv_user_id"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.5"
+            android:text="时间"
+            android:gravity="center"
+            android:textSize="12sp"
+            android:textColor="#333333"/>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="#E5E5E5"/>
+
+        <TextView
+            android:id="@+id/tv_user_name"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="金额"
+            android:gravity="center"
+            android:textSize="12sp"
+            android:textColor="#333333"/>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="#E5E5E5"/>
+
+        <TextView
+            android:id="@+id/tv_user_level_1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="状态"
+            android:gravity="center"
+            android:textSize="12sp"
+            android:textColor="#333333"/>
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#E5E5E5"/>
+
+    <ListView
+        android:id="@+id/lv_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"></ListView>
+</LinearLayout>

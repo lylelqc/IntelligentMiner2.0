@@ -1,0 +1,39 @@
+package com.sly.app.adapter.order;
+
+import android.content.Context;
+import android.graphics.Color;
+import android.widget.RelativeLayout;
+
+import com.sly.app.R;
+import com.sly.app.adapter.base.CommonAdapter;
+import com.sly.app.adapter.base.ViewHolder;
+import com.sly.app.model.OrderDetailBean;
+
+import java.util.List;
+
+/**
+ * 作者 by K
+ * 时间：on 2017/9/23 17:55
+ * 邮箱 by  vip@devkit.vip
+ * <p/>
+ * 类用途：
+ * 最后修改：
+ */
+public class OrderDetailAdapter extends CommonAdapter<OrderDetailBean.OrderDetailListBean> {
+    private  String mallType;
+    public OrderDetailAdapter(Context context, List<OrderDetailBean.OrderDetailListBean> mBeanList, int layoutId,String mallType) {
+        super(context, mBeanList, layoutId);
+        this.mallType=mallType;
+    }
+
+    @Override
+    public void convert(ViewHolder holder, OrderDetailBean.OrderDetailListBean orderDetailBean, int i) {
+        RelativeLayout relativeLayout = holder.getView(R.id.rl_item_layout);
+        relativeLayout.setBackgroundColor(Color.parseColor("#ffffff"));
+        holder.setText(R.id.tv_item_title, orderDetailBean.getD021_ProductName())
+                .setText(R.id.tv_item_attrs, "规格："+orderDetailBean.getD021_OptionName())
+                .setText(R.id.tv_item_price, "价格："+orderDetailBean.getD021_MarketPrice()+"")
+                .setText(R.id.tv_item_count, "X "+orderDetailBean.getD021_Quantity() + "");
+        holder.setImageURL(R.id.iv_item_img, orderDetailBean.getComPic().replace("40-40","400-400"));
+    }
+}

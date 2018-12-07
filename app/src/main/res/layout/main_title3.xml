@@ -7,8 +7,8 @@
     <LinearLayout
         android:id="@+id/ll_comm_layout"
         android:layout_width="match_parent"
-        android:layout_height="46dp"
-        android:background="@color/sly_navigation_bar"
+        android:layout_height="49dp"
+        android:background="@color/white"
         android:orientation="horizontal">
 
         <RelativeLayout
@@ -29,7 +29,7 @@
                     android:layout_width="10dp"
                     android:layout_height="16dp"
                     android:layout_gravity="center_vertical"
-                    android:background="@drawable/news_return"
+                    android:background="@drawable/register_return"
                     android:padding="10dp"
                     android:paddingLeft="10dp" />
 
@@ -42,48 +42,30 @@
                 android:layout_centerHorizontal="true"
                 android:gravity="center"
                 android:text="首页"
-                android:textColor="@color/white"
+                android:textColor="@color/sly_text_666666"
                 android:textSize="16sp" />
 
-            <RelativeLayout
-                android:id="@+id/rl_notice"
+            <LinearLayout
+                android:id="@+id/ll_right"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="12dp"
-                android:layout_centerVertical="true">
+                android:layout_toLeftOf="@id/tv_main_title"
+                android:clickable="true"
+                android:paddingLeft="20dp"
+                android:paddingRight="25dp">
 
                 <TextView
-                    android:id="@+id/tv_notice"
+                    android:id="@+id/tv_main_right"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginRight="10dp"
                     android:layout_marginTop="10dp"
-                    android:background="@drawable/operation_new" />
-
-                <TextView
-                    android:id="@+id/tv_red_num"
-                    android:layout_width="wrap_content"
-                    android:layout_height="12dp"
-                    android:layout_marginLeft="14dp"
-                    android:background="@drawable/shape_notice_red"
                     android:gravity="center"
-                    android:text="0"
-                    android:textSize="8sp"
-                    android:textColor="@color/white"
-                    />
-            </RelativeLayout>
+                    android:textColor="@color/sly_text_666666" />
 
-            <TextView
-                android:id="@+id/tv_main_right_left"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toLeftOf="@+id/rl_notice"
-                android:layout_marginRight="12dp"
-                android:layout_centerVertical="true"
-                android:textSize="16sp"
-                android:textColor="@color/white"
-                />
+            </LinearLayout>
         </RelativeLayout>
     </LinearLayout>
 

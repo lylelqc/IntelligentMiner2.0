@@ -58,7 +58,7 @@ public class TimeUtils {
 
 
     private Handler handler =new Handler(){
-        public void handleMessage(android.os.Message msg) {
+        public void handleMessage(Message msg) {
             switch (msg.what) {
                 case 1:
 
@@ -79,6 +79,6 @@ public class TimeUtils {
                     break;
             }
 
-        }
+        };
     };
 }

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="#f2f2f2"
+              android:orientation="vertical">
+
+    <include layout="@layout/main_title"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/sly_line_gray" />
+    <TextView
+        android:id="@+id/tv_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="15dp"
+        android:textColor="#666666"
+        android:textSize="15dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:text="提醒：请不要绑定信用卡，信用卡不支持提现"
+        android:textColor="#f22a2a"
+        android:textSize="15dp"/>
+
+    <View
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/sly_line_gray" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        android:background="#fff"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="95dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="15dp"
+            android:gravity="center_vertical"
+            android:text="持 卡 人"
+            android:textColor="#000000"
+            android:textSize="15dp"/>
+
+        <EditText
+            android:id="@+id/et_name"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#fff"
+            android:hint="持卡人姓名"
+            android:editable="false"
+            android:textColorHint="#cdcdcd"
+            android:textSize="15dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        android:layout_marginTop="1dp"
+        android:background="#fff"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="95dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="15dp"
+            android:gravity="center_vertical"
+            android:text="卡      号"
+            android:textColor="#000000"
+            android:textSize="15dp"/>
+
+        <EditText
+            android:id="@+id/et_code"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#fff"
+            android:hint="银行卡号"
+            android:inputType="number"
+            android:layout_marginRight="15dp"
+            android:textColorHint="#cdcdcd"
+            android:textSize="15dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        android:layout_marginTop="1dp"
+        android:background="#fff"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="95dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="15dp"
+            android:gravity="center_vertical"
+            android:text="开 户 行"
+            android:textColor="#000000"
+            android:textSize="15dp"/>
+
+        <Spinner
+            android:id="@+id/sp_view"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/bank"
+            android:layout_marginRight="15dp"
+            android:singleLine="true"
+            android:textSize="15sp"/>
+        <EditText
+            android:id="@+id/et_bank"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#fff"
+            android:hint="例如：中国农业银行体育西路支行"
+            android:singleLine="true"
+            android:layout_marginRight="15dp"
+            android:textColorHint="#cdcdcd"
+            android:textSize="15dp"/>
+    </LinearLayout>
+
+
+    <TextView
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="17dp"
+        android:layout_marginTop="10dp"
+        android:text="到账时间为5-7个工作日(不包括节假日)"
+        android:textColor="#676767"
+        android:textSize="13dp"/>
+
+    <Button
+        android:id="@+id/bt_binding"
+        style="@style/default_btn"
+        android:layout_below="@+id/rl_password"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/click_seletor"
+        android:text="绑定银行卡"
+        android:textColor="#ffffff"
+        android:textSize="17dp"
+        />
+</LinearLayout>

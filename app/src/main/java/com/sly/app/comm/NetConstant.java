@@ -99,6 +99,21 @@ public class NetConstant {
 
     public static final String GET_YUNW_NEWS_COUNT = "SlyTwo.048";
 
+    public static final String GET_YUNW_MACHINE_LIST_STATUS = "SlyTwo.049";
+
+
+    /*矿场主2.0*/
+    public static final String GET_MASTER_MINE_LIST = "SlyTwo.101";
+
+    public static final String GET_MASTER_ALL_DATA = "SlyTwo.102";
+
+    public static final String GET_MASTER_NUM_RATE = "SlyTwo.103";
+
+    public static final String GET_MASTER_MOBILE = "SlyTwo.104";
+
+    public static final String GET_MASTER_MACHINE_LIST = "SlyTwo.108";
+
+
 
     public static final String GET_COMMON_NOTICE = "SlyTwo.201";
 
@@ -198,6 +213,21 @@ public class NetConstant {
         public static final int CAHNGE_NEWS_STATUS = BEGIN_EVENT + 73; // 修改人员消息为已读接口
 
         public static final int GET_YUNW_NEWS_COUNT = BEGIN_EVENT + 74; // 查看运维未读消息数量
+
+        public static final int GET_YUNW_MACHINE_LIST_STATUS = BEGIN_EVENT + 75; // 获取运维负责的设备状态
+
+
+        public static final int GET_MASTER_MINE_LIST = BEGIN_EVENT + 100; // 获取矿场
+
+        public static final int GET_MASTER_ALL_DATA = BEGIN_EVENT + 101; // 数据汇总
+
+        public static final int GET_MASTER_NUM_RATE = BEGIN_EVENT + 102; // 获取状态设备数量及比例
+
+        public static final int GET_MASTER_MOBILE = BEGIN_EVENT + 103; // 获取手机号
+
+        public static final int GET_MASTER_MACHINE_LIST = BEGIN_EVENT + 104; // 获取矿场主设备列表
+
+
 
 
     }

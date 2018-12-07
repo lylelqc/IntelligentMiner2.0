@@ -4,7 +4,6 @@ import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -14,14 +13,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
-import com.sly.app.Helper.ActivityHelper;
 import com.sly.app.R;
 import com.sly.app.activity.BaseActivity;
 import com.sly.app.activity.sly.mine.notice.Sly2NoticeActivity;
-import com.sly.app.comm.EventBusTags;
 import com.sly.app.comm.NetConstant;
 import com.sly.app.http.NetWorkCons;
-import com.sly.app.model.PostResult;
 import com.sly.app.model.ReturnBean;
 import com.sly.app.presenter.ICommonRequestPresenter;
 import com.sly.app.presenter.impl.CommonRequestPresenterImpl;
@@ -30,7 +26,7 @@ import com.sly.app.utils.AppUtils;
 import com.sly.app.utils.EncryptUtil;
 import com.sly.app.utils.SharedPreferencesUtil;
 import com.sly.app.utils.ToastUtils;
-import com.sly.app.view.PopupView.ChangeIpDuanPopView;
+import com.sly.app.view.PopupView.Yunw.ChangeIpDuanPopView;
 import com.sly.app.view.iviews.ICommonViewUi;
 
 import java.util.HashMap;
@@ -38,7 +34,6 @@ import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import de.greenrobot.event.EventBus;
 import vip.devkit.library.Logcat;
 
 public class MachineChangePoolActivity extends BaseActivity implements ICommonViewUi, ChangeIpDuanPopView.OnSearchClickListener {

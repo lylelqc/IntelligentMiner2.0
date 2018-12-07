@@ -5,7 +5,7 @@ import android.os.Bundle;
 
 import com.sly.app.activity.mine.LoginActivity;
 import com.sly.app.base.Contants;
-import com.sly.app.comm.EventBusTags;
+import com.sly.app.base.EventBusTags;
 import com.sly.app.model.PostResult;
 import com.sly.app.model.sly.LoginInfoBean;
 
@@ -26,7 +26,10 @@ public class LoginMsgHelper {
         if(CommonUtils.isBlank(User)|| CommonUtils.isBlank(Token)) {
             return false;
         }
-        return !"None".equals(User) && !"None".equals(Token);
+        if("None".equals(User) || "None".equals(Token)){
+            return false;
+        }
+        return true;
     }
 
     //登录之后返回的结果

@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/sc_view"
+        android:layout_width="match_parent" android:layout_below="@+id/title"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+
+
+            <vip.devkit.view.common.banner.BannerV
+                android:id="@+id/banner_u"
+                android:layout_width="match_parent"
+                android:layout_height="160dp">
+            </vip.devkit.view.common.banner.BannerV>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="103dp"
+                android:background="#ffffff"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+                <LinearLayout
+                    android:id="@+id/ll_menu_1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="43dp"
+                        android:layout_height="43dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="13dp"
+                        android:src="@drawable/member_icon1"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:text="我要订货"
+                        android:textColor="#545455"
+                        android:textSize="13sp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_menu_2"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="43dp"
+                        android:layout_height="43dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="13dp"
+                        android:src="@drawable/member_icon2"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:text="加盟政策"
+                        android:textColor="#545455"
+                        android:textSize="13sp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_menu_3"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="43dp"
+                        android:layout_height="43dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="13dp"
+                        android:src="@drawable/member_icon3"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:text="我要加盟"
+                        android:textColor="#545455"
+                        android:textSize="13sp"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <vip.devkit.view.common.rollinglayout.RollingLayout
+                android:id="@+id/scroll_layout_ad_1"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"></vip.devkit.view.common.rollinglayout.RollingLayout>
+
+            <vip.devkit.view.common.rollinglayout.RollingLayout
+                android:id="@+id/scroll_layout_ad_2"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"></vip.devkit.view.common.rollinglayout.RollingLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="49dp"
+                android:src="@drawable/img_user_mall"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:paddingBottom="13dp"
+                android:paddingTop="13dp"
+                android:weightSum="4">
+
+                <com.sly.app.view.DrawableTextView
+                    android:id="@+id/dtv_menu_1"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:drawablePadding="8dp"
+                    android:gravity="center_horizontal"
+                    android:text="口腔护理"
+                    android:textColor="#333333"
+                    android:textSize="15sp"
+                    app:drawableHeight="38dp"
+                    app:drawablePosition="top"
+                    app:drawableSrc="@drawable/ic_mall_img1"
+                    app:drawableWidth="38dp"/>
+
+                <com.sly.app.view.DrawableTextView
+                    android:id="@+id/dtv_menu_2"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:drawablePadding="8dp"
+                    android:gravity="center_horizontal"
+                    android:text="生殖保健"
+                    android:textColor="#333333"
+                    android:textSize="15sp"
+                    app:drawableHeight="38dp"
+                    app:drawablePosition="top"
+                    app:drawableSrc="@drawable/ic_mall_img2"
+                    app:drawableWidth="38dp"/>
+
+                <com.sly.app.view.DrawableTextView
+                    android:id="@+id/dtv_menu_3"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:drawablePadding="8dp"
+                    android:gravity="center_horizontal"
+                    android:text="营养食品"
+                    android:textColor="#333333"
+                    android:textSize="15sp"
+                    app:drawableHeight="38dp"
+                    app:drawablePosition="top"
+                    app:drawableSrc="@drawable/ic_mall_img3"
+                    app:drawableWidth="38dp"/>
+
+                <com.sly.app.view.DrawableTextView
+                    android:id="@+id/dtv_menu_4"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:drawablePadding="8dp"
+                    android:gravity="center_horizontal"
+                    android:text="家居用品"
+                    android:textColor="#333333"
+                    android:textSize="15sp"
+                    app:drawableHeight="38dp"
+                    app:drawablePosition="top"
+                    app:drawableSrc="@drawable/ic_mall_img4"
+                    app:drawableWidth="38dp"/>
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_more"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="15dp"
+                    android:gravity="center"
+                    android:text="热卖产品"
+                    android:textColor="#0093dd"
+                    android:textSize="15sp"/>
+
+                <TextView
+                    android:id="@+id/tv_type_go"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="15dp"
+                    android:gravity="center"
+                    android:text="更多 >"
+                    android:textSize="15sp"/>
+            </RelativeLayout>
+            <include layout="@layout/view_point_hot"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:drawableLeft="@drawable/member_like"
+                    android:layout_marginLeft="25dp"
+                    android:drawablePadding="10dp"
+                    android:gravity="center"
+                    android:text="为您推荐"
+                    android:textColor="#333333"
+                    android:textSize="15sp"/>
+            </LinearLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rl_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                android:scrollbars="none">
+
+            </android.support.v7.widget.RecyclerView>
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+    <include  android:id="@+id/title" layout="@layout/main_title"/>
+    <ImageView
+        android:id="@+id/iv_toTop"
+        android:layout_width="25dp"
+        android:src="@drawable/ic_top"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="25dp"
+        android:layout_height="25dp"/>
+
+</RelativeLayout>
