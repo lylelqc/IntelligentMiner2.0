@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/head_title2"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <TextView
+            android:id="@+id/tv_master_head_icon"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/miners_my"
+            android:layout_marginLeft="15dp"/>
+
+        <TextView
+            android:id="@+id/tv_master_account"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/tv_master_head_icon"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:gravity="center"
+            android:text="我的账号："
+            android:textSize="14sp"
+            android:textColor="@color/sly_text_333333"
+            />
+
+        <TextView
+            android:id="@+id/tv_master_exec_account"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/tv_master_account"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:gravity="center"
+            android:textSize="14sp"
+            android:textColor="@color/sly_text_333333"/>
+
+        <TextView
+            android:id="@+id/tv_master_add_account"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:background="@drawable/shape_btn_gradient_15dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="添加授权账号"
+            android:textSize="14sp"
+            android:textColor="@color/white"/>
+    </RelativeLayout>
+
+    <include layout="@layout/gray_line"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </android.support.v7.widget.RecyclerView>
+
+</LinearLayout>

@@ -205,7 +205,8 @@ public class MachineGolineActivity extends BaseActivity implements ICommonViewUi
                 break;
             case R.id.tv_goline_commit_plan:
                 if(adapter != null && adapter.getAreaSet().size() > 0){
-                    showCustomDialog(this, R.layout.dialog_general_style, 2, getString(R.string.request_commit_plan));
+                    getAreaCode(adapter.getAreaSet());
+                    toRequest(NetConstant.EventTags.GOLINE_COMMIT_PLAN);
                 }else{
                     ToastUtils.showToast(getString(R.string.area_no_chose));
                 }
@@ -263,8 +264,6 @@ public class MachineGolineActivity extends BaseActivity implements ICommonViewUi
             @Override
             public void onClick(View view) {
                 dialog.dismiss();
-                getAreaCode(adapter.getAreaSet());
-                toRequest(NetConstant.EventTags.GOLINE_COMMIT_PLAN);
             }
         });
     }

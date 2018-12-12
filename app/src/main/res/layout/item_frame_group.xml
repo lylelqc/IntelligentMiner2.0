@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.sly.app.view.SwipeItemLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="50dp">
+    
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        
+        <ImageView
+            android:id="@+id/iv_open_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/miners_retract"
+            android:layout_marginLeft="15dp"
+            android:layout_centerVertical="true"/>
+
+        <TextView
+            android:id="@+id/tv_manager_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:layout_toRightOf="@+id/iv_open_status"
+            android:textSize="15sp"
+            android:textColor="@color/sly_text_333333"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/tv_manager_name"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/shape_btn_gradient_3dp"
+            android:paddingBottom="2dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingTop="2dp"
+            android:text="班组长"
+            android:textColor="@color/white"
+            android:textSize="13sp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/stick"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:text="置顶"
+            android:textSize="16sp"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/mark"
+            android:layout_width="120dp"
+            android:layout_height="match_parent"
+            android:text="标记未读"
+            android:textSize="16sp"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/delete"
+            android:layout_width="76dp"
+            android:layout_height="match_parent"
+            android:background="@color/color_fb3a2d"
+            android:text="删除"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+
+    </LinearLayout>
+
+</com.sly.app.view.SwipeItemLayout>

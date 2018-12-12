@@ -40,9 +40,11 @@ public class MasterHomeRecyclerViewAdapter extends RecyclerView.Adapter implemen
         final MasterMineBean bean = beanList.get(position);
         ViewHolder viewHolder = (ViewHolder) holder;
         viewHolder.tvMasterMiner.setText(bean.getMineName());
+        viewHolder.tvMasterMiner.setTag(position);
         viewHolder.tvMasterMiner.setOnClickListener(this);
         viewHolder.tvMasterMiner.setTextColor(position == index ?
                 context.getResources().getColor(R.color.white) : context.getResources().getColor(R.color.sly_text_d6e7ff));
+
     }
 
 
@@ -58,7 +60,10 @@ public class MasterHomeRecyclerViewAdapter extends RecyclerView.Adapter implemen
     @Override
     public void onClick(View v) {
         if (mOnItemClickListener != null) {
-            mOnItemClickListener.onItemClick(v, (int) v.getTag());
+            int position = (int) v.getTag();
+            mOnItemClickListener.onItemClick(v, position);
+            index = position;
+            notifyDataSetChanged();
         }
     }
 
@@ -77,13 +82,5 @@ public class MasterHomeRecyclerViewAdapter extends RecyclerView.Adapter implemen
             super(view);
             ButterKnife.bind(this, view);
         }
-    }
-
-    public int getIndex() {
-        return index;
-    }
-
-    public void setIndex(int index) {
-        this.index = index;
     }
 }

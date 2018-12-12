@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <include layout="@layout/head_title2"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+                <RelativeLayout
+                    android:id="@+id/rl_master_chose_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="15dp"
+                    android:layout_centerVertical="true">
+
+                    <TextView
+                        android:id="@+id/tv_master_chose_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="2018年5月"
+                        android:textSize="15sp"
+                        android:textColor="@color/sly_text_333333"/>
+
+                    <TextView
+                        android:layout_width="10dp"
+                        android:layout_height="5dp"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@+id/tv_master_chose_date"
+                        android:layout_marginLeft="5dp"
+                        android:background="@drawable/miners_cost2"
+                        />
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/tv_master_free_month"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="15dp"
+                    android:text="0.0"
+                    android:textSize="15sp"
+                    android:textColor="@color/sly_money_ff4d01"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@+id/tv_master_free_month"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="5dp"
+                    android:text="月费用："
+                    android:textSize="13sp"
+                    android:textColor="@color/sly_text_333333"
+                    />
+            </RelativeLayout>
+
+            <include layout="@layout/gray_line"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/tv_master_feiyong"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="日费用"
+                    android:textSize="13sp"
+                    android:textColor="@color/sly_text_666666"/>
+
+                <TextView
+                    android:id="@+id/tv_left_kuo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/tv_master_feiyong"
+                    android:text="("
+                    android:textSize="13sp"
+                    android:textColor="@color/sly_text_666666"/>
+
+                <TextView
+                    android:id="@+id/tv_master_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/tv_left_kuo"
+                    android:textSize="13sp"
+                    android:textColor="@color/sly_text_666666"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/tv_master_date"
+                    android:text=")"
+                    android:textSize="13sp"
+                    android:textColor="@color/sly_text_666666"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/tv_master_free_day"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0.0"
+                    android:textSize="32sp"
+                    android:textColor="@color/sly_money_ff4d01"/>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:weightSum="2">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="管理费："
+                        android:textSize="13sp"
+                        android:textColor="@color/sly_text_666666"
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_master_free_manage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0.0"
+                        android:textSize="16sp"
+                        android:textColor="@color/sly_money_ff4d01"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="维修费："
+                        android:textSize="13sp"
+                        android:textColor="@color/sly_text_666666"
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_master_free_repair"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0.0"
+                        android:textSize="16sp"
+                        android:textColor="@color/sly_money_ff4d01"/>
+
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <com.github.mikephil.charting.charts.BarChart
+                android:id="@+id/bar_chart"
+                android:layout_width="match_parent"
+                android:layout_height="252dp"
+                android:layout_marginTop="50dp">
+
+            </com.github.mikephil.charting.charts.BarChart>
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+</LinearLayout>

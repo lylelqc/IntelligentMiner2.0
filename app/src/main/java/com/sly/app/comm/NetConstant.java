@@ -18,6 +18,7 @@ public class NetConstant {
 
     public static final String GET_MACHINE_LIST = "SlyTwo.005";
 
+    public static final String GET_MACHINE_STATUS = "SlyTwo.006";
 
     public static final String GET_YUNW_MANAGE_AREA = "SlyTwo.007";
 
@@ -111,7 +112,41 @@ public class NetConstant {
 
     public static final String GET_MASTER_MOBILE = "SlyTwo.104";
 
+
     public static final String GET_MASTER_MACHINE_LIST = "SlyTwo.108";
+
+    public static final String GET_MASTER_SPARE_LIST = "SlyTwo.109";
+
+    public static final String GET_MASTER_PERSON_MANAGE_LIST = "SlyTwo.110";
+
+    public static final String SET_MASTER_PERSON_MANAGER = "SlyTwo.111";
+
+    public static final String DELETE_MASTER_PERSON = "SlyTwo.112";
+
+    public static final String GET_MANAGER_YUNWE_PERSON_LIST = "SlyTwo.113";
+
+    public static final String ADD_YUNW_TO_MANAGER = "SlyTwo.114";
+
+    public static final String DELETE_EVERY_PERSON = "SlyTwo.115";
+
+
+    public static final String GET_CHILD_ACCOUNTEXEC = "SlyTwo.119";
+
+    public static final String ADD_ACCOUNT_EXEC = "SlyTwo.120";
+
+    public static final String SET_PERMISSION_FOR_ACCOUNT = "SlyTwo.121";
+
+    public static final String GET_AUTH_ACCOUNT_MINE = "SlyTwo.122";
+
+    public static final String GET_AUTH_ACCOUNT_PERMISSION = "SlyTwo.123";
+
+    public static final String GET_MASTER_MONTH_FREE = "SlyTwo.124";
+
+    public static final String GET_MASTER_MONTH_POWER = "SlyTwo.125";
+
+    public static final String GET_MASTER_MACHINE_TYPE = "SlyTwo.126";
+
+    public static final String GET_MASTER_MACHINE_STATUS = "SlyTwo.126";
 
 
 
@@ -227,7 +262,39 @@ public class NetConstant {
 
         public static final int GET_MASTER_MACHINE_LIST = BEGIN_EVENT + 104; // 获取矿场主设备列表
 
+        public static final int GET_MASTER_SPARE_LIST = BEGIN_EVENT + 105; // 获取配件列表
 
+        public static final int GET_MASTER_PERSON_MANAGE_LIST = BEGIN_EVENT + 106; // 获取人员管理列表
+
+        public static final int SET_MASTER_PERSON_MANAGER = BEGIN_EVENT + 107; // 设置班组长
+
+        public static final int DELETE_MASTER_PERSON = BEGIN_EVENT + 108; // 删除人员
+
+        public static final int GET_MANAGER_YUNWE_PERSON_LIST = BEGIN_EVENT + 109; // 人员管理-添加人员列表
+
+        public static final int ADD_YUNW_TO_MANAGER = BEGIN_EVENT + 110; // 给班组长分配运维人员
+
+        public static final int DELETE_EVERY_PERSON = BEGIN_EVENT + 111; // 人员架构-删除
+
+        public static final int GET_MASTER_MONTH_FREE = BEGIN_EVENT + 112; // 矿场主月费用图表
+
+        public static final int GET_MASTER_MONTH_POWER = BEGIN_EVENT + 113; // 矿场主月耗电量图表
+
+        public static final int GET_MACHINE_STATUS = BEGIN_EVENT + 114; // 矿机状态
+
+        public static final int ADD_ACCOUNT_EXEC = BEGIN_EVENT + 115; // 添加授权账号
+
+        public static final int GET_CHILD_ACCOUNTEXEC = BEGIN_EVENT + 116; // 显示授权账号
+
+        public static final int GET_AUTH_ACCOUNT_PERMISSION = BEGIN_EVENT + 117; // 获取授权账号的权限
+
+        public static final int SET_PERMISSION_FOR_ACCOUNT = BEGIN_EVENT + 118; // 给授权账号分配权限(0为授权，1为未授权)
+
+        public static final int GET_MASTER_MACHINE_TYPE = BEGIN_EVENT + 119; // 获取型号
+
+        public static final int GET_MASTER_MACHINE_STATUS = BEGIN_EVENT + 120; // 获取矿场的设备状态
+
+        public static final int GET_AUTH_ACCOUNT_MINE = BEGIN_EVENT + 121; // 获取授权账号的矿场
 
 
     }

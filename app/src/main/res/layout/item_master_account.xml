@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <TextView
+            android:id="@+id/tv_master_account"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:gravity="center"
+            android:text="授权账号："
+            android:textSize="14sp"
+            android:textColor="@color/sly_text_333333"
+            />
+
+        <TextView
+            android:id="@+id/tv_master_child_accountexec"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/tv_master_account"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:gravity="center"
+            android:textSize="14sp"
+            android:textColor="@color/sly_text_333333"/>
+
+        <TextView
+            android:id="@+id/tv_master_manage_account"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:background="@drawable/shape_btn_gradient_15dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="管理授权账号"
+            android:textSize="14sp"
+            android:textColor="@color/white"/>
+    </RelativeLayout>
+
+    <include layout="@layout/gray_line"/>
+</LinearLayout>

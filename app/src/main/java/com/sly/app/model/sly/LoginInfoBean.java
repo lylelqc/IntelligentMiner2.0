@@ -20,6 +20,7 @@ public class LoginInfoBean {
     private String FrSysCode;
     private String FMasterCode;
     private String PersonSysCode;
+    private String ChildAccount;
     private String Key;
     private String Token;
     private String Role;
@@ -71,6 +72,14 @@ public class LoginInfoBean {
 
     public void setPersonSysCode(String personSysCode) {
         PersonSysCode = personSysCode;
+    }
+
+    public String getChildAccount() {
+        return ChildAccount;
+    }
+
+    public void setChildAccount(String childAccount) {
+        ChildAccount = childAccount;
     }
 
     public String getKey() {

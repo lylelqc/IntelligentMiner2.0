@@ -194,7 +194,7 @@ public class MachineChangePoolActivity extends BaseActivity implements ICommonVi
         worker3 = etChangeMiner3Code.getText().toString().trim();
         password3 = etChangePwd3.getText().toString().trim();
         ipSectionCount = tvIpDuan.getText().toString().trim();
-//        toRequest();
+        toRequest(NetConstant.EventTags.SET_DETAILS_AND_MANAGE_POOL);
     }
 
     @OnClick({R.id.btn_main_back, R.id.tv_change_comfirm, R.id.rl_spinner, R.id.rl_notice})

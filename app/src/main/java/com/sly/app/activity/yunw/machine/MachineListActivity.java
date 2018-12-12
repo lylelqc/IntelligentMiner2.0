@@ -124,6 +124,7 @@ public class MachineListActivity extends BaseActivity implements ICommonViewUi, 
     private String ip = "";
     private String beginip = "";
     private String endip = "";
+    private String isstop = "";
     private String orderField = "IP";
     private String orderBy = "ASC";
 
@@ -212,7 +213,7 @@ public class MachineListActivity extends BaseActivity implements ICommonViewUi, 
         swipeRefreshLayout.setVisibility(View.GONE);
 
         intitNewsCount();
-        toRequest(NetConstant.EventTags.GET_YUNW_MACHINE_LIST_STATUS);
+        toRequest(NetConstant.EventTags.GET_MACHINE_STATUS);
         toRequest(NetConstant.EventTags.GET_MACHINE_TYPE);
         firstRefresh();
     }
@@ -280,6 +281,7 @@ public class MachineListActivity extends BaseActivity implements ICommonViewUi, 
         map.put("machineCode", machineCode);
         map.put("beginip", beginip);
         map.put("endip", endip);
+        map.put("isstop", "");
         map.put("orderField", orderField);
         map.put("orderBy", orderBy);
 
@@ -329,6 +331,7 @@ public class MachineListActivity extends BaseActivity implements ICommonViewUi, 
         map.put("machineCode", machineCode);
         map.put("beginip", beginip);
         map.put("endip", endip);
+        map.put("isstop", "");
         map.put("orderField", orderField);
         map.put("orderBy", orderBy);
 
@@ -643,12 +646,12 @@ public class MachineListActivity extends BaseActivity implements ICommonViewUi, 
         map.put("Token", Token);
         map.put("LoginType", LoginType);
         map.put("User", User);
-        map.put("personSysCode", PersonSysCode);
 
         if(eventTag == NetConstant.EventTags.GET_MACHINE_TYPE){
             map.put("Rounter", NetConstant.GET_MACHINE_TYPE);
+            map.put("personSysCode", PersonSysCode);
         }else {
-            map.put("Rounter", NetConstant.GET_YUNW_MACHINE_LIST_STATUS);
+            map.put("Rounter", NetConstant.GET_MACHINE_STATUS);
         }
 
         Map<String, String> jsonMap = new HashMap<>();

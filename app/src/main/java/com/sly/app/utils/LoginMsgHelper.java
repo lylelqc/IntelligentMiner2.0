@@ -58,11 +58,13 @@ public class LoginMsgHelper {
         SharedPreferencesUtil.putString(mContext, "FrSysCode", "None");
         SharedPreferencesUtil.putString(mContext, "FMasterCode", "None");
         SharedPreferencesUtil.putString(mContext, "PersonSysCode", "None");
+        SharedPreferencesUtil.putString(mContext, "ChildAccount", "None");
         /**角色Role**/
         SharedPreferencesUtil.putString(mContext,"LoginType","None");
         SharedPreferencesUtil.putString(mContext, "mineType", "None");
         SharedPreferencesUtil.putString(mContext, "Key", "None");
         SharedPreferencesUtil.putString(mContext,"RegistrationID", "None");
+
 
         EventBus.getDefault().post(new PostResult(EventBusTags.LOGOUT));
     }

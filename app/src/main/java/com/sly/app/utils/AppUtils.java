@@ -121,7 +121,7 @@ public class AppUtils {
      * @param bundle 携带的数据
      * @param resultCode 返回标示码
      */
-    public static void goResult(Context context,Bundle bundle, int resultCode) {
+    public static void goResult(Context context, Bundle bundle, int resultCode) {
         Intent intent = ((Activity)context).getIntent();
         if (bundle != null) {
             intent.putExtras(bundle);
@@ -147,6 +147,33 @@ public class AppUtils {
      */
     public static boolean isListBlank(List<?> list) {
         return (list == null || list.size() == 0);
+    }
+
+    /**
+     * 时间对比
+     * @param mContext
+     * @param before
+     * @param after
+     * @return
+     */
+    private boolean isThanBefore(Context mContext, String before, String after){
+        String[] btime = before.split("-");
+        String[] atime = after.split("-");
+        if(Integer.parseInt(btime[0]) > Integer.parseInt(atime[0])){
+            ToastUtils.showToast(mContext.getString(R.string.repair_than_time));
+            return true;
+        }else {
+            if(Integer.parseInt(btime[1]) > Integer.parseInt(atime[1])){
+                ToastUtils.showToast(mContext.getString(R.string.repair_than_time));
+                return true;
+            }else{
+                if(Integer.parseInt(btime[2]) > Integer.parseInt(atime[2])){
+                    ToastUtils.showToast(mContext.getString(R.string.repair_than_time));
+                    return true;
+                }
+                return false;
+            }
+        }
     }
 
 

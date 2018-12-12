@@ -138,6 +138,7 @@ public class MachineOfflineActivity extends BaseActivity implements IRecyclerVie
     private String ip = "";
     private String beginip = "";
     private String endip = "";
+    private String isstop = "stop";
     private String orderField = "IP";
     private String orderBy = "ASC";
     private String machineSysCode = "";
@@ -277,6 +278,7 @@ public class MachineOfflineActivity extends BaseActivity implements IRecyclerVie
         map.put("machineCode", machineCode);
         map.put("beginip", beginip);
         map.put("endip", endip);
+        map.put("isstop", isstop);
         map.put("orderField", orderField);
         map.put("orderBy", orderBy);
 
@@ -326,6 +328,7 @@ public class MachineOfflineActivity extends BaseActivity implements IRecyclerVie
         map.put("machineCode", machineCode);
         map.put("beginip", beginip);
         map.put("endip", endip);
+        map.put("isstop", isstop);
         map.put("orderField", orderField);
         map.put("orderBy", orderBy);
 

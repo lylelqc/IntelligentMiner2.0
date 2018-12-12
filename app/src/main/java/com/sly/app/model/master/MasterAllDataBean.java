@@ -1,4 +1,4 @@
-package com.sly.app.adapter.master;
+package com.sly.app.model.master;
 
 public class MasterAllDataBean {
 

@@ -207,7 +207,7 @@ public class MainActivity extends BaseActivity implements OnPopupItemOnClickList
             if (position == 0) {
                 return SlyHomeFragment.newInstance(tabCount[position % tabCount.length]);
             } else if (position == 1) {
-                return SlyHostingFragment.newInstance(tabCount[position % tabCount.length]);
+                return SlyHostingFragment2.newInstance(tabCount[position % tabCount.length]);
             } else if (position == 2) {
                 return MachineSeatFragment2.newInstance(tabCount[position % tabCount.length]);
             } else {

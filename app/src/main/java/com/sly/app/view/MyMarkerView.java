@@ -43,7 +43,7 @@ public class MyMarkerView extends MarkerView {
 //        tvDate.setText(xAxisValueFormatter.getFormattedValue(e.getX(), null));
         int position = (int)e.getX();
         MachineDetailsPicBean bean = mPicDataList.get(position);
-        tvValue.setText(bean.getNowCalcForce() +"T");
+        tvValue.setText(bean.getCalcForce() +"T");
         tvDate.setText(bean.getDataTime().substring(0, bean.getDataTime().length()-3));
         super.refreshContent(e, highlight);
     }

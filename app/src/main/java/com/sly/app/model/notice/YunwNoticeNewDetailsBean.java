@@ -9,7 +9,7 @@ public class YunwNoticeNewDetailsBean {
      型号为:蚂蚁S9,所在区域为:B,当前算力为:0.0000000000T\",
      \"Mine48_BillNo\":\"2018112000000083\",
      \"Mine08_IP\":\"2.1.8.4\",
-     \"Mine08_MAC\":\"52:C1:85:4E:72:1B\"
+     \"Mine08_Model\":\"52:C1:85:4E:72:1B\"
      */
 
     private String Mine48_Title;
@@ -17,7 +17,7 @@ public class YunwNoticeNewDetailsBean {
     private String Mine48_Message;
     private String Mine48_BillNo;
     private String Mine08_IP;
-    private String Mine08_MAC;
+    private String Mine08_Model;
 
     public String getMine48_Title() {
         return Mine48_Title;
@@ -59,11 +59,11 @@ public class YunwNoticeNewDetailsBean {
         Mine08_IP = mine08_IP;
     }
 
-    public String getMine08_MAC() {
-        return Mine08_MAC;
+    public String getMine08_Model() {
+        return Mine08_Model;
     }
 
-    public void setMine08_MAC(String mine08_MAC) {
-        Mine08_MAC = mine08_MAC;
+    public void setMine08_Model(String mine08_Model) {
+        Mine08_Model = mine08_Model;
     }
 }

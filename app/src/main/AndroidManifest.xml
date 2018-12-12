@@ -43,7 +43,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.sly.app.activity.MainActivity" />
+
+        <activity android:name="com.sly.app.activity.MainActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"/>
+
         <activity
             android:name="com.sly.app.activity.qrc.SaoErWeiMaActivity"
             android:launchMode="standard" />
@@ -142,9 +146,9 @@
         <activity android:name=".activity.sly.SlyBannerDetailsActivity" />
         <activity android:name=".activity.sly.mine.MineMachineDetailActivity" />
 
-        <!-- 运维界面 -->
 
         <!--version 2.0-->
+        <!-- 运维界面 -->
         <activity android:name=".activity.sly.mine.notice.Sly2NoticeActivity" />
         <activity android:name=".activity.sly.mine.notice.NoticeNewDetailsActivity" />
         <activity android:name=".activity.sly.mine.notice.NoticeOldDetailsActivity" />
@@ -164,6 +168,18 @@
         <activity android:name=".activity.yunw.offline.MachineOfflineActivity" />
         <activity android:name=".activity.yunw.changepool.MachineSetPoolActivity" />
         <activity android:name=".activity.yunw.ClockWorkActivity" />
+
+        <!--矿场主-->
+        <activity android:name=".activity.master.MasterMachineListActivity" />
+        <activity android:name=".activity.master.MasterSpareListActivity" />
+        <activity android:name=".activity.master.MasterPersonManageActivity" />
+        <activity android:name=".activity.master.MasterSetManagerActivity" />
+        <activity android:name=".activity.master.MasterAddPersonActivity" />
+        <activity android:name=".activity.master.MasterPersonFrameActivity" />
+        <activity android:name=".activity.master.MasterAllFreeActivity" />
+        <activity android:name=".activity.master.MasterAllPowerActivity" />
+        <activity android:name=".activity.master.MasterAccountExecActivity" />
+        <activity android:name=".activity.master.AuthAccountSetMineActivity" />
 
 
         <!-- Rich push 核心功能 since 2.0.6-->

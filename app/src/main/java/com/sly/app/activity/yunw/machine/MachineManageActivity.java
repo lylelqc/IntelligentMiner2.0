@@ -145,6 +145,7 @@ public class MachineManageActivity extends BaseActivity implements ICommonViewUi
     private String ip = "";
     private String beginip = "";
     private String endip = "";
+    private String isstop = "";
     private String orderField = "IP";
     private String orderBy = "ASC";
 
@@ -291,6 +292,7 @@ public class MachineManageActivity extends BaseActivity implements ICommonViewUi
         map.put("machineCode", machineCode);
         map.put("beginip", beginip);
         map.put("endip", endip);
+        map.put("isstop", "");
         map.put("orderField", orderField);
         map.put("orderBy", orderBy);
 
@@ -340,6 +342,7 @@ public class MachineManageActivity extends BaseActivity implements ICommonViewUi
         map.put("machineCode", machineCode);
         map.put("beginip", beginip);
         map.put("endip", endip);
+        map.put("isstop", "");
         map.put("orderField", orderField);
         map.put("orderBy", orderBy);
 

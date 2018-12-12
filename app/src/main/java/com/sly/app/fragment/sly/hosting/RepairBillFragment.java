@@ -217,11 +217,11 @@ public class RepairBillFragment extends BaseFragment implements IRecyclerViewUi,
 
         Map map = new HashMap();
         if ("Miner".equals(LoginType)) {
-            map.put("Rounter", NetWorkCons.GET_MY_MACHINE);
+            map.put("Rounter", NetWorkCons.GET_MINER_REPAIR_TAKET);
             map.put("minerSysCode", FrSysCode);
         }
         else {
-            map.put("Rounter", NetWorkCons.GET_MASTER_MINE_LIST);
+            map.put("Rounter", NetWorkCons.GET_MASTER_REPAIR_TAKET);
             map.put("minerMasterCode", FMasterCode);
         }
         map.put("Token", Token);
@@ -279,6 +279,7 @@ public class RepairBillFragment extends BaseFragment implements IRecyclerViewUi,
 
     @Override
     public void getLoadMoreData(int eventTag, String result) {
+        Logcat.e("返回参数 - " + result);
         if(("Miner").equals(LoginType)) {
             List<ReplaceListBean> resultList =
                     (List<ReplaceListBean>) AppUtils.parseRowsResult(result, ReplaceListBean.class);

@@ -1,44 +1,48 @@
 package com.sly.app.fragment;
 
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.OrientationHelper;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Adapter;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.alibaba.fastjson.JSON;
 import com.github.mikephil.charting.charts.LineChart;
-import com.liucanwen.app.headerfooterrecyclerview.HeaderAndFooterRecyclerViewAdapter;
-import com.liucanwen.app.headerfooterrecyclerview.RecyclerViewUtils;
 import com.sly.app.R;
+import com.sly.app.activity.master.AuthAccountSetMineActivity;
+import com.sly.app.activity.master.MasterAccountExecActivity;
+import com.sly.app.activity.master.MasterAllFreeActivity;
+import com.sly.app.activity.master.MasterAllPowerActivity;
+import com.sly.app.activity.master.MasterMachineListActivity;
+import com.sly.app.activity.master.MasterPersonManageActivity;
+import com.sly.app.activity.master.MasterSpareListActivity;
 import com.sly.app.activity.sly.mine.notice.Sly2NoticeActivity;
-import com.sly.app.activity.yunw.ClockWorkActivity;
-import com.sly.app.activity.yunw.changepool.MachineSetPoolActivity;
-import com.sly.app.activity.yunw.goline.MachineGolineActivity;
-import com.sly.app.activity.yunw.machine.MachineManageActivity;
-import com.sly.app.activity.yunw.offline.MachineOfflineActivity;
-import com.sly.app.activity.yunw.repair.RepairBillActivity;
-import com.sly.app.adapter.master.MasterAllDataBean;
 import com.sly.app.adapter.master.MasterHomeRecyclerViewAdapter;
+import com.sly.app.comm.EventBusTags;
 import com.sly.app.comm.NetConstant;
 import com.sly.app.http.NetWorkCons;
+import com.sly.app.model.PostResult;
+import com.sly.app.model.master.MasterAccountPermissionBean;
+import com.sly.app.model.master.MasterAllDataBean;
 import com.sly.app.model.master.MasterMineBean;
-import com.sly.app.model.sly.ReturnBean;
 import com.sly.app.model.yunw.home.MachineNumRateInfo;
-import com.sly.app.model.yunw.home.MineAreaInfo;
 import com.sly.app.presenter.ICommonRequestPresenter;
 import com.sly.app.presenter.impl.CommonRequestPresenterImpl;
 import com.sly.app.utils.ApiSIgnUtil;
 import com.sly.app.utils.AppUtils;
 import com.sly.app.utils.EncryptUtil;
 import com.sly.app.utils.SharedPreferencesUtil;
+import com.sly.app.utils.ToastUtils;
 import com.sly.app.view.CustomCircleProgressBar;
+import com.sly.app.view.MyGridItemDecoration;
+import com.sly.app.view.MyStaggeredGridLayoutManager;
 import com.sly.app.view.iviews.ICommonViewUi;
 
-import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -48,6 +52,8 @@ import java.util.Map;
 import butterknife.BindView;
 import butterknife.OnClick;
 import vip.devkit.library.Logcat;
+
+import static de.greenrobot.event.EventBus.TAG;
 
 public class Sly2MasterFragment extends BaseFragment implements ICommonViewUi, MasterHomeRecyclerViewAdapter.OnItemClickListener {
 
@@ -68,8 +74,12 @@ public class Sly2MasterFragment extends BaseFragment implements ICommonViewUi, M
 
     @BindView(R.id.recycler_view)
     RecyclerView rvMasterMineArea;
+    @BindView(R.id.ll_master_all_free)
+    LinearLayout llMasterAllFree;
     @BindView(R.id.tv_master_all_free)
     TextView tvMasterAllFree;
+    @BindView(R.id.ll_master_all_power)
+    LinearLayout llMasterAllPower;
     @BindView(R.id.tv_master_all_power_consumption)
     TextView tvMasterAllpowerConsumption;
     @BindView(R.id.tv_master_all_run_rate)
@@ -115,6 +125,8 @@ public class Sly2MasterFragment extends BaseFragment implements ICommonViewUi, M
 
     public static String mContent = "???";
     private String User, LoginType, FrSysCode, FMasterCode, MineCode, PersonSysCode, Token, Key;
+    private String ChildAccount;
+    private String MineName;
     ICommonRequestPresenter iCommonRequestPresenter;
 
     private List<MasterMineBean> masterMineList = new ArrayList<>();
@@ -122,7 +134,15 @@ public class Sly2MasterFragment extends BaseFragment implements ICommonViewUi, M
 
     private List<MasterAllDataBean> masterAllDataList = new ArrayList<>();
     private List<MachineNumRateInfo> machineStatusList = new ArrayList<>();
+    private List<MasterAccountPermissionBean> mPermissionList = new ArrayList<>();
+    private PopupWindow mPopupWindow;
 
+    private boolean isFree = false;
+    private boolean isPower = false;
+    private boolean isRate = false;
+    private boolean isParts = false;
+
+    private boolean isMaster = true;
 
     public static Sly2MasterFragment newInstance(String content) {
         Sly2MasterFragment fragment = new Sly2MasterFragment();
@@ -147,13 +167,20 @@ public class Sly2MasterFragment extends BaseFragment implements ICommonViewUi, M
 
     @Override
     protected int getContentViewLayoutID() {
-
         return R.layout.fragment_sly2_master;
     }
 
     @Override
     protected boolean isBindEventBusHere() {
-        return false;
+        return true;
+    }
+
+    @Override
+    public void onEvent(PostResult postResult) {
+        super.onEvent(postResult);
+        if (EventBusTags.CHOOSE_AUTH_MINE_AREA.equals(postResult.getTag())) {
+            getActivityResult();
+        }
     }
 
     @Override
@@ -168,8 +195,10 @@ public class Sly2MasterFragment extends BaseFragment implements ICommonViewUi, M
         FrSysCode = SharedPreferencesUtil.getString(mContext, "FrSysCode", "None");
         FMasterCode = SharedPreferencesUtil.getString(mContext, "FMasterCode", "None");
         PersonSysCode = SharedPreferencesUtil.getString(mContext, "PersonSysCode", "None");
+        ChildAccount = SharedPreferencesUtil.getString(mContext, "ChildAccount", "None");
 
-        toRequest(NetConstant.EventTags.GET_MASTER_MOBILE);
+        String maskNumber = User.substring(0, 3) + "****" + User.substring(7, User.length());
+        tvUserAccount.setText(maskNumber);
         toRequest(NetConstant.EventTags.GET_MASTER_MINE_LIST);
     }
 
@@ -183,18 +212,16 @@ public class Sly2MasterFragment extends BaseFragment implements ICommonViewUi, M
         if (eventTag == NetConstant.EventTags.GET_MASTER_MINE_LIST) {
             map.put("Rounter", NetConstant.GET_MASTER_MINE_LIST);
             map.put("masterSysCode", FMasterCode);
-        }
-        else if (eventTag == NetConstant.EventTags.GET_MASTER_ALL_DATA) {
+        } else if (eventTag == NetConstant.EventTags.GET_MASTER_ALL_DATA) {
             map.put("Rounter", NetConstant.GET_MASTER_ALL_DATA);
             map.put("mineCode", MineCode);
-        }
-        else if (eventTag == NetConstant.EventTags.GET_MASTER_NUM_RATE) {
+        } else if (eventTag == NetConstant.EventTags.GET_MASTER_NUM_RATE) {
             map.put("Rounter", NetConstant.GET_MASTER_NUM_RATE);
             map.put("mineCode", MineCode);
-        }
-        else if (eventTag == NetConstant.EventTags.GET_MASTER_MOBILE) {
-            map.put("Rounter", NetConstant.GET_MASTER_MOBILE);
-            map.put("masterSysCode", FMasterCode);
+//            map.put("masterSysCode", FMasterCode);
+        } else if (eventTag == NetConstant.EventTags.GET_AUTH_ACCOUNT_PERMISSION) {
+            map.put("Rounter", NetConstant.GET_AUTH_ACCOUNT_PERMISSION);
+            map.put("Mobile", User);
         }
         /*else if (eventTag == NetConstant.EventTags.GET_YUNW_NEWS_COUNT) {
             map.put("Rounter", NetConstant.GET_YUNW_NEWS_COUNT);
@@ -205,6 +232,7 @@ public class Sly2MasterFragment extends BaseFragment implements ICommonViewUi, M
         mapJson.putAll(map);
         mapJson.put("Sign", EncryptUtil.MD5(ApiSIgnUtil.init(mContext).getSign(map, Key)));
         iCommonRequestPresenter.request(eventTag, mContext, NetWorkCons.BASE_URL, mapJson);
+        Logcat.e("提交参数 = " + mapJson);
     }
 
     @Override
@@ -214,90 +242,129 @@ public class Sly2MasterFragment extends BaseFragment implements ICommonViewUi, M
             masterMineList =
                     (List<MasterMineBean>) AppUtils.parseRowsResult(result, MasterMineBean.class);
             refreshListView();
-            if(masterMineList != null && masterMineList.size() > 0){
+            if (!AppUtils.isListBlank(masterMineList)) {
                 MineCode = masterMineList.get(0).getMineCode();
+                MineName = masterMineList.get(0).getMineName();
+                toRequest(NetConstant.EventTags.GET_MASTER_ALL_DATA);
+                toRequest(NetConstant.EventTags.GET_MASTER_NUM_RATE);
+            }
+        } else if (eventTag == NetConstant.EventTags.GET_MASTER_ALL_DATA) {
+            masterAllDataList =
+                    (List<MasterAllDataBean>) AppUtils.parseRowsResult(result, MasterAllDataBean.class);
+            if (!AppUtils.isListBlank(masterAllDataList)) {
+                MasterAllDataBean bean = masterAllDataList.get(0);
+                if (isFree || isMaster) {
+                    tvMasterAllFree.setText(bean.getMonthExpenses());
+                } else {
+                    tvMasterAllFree.setText("*****");
+                }
+
+                if (isPower || isMaster) {
+                    tvMasterAllpowerConsumption.setText(bean.getMonthPower());
+                } else {
+                    tvMasterAllpowerConsumption.setText("*****");
+                }
+
+                if (isRate || isMaster) {
+                    double rate = Double.parseDouble(bean.getMonthRunRate()) * 100;
+                    tvMasterAllRunRate.setText(String.format("%.2f", rate));
+                } else {
+                    tvMasterAllRunRate.setText("*****");
+                }
+                tvMasterAllMachineNum.setText(bean.getMachineCount());
+            }
+        } else if (eventTag == NetConstant.EventTags.GET_MASTER_NUM_RATE) {
+            machineStatusList = (List<MachineNumRateInfo>) AppUtils.parseResult(result, MachineNumRateInfo.class);
+            if (!AppUtils.isListBlank(machineStatusList)) {
+                setPorgressInfo();
+            }
+        } else if (eventTag == NetConstant.EventTags.GET_AUTH_ACCOUNT_PERMISSION) {
+            mPermissionList =
+                    (List<MasterAccountPermissionBean>) AppUtils.parseRowsResult(result, MasterAccountPermissionBean.class);
+            if (!AppUtils.isListBlank(mPermissionList)) {
+                rvMasterMineArea.setVisibility(View.GONE);
+                rlMasterPersonManage.setVisibility(View.GONE);
+
+                MasterAccountPermissionBean bean = mPermissionList.get(0);
+                isParts = bean.isUsingPart();
+                isFree = bean.isUsingFee();
+                isPower = bean.isUsingPower();
+                isRate = bean.isUsingRate();
+
+                if (isRate || isMaster) {
+                    rlMasterParts.setVisibility(View.VISIBLE);
+                } else {
+                    rlMasterParts.setVisibility(View.GONE);
+                }
                 toRequest(NetConstant.EventTags.GET_MASTER_ALL_DATA);
                 toRequest(NetConstant.EventTags.GET_MASTER_NUM_RATE);
             }
         }
-        else if (eventTag == NetConstant.EventTags.GET_MASTER_ALL_DATA) {
-            masterAllDataList =
-                    (List<MasterAllDataBean>) AppUtils.parseResult(result, MasterAllDataBean.class);
-            MasterAllDataBean bean = masterAllDataList.get(0);
-            tvMasterAllFree.setText(bean.getMonthExpenses());
-            tvMasterAllpowerConsumption.setText(bean.getMonthPower());
-            double rate = Double.parseDouble(bean.getMonthRunRate()) * 100;
-            tvMasterAllRunRate.setText(rate + "");
-            tvMasterAllMachineNum.setText(bean.getMachineCount());
-        }
-        else if (eventTag == NetConstant.EventTags.GET_MASTER_NUM_RATE) {
-            machineStatusList = (List<MachineNumRateInfo>) AppUtils.parseResult(result, MachineNumRateInfo.class);
-            if(machineStatusList != null && machineStatusList.size() > 0){
-                setPorgressInfo();
-            }
-        } else if (eventTag == NetConstant.EventTags.GET_MASTER_MOBILE) {
-            ReturnBean returnBean = JSON.parseObject(result, ReturnBean.class);
-            if (returnBean.getStatus().equals("1") && returnBean.getMsg().equals("成功")) {
-                String mobile = returnBean.getData();
-                String maskNumber = mobile.substring(0, 3)+"****"+mobile.substring(7, mobile.length());
-                tvUserAccount.setText(maskNumber);
-            }
-
-        } /*else if (eventTag == NetConstant.EventTags.GET_MASTER_MOBILE) {
-            ReturnBean returnBean = JSON.parseObject(result, ReturnBean.class);
-            if (returnBean.getStatus().equals("1") && returnBean.getMsg().equals("成功")) {
-
-                int count = Integer.parseInt(returnBean.getData());
-                if (count == 0) {
-                    tvRedNum.setVisibility(View.GONE);
-                } else if (count > 99) {
-                    tvRedNum.setText("99+");
-                    tvRedNum.setVisibility(View.VISIBLE);
-                } else {
-                    tvRedNum.setText(returnBean.getData());
-                    tvRedNum.setVisibility(View.VISIBLE);
-                }
-                SharedPreferencesUtil.putString(mContext, "NewsCount", returnBean.getData());
-            }
-        }*/
     }
 
     public void refreshListView() {
         adapter = new MasterHomeRecyclerViewAdapter(mContext, masterMineList);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
-        layoutManager.setOrientation(OrientationHelper.HORIZONTAL);
-        rvMasterMineArea.setLayoutManager(layoutManager);
+        MyStaggeredGridLayoutManager mLayoutManager = new MyStaggeredGridLayoutManager(3, MyStaggeredGridLayoutManager.VERTICAL);
+        MyGridItemDecoration lineVertical = new MyGridItemDecoration(MyGridItemDecoration.HORIZONTAL);
+        rvMasterMineArea.setLayoutManager(mLayoutManager);
+        rvMasterMineArea.addItemDecoration(lineVertical);
+        rvMasterMineArea.setItemAnimator(new DefaultItemAnimator());
+        rvMasterMineArea.setAdapter(adapter);
+        adapter.setOnItemClickListener(this);
+        adapter.notifyDataSetChanged();
     }
 
     private void setPorgressInfo() {
-        DecimalFormat df = new DecimalFormat("#.#");
-        df.setRoundingMode(RoundingMode.HALF_DOWN);
 
-        for(int i = 0; i < machineStatusList.size(); i++){
+        for (int i = 0; i < machineStatusList.size(); i++) {
             MachineNumRateInfo info = machineStatusList.get(i);
             // 在线
-            if("00".equals(info.getStatusCode())){
-                tvMasterOnlineNum.setText(info.getMachineCount()+"");
-                String rate1 = df.format(info.getRate()*100);
-                mProgressBar1.setProgress(rate1.contains(".") ? Float.parseFloat(rate1) : Integer.parseInt(rate1));
+            if ("00".equals(info.getStatusCode())) {
+                tvMasterOnlineNum.setText(info.getMachineCount() + "");
+                double rate = info.getRate() * 100;
+                if (Math.round(rate) - rate == 0) {
+                    mProgressBar1.setProgress((int) rate);
+                } else {
+                    DecimalFormat df = new DecimalFormat(".#");
+                    String runrate = df.format(rate);
+                    mProgressBar1.setProgress(Float.parseFloat(runrate));
+                }
             }
             //离线
-            else if("01".equals(info.getStatusCode())){
-                tvMasterOfflineNum.setText(info.getMachineCount()+"");
-                String rate2 = df.format(info.getRate()*100);
-                mProgressBar2.setProgress(rate2.contains(".") ? Float.parseFloat(rate2) : Integer.parseInt(rate2));
+            else if ("01".equals(info.getStatusCode())) {
+                tvMasterOfflineNum.setText(info.getMachineCount() + "");
+                double rate = info.getRate() * 100;
+                if (Math.round(rate) - rate == 0) {
+                    mProgressBar2.setProgress((int) rate);
+                } else {
+                    DecimalFormat df = new DecimalFormat(".#");
+                    String runrate = df.format(rate);
+                    mProgressBar2.setProgress(Float.parseFloat(runrate));
+                }
             }
             // 算力异常
-            else if("02".equals(info.getStatusCode())){
-                tvMasterExceptionNum.setText(info.getMachineCount()+"");
-                String rate3 = df.format(info.getRate()*100);
-                mProgressBar3.setProgress(rate3.contains(".") ? Float.parseFloat(rate3) : Integer.parseInt(rate3));
+            else if ("02".equals(info.getStatusCode())) {
+                tvMasterExceptionNum.setText(info.getMachineCount() + "");
+                double rate = info.getRate() * 100;
+                if (Math.round(rate) - rate == 0) {
+                    mProgressBar3.setProgress((int) rate);
+                } else {
+                    DecimalFormat df = new DecimalFormat(".#");
+                    String runrate = df.format(rate);
+                    mProgressBar3.setProgress(Float.parseFloat(runrate));
+                }
             }
             // 停机
-            else if("05".equals(info.getStatusCode())){
-                tvMasterStopNum.setText(info.getMachineCount()+"");
-                String rate4 = df.format(info.getRate()*100);
-                mProgressBar4.setProgress(rate4.contains(".") ? Float.parseFloat(rate4) : Integer.parseInt(rate4));
+            else if ("05".equals(info.getStatusCode())) {
+                tvMasterStopNum.setText(info.getMachineCount() + "");
+                double rate = info.getRate() * 100;
+                if (Math.round(rate) - rate == 0) {
+                    mProgressBar4.setProgress((int) rate);
+                } else {
+                    DecimalFormat df = new DecimalFormat(".#");
+                    String runrate = df.format(rate);
+                    mProgressBar4.setProgress(Float.parseFloat(runrate));
+                }
             }
         }
     }
@@ -317,46 +384,72 @@ public class Sly2MasterFragment extends BaseFragment implements ICommonViewUi, M
 
     }
 
-    @OnClick({R.id.tv_master_add,R.id.rl_notice, R.id.rl_online_machine,
-            R.id.rl_offline_machine,R.id.rl_exception_machine,R.id.rl_stop_machine,
+    @OnClick({R.id.rl_user_type, R.id.tv_master_add, R.id.rl_notice, R.id.ll_master_all_free, R.id.ll_master_all_power,
+            R.id.rl_online_machine, R.id.rl_offline_machine, R.id.rl_exception_machine, R.id.rl_stop_machine,
             R.id.rl_all_machine_count, R.id.rl_master_person_manage, R.id.rl_master_parts})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.tv_operation_manage:
-                AppUtils.goActivity(mContext, MachineManageActivity.class);
+            case R.id.rl_user_type:
+                showPopupWindow();
+                break;
+            case R.id.tv_master_add:
+                Bundle addBun = new Bundle();
+                addBun.putString("MineCode", MineCode);
+                AppUtils.goActivity(mContext, MasterAccountExecActivity.class, addBun);
                 break;
             case R.id.rl_notice:
                 AppUtils.goActivity(mContext, Sly2NoticeActivity.class);
                 break;
+            case R.id.ll_master_all_free:
+                Bundle freeBun = new Bundle();
+                freeBun.putString("MineCode", MineCode);
+                AppUtils.goActivity(mContext, MasterAllFreeActivity.class, freeBun);
+                break;
+            case R.id.ll_master_all_power:
+                Bundle powerBun = new Bundle();
+                powerBun.putString("MineCode", MineCode);
+                AppUtils.goActivity(mContext, MasterAllPowerActivity.class, powerBun);
+                break;
             case R.id.rl_all_machine_count:
-//                AppUtils.goActivity(mContext, MachineListActivity.class, new Bundle());
+                Bundle bundle = new Bundle();
+                bundle.putString("MineCode", MineCode);
+                AppUtils.goActivity(mContext, MasterMachineListActivity.class, bundle);
                 break;
             //百分比状态点击
             case R.id.rl_online_machine:
                 Bundle bundle1 = new Bundle();
+                bundle1.putString("MineCode", MineCode);
                 bundle1.putString("statusCode", "00");
-//                AppUtils.goActivity(mContext, MachineListActivity.class, bundle1);
+                AppUtils.goActivity(mContext, MasterMachineListActivity.class, bundle1);
                 break;
             case R.id.rl_offline_machine:
                 Bundle bundle2 = new Bundle();
+                bundle2.putString("MineCode", MineCode);
                 bundle2.putString("statusCode", "01");
-//                AppUtils.goActivity(mContext, MachineListActivity.class, bundle2);
+                AppUtils.goActivity(mContext, MasterMachineListActivity.class, bundle2);
                 break;
             case R.id.rl_exception_machine:
                 Bundle bundle3 = new Bundle();
+                bundle3.putString("MineCode", MineCode);
                 bundle3.putString("statusCode", "02");
-//                AppUtils.goActivity(mContext, MachineListActivity.class, bundle3);
+                AppUtils.goActivity(mContext, MasterMachineListActivity.class, bundle3);
                 break;
             case R.id.rl_stop_machine:
                 Bundle bundle4 = new Bundle();
+                bundle4.putString("MineCode", MineCode);
                 bundle4.putString("statusCode", "05");
-//                AppUtils.goActivity(mContext, MachineListActivity.class, bundle4);
+                AppUtils.goActivity(mContext, MasterMachineListActivity.class, bundle4);
                 break;
             case R.id.rl_master_person_manage:
-//                AppUtils.goActivity(mContext, MachineListActivity.class, bundle4);
+                Bundle bundle5 = new Bundle();
+                bundle5.putString("MineCode", MineCode);
+                bundle5.putString("MineName", MineName);
+                AppUtils.goActivity(mContext, MasterPersonManageActivity.class, bundle5);
                 break;
             case R.id.rl_master_parts:
-//                AppUtils.goActivity(mContext, MachineListActivity.class, bundle4);
+                Bundle bundle6 = new Bundle();
+                bundle6.putString("MineCode", MineCode);
+                AppUtils.goActivity(mContext, MasterSpareListActivity.class, bundle6);
                 break;
         }
     }
@@ -365,7 +458,103 @@ public class Sly2MasterFragment extends BaseFragment implements ICommonViewUi, M
     public void onItemClick(View view, int position) {
         MasterMineBean bean = masterMineList.get(position);
         MineCode = bean.getMineCode();
+        MineName = bean.getMineName();
         toRequest(NetConstant.EventTags.GET_MASTER_ALL_DATA);
         toRequest(NetConstant.EventTags.GET_MASTER_NUM_RATE);
+
+    }
+
+    private void showPopupWindow() {
+        if (mPopupWindow == null) {
+            LayoutInflater inflater = LayoutInflater.from(getActivity());
+            View contentView = inflater.inflate(R.layout.mine_popupwindow, null, false);
+
+            mPopupWindow = new PopupWindow(contentView, RelativeLayout.LayoutParams.WRAP_CONTENT,
+                    RelativeLayout.LayoutParams.WRAP_CONTENT, true);
+            mPopupWindow.setOutsideTouchable(true);
+            mPopupWindow.showAsDropDown(rlUserType, 10, 5);
+            mPopupWindow.setBackgroundDrawable(new ColorDrawable(00000000));
+
+            TextView miner = contentView.findViewById(R.id.miner);
+            TextView mineMaster = contentView.findViewById(R.id.mineMaster);
+            TextView operation = contentView.findViewById(R.id.operation);
+            TextView authAccount = contentView.findViewById(R.id.auth_account);
+
+            miner.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Log.e(TAG, "FrSysCode: ");
+//                    mine.setText("矿工");
+//                    SharedPreferencesUtil.putString(mContext, "LoginType", "Miner");
+//                    SharedPreferencesUtil.putString(mContext, "mineType", "Miner");
+//                    if(!LoginType.equals("Miner")){
+//                        LoginType = SharedPreferencesUtil.getString(mContext, "LoginType","None");
+//                    }
+//                    getUserInfo(mContext, LoginType, User, FrSysCode, Key, Token);//更新数据
+//                    EventBus.getDefault().post(new PostResult(BusEvent.UPDATE_HOSTING_MINER_DATA));
+//                    showMenuForRole();
+//                    getNewsCount();
+                }
+            });
+
+            mineMaster.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Log.d(TAG, "FMasterCode: ");
+                    if (FMasterCode != null && !FMasterCode.isEmpty()) {
+//                        mine.setText("矿场主");
+//                        SharedPreferencesUtil.putString(mContext, "LoginType", "MinerMaster");
+//                        SharedPreferencesUtil.putString(mContext, "mineType", "MinerMaster");
+//                        if(!LoginType.equals("MinerMaster")){
+//                            LoginType = SharedPreferencesUtil.getString(mContext, "LoginType","None");
+//                        }
+//                        getUserInfo(mContext, LoginType, User, FMasterCode, Key, Token);//更新数据
+//                        EventBus.getDefault().post(new PostResult(BusEvent.UPDATE_HOSTING_MASTER_DATA));
+//                        showMenuForRole();
+//                        getNewsCount();
+                    } else {
+                        ToastUtils.showToast("抱歉！您当前没有此权限");
+                    }
+                }
+            });
+
+            operation.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Log.e(TAG, "PersonSysCode: ");
+                    if (PersonSysCode != null && !PersonSysCode.isEmpty()) {
+//                        mine.setText("运维");
+//                        SharedPreferencesUtil.putString(mContext, "mineType", "Operation");
+//                        String SysCode = LoginType.equals("Miner") ? FrSysCode : FMasterCode;
+//                        getUserInfo(mContext, LoginType, User, SysCode, Key, Token);//更新数据
+//                        EventBus.getDefault().post(new PostResult(BusEvent.UPDATE_HOSTING_OPERATION_DATA));
+//                        showMenuForRole();
+//                        getNewsCount();
+                    } else {
+                        ToastUtils.showToast("抱歉！您当前没有此权限");
+                    }
+                }
+            });
+
+            authAccount.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (!AppUtils.isBlank(ChildAccount) && !"None".equals(ChildAccount)) {
+                        AppUtils.goActivity(mContext, AuthAccountSetMineActivity.class);
+                        mPopupWindow.dismiss();
+                    } else {
+                        ToastUtils.showToast("抱歉！您当前没有此权限");
+                    }
+                }
+            });
+        } else {
+            mPopupWindow.showAsDropDown(rlUserType, 10, 5);
+        }
+    }
+
+    public void getActivityResult() {
+        MineCode = SharedPreferencesUtil.getString(mContext, "authMineCode");
+        isMaster = SharedPreferencesUtil.getBoolean(mContext, "authIsMaster");
+        toRequest(NetConstant.EventTags.GET_AUTH_ACCOUNT_PERMISSION);
     }
 }

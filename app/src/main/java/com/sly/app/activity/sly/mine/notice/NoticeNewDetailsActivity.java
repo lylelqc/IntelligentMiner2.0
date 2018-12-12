@@ -122,7 +122,7 @@ public class NoticeNewDetailsActivity extends BaseActivity implements ICommonVie
                 tvDetailsNewName.setText(bean.getMine48_Title());
                 tvDetailsNewTime.setText(bean.getMine48_Time());
                 tvDetailsNewIP.setText(bean.getMine08_IP());
-                tvDetailsNewType.setText(bean.getMine08_MAC());
+                tvDetailsNewType.setText(bean.getMine08_Model());
                 tvDetailsNewReason.setText(bean.getMine48_Message());
             }
         }

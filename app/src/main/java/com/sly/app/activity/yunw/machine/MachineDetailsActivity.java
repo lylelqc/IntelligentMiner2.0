@@ -37,6 +37,7 @@ import com.sly.app.utils.ToastUtils;
 import com.sly.app.view.iviews.ICommonViewUi;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -265,11 +266,13 @@ public class MachineDetailsActivity extends BaseActivity implements ICommonViewU
             //24小时算力
             mPic24ListBean =
                     (List<MachineDetailsPicBean>) AppUtils.parseRowsResult(result, MachineDetailsPicBean.class);
+            Collections.reverse(mPic24ListBean);
             setCalPowerPicData(lcCalPowerPic, mPic24ListBean, 24);
         } else if (eventTag == NetConstant.EventTags.GET_MACHINE_DETAILS_30_SUANLI) {
             //30天算力
             mPic30ListBean =
                     (List<MachineDetailsPicBean>) AppUtils.parseRowsResult(result, MachineDetailsPicBean.class);
+            Collections.reverse(mPic30ListBean);
         }
     }
 

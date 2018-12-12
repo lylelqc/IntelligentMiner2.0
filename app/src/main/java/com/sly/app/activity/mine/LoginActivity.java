@@ -178,6 +178,7 @@ public class LoginActivity extends BaseActivity {
                                 SharedPreferencesUtil.putString(LoginActivity.this, "FrSysCode", loginInfoBean.getFrSysCode());
                                 SharedPreferencesUtil.putString(LoginActivity.this, "FMasterCode", loginInfoBean.getFMasterCode());
                                 SharedPreferencesUtil.putString(LoginActivity.this, "PersonSysCode", loginInfoBean.getPersonSysCode());
+                                SharedPreferencesUtil.putString(LoginActivity.this, "ChildAccount", loginInfoBean.getChildAccount());
                                 SharedPreferencesUtil.putString(LoginActivity.this, "Key", loginInfoBean.getKey());
                                 /**角色Role**/
 //                                if(loginInfoBean.getRole().equals("MineMaster")){
@@ -186,7 +187,6 @@ public class LoginActivity extends BaseActivity {
                                 SharedPreferencesUtil.putString(LoginActivity.this,"LoginType",loginInfoBean.getRole());
                                 SharedPreferencesUtil.putString(LoginActivity.this,"mineType",loginInfoBean.getRole());
 //                                }
-
 
                                 String sysCode = "None";
                                 String role = SharedPreferencesUtil.getString(mContext, "LoginType","None");
@@ -209,6 +209,7 @@ public class LoginActivity extends BaseActivity {
                                 SharedPreferencesUtil.putString(LoginActivity.this, "FrSysCode", null);
                                 SharedPreferencesUtil.putString(LoginActivity.this, "FMasterCode", null);
                                 SharedPreferencesUtil.putString(LoginActivity.this, "PersonSysCode", null);
+                                SharedPreferencesUtil.putString(LoginActivity.this, "ChildAccount", null);
 
                                 /**角色Role**/
                                 SharedPreferencesUtil.putString(LoginActivity.this,"LoginType",null);
@@ -223,6 +224,7 @@ public class LoginActivity extends BaseActivity {
                             SharedPreferencesUtil.putString(LoginActivity.this, "FrSysCode", null);
                             SharedPreferencesUtil.putString(LoginActivity.this, "FMasterCode", null);
                             SharedPreferencesUtil.putString(LoginActivity.this, "PersonSysCode", null);
+                            SharedPreferencesUtil.putString(LoginActivity.this, "ChildAccount", null);
                             /**角色Role**/
                             SharedPreferencesUtil.putString(LoginActivity.this,"LoginType",null);
                             SharedPreferencesUtil.putString(LoginActivity.this,"mineType",null);
@@ -240,6 +242,7 @@ public class LoginActivity extends BaseActivity {
                         SharedPreferencesUtil.putString(LoginActivity.this, "FrSysCode", null);
                         SharedPreferencesUtil.putString(LoginActivity.this, "FMasterCode", null);
                         SharedPreferencesUtil.putString(LoginActivity.this, "PersonSysCode", null);
+                        SharedPreferencesUtil.putString(LoginActivity.this, "ChildAccount", null);
                         /**角色Role**/
                         SharedPreferencesUtil.putString(LoginActivity.this,"LoginType",null);
                         SharedPreferencesUtil.putString(LoginActivity.this, "Key", null);

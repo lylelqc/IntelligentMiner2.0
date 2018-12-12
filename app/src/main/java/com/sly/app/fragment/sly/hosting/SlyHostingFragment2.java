@@ -8,6 +8,7 @@ import android.widget.FrameLayout;
 import com.sly.app.R;
 import com.sly.app.comm.BusEvent;
 import com.sly.app.fragment.BaseFragment;
+import com.sly.app.fragment.Sly2MasterFragment;
 import com.sly.app.fragment.sly.SlyHostingFragment;
 import com.sly.app.model.PostResult;
 import com.sly.app.utils.SharedPreferencesUtil;
@@ -24,6 +25,7 @@ public class SlyHostingFragment2 extends BaseFragment{
 
     public static String mContent = "???";
     private HostingMinerMasterFragment mHostingMinerMasterFragment;
+    private Sly2MasterFragment mMasterFragment;
     private HostingYunwFragment mHostingYunwFragment;
     private FragmentTransaction ft1;
     private FragmentTransaction ft2;
@@ -97,10 +99,15 @@ public class SlyHostingFragment2 extends BaseFragment{
                  * 如果不为空，就将它从栈中显示出来
                  */
 
-                if (mHostingMinerMasterFragment == null) {
-                    mHostingMinerMasterFragment = new HostingMinerMasterFragment();
-                    ft1.add(R.id.fl_hosting_miner_master, mHostingMinerMasterFragment).commitAllowingStateLoss();
+//                if (mHostingMinerMasterFragment == null) {
+//                    mHostingMinerMasterFragment = new HostingMinerMasterFragment();
+//                    ft1.add(R.id.fl_hosting_miner_master, mHostingMinerMasterFragment).commitAllowingStateLoss();
+//
+//                }
 
+                if (mMasterFragment == null) {
+                    mMasterFragment = new Sly2MasterFragment();
+                    ft1.add(R.id.fl_hosting_miner_master, mMasterFragment).commitAllowingStateLoss();
                 }
                 flHostingMinerMaster.setVisibility(View.VISIBLE);
                 flHostingYunw.setVisibility(View.GONE);

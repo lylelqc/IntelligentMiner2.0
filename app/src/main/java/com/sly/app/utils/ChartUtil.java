@@ -110,7 +110,7 @@ public class ChartUtil {
         leftYAxis.setValueFormatter(new IAxisValueFormatter() {
             @Override
             public String getFormattedValue(float value, AxisBase axis) {
-                return Math.round(value) + "T";
+                return value + "T";
             }
         });
 
@@ -120,6 +120,7 @@ public class ChartUtil {
 //        legend.setEnabled(false);
         //设置显示类型，LINE CIRCLE SQUARE EMPTY 等等 多种方式，查看LegendForm 即可
         legend.setForm(Legend.LegendForm.LINE);
+        legend.setFormSize(0f);
         legend.setTextSize(12f);
         //显示位置 左下方
         legend.setVerticalAlignment(Legend.LegendVerticalAlignment.BOTTOM);
@@ -147,7 +148,7 @@ public class ChartUtil {
         List<Entry> entries = new ArrayList<>();
         for (int i = 0; i < dataList.size(); i++) {
             MachineDetailsPicBean data = dataList.get(i);
-            float yValue = Float.parseFloat(data.getNowCalcForce());
+            float yValue = Float.parseFloat(data.getCalcForce());
             /**
              * 在此可查看 Entry构造方法，可发现 可传入数值 Entry(float x, float y)
              * 也可传入Drawable， Entry(float x, float y, Drawable icon) 可在XY轴交点 设置Drawable图像展示
@@ -176,13 +177,13 @@ public class ChartUtil {
         //画高亮线的竖线
         lineDataSet.setDrawVerticalHighlightIndicator(true);
 //        lineDataSet.setValueTextSize(10f);
-        lineDataSet.setHighlightLineWidth(2.0f);
+        lineDataSet.setHighlightLineWidth(1.5f);
         lineDataSet.setHighLightColor(lineColor);
         //设置折线图填充
         lineDataSet.setDrawFilled(true);
         lineDataSet.setFillColor(bgColor);
         lineDataSet.setFormLineWidth(1f);
-        lineDataSet.setFormSize(10.f);
+        lineDataSet.setFormSize(0f);
         //设置曲线条
         lineDataSet.setMode(LineDataSet.Mode.CUBIC_BEZIER);
 

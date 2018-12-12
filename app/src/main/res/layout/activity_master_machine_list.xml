@@ -152,7 +152,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="left|center_vertical"
                     android:gravity="center"
-                    android:text="区域"
+                    android:text="型号"
                     android:textColor="@color/sly_text_333333"
                     android:textSize="13sp" />
 

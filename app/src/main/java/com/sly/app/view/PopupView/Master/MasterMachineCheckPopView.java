@@ -15,7 +15,9 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.sly.app.R;
+import com.sly.app.adapter.master.MasterMachineTypeRecyclerViewAdapter;
 import com.sly.app.adapter.yunw.machine.MachineTypeRecyclerViewAdapter;
+import com.sly.app.model.master.MasterMachineTypeBean;
 import com.sly.app.model.yunw.machine.MachineTypeBean;
 import com.sly.app.utils.ToastUtils;
 import com.sly.app.view.MyGridItemDecoration;
@@ -26,7 +28,7 @@ import java.util.List;
 
 public class MasterMachineCheckPopView extends PopupWindow implements View.OnClickListener {
 
-    private MachineTypeRecyclerViewAdapter adapter;
+    private MasterMachineTypeRecyclerViewAdapter adapter;
     private View contentView;
     private Context mContext;
 
@@ -47,9 +49,9 @@ public class MasterMachineCheckPopView extends PopupWindow implements View.OnCli
     private LinearLayout llListType;
     private LinearLayout llChooseStatus;
 
-    private List<MachineTypeBean> machineTypeList;
+    private List<MasterMachineTypeBean> machineTypeList;
 
-    public MasterMachineCheckPopView(final Activity context, List<MachineTypeBean> typeList){
+    public MasterMachineCheckPopView(final Activity context, List<MasterMachineTypeBean> typeList){
         this.mContext = context;
         this.machineTypeList = typeList;
 
@@ -62,7 +64,7 @@ public class MasterMachineCheckPopView extends PopupWindow implements View.OnCli
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.addItemDecoration(lineVertical);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        adapter = new MachineTypeRecyclerViewAdapter(mContext, typeList);
+        adapter = new MasterMachineTypeRecyclerViewAdapter(mContext, typeList);
         recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
 
@@ -111,7 +113,7 @@ public class MasterMachineCheckPopView extends PopupWindow implements View.OnCli
 
     public String[] getTextInfo(){
         String[] repairInfo = new String[8];
-        repairInfo[0] = adapter.getIndex() == -1 ? "" : machineTypeList.get(adapter.getIndex()).getModelCode();
+        repairInfo[0] = adapter.getIndex() == -1 ? "" : machineTypeList.get(adapter.getIndex()).getModel();
         repairInfo[1] = etMinerCode.getText().toString().trim();
         repairInfo[2] = etVipCode.getText().toString().trim();
         repairInfo[3] = etMobileOrEmail.getText().toString().trim();

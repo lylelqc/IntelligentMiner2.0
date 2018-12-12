@@ -6,15 +6,15 @@ public class MachineDetailsPicBean {
      * \"NowCalcForce\":\"0\",
      * \"DataTime\":\"2018\/11\/19 11:25:45\"
      */
-    private String NowCalcForce;
+    private String CalcForce;
     private String DataTime;
 
-    public String getNowCalcForce() {
-        return NowCalcForce;
+    public String getCalcForce() {
+        return CalcForce;
     }
 
-    public void setNowCalcForce(String nowCalcForce) {
-        NowCalcForce = nowCalcForce;
+    public void setCalcForce(String calcForce) {
+        CalcForce = calcForce;
     }
 
     public String getDataTime() {

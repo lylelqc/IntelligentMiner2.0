@@ -32,4 +32,6 @@ public class EventBusTags {
 
     public static final String JUMP_REPAIR_BILL_TREATED = "jump_repair_bill_treated"; //跳转已处理
 
+    public static final String CHOOSE_AUTH_MINE_AREA = "choose_auth_mine_area"; //选择授权矿场
+
 }

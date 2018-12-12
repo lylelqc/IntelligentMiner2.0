@@ -168,7 +168,7 @@ public class TaketDetailActivity extends BaseActivity implements ICommonViewUi {
         tvRunMsg.setText(taketDetailBean.get(0).getRunStatus());
         tvTaketRepairFee.setText(taketDetailBean.get(0).getRepairSum() + "元");
 
-        if (("处理中,等待付款").equals(taketDetailBean.get(0).getBillStatus())) {
+        if (("处理中,等待确认").equals(taketDetailBean.get(0).getBillStatus())) {
             if (LoginType.equals("Miner")) {
                 tvNext.setVisibility(View.VISIBLE);
                 tvNext.setText("确认维修");

@@ -16,7 +16,7 @@ public class RepairBillDetailsBean {
      \"IP\":\"192.168.20.96\",
      \"AreaName\":\"C\",
      \"RepairHours\":\"0小时50分\"
-
+     \AcceptTime
      \"DetailID\":\"0C150155-972B-4CB6-B5B3-5BCD5DC25BC9\",
      */
 
@@ -34,6 +34,15 @@ public class RepairBillDetailsBean {
     private String IP;
     private String AreaName;
     private String RepairHours;
+    private String AcceptTime;
+
+    public String getAcceptTime() {
+        return AcceptTime;
+    }
+
+    public void setAcceptTime(String acceptTime) {
+        AcceptTime = acceptTime;
+    }
 
     public String getBillNo() {
         return BillNo;

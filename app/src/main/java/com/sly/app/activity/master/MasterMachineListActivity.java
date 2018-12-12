@@ -27,6 +27,7 @@ import com.sly.app.listener.LoadMoreClickListener;
 import com.sly.app.listener.OnRecyclerViewListener;
 import com.sly.app.model.PostResult;
 import com.sly.app.model.master.MasterMachineListBean;
+import com.sly.app.model.master.MasterMachineTypeBean;
 import com.sly.app.model.yunw.machine.MachineStatusBean;
 import com.sly.app.model.yunw.machine.MachineTypeBean;
 import com.sly.app.presenter.IRecyclerViewPresenter;
@@ -38,6 +39,7 @@ import com.sly.app.utils.EncryptUtil;
 import com.sly.app.utils.NetUtils;
 import com.sly.app.utils.SharedPreferencesUtil;
 import com.sly.app.utils.ToastUtils;
+import com.sly.app.view.PopupView.Master.MasterMachineCheckPopView;
 import com.sly.app.view.PopupView.Yunw.MachineCheckPopView;
 import com.sly.app.view.iviews.ICommonViewUi;
 import com.sly.app.view.iviews.ILoadView;
@@ -136,13 +138,13 @@ public class MasterMachineListActivity extends BaseActivity implements ICommonVi
 
     private boolean isStatusTransfer = false;
 
-    private MachineCheckPopView mMachineCheckView;
-    private List<MachineTypeBean> machineTypeList = new ArrayList<>();
+    private MasterMachineCheckPopView mMachineCheckView;
+    private List<MasterMachineTypeBean> machineTypeList = new ArrayList<>();
     private List<MachineStatusBean> machineStatusList = new ArrayList<>();
 
     @Override
     protected int getContentViewLayoutID() {
-        return R.layout.activity_sly2_machine_list;
+        return R.layout.activity_master_machine_list;
     }
 
     @Override
@@ -187,8 +189,8 @@ public class MasterMachineListActivity extends BaseActivity implements ICommonVi
 
         FrSysCode = SharedPreferencesUtil.getString(mContext, "FrSysCode", "None");
         FMasterCode = SharedPreferencesUtil.getString(mContext, "FMasterCode", "None");
-        MineCode = SharedPreferencesUtil.getString(mContext, "MineCode", "None");
-        PersonSysCode = SharedPreferencesUtil.getString(mContext, "PersonSysCode", "None");
+//        MineCode = SharedPreferencesUtil.getString(mContext, "MineCode", "None");
+//        PersonSysCode = SharedPreferencesUtil.getString(mContext, "PersonSysCode", "None");
 
         User = SharedPreferencesUtil.getString(mContext, "User", "None");
         Token = SharedPreferencesUtil.getString(mContext, "Token", "None");
@@ -197,8 +199,8 @@ public class MasterMachineListActivity extends BaseActivity implements ICommonVi
         swipeRefreshLayout.setVisibility(View.GONE);
 
         intitNewsCount();
-        toRequest(NetConstant.EventTags.GET_YUNW_MACHINE_LIST_STATUS);
-        toRequest(NetConstant.EventTags.GET_MACHINE_TYPE);
+        toRequest(NetConstant.EventTags.GET_MASTER_MACHINE_STATUS);
+        toRequest(NetConstant.EventTags.GET_MASTER_MACHINE_TYPE);
         firstRefresh();
     }
 
@@ -439,7 +441,7 @@ public class MasterMachineListActivity extends BaseActivity implements ICommonVi
                 AppUtils.goActivity(this, Sly2NoticeActivity.class);
                 break;
             case R.id.tv_main_right_left:
-                mMachineCheckView = new MachineCheckPopView(this, machineTypeList);
+                mMachineCheckView = new MasterMachineCheckPopView(this, machineTypeList);
                 mMachineCheckView.setOnDismissListener(new PopupWindow.OnDismissListener() {
                     @Override
                     public void onDismiss() {
@@ -471,7 +473,7 @@ public class MasterMachineListActivity extends BaseActivity implements ICommonVi
                 break;
             case R.id.ll_machine_list_area_icon:
                 mAreaCount ++;
-                setListHeaderIcon("AreaName", mAreaCount % 2);
+                setListHeaderIcon("Model", mAreaCount % 2);
                 firstRefresh();
                 break;
         }
@@ -484,14 +486,15 @@ public class MasterMachineListActivity extends BaseActivity implements ICommonVi
             Model = AppUtils.isBlank(info[0]) ? "" : info[0];
             Worker = AppUtils.isBlank(info[1]) ? "" : info[1];
             minerSysCode = AppUtils.isBlank(info[2]) ? "" : info[2];
+            MobileOREmail = AppUtils.isBlank(info[3]) ? "" : info[2];
 
-            if(info[5].equals("true")){
+            if(info[4].equals("true")){
                 statusCode = "00";
-            }else if(info[6].equals("true")){
+            }else if(info[5].equals("true")){
                 statusCode = "01";
-            }else if(info[7].equals("true")){
+            }else if(info[6].equals("true")){
                 statusCode = "02";
-            }else if(info[8].equals("true")){
+            }else if(info[7].equals("true")){
                 statusCode = "05";
             }else {
                 statusCode = "";
@@ -555,7 +558,7 @@ public class MasterMachineListActivity extends BaseActivity implements ICommonVi
             tvListStatusLow.setBackground(drawableLow);
             tvListAreaUp.setBackground(drawableUp);
             tvListAreaLow.setBackground(drawableLow);
-        }else if(tag.equals("AreaName")) {
+        }else if(tag.equals("Model")) {
             orderField = tag;
             if (count == 1) {
                 tvListAreaUp.setBackground(drawableUp1);
@@ -615,12 +618,13 @@ public class MasterMachineListActivity extends BaseActivity implements ICommonVi
         map.put("Token", Token);
         map.put("LoginType", LoginType);
         map.put("User", User);
-        map.put("personSysCode", PersonSysCode);
 
-        if(eventTag == NetConstant.EventTags.GET_MACHINE_TYPE){
-            map.put("Rounter", NetConstant.GET_MACHINE_TYPE);
+        if(eventTag == NetConstant.EventTags.GET_MASTER_MACHINE_TYPE){
+            map.put("Rounter", NetConstant.GET_MASTER_MACHINE_TYPE);
+            map.put("personSysCode", PersonSysCode);
         }else {
-            map.put("Rounter", NetConstant.GET_YUNW_MACHINE_LIST_STATUS);
+            map.put("Rounter", NetConstant.GET_MASTER_MACHINE_STATUS);
+            map.put("mineCode", MineCode);
         }
 
         Map<String, String> jsonMap = new HashMap<>();
@@ -631,9 +635,9 @@ public class MasterMachineListActivity extends BaseActivity implements ICommonVi
 
     @Override
     public void getRequestData(int eventTag, String result) {
-        if(eventTag == NetConstant.EventTags.GET_MACHINE_TYPE){
+        if(eventTag == NetConstant.EventTags.GET_MASTER_MACHINE_TYPE){
             machineTypeList =
-                    (List<MachineTypeBean>) AppUtils.parseRowsResult(result, MachineTypeBean.class);
+                    (List<MasterMachineTypeBean>) AppUtils.parseRowsResult(result, MasterMachineTypeBean.class);
         }else {
             machineStatusList =
                     (List<MachineStatusBean>) AppUtils.parseRowsResult(result, MachineStatusBean.class);
@@ -667,6 +671,4 @@ public class MasterMachineListActivity extends BaseActivity implements ICommonVi
 
         }
     }
-
-
 }

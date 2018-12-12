@@ -305,7 +305,6 @@ RepairBillDetailsActivity extends BaseActivity implements ICommonViewUi {
             tvDetailsStatus.setText(bean.getResultName());
             tvDetailsBillNo.setText(bean.getBillNo());
             tvDetailsPtime.setText(bean.getPtime());
-            tvDetailsEtime.setText(bean.getEndTime());
             tvDetailsAllfree.setText(bean.getRepairSum() + "");
             tvDetailsIP.setText(bean.getIP());
             tvDetailsArea.setText(bean.getAreaName());
@@ -319,10 +318,12 @@ RepairBillDetailsActivity extends BaseActivity implements ICommonViewUi {
                 llDetailsAllfree.setVisibility(View.VISIBLE);
                 llDetailsDescription.setVisibility(View.VISIBLE);
                 ivDetailsStatusIcon.setImageResource(R.drawable.jieshu_weixiudan_icon);
+                tvDetailsEtime.setText(bean.getEndTime());
             }else{
                 llDetailsAllhours.setVisibility(View.GONE);
                 tvEndtime.setText(getString(R.string.repair_refuse_time));
                 ivDetailsStatusIcon.setImageResource(R.drawable.quxiao_weixiudan_icon);
+                tvDetailsEtime.setText(bean.getAcceptTime());
             }
 
         }

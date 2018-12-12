@@ -127,7 +127,7 @@ public class Sly2YunwFragment extends BaseFragment implements ICommonViewUi{
     public static String mContent = "???";
     private String User,LoginType, MineCode, PersonSysCode, Token, Key, PlanID;
     ICommonRequestPresenter iCommonRequestPresenter;
-    private List<MachineNumRateInfo> machineStatusList = new ArrayList<>();
+    private List<MachineNumRateInfo> machineNumRateList = new ArrayList<>();
 
     public static Sly2YunwFragment newInstance(String content) {
         Sly2YunwFragment fragment = new Sly2YunwFragment();
@@ -268,8 +268,8 @@ public class Sly2YunwFragment extends BaseFragment implements ICommonViewUi{
             }
         }
         else if(eventTag == NetConstant.EventTags.GET_YUNW_MACHINE_NUM_RATE){
-            machineStatusList = (List<MachineNumRateInfo>) AppUtils.parseResult(result, MachineNumRateInfo.class);
-            if(machineStatusList != null && machineStatusList.size() > 0){
+            machineNumRateList = (List<MachineNumRateInfo>) AppUtils.parseResult(result, MachineNumRateInfo.class);
+            if(!AppUtils.isListBlank(machineNumRateList)){
                 setPorgressInfo();
             }
         }
@@ -295,23 +295,27 @@ public class Sly2YunwFragment extends BaseFragment implements ICommonViewUi{
     }
 
     private void setPorgressInfo() {
-        DecimalFormat df = new DecimalFormat("#.#");
-        df.setRoundingMode(RoundingMode.HALF_DOWN);
 
-        for(int i = 0; i < machineStatusList.size(); i++){
-            MachineNumRateInfo info = machineStatusList.get(i);
+        for(int i = 0; i < machineNumRateList.size(); i++){
+            MachineNumRateInfo info = machineNumRateList.get(i);
             // 在线
             if("00".equals(info.getStatusCode())){
                 tvOnlineNum.setText(info.getMachineCount()+"");
-                String rate1 = df.format(info.getRate()*100);
-                mProgressBar1.setProgress(rate1.contains(".") ? Float.parseFloat(rate1) : Integer.parseInt(rate1));
+
+                double rate = info.getRate()*100;
+                if (Math.round(rate) - rate == 0) {
+                    mProgressBar1.setProgress((int)rate);
+                }else{
+                    DecimalFormat df = new DecimalFormat(".#");
+                    String runrate = df.format(rate);
+                    mProgressBar1.setProgress(Float.parseFloat(runrate));
+                }
             }
             //离线
             else if("01".equals(info.getStatusCode())){
                 rlOfflineNum.setVisibility(View.VISIBLE);
                 if(info.getMachineCount() == 0){
                     rlOfflineNum.setVisibility(View.GONE);
-                    return ;
                 }
 
                 if(info.getMachineCount() < 10){
@@ -328,20 +332,38 @@ public class Sly2YunwFragment extends BaseFragment implements ICommonViewUi{
                 }
 
                 tvOfflineNum2.setText(info.getMachineCount()+"");
-                String rate2 = df.format(info.getRate()*100);
-                mProgressBar2.setProgress(rate2.contains(".") ? Float.parseFloat(rate2) : Integer.parseInt(rate2));
+                double rate = info.getRate()*100;
+                if (Math.round(rate) - rate == 0) {
+                    mProgressBar2.setProgress((int)rate);
+                }else{
+                    DecimalFormat df = new DecimalFormat(".#");
+                    String runrate = df.format(rate);
+                    mProgressBar2.setProgress(Float.parseFloat(runrate));
+                }
             }
             // 算力异常
             else if("02".equals(info.getStatusCode())){
                 tvExceptionNum.setText(info.getMachineCount()+"");
-                String rate3 = df.format(info.getRate()*100);
-                mProgressBar3.setProgress(rate3.contains(".") ? Float.parseFloat(rate3) : Integer.parseInt(rate3));
+                double rate = info.getRate()*100;
+                if (Math.round(rate) - rate == 0) {
+                    mProgressBar3.setProgress((int)rate);
+                }else{
+                    DecimalFormat df = new DecimalFormat(".#");
+                    String runrate = df.format(rate);
+                    mProgressBar3.setProgress(Float.parseFloat(runrate));
+                }
             }
             // 停机
             else if("05".equals(info.getStatusCode())){
                 tvStopNum.setText(info.getMachineCount()+"");
-                String rate4 = df.format(info.getRate()*100);
-                mProgressBar4.setProgress(rate4.contains(".") ? Float.parseFloat(rate4) : Integer.parseInt(rate4));
+                double rate = info.getRate()*100;
+                if (Math.round(rate) - rate == 0) {
+                    mProgressBar4.setProgress((int)rate);
+                }else{
+                    DecimalFormat df = new DecimalFormat(".#");
+                    String runrate = df.format(rate);
+                    mProgressBar4.setProgress(Float.parseFloat(runrate));
+                }
             }
         }
     }

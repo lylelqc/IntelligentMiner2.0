@@ -100,6 +100,15 @@
     <!--矿场主-->
     <string name="machine_ip">IP：</string>
     <string name="machine_month_rate">本月运行率：</string>
+    <string name="master_person_manage">人员管理</string>
+    <string name="master_spare">配件情况</string>
+    <string name="master_free">费用</string>
+    <string name="master_power">耗电量</string>
+    <string name="master_free_manage">管理费</string>
+    <string name="master_free_repair">维修费</string>
+    <string name="master_account_exec">账号管理</string>
+
+    <string name="master_auth_account">授权账号</string>
 
 
     <!--tips-->
@@ -111,14 +120,18 @@
     <string name="repair_loading_spares">备件正在加载...</string>
     <string name="manage_no_chose">请至少选择一个矿机</string>
     <string name="area_no_chose">请至少选择一个区域</string>
+    <string name="person_no_chose">请至少选择一个人员</string>
     <string name="vip_no_bind_no_commit">请先绑定会员再提交！</string>
     <string name="bind_vip_success">绑定成功</string>
     <string name="ip_than_before">结束IP不能大于起始IP</string>
+    <string name="create_accountexec">创建授权账号</string>
+    <string name="input_accountexec">请输入授权账号</string>
 
 
     <!--dialog-->
     <string name="comfirm_success">提交成功</string>
     <string name="delete_success">删除成功</string>
+    <string name="add_success">添加成功</string>
     <string name="request_commit_plan">确认是否提交</string>
     <string name="request_delete_plan">确认是否删除</string>
     <string name="request_start_machine">确认是否重新启用</string>
