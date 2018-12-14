@@ -1,20 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@drawable/shape_bg_gradient_blue">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true">
+
+            <RelativeLayout
+                android:id="@+id/rl_user_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tv_user_type"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:text="矿工"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="10dp"
+                        android:layout_height="6dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="3dp"
+                        android:layout_toRightOf="@+id/tv_user_type"
+                        android:background="@drawable/operation_drop_down" />
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/tv_user_account"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rl_user_type"
+                android:layout_marginLeft="12dp"
+                android:text="138****3526"
+                android:textColor="@color/white"
+                android:textSize="11sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_notice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp">
+
+            <TextView
+                android:id="@+id/tv_notice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/operation_new" />
+
+            <TextView
+                android:id="@+id/tv_red_num"
+                android:layout_width="wrap_content"
+                android:layout_height="13dp"
+                android:layout_marginLeft="15dp"
+                android:background="@drawable/shape_notice_red"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="@color/white"
+                android:textSize="8sp"
+                android:visibility="gone" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_main_right_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:layout_toLeftOf="@+id/rl_notice"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+    </RelativeLayout>
 
     <FrameLayout
-        android:id="@+id/fl_hosting_miner_master"
+        android:id="@+id/fl_hosting_miner"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/fl_hosting_mine_master"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
     </FrameLayout>
 
     <FrameLayout
-        android:visibility="gone"
         android:id="@+id/fl_hosting_yunw"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:visibility="gone">
 
     </FrameLayout>
 

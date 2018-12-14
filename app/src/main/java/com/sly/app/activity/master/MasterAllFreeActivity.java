@@ -138,12 +138,6 @@ public class MasterAllFreeActivity extends BaseActivity implements ICommonViewUi
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        toRequest(NetConstant.EventTags.GET_MASTER_MONTH_FREE);
-    }
-
-    @Override
     public void toRequest(int eventTag) {
         Map map = new HashMap();
 
@@ -170,11 +164,10 @@ public class MasterAllFreeActivity extends BaseActivity implements ICommonViewUi
             List<MasterAllFreeBean> resultList =
                     (List<MasterAllFreeBean>) AppUtils.parseRowsResult(result, MasterAllFreeBean.class);
             mResultList.addAll(resultList);
+            bcFreePic.clear();
             if(!AppUtils.isListBlank(mResultList)){
                 initBarChart();
                 refreshListView(day, true);
-            }else {
-                bcFreePic.clear();
             }
         }
     }
@@ -189,7 +182,6 @@ public class MasterAllFreeActivity extends BaseActivity implements ICommonViewUi
     }
 
     private void initBarChart() {
-        bcFreePic.clear();
         List<List<Float>> chartDataList = new ArrayList<>();
         List<Float> xValues = new ArrayList<>();
         List<Float> yValue1 = new ArrayList<>();

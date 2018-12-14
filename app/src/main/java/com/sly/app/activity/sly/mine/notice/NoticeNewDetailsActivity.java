@@ -87,16 +87,11 @@ public class NoticeNewDetailsActivity extends BaseActivity implements ICommonVie
     @Override
     public void toRequest(int eventTag) {
         Map map = new HashMap();
-//        if ("Miner".equals(mineType)) {
-//            map.put("Rounter", NetWorkCons.GET_MINER_NOTICE_LIST);
-//            map.put("minerSysCode", FrSysCode);
-//        } else if ("MinerMaster".equals(mineType)) {
-//            map.put("Rounter", NetWorkCons.GET_MINEMASTER_NOTICE_LIST);
-//            map.put("minerMasterCode", FMasterCode);
-//        } else {
+
         if (eventTag == NetConstant.EventTags.GET_NEW_NOTICE_DETAILS){
             map.put("Rounter", NetConstant.GET_NEW_NOTICE_DETAILS);
-        }else{
+        }
+        else if(eventTag == NetConstant.EventTags.CAHNGE_NEWS_STATUS){
             map.put("Rounter", NetConstant.CAHNGE_NEWS_STATUS);
         }
 
@@ -124,6 +119,12 @@ public class NoticeNewDetailsActivity extends BaseActivity implements ICommonVie
                 tvDetailsNewIP.setText(bean.getMine08_IP());
                 tvDetailsNewType.setText(bean.getMine08_Model());
                 tvDetailsNewReason.setText(bean.getMine48_Message());
+                if(bean.getIsShow().equals("False")){
+                    tvDetailsNewCheck.setVisibility(View.GONE);
+                }
+                else{
+                    tvDetailsNewCheck.setVisibility(View.VISIBLE);
+                }
             }
         }
 
@@ -136,9 +137,9 @@ public class NoticeNewDetailsActivity extends BaseActivity implements ICommonVie
                 finish();
                 break;
             case R.id.tv_details_new_check:
-//                Bundle bundle = new Bundle();
-//                bundle.putString("machineSysCode","");
-//                AppUtils.goActivity(this, MachineDetailsActivity.class, bundle);
+                Bundle bundle = new Bundle();
+                bundle.putString("machineSysCode", mResultList.get(0).getMine08_MineMachineSysCode());
+                AppUtils.goActivity(this, MachineDetailsActivity.class, bundle);
                 break;
         }
     }

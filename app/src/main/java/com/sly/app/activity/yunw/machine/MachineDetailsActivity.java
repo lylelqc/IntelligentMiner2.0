@@ -378,7 +378,7 @@ public class MachineDetailsActivity extends BaseActivity implements ICommonViewU
             case R.id.rl_machine_details_change:
                 // 注意 - s
                 Bundle bundle2 = new Bundle();
-                bundle2.putString("machineSysCodes", machineSysCode);
+                bundle2.putString("machineSysCodes", machineSysCode + ",");
                 AppUtils.goActivity(this, MachineChangePoolActivity.class, bundle2);
                 break;
         }
@@ -403,13 +403,13 @@ public class MachineDetailsActivity extends BaseActivity implements ICommonViewU
                     String btyear = beginTime.split(" ")[0];
 
                     String begin = btyear.substring(5, btyear.length());
-                    tvEndTime.setText(begin);
+                    tvBeginTime.setText(begin);
                 }
                 if (i == (list.size() - 1)) {
                     String endTime = list.get(i).getDataTime();
                     String etyear = endTime.split(" ")[0];
                     String end = etyear.substring(5, etyear.length());
-                    tvBeginTime.setText(end);
+                    tvEndTime.setText(end);
                 }
             }
 

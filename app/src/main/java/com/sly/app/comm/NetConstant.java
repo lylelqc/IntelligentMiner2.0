@@ -112,6 +112,11 @@ public class NetConstant {
 
     public static final String GET_MASTER_MOBILE = "SlyTwo.104";
 
+    public static final String GET_MASTER_ALL_SUANLI = "SlyTwo.105";
+
+    public static final String GET_MASTER_24_SUANLI = "SlyTwo.106";
+
+    public static final String GET_MASTER_30_SUANLI = "SlyTwo.107";
 
     public static final String GET_MASTER_MACHINE_LIST = "SlyTwo.108";
 
@@ -146,11 +151,29 @@ public class NetConstant {
 
     public static final String GET_MASTER_MACHINE_TYPE = "SlyTwo.126";
 
-    public static final String GET_MASTER_MACHINE_STATUS = "SlyTwo.126";
+    public static final String GET_MASTER_MACHINE_STATUS = "SlyTwo.127";
 
 
 
     public static final String GET_COMMON_NOTICE = "SlyTwo.201";
+
+
+    public static final String GET_MINER_ALL_MACHINE_COUNT = "SlyTwo.206";
+
+    public static final String GET_MINER_REPAIR_NUM = "SlyTwo.207";
+
+    public static final String GET_MINER_ALL_SUALI = "SlyTwo.208";
+
+    public static final String GET_MINER_24_SUALI = "SlyTwo.209";
+
+    public static final String GET_MINER_30_SUALI = "SlyTwo.210";
+
+    public static final String GET_MINER_MONTH_RATE = "SlyTwo.211";
+
+
+    public static final String GET_MINER_BILL_DATE = "SlyTwo.226";
+
+    public static final String GET_MINER_PEROID_FREE = "SlyTwo.227";
 
 
 
@@ -295,6 +318,28 @@ public class NetConstant {
         public static final int GET_MASTER_MACHINE_STATUS = BEGIN_EVENT + 120; // 获取矿场的设备状态
 
         public static final int GET_AUTH_ACCOUNT_MINE = BEGIN_EVENT + 121; // 获取授权账号的矿场
+
+        public static final int GET_MASTER_ALL_SUANLI = BEGIN_EVENT + 122; // 获取矿场24小时算力和每月算力
+
+        public static final int GET_MASTER_24_SUANLI = BEGIN_EVENT + 123; // 获取24小时算力图
+
+        public static final int GET_MASTER_30_SUANLI = BEGIN_EVENT + 124; // 获取30天算力图
+
+        public static final int GET_MINER_BILL_DATE = BEGIN_EVENT + 125; // 矿工账单周期
+
+        public static final int GET_MINER_PEROID_FREE = BEGIN_EVENT + 126; // 获取某一周期的费用
+
+        public static final int GET_MINER_ALL_MACHINE_COUNT = BEGIN_EVENT + 127; // 获取矿工设备数接口
+
+        public static final int GET_MINER_REPAIR_NUM = BEGIN_EVENT + 128; // 获取未处理、未确认维修单数量
+
+        public static final int GET_MINER_ALL_SUALI = BEGIN_EVENT + 129; // 获取矿工24小时算力和每月算力
+
+        public static final int GET_MINER_24_SUALI = BEGIN_EVENT + 130; // 获取矿工24算力图
+
+        public static final int GET_MINER_30_SUALI = BEGIN_EVENT + 131; // 获取矿工30天算力图
+
+        public static final int GET_MINER_MONTH_RATE = BEGIN_EVENT + 132; // 获取获取本月运行率
 
 
     }

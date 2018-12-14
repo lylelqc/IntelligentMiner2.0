@@ -131,12 +131,6 @@ public class MasterAllPowerActivity extends BaseActivity implements ICommonViewU
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        toRequest(NetConstant.EventTags.GET_MASTER_MONTH_POWER);
-    }
-
-    @Override
     public void toRequest(int eventTag) {
         Map map = new HashMap();
 
@@ -163,11 +157,10 @@ public class MasterAllPowerActivity extends BaseActivity implements ICommonViewU
             List<MasterAllPowerBean> resultList =
                     (List<MasterAllPowerBean>) AppUtils.parseRowsResult(result, MasterAllPowerBean.class);
             mResultList.addAll(resultList);
+            bcFreePic.clear();
             if(!AppUtils.isListBlank(mResultList)){
                 initBarChart();
                 refreshListView(day, true);
-            }else {
-                bcFreePic.clear();
             }
         }
     }
@@ -278,6 +271,7 @@ public class MasterAllPowerActivity extends BaseActivity implements ICommonViewU
                 Month = month;
                 String date = picker.getYear() + "年" + month +"月";
                 tvMasterChoseDate.setText(date);
+                toRequest(NetConstant.EventTags.GET_MASTER_MONTH_POWER);
             }
         });
     }

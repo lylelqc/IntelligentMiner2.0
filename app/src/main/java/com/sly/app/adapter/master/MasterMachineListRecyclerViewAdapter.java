@@ -42,10 +42,10 @@ public class MasterMachineListRecyclerViewAdapter extends RecyclerView.Adapter {
         if(bean.getStatusName().contains("在线")){
             viewHolder.tvMachineListStatus.setTextColor(mContext.getResources().getColor(R.color.color_27ae0c));
             viewHolder.tvMachineListStatus.setText(bean.getStatusName());
-        }else if(bean.getStatusName().equals("离线")){
+        }else if(bean.getStatusName().contains("离线")){
             viewHolder.tvMachineListStatus.setTextColor(mContext.getResources().getColor(R.color.color_fb3a2d));
             viewHolder.tvMachineListStatus.setText(bean.getStatusName().substring(0,2));
-        }else if(bean.getStatusName().equals("算力异常")){
+        }else if(bean.getStatusName().contains("算力异常")){
             viewHolder.tvMachineListStatus.setTextColor(mContext.getResources().getColor(R.color.color_f6a800));
             viewHolder.tvMachineListStatus.setText(bean.getStatusName());
         }else{
@@ -53,7 +53,7 @@ public class MasterMachineListRecyclerViewAdapter extends RecyclerView.Adapter {
             viewHolder.tvMachineListStatus.setText(bean.getStatusName());
         }
         viewHolder.tvMachineListSuanli.setText(String.format("%.2f",bean.getNowCal())+"T");
-        viewHolder.tvMachineListArea.setText(bean.getAreaName());
+        viewHolder.tvMachineListArea.setText(bean.getModel());
         viewHolder.llMachineListDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

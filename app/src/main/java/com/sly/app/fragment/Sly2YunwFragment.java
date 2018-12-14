@@ -1,11 +1,8 @@
 package com.sly.app.fragment;
 
-import android.app.Activity;
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
-import android.view.Window;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -20,8 +17,10 @@ import com.sly.app.activity.yunw.machine.MachineListActivity;
 import com.sly.app.activity.yunw.machine.MachineManageActivity;
 import com.sly.app.activity.yunw.offline.MachineOfflineActivity;
 import com.sly.app.activity.yunw.repair.RepairBillActivity;
+import com.sly.app.comm.EventBusTags;
 import com.sly.app.comm.NetConstant;
 import com.sly.app.http.NetWorkCons;
+import com.sly.app.model.PostResult;
 import com.sly.app.model.sly.ReturnBean;
 import com.sly.app.model.yunw.home.MachineNumRateInfo;
 import com.sly.app.model.yunw.home.MineAreaInfo;
@@ -34,7 +33,6 @@ import com.sly.app.utils.SharedPreferencesUtil;
 import com.sly.app.view.CustomCircleProgressBar;
 import com.sly.app.view.iviews.ICommonViewUi;
 
-import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -47,18 +45,18 @@ import vip.devkit.library.Logcat;
 
 public class Sly2YunwFragment extends BaseFragment implements ICommonViewUi{
 
-    @BindView(R.id.rl_user_type)
-    RelativeLayout rlUserType;
-    @BindView(R.id.tv_user_type)
-    TextView tvUserType;
-
-    //运维导航栏
-    @BindView(R.id.tv_operation_manage)
-    TextView tvOperationManage;
-    @BindView(R.id.rl_notice)
-    RelativeLayout rlNotice;
-    @BindView(R.id.tv_red_num)
-    TextView tvRedNum;
+//    @BindView(R.id.rl_user_type)
+//    RelativeLayout rlUserType;
+//    @BindView(R.id.tv_user_type)
+//    TextView tvUserType;
+//
+//    //运维导航栏
+//    @BindView(R.id.tv_operation_manage)
+//    TextView tvOperationManage;
+//    @BindView(R.id.rl_notice)
+//    RelativeLayout rlNotice;
+//    @BindView(R.id.tv_red_num)
+//    TextView tvRedNum;
 
     //离线、维修单消息数量
     @BindView(R.id.rl_offline_num)
@@ -173,7 +171,7 @@ public class Sly2YunwFragment extends BaseFragment implements ICommonViewUi{
 
     @Override
     protected int getContentViewLayoutID() {
-        return R.layout.fragment_sly2_mine;
+        return R.layout.fragment_sly2_yunw;
     }
 
     @Override
@@ -275,22 +273,22 @@ public class Sly2YunwFragment extends BaseFragment implements ICommonViewUi{
         }
         else if(eventTag == NetConstant.EventTags.GET_YUNW_NEWS_COUNT){
             ReturnBean returnBean = JSON.parseObject(result, ReturnBean.class);
-            if (returnBean.getStatus().equals("1") && returnBean.getMsg().equals("成功")) {
-
-                int count = Integer.parseInt(returnBean.getData());
-                if(count == 0){
-                    tvRedNum.setVisibility(View.GONE);
-                }
-                else if(count > 99){
-                    tvRedNum.setText("99+");
-                    tvRedNum.setVisibility(View.VISIBLE);
-                }
-                else{
-                    tvRedNum.setText(returnBean.getData());
-                    tvRedNum.setVisibility(View.VISIBLE);
-                }
-                SharedPreferencesUtil.putString(mContext, "NewsCount", returnBean.getData());
-            }
+//            if (returnBean.getStatus().equals("1") && returnBean.getMsg().equals("成功")) {
+//
+//                int count = Integer.parseInt(returnBean.getData());
+//                if(count == 0){
+//                    tvRedNum.setVisibility(View.GONE);
+//                }
+//                else if(count > 99){
+//                    tvRedNum.setText("99+");
+//                    tvRedNum.setVisibility(View.VISIBLE);
+//                }
+//                else{
+//                    tvRedNum.setText(returnBean.getData());
+//                    tvRedNum.setVisibility(View.VISIBLE);
+//                }
+//                SharedPreferencesUtil.putString(mContext, "NewsCount", returnBean.getData());
+//            }
         }
     }
 
@@ -414,19 +412,19 @@ public class Sly2YunwFragment extends BaseFragment implements ICommonViewUi{
         llMonitorArea.addView(itemView);
     }
 
-    @OnClick({R.id.tv_operation_manage,R.id.rl_notice, R.id.tv_offline_num,R.id.tv_repair_num,
+    @OnClick({/*R.id.tv_operation_manage,R.id.rl_notice,*/ R.id.tv_offline_num,R.id.tv_repair_num,
             R.id.ll_offline_machine, R.id.ll_repair_bill, R.id.ll_downline_machine,
             R.id.ll_modify_mine, R.id.ll_goline_machine, R.id.rl_online_machine,
             R.id.rl_offline_machine,R.id.rl_exception_machine,R.id.rl_stop_machine,
             R.id.rl_all_machine_count, R.id.tv_home_clock_work})
     public void onViewClicked(View view) {
         switch (view.getId()){
-            case R.id.tv_operation_manage:
+            /*case R.id.tv_operation_manage:
                 AppUtils.goActivity(mContext, MachineManageActivity.class);
                 break;
             case R.id.rl_notice:
                 AppUtils.goActivity(mContext, Sly2NoticeActivity.class);
-                break;
+                break;*/
             case R.id.tv_offline_num:
             case R.id.ll_offline_machine:
                 Bundle bundleOff = new Bundle();

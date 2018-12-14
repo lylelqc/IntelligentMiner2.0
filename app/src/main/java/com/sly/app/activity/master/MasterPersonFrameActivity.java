@@ -165,17 +165,19 @@ public class MasterPersonFrameActivity extends BaseActivity implements ICommonVi
             List<MasterPersonListBean> thirdList = new ArrayList<>();
 
             List<MasterPersonListBean> childList = new ArrayList<>();
-            for (MasterPersonListBean bean1 : firstList) {
-                for(MasterPersonListBean bean2 : resultList){
-                    if(bean1.getParent().equals(bean2.getPersonSysCode())){
-                        childList.add(bean1);
-                    }
+            if(!AppUtils.isListBlank(firstList)){
+                for (MasterPersonListBean bean1 : firstList) {
+                    for(MasterPersonListBean bean2 : resultList){
+                        if(bean1.getParent().equals(bean2.getPersonSysCode())){
+                            childList.add(bean1);
+                        }
 
-                    if(bean2.getParent() == null && bean2.getGrade() == 3){
-                        thirdList.add(bean2);
+                        if(bean2.getParent() == null && bean2.getGrade() == 3){
+                            thirdList.add(bean2);
+                        }
                     }
+                    secondList.add(childList);
                 }
-                secondList.add(childList);
             }
             refreshListView();
         } else {

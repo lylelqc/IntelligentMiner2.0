@@ -213,7 +213,7 @@ public class MachineListActivity extends BaseActivity implements ICommonViewUi, 
         swipeRefreshLayout.setVisibility(View.GONE);
 
         intitNewsCount();
-        toRequest(NetConstant.EventTags.GET_MACHINE_STATUS);
+        toRequest(NetConstant.EventTags.GET_YUNW_MACHINE_LIST_STATUS);
         toRequest(NetConstant.EventTags.GET_MACHINE_TYPE);
         firstRefresh();
     }
@@ -646,12 +646,12 @@ public class MachineListActivity extends BaseActivity implements ICommonViewUi, 
         map.put("Token", Token);
         map.put("LoginType", LoginType);
         map.put("User", User);
+        map.put("personSysCode", PersonSysCode);
 
         if(eventTag == NetConstant.EventTags.GET_MACHINE_TYPE){
             map.put("Rounter", NetConstant.GET_MACHINE_TYPE);
-            map.put("personSysCode", PersonSysCode);
         }else {
-            map.put("Rounter", NetConstant.GET_MACHINE_STATUS);
+            map.put("Rounter", NetConstant.GET_YUNW_MACHINE_LIST_STATUS);
         }
 
         Map<String, String> jsonMap = new HashMap<>();
@@ -669,45 +669,6 @@ public class MachineListActivity extends BaseActivity implements ICommonViewUi, 
             machineStatusList =
                     (List<MachineStatusBean>) AppUtils.parseRowsResult(result, MachineStatusBean.class);
         }
-    }
-
-    private void toRequestMachineType() {
-        Map map = new HashMap();
-
-        map.put("Token", Token);
-        map.put("LoginType", LoginType);
-        map.put("Rounter", NetConstant.GET_MACHINE_TYPE);
-        map.put("User", User);
-        map.put("personSysCode", PersonSysCode);
-
-        Map<String, String> jsonMap = new HashMap<>();
-        jsonMap.putAll(map);
-        jsonMap.put("Sign", EncryptUtil.MD5(ApiSIgnUtil.init(this).getSign(map, Key)));
-        final String json = CommonUtils.GsonToJson(jsonMap);
-        HttpClient.postJson(NetWorkCons.BASE_URL, json, new HttpResponseHandler() {
-                    @Override
-                    public void onSuccess(int statusCode, String content) {
-                        super.onSuccess(statusCode, content);
-                        Logcat.e("返回参数 - "+content);
-                        if(mContext.getResources().getString(R.string.out_of_time).equals(HttpStatusUtil.getStatusMsg(content))){
-                            LoginMsgHelper.reLogin(mContext); // 重启到登录页面
-                            ToastUtils.showToast(mContext.getResources().getString(R.string.out_of_time));
-//                            EventBus.getDefault().post(new PostResult(EventBusTags.LOGOUT));
-                        }else{
-                            content = content.substring(1, content.length() - 1);
-                            content = content.replace("\\", "");
-                            machineTypeList =
-                                    (List<MachineTypeBean>) AppUtils.parseRowsResult(content, MachineTypeBean.class);
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Request request, IOException e) {
-                        super.onFailure(request, e);
-                        Logcat.e("网络连接失败:" + e);
-                    }
-                }
-        );
     }
 
     public class MyScrollListener extends OnRecyclerViewListener {

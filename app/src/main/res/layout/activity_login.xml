@@ -43,7 +43,7 @@
                 android:layout_height="match_parent"
                 android:background="@null"
                 android:hint="请输入手机号或邮箱地址"
-                android:text="15602205779"
+                android:text="18928757661"
                 android:textColor="#323232"
                 android:drawablePadding="16dp"
                 android:singleLine="true"

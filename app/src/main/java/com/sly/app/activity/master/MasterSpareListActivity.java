@@ -121,10 +121,10 @@ public class MasterSpareListActivity extends BaseActivity implements ICommonView
     private String time1 = "";
     private String time2 = "";
     private String PartID = "";
-    private String orderField = "PartName";
-    private String orderBy = "ASC";
+    private String orderField = "Times";
+    private String orderBy = "DESC";
 
-    private int mSpareNameCount = 1;
+    private int mSpareNameCount = 0;
     private int mSpareNumCount = 0;
     private int mDateCount = 0;
     private int mWorkerCount = 0;
@@ -389,13 +389,13 @@ public class MasterSpareListActivity extends BaseActivity implements ICommonView
         time2 = "";
         PartID = "";
 
-        mSpareNameCount = 1;
+        mSpareNameCount = 0;
         mSpareNumCount = 0;
         mDateCount = 0;
         mWorkerCount = 0;
         mTypeCount = 0;
 
-        setListHeaderIcon("PartName", mSpareNameCount % 2);
+        setListHeaderIcon("Times", mSpareNameCount % 2);
         toRefreshRequest();
     }
 
@@ -594,10 +594,12 @@ public class MasterSpareListActivity extends BaseActivity implements ICommonView
         jsonMap.putAll(map);
         jsonMap.put("Sign", EncryptUtil.MD5(ApiSIgnUtil.init(this).getSign(map, Key)));
         iCommonRequestPresenter.request(eventTag, mContext, NetWorkCons.BASE_URL, jsonMap);
+        Logcat.e("提交参数 - "+ jsonMap);
     }
 
     @Override
     public void getRequestData(int eventTag, String result) {
+        Logcat.e("返回参数 - "+ result);
         if(eventTag == NetConstant.EventTags.GET_YUNW_REPAIR_SPARES){
             mSpareList =
                     (List<RepairSparesBean>) AppUtils.parseRowsResult(result, RepairSparesBean.class);

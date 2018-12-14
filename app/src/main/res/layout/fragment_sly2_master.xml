@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <RelativeLayout
+    <!--<RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="44dp"
         android:background="@drawable/shape_bg_gradient_blue"
@@ -91,7 +91,7 @@
             android:layout_toLeftOf="@+id/rl_notice"
             android:background="@drawable/mine_owner_add" />
 
-    </RelativeLayout>
+    </RelativeLayout>-->
 
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -117,10 +117,10 @@
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/recycler_view"
                         android:layout_width="match_parent"
-                        android:layout_height="30dp"
+                        android:layout_height="35dp"
                         android:layout_marginLeft="12dp"
                         android:layout_marginRight="12dp"
-                        android:layout_marginTop="12dp">
+                        android:layout_marginTop="8dp">
 
                     </android.support.v7.widget.RecyclerView>
 
@@ -319,6 +319,7 @@
             <include layout="@layout/gray_line" />
 
             <LinearLayout
+                android:id="@+id/ll_master_num_rate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
@@ -677,7 +678,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginLeft="20dp"
                         android:textColor="@color/sly_text_999999"
                         android:textSize="10sp" />
 

@@ -47,7 +47,7 @@
                         android:id="@+id/tv_machine_spare_name_up"
                         android:layout_width="6dp"
                         android:layout_height="4dp"
-                        android:background="@drawable/monitor_sort_upper1" />
+                        android:background="@drawable/monitor_sort_upper" />
 
                     <TextView
                         android:id="@+id/tv_machine_spare_name_low"
@@ -133,7 +133,7 @@
                         android:layout_width="6dp"
                         android:layout_height="4dp"
                         android:layout_marginTop="2dp"
-                        android:background="@drawable/monitor_sort_lower" />
+                        android:background="@drawable/monitor_sort_lower1" />
 
                 </LinearLayout>
             </LinearLayout>

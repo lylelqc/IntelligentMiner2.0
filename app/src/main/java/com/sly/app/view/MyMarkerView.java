@@ -44,7 +44,11 @@ public class MyMarkerView extends MarkerView {
         int position = (int)e.getX();
         MachineDetailsPicBean bean = mPicDataList.get(position);
         tvValue.setText(bean.getCalcForce() +"T");
-        tvDate.setText(bean.getDataTime().substring(0, bean.getDataTime().length()-3));
+        if(bean.getDataTime().length() > 14){
+            tvDate.setText(bean.getDataTime().substring(0, bean.getDataTime().length()-3));
+        }else{
+            tvDate.setText(bean.getDataTime());
+        }
         super.refreshContent(e, highlight);
     }
 

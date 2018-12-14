@@ -1,0 +1,561 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/white">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="4">
+
+                <LinearLayout
+                    android:id="@+id/ll_miner_repair"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="11dp">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:background="@drawable/weixiudan_kuanggong_icon" />
+
+                        <TextView
+                            android:id="@+id/tv_miner_repair_num"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bigxiaoxi_kuanggong_icon"
+                            android:layout_marginLeft="20dp"
+                            android:gravity="center"
+                            android:textSize="10dp"
+                            android:textColor="@color/white"/>
+                    </RelativeLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="11dp"
+                        android:text="维修单"
+                        android:textSize="13sp"
+                        android:textColor="@color/sly_text_414443" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_miner_free"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="11dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:background="@drawable/feiyong_kuanggong_icon" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="11dp"
+                        android:text="费用"
+                        android:textSize="13sp"
+                        android:textColor="@color/sly_text_414443" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_all_machine_count"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:background="@color/white">
+
+                <TextView
+                    android:id="@+id/all_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15dp"
+                    android:text="总设备数"
+                    android:textColor="@color/sly_text_333333"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_miner_all_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@+id/tv_tai"
+                    android:text="0"
+                    android:textColor="@color/sly_text_848689"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tv_tai"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="5dp"
+                    android:layout_toLeftOf="@+id/tv_details"
+                    android:text="台"
+                    android:textColor="@color/sly_text_848689"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tv_details"
+                    android:layout_width="6dp"
+                    android:layout_height="12dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/jiantou_kuanggong_icon" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <RelativeLayout
+                        android:id="@+id/rl_online_machine"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/tv_miner_online_num"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="21dp"
+                            android:layout_marginTop="22dp"
+                            android:text="0"
+                            android:textColor="@color/sly_text_333333"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="22dp"
+                            android:layout_toRightOf="@+id/tv_miner_online_num"
+                            android:text="台"
+                            android:textColor="@color/sly_text_333333"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/tv_miner_online_num"
+                            android:layout_marginBottom="22dp"
+                            android:layout_marginLeft="21dp"
+                            android:layout_marginTop="10dp"
+                            android:text="在线"
+                            android:textColor="@color/sly_text_666666"
+                            android:textSize="13sp" />
+
+                        <com.sly.app.view.CustomCircleProgressBar
+                            android:id="@+id/Progress_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginBottom="16dp"
+                            android:layout_marginRight="16dp"
+                            android:layout_marginTop="16dp"
+                            app:direction="top"
+                            app:inside_color="@color/color_e9e9e9"
+                            app:max_progress="100"
+                            app:outside_color="@color/color_27ae0c"
+                            app:outside_radius="25dp"
+                            app:progress="0"
+                            app:progress_text_color="@color/color_27ae0c"
+                            app:progress_text_size="13sp"
+                            app:progress_width="5dp"
+                            app:progressbar_text_size="10sp" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rl_offline_machine"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/tv_miner_offline_num"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="21dp"
+                            android:layout_marginTop="22dp"
+                            android:text="0"
+                            android:textColor="@color/sly_text_333333"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="22dp"
+                            android:layout_toRightOf="@+id/tv_miner_offline_num"
+                            android:text="台"
+                            android:textColor="@color/sly_text_333333"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/tv_miner_offline_num"
+                            android:layout_marginBottom="22dp"
+                            android:layout_marginLeft="21dp"
+                            android:layout_marginTop="10dp"
+                            android:text="离线"
+                            android:textColor="@color/sly_text_666666"
+                            android:textSize="13sp" />
+
+                        <com.sly.app.view.CustomCircleProgressBar
+                            android:id="@+id/Progress_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="16dp"
+                            android:layout_marginTop="16dp"
+                            app:direction="top"
+                            app:inside_color="@color/color_e9e9e9"
+                            app:max_progress="100"
+                            app:outside_color="@color/color_fb3a2d"
+                            app:outside_radius="25dp"
+                            app:progress="0"
+                            app:progress_text_color="@color/color_fb3a2d"
+                            app:progress_text_size="13sp"
+                            app:progress_width="5dp"
+                            app:progressbar_text_size="10sp" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:id="@+id/rl_exception_machine"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/tv_miner_exception_num"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="21dp"
+                            android:layout_marginTop="22dp"
+                            android:text="0"
+                            android:textColor="@color/sly_text_333333"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="22dp"
+                            android:layout_toRightOf="@+id/tv_miner_exception_num"
+                            android:text="台"
+                            android:textColor="@color/sly_text_333333"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/tv_miner_exception_num"
+                            android:layout_marginBottom="22dp"
+                            android:layout_marginLeft="21dp"
+                            android:layout_marginTop="10dp"
+                            android:text="算力异常"
+                            android:textColor="@color/sly_text_666666"
+                            android:textSize="13sp" />
+
+                        <com.sly.app.view.CustomCircleProgressBar
+                            android:id="@+id/Progress_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="16dp"
+                            android:layout_marginTop="16dp"
+                            app:direction="top"
+                            app:inside_color="@color/color_e9e9e9"
+                            app:max_progress="100"
+                            app:outside_color="@color/color_f6a800"
+                            app:outside_radius="25dp"
+                            app:progress="0"
+                            app:progress_text_color="@color/color_f6a800"
+                            app:progress_text_size="13sp"
+                            app:progress_width="5dp"
+                            app:progressbar_text_size="10sp" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rl_stop_machine"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/tv_miner_stop_num"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="21dp"
+                            android:layout_marginTop="22dp"
+                            android:text="0"
+                            android:textColor="@color/sly_text_333333"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="22dp"
+                            android:layout_toRightOf="@+id/tv_miner_stop_num"
+                            android:text="台"
+                            android:textColor="@color/sly_text_333333"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/tv_miner_stop_num"
+                            android:layout_marginBottom="22dp"
+                            android:layout_marginLeft="21dp"
+                            android:layout_marginTop="10dp"
+                            android:text="停机"
+                            android:textColor="@color/sly_text_666666"
+                            android:textSize="13sp" />
+
+                        <com.sly.app.view.CustomCircleProgressBar
+                            android:id="@+id/Progress_4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="16dp"
+                            android:layout_marginTop="16dp"
+                            app:direction="top"
+                            app:inside_color="@color/color_e9e9e9"
+                            app:max_progress="100"
+                            app:outside_color="@color/color_777777"
+                            app:outside_radius="25dp"
+                            app:progress="0"
+                            app:progress_text_color="@color/color_777777"
+                            app:progress_text_size="13sp"
+                            app:progress_width="5dp"
+                            app:progressbar_text_size="10sp" />
+                    </RelativeLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <include layout="@layout/gray_line" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:background="@color/white">
+
+                <TextView
+                    android:id="@+id/tv_suanli"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15dp"
+                    android:layout_toRightOf="@+id/tv_suanli_icon"
+                    android:text="算力"
+                    android:textColor="@color/sly_text_333333"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_miner_suanli"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/tv_suanli"
+                    android:textColor="@color/sly_text_515554"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="15dp">
+
+                    <TextView
+                        android:id="@+id/tv_miner_month"
+                        android:layout_width="64dp"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/shape_right_circle_white_15dp"
+                        android:gravity="center"
+                        android:text="本月"
+                        android:textColor="@color/sly_text_666666"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tv_miner_hours"
+                        android:layout_width="64dp"
+                        android:layout_height="match_parent"
+                        android:layout_centerVertical="true"
+                        android:layout_toLeftOf="@+id/tv_miner_month"
+                        android:background="@drawable/layer_left_circle_blue_15dp"
+                        android:gravity="center"
+                        android:text="24小时"
+                        android:textColor="@color/white"
+                        android:textSize="14sp" />
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+            <include layout="@layout/gray_line" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white">
+
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/lc_cal_power_pic"
+                    android:layout_width="match_parent"
+                    android:layout_height="232dp"
+                    android:layout_marginLeft="10dp">
+
+                </com.github.mikephil.charting.charts.LineChart>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_begintime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="20dp"
+                        android:textColor="@color/sly_text_999999"
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:id="@+id/tv_endtime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="10dp"
+                        android:textColor="@color/sly_text_999999"
+                        android:textSize="10sp" />
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/sly_line_d7d7d7" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="7dp"
+                android:background="@color/sly_bg_f4f4f4" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/sly_line_d7d7d7" />
+
+            <RelativeLayout
+                android:id="@+id/rl_miner_month_runrate"
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:background="@color/white">
+
+                <TextView
+                    android:id="@+id/tv_miner_rate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="15dp"
+                    android:text="99.0%"
+                    android:textColor="#11c461"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15dp"
+                    android:text="本月运行率"
+                    android:textColor="@color/sly_text_333333"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+
+            <include layout="@layout/gray_line" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="15dp"
+                android:background="@color/sly_bg_f4f4f4" />
+
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+
+</LinearLayout>

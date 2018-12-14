@@ -3,21 +3,24 @@ package com.sly.app.model.notice;
 public class YunwNoticeNewDetailsBean {
 
     /**
-     * \"Mine48_Title\":\"矿机故障\",
-     \"Mine48_Time\":\"2018-11-20 14:12:47\",
-     \"Mine48_Message\":\"设备异常:网络异常。IP:2.1.8.4,
-     型号为:蚂蚁S9,所在区域为:B,当前算力为:0.0000000000T\",
-     \"Mine48_BillNo\":\"2018112000000083\",
-     \"Mine08_IP\":\"2.1.8.4\",
-     \"Mine08_Model\":\"52:C1:85:4E:72:1B\"
+     * \"Mine48_Title\":\"矿场区域(b3_3)可能断电或者服务器宕机\",
+     \"Mine48_Time\":\"2018-11-23 02:30:00\",
+     \"Mine48_Message\":\"矿场区域(b3_3)可能断电或者服务器宕机\",
+     \"Mine48_BillNo\":\"miner_test_M666\",
+     \"Mine08_MineMachineSysCode\":null,
+     \"Mine08_IP\":null,
+     \"Mine08_Model\":null,
+     \"isShow\":\"False\"}
      */
 
     private String Mine48_Title;
     private String Mine48_Time;
     private String Mine48_Message;
     private String Mine48_BillNo;
+    private String Mine08_MineMachineSysCode;
     private String Mine08_IP;
     private String Mine08_Model;
+    private String isShow;
 
     public String getMine48_Title() {
         return Mine48_Title;
@@ -65,5 +68,21 @@ public class YunwNoticeNewDetailsBean {
 
     public void setMine08_Model(String mine08_Model) {
         Mine08_Model = mine08_Model;
+    }
+
+    public String getMine08_MineMachineSysCode() {
+        return Mine08_MineMachineSysCode;
+    }
+
+    public void setMine08_MineMachineSysCode(String mine08_MineMachineSysCode) {
+        Mine08_MineMachineSysCode = mine08_MineMachineSysCode;
+    }
+
+    public String getIsShow() {
+        return isShow;
+    }
+
+    public void setIsShow(String isShow) {
+        this.isShow = isShow;
     }
 }

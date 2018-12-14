@@ -146,4 +146,6 @@ dependencies {
     implementation "me.leolin:ShortcutBadger:1.1.22@aar"
     // 日期时间选择器
     implementation 'com.contrarywind:Android-PickerView:4.1.6'
+    // 周期选择器
+    implementation 'cn.carbswang.android:NumberPickerView:1.1.1'
 }

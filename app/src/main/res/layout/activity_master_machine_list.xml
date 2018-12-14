@@ -48,7 +48,7 @@
                         android:id="@+id/tv_machine_list_ip_up"
                         android:layout_width="6dp"
                         android:layout_height="4dp"
-                        android:background="@drawable/monitor_sort_upper1" />
+                        android:background="@drawable/monitor_sort_upper" />
 
                     <TextView
                         android:id="@+id/tv_machine_list_ip_low"
@@ -128,7 +128,7 @@
                         android:id="@+id/tv_machine_list_suanli_up"
                         android:layout_width="6dp"
                         android:layout_height="4dp"
-                        android:background="@drawable/monitor_sort_upper" />
+                        android:background="@drawable/monitor_sort_upper1" />
 
                     <TextView
                         android:id="@+id/tv_machine_list_suanli_low"

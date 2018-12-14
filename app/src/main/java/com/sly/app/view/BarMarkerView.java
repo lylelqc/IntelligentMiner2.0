@@ -38,12 +38,13 @@ public class BarMarkerView extends MarkerView {
     @Override
     public void refreshContent(Entry e, Highlight highlight) {
         //展示自定义X轴值 后的X轴内容
-        int position = (int)e.getX();
 
         if(!AppUtils.isListBlank(mPicDataList)){
+            int position = (int)e.getX();
             MasterAllFreeBean bean = mPicDataList.get(position);
             tvDate.setText(bean.getDate().split(" ")[0]);
         }else{
+            int position = (int)e.getX()-1;
             MasterAllPowerBean bean = masterAllPowerBeanList.get(position);
             tvDate.setText(bean.getDate().split(" ")[0]);
         }

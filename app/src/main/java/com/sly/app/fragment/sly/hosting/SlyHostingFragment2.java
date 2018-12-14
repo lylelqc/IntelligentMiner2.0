@@ -1,36 +1,73 @@
 package com.sly.app.fragment.sly.hosting;
 
-import android.support.v4.app.FragmentManager;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
+import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.sly.app.R;
+import com.sly.app.activity.master.AuthAccountSetMineActivity;
+import com.sly.app.activity.master.MasterAccountExecActivity;
+import com.sly.app.activity.sly.mine.notice.Sly2NoticeActivity;
+import com.sly.app.activity.yunw.machine.MachineManageActivity;
 import com.sly.app.comm.BusEvent;
+import com.sly.app.comm.EventBusTags;
 import com.sly.app.fragment.BaseFragment;
 import com.sly.app.fragment.Sly2MasterFragment;
-import com.sly.app.fragment.sly.SlyHostingFragment;
+import com.sly.app.fragment.Sly2MinerFragment;
 import com.sly.app.model.PostResult;
+import com.sly.app.utils.AppUtils;
 import com.sly.app.utils.SharedPreferencesUtil;
+import com.sly.app.utils.ToastUtils;
 
 import butterknife.BindView;
-import vip.devkit.library.Logcat;
+import butterknife.OnClick;
+import de.greenrobot.event.EventBus;
+
+import static de.greenrobot.event.EventBus.TAG;
 
 public class SlyHostingFragment2 extends BaseFragment{
 
-    @BindView(R.id.fl_hosting_miner_master)
+    @BindView(R.id.rl_user_type)
+    RelativeLayout rlUserType;
+    @BindView(R.id.tv_user_type)
+    TextView tvUserType;
+    @BindView(R.id.tv_user_account)
+    TextView tvUserAccount;
+
+    @BindView(R.id.tv_main_right_left)
+    TextView tvMainRightLeft;
+    @BindView(R.id.rl_notice)
+    RelativeLayout rlNotice;
+    @BindView(R.id.tv_red_num)
+    TextView tvRedNum;
+
+    @BindView(R.id.fl_hosting_miner)
+    FrameLayout flHostingMiner;
+    @BindView(R.id.fl_hosting_mine_master)
     FrameLayout flHostingMinerMaster;
     @BindView(R.id.fl_hosting_yunw)
     FrameLayout flHostingYunw;
 
     public static String mContent = "???";
-    private HostingMinerMasterFragment mHostingMinerMasterFragment;
+    private Sly2MinerFragment mMinerFragment;
     private Sly2MasterFragment mMasterFragment;
     private HostingYunwFragment mHostingYunwFragment;
     private FragmentTransaction ft1;
     private FragmentTransaction ft2;
+    private FragmentTransaction ft3;
     private String mineType;
 
+    private String User, LoginType, FrSysCode, FMasterCode, MineCode, PersonSysCode, Token, Key;
+    private String ChildAccount;
+    private PopupWindow mPopupWindow;
 
     public static SlyHostingFragment2 newInstance(String content) {
         SlyHostingFragment2 fragment = new SlyHostingFragment2();
@@ -67,11 +104,16 @@ public class SlyHostingFragment2 extends BaseFragment{
     public void onEvent(PostResult postResult) {
         super.onEvent(postResult);
         if (BusEvent.UPDATE_HOSTING_OPERATION_DATA.equals(postResult.getTag())) {
-            showFragment(2);
+            showFragment(2, false);
         }
-        else if (BusEvent.UPDATE_HOSTING_MASTER_DATA.equals(postResult.getTag())
-                || BusEvent.UPDATE_HOSTING_MINER_DATA.equals(postResult.getTag())) {
-            showFragment(1);
+        else if (BusEvent.UPDATE_HOSTING_MASTER_DATA.equals(postResult.getTag())) {
+            showFragment(1,false);
+        }
+        else if(BusEvent.UPDATE_HOSTING_MINER_DATA.equals(postResult.getTag())){
+            showFragment(0, false);
+        }
+        else if(EventBusTags.CHOOSE_AUTH_MINE_AREA.equals(postResult.getTag())){
+            showFragment(1, true);
         }
     }
 
@@ -79,20 +121,55 @@ public class SlyHostingFragment2 extends BaseFragment{
     protected void initViewsAndEvents() {
 
         mineType = SharedPreferencesUtil.getString(mContext,"mineType","None");
+        User = SharedPreferencesUtil.getString(mContext, "User", "None");
+        Token = SharedPreferencesUtil.getString(mContext, "Token", "None");
+        Key = SharedPreferencesUtil.getString(mContext, "Key", "None");
+        LoginType = SharedPreferencesUtil.getString(mContext, "LoginType", "None");
+
+        FrSysCode = SharedPreferencesUtil.getString(mContext, "FrSysCode", "None");
+        FMasterCode = SharedPreferencesUtil.getString(mContext, "FMasterCode", "None");
+        PersonSysCode = SharedPreferencesUtil.getString(mContext, "PersonSysCode", "None");
+        ChildAccount = SharedPreferencesUtil.getString(mContext, "ChildAccount", "None");
+
 
         ft1 = getFragmentManager().beginTransaction();
         ft2 = getFragmentManager().beginTransaction();
+        ft3 = getFragmentManager().beginTransaction();
+
         if(mineType != null && !"None".equals(mineType)){
             if(mineType.equals("Operation")){
-                showFragment(2);
-            }else{
-                showFragment(1);
+                showFragment(2, false);
+
+            }
+            else if(mineType.equals("MinerMaster")){
+                showFragment(1,false);
+            }
+            else if(mineType.equals("Miner")){
+                showFragment(0,false);
+            }
+        }
+
+        if(!AppUtils.isBlank(ChildAccount) && !("None").equals(ChildAccount)){
+            if (mMasterFragment == null) {
+                mMasterFragment = new Sly2MasterFragment();
+                ft2.add(R.id.fl_hosting_mine_master, mMasterFragment).commitAllowingStateLoss();
             }
         }
     }
 
-    public void showFragment(int index) {
+    public void showFragment(int index, boolean isChildAccount) {
         switch (index) {
+            case 0:
+                if (mMinerFragment == null) {
+                    mMinerFragment = new Sly2MinerFragment();
+                    ft1.add(R.id.fl_hosting_miner, mMinerFragment).commitAllowingStateLoss();
+                }
+                flHostingMiner.setVisibility(View.VISIBLE);
+                flHostingMinerMaster.setVisibility(View.GONE);
+                flHostingYunw.setVisibility(View.GONE);
+
+                setHeaderTitle(0);
+                break;
             case 1:
                 /**
                  * 如果Fragment为空，就新建一个实例
@@ -107,20 +184,166 @@ public class SlyHostingFragment2 extends BaseFragment{
 
                 if (mMasterFragment == null) {
                     mMasterFragment = new Sly2MasterFragment();
-                    ft1.add(R.id.fl_hosting_miner_master, mMasterFragment).commitAllowingStateLoss();
+                    ft2.add(R.id.fl_hosting_mine_master, mMasterFragment).commitAllowingStateLoss();
                 }
+                flHostingMiner.setVisibility(View.GONE);
                 flHostingMinerMaster.setVisibility(View.VISIBLE);
                 flHostingYunw.setVisibility(View.GONE);
+                if(isChildAccount){
+                    setHeaderTitle(3);
+                }
+                else{
+                    setHeaderTitle(1);
+                }
+
                 break;
             case 2:
 
                 if (mHostingYunwFragment == null) {
                     mHostingYunwFragment = new HostingYunwFragment();
-                    ft2.add(R.id.fl_hosting_yunw, mHostingYunwFragment).commitAllowingStateLoss();
+                    ft3.add(R.id.fl_hosting_yunw, mHostingYunwFragment).commitAllowingStateLoss();
                 }
+                flHostingMiner.setVisibility(View.GONE);
                 flHostingMinerMaster.setVisibility(View.GONE);
                 flHostingYunw.setVisibility(View.VISIBLE);
+                setHeaderTitle(2);
                 break;
+        }
+    }
+
+    private void setHeaderTitle(int tag) {
+        if(tag == 0){
+            tvUserType.setText(mContext.getResources().getString(R.string.user_type_miner));
+            tvUserAccount.setVisibility(View.VISIBLE);
+            String maskNumber = User.substring(0, 3) + "****" + User.substring(7, User.length());
+            tvUserAccount.setText(maskNumber);
+            tvMainRightLeft.setVisibility(View.GONE);
+        }
+        else if(tag == 1){
+            tvUserType.setText(mContext.getResources().getString(R.string.user_type_master));
+            tvUserAccount.setVisibility(View.VISIBLE);
+            String maskNumber = User.substring(0, 3) + "****" + User.substring(7, User.length());
+            tvUserAccount.setText(maskNumber);
+            tvMainRightLeft.setText("");
+            tvMainRightLeft.setVisibility(View.VISIBLE);
+            tvMainRightLeft.setBackground(mContext.getResources().getDrawable(R.drawable.mine_owner_add));
+        }
+        else if(tag == 2){
+            tvUserType.setText(mContext.getResources().getString(R.string.user_type_operation));
+            tvUserAccount.setVisibility(View.GONE);
+            tvMainRightLeft.setText("");
+            tvMainRightLeft.setVisibility(View.VISIBLE);
+            tvMainRightLeft.setBackground(null);
+            tvMainRightLeft.setText(mContext.getResources().getString(R.string.machine_manage));
+        }else if(tag == 3){
+            tvMainRightLeft.setVisibility(View.GONE);
+            mMasterFragment.getActivityResult();
+        }
+    }
+
+    @OnClick({R.id.rl_user_type, R.id.tv_main_right_left, R.id.rl_notice})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.rl_user_type:
+                showPopupWindow();
+                break;
+            case R.id.tv_main_right_left:
+                mineType = SharedPreferencesUtil.getString(mContext, "mineType","None");
+                if(!"None".equals(mineType)){
+                    if(("Operation").equals(mineType)){
+                        AppUtils.goActivity(mContext, MachineManageActivity.class);
+                    }
+                    else if(("MinerMaster").equals(mineType)){
+                        mMasterFragment.startActivitys();
+                    }
+                }
+                break;
+            case R.id.rl_notice:
+                AppUtils.goActivity(mContext, Sly2NoticeActivity.class);
+                break;
+
+        }
+    }
+
+    private void showPopupWindow() {
+        if (mPopupWindow == null) {
+            LayoutInflater inflater = LayoutInflater.from(getActivity());
+            View contentView = inflater.inflate(R.layout.mine_popupwindow, null, false);
+
+            mPopupWindow = new PopupWindow(contentView, RelativeLayout.LayoutParams.WRAP_CONTENT,
+                    RelativeLayout.LayoutParams.WRAP_CONTENT, true);
+            mPopupWindow.setOutsideTouchable(true);
+            mPopupWindow.showAsDropDown(rlUserType, 10, 5);
+            mPopupWindow.setBackgroundDrawable(new ColorDrawable(00000000));
+
+            TextView miner = contentView.findViewById(R.id.miner);
+            TextView mineMaster = contentView.findViewById(R.id.mineMaster);
+            TextView operation = contentView.findViewById(R.id.operation);
+            TextView authAccount = contentView.findViewById(R.id.auth_account);
+
+            miner.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    tvUserType.setText(mContext.getResources().getString(R.string.user_type_miner));
+                    SharedPreferencesUtil.putString(mContext, "LoginType", "Miner");
+                    SharedPreferencesUtil.putString(mContext, "mineType", "Miner");
+                    if(!LoginType.equals("Miner")){
+                        LoginType = SharedPreferencesUtil.getString(mContext, "LoginType","None");
+                    }
+                    EventBus.getDefault().post(new PostResult(EventBusTags.UPDATE_HOSTING_MINER_DATA));
+                    showFragment(0, false);
+                    mPopupWindow.dismiss();
+                }
+            });
+
+            mineMaster.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (!AppUtils.isBlank(FMasterCode) && !"None".equals(FMasterCode)) {
+                        tvUserType.setText(mContext.getResources().getString(R.string.user_type_master));
+                        SharedPreferencesUtil.putString(mContext, "LoginType", "MinerMaster");
+                        SharedPreferencesUtil.putString(mContext, "mineType", "MinerMaster");
+                        if(!LoginType.equals("MinerMaster")){
+                            LoginType = SharedPreferencesUtil.getString(mContext, "LoginType","None");
+                        }
+                        showFragment(1, false);
+                        EventBus.getDefault().post(new PostResult(EventBusTags.CLICK_MINE_MASTER));
+                    } else {
+                        ToastUtils.showToast(mContext.getResources().getString(R.string.no_permission));
+                    }
+                    mPopupWindow.dismiss();
+                }
+            });
+
+            operation.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (!AppUtils.isBlank(PersonSysCode) && !"None".equals(PersonSysCode)) {
+                        tvUserType.setText(mContext.getResources().getString(R.string.user_type_operation));
+                        SharedPreferencesUtil.putString(mContext, "mineType", "Operation");
+                        EventBus.getDefault().post(new PostResult(EventBusTags.UPDATE_HOSTING_OPERATION_DATA));
+                        showFragment(2, false);
+                    } else {
+                        ToastUtils.showToast(mContext.getResources().getString(R.string.no_permission));
+                    }
+                    mPopupWindow.dismiss();
+                }
+            });
+
+            authAccount.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (!AppUtils.isBlank(ChildAccount) && !"None".equals(ChildAccount)) {
+                        AppUtils.goActivity(mContext, AuthAccountSetMineActivity.class);
+                        tvUserType.setText(mContext.getResources().getString(R.string.master_auth_account));
+                    } else {
+                        ToastUtils.showToast(mContext.getResources().getString(R.string.no_permission));
+                    }
+                    mPopupWindow.dismiss();
+                }
+            });
+        } else {
+            mPopupWindow.showAsDropDown(rlUserType, 10, 5);
         }
     }
 }

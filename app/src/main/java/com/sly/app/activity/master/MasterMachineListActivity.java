@@ -116,12 +116,12 @@ public class MasterMachineListActivity extends BaseActivity implements ICommonVi
     private String minerSysCode = "";
     private String statusCode = "";
     private String MobileOREmail = "";
-    private String orderField = "Worker";
+    private String orderField = "NowCal";
     private String orderBy = "ASC";
 
-    private int mIpCount = 1;
+    private int mIpCount = 0;
     private int mStatusCount = 0;
-    private int mSualiCount = 0;
+    private int mSualiCount = 1;
     private int mAreaCount = 0;
 
     private boolean isRequesting = false;//标记，是否正在刷新
@@ -409,12 +409,12 @@ public class MasterMachineListActivity extends BaseActivity implements ICommonVi
         minerSysCode = "";
         MobileOREmail = "";
 
-        mIpCount = 1;
+        mIpCount = 0;
         mStatusCount = 0;
-        mSualiCount = 0;
+        mSualiCount = 1;
         mAreaCount = 0;
 
-        setListHeaderIcon("Worker", mIpCount % 2);
+        setListHeaderIcon("NowCal", mIpCount % 2);
         toRefreshRequest();
     }
 
@@ -618,13 +618,12 @@ public class MasterMachineListActivity extends BaseActivity implements ICommonVi
         map.put("Token", Token);
         map.put("LoginType", LoginType);
         map.put("User", User);
+        map.put("mineCode", MineCode);
 
         if(eventTag == NetConstant.EventTags.GET_MASTER_MACHINE_TYPE){
             map.put("Rounter", NetConstant.GET_MASTER_MACHINE_TYPE);
-            map.put("personSysCode", PersonSysCode);
         }else {
             map.put("Rounter", NetConstant.GET_MASTER_MACHINE_STATUS);
-            map.put("mineCode", MineCode);
         }
 
         Map<String, String> jsonMap = new HashMap<>();

@@ -34,4 +34,6 @@ public class EventBusTags {
 
     public static final String CHOOSE_AUTH_MINE_AREA = "choose_auth_mine_area"; //选择授权矿场
 
+    public static final String CLICK_MINE_MASTER = "click_mine_master"; // 点击选择矿场主
+
 }

@@ -54,6 +54,9 @@
         <activity
             android:name="com.sly.app.activity.qrc.ShareActivity"
             android:launchMode="standard" />
+        <activity
+            android:name="com.sly.app.activity.loading.LoadingActivity"
+            android:launchMode="standard" />
         <activity android:name="com.sly.app.activity.qrc.ShareRecordActivity" />
         <activity android:name="com.sly.app.activity.qrc.ScanResultActivity" />
         <activity android:name="com.sly.app.activity.order.OrderPayActivity" />
@@ -180,6 +183,9 @@
         <activity android:name=".activity.master.MasterAllPowerActivity" />
         <activity android:name=".activity.master.MasterAccountExecActivity" />
         <activity android:name=".activity.master.AuthAccountSetMineActivity" />
+
+        <!--矿工-->
+        <activity android:name=".activity.miner.MinerFreeActivity" />
 
 
         <!-- Rich push 核心功能 since 2.0.6-->

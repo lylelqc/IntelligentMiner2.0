@@ -64,6 +64,12 @@
     <string name="sly_notice">消息中心</string>
     <string name="notice_new">消息</string>
     <string name="notice_old">公告</string>
+
+    <string name="user_type_miner">矿工</string>
+    <string name="user_type_master">矿场主</string>
+    <string name="user_type_operation">运维</string>
+    <string name="master_auth_account">授权账号</string>
+
     <!--维修单-->
     <string name="repair_bill">维修单</string>
     <string name="repair_untreated">未处理</string>
@@ -108,8 +114,6 @@
     <string name="master_free_repair">维修费</string>
     <string name="master_account_exec">账号管理</string>
 
-    <string name="master_auth_account">授权账号</string>
-
 
     <!--tips-->
     <string name="repair_than_time">结束时间不能大于起始时间</string>
@@ -126,6 +130,7 @@
     <string name="ip_than_before">结束IP不能大于起始IP</string>
     <string name="create_accountexec">创建授权账号</string>
     <string name="input_accountexec">请输入授权账号</string>
+    <string name="no_permission">抱歉！您当前没有此权限</string>
 
 
     <!--dialog-->

@@ -130,6 +130,7 @@ public class CustomCircleProgressBar extends View {
 
         //第二步:画进度(圆弧)
         paint.setColor(outsideColor);  //设置进度的颜色
+        paint.setStrokeCap(Paint.Cap.ROUND); //设置进度两头圆弧
         RectF oval = new RectF(circlePoint - outsideRadius, circlePoint - outsideRadius, circlePoint + outsideRadius, circlePoint + outsideRadius);  //用于定义的圆弧的形状和大小的界限
         canvas.drawArc(oval, DirectionEnum.getDegree(direction), 360 * (progress / maxProgress), false, paint);  //根据进度画圆弧
 

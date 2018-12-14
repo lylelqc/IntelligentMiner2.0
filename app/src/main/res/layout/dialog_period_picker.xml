@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/transparent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <Button
+                android:id="@+id/repair_date_sel_cancel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_weight="1"
+                android:background="@color/sly_bg_f4f4f4"
+                android:text="取消"
+                android:textColor="@color/sly_text_848689"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/repair_date_sel_ok"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_weight="1"
+                android:background="@drawable/shape_btn_gradient_blue"
+                android:text="确定"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+            <cn.carbswang.android.numberpickerview.library.NumberPickerView
+                android:id="@+id/period_picker"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true"
+                android:background="@color/white"
+                android:contentDescription="test_number_picker_view"
+                app:npv_DividerColor="#7cbcf2"
+                app:npv_DividerMarginLeft="70dp"
+                app:npv_DividerMarginRight="70dp"
+                app:npv_DividerHeight="2dp"
+                app:npv_TextColorNormal="#b2b2b2"
+                app:npv_TextColorSelected="#3a3a3a"
+                app:npv_RespondChangeOnDetached="false"
+                app:npv_ShowCount="4"
+                app:npv_TextSizeNormal="17sp"
+                app:npv_TextSizeSelected="17sp"
+                app:npv_WrapSelectorWheel="true" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

@@ -270,6 +270,14 @@ public class BarUtil {
         //(起始点、柱状图组间距、柱状图之间间距)
         data.groupBars(0, groupSpace, barSpace);
 
+        xAxis.setValueFormatter(new IAxisValueFormatter() {
+            @Override
+            public String getFormattedValue(float value, AxisBase axis) {
+//                return xValues.get((int) Math.abs(value) % xValues.size());
+                return "";
+            }
+        });
+
         barChart.setData(data);
     }
 

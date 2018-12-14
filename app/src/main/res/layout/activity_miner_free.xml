@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/head_title2" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp">
+
+        <TextView
+            android:id="@+id/tv_record_date"
+            android:layout_width="53dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:background="#17c296"
+            android:gravity="center"
+            android:text="记账周期"
+            android:textColor="@color/white"
+            android:textSize="12sp" />
+
+        <RelativeLayout
+            android:id="@+id/rl_record_free_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/tv_record_date">
+
+            <TextView
+                android:id="@+id/tv_record_free_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2018/05/05-2018/09/17"
+                android:textColor="@color/sly_text_2f2f2f"
+                android:textSize="13sp" />
+
+            <TextView
+                android:layout_width="11dp"
+                android:layout_height="6dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="7dp"
+                android:layout_toRightOf="@+id/tv_record_free_date"
+                android:background="@drawable/seat_drop_down" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <include layout="@layout/gray_line" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="11dp"
+        android:layout_marginTop="34dp">
+
+        <TextView
+            android:id="@+id/tv_record_free"
+            android:layout_width="44dp"
+            android:layout_height="22dp"
+            android:layout_marginLeft="15dp"
+            android:background="@drawable/shape_white_11dp"
+            android:gravity="center"
+            android:text="费用"
+            android:textColor="@color/sly_text_2f2f2f"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_free_money"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:text="0.0"
+            android:textColor="@color/sly_text_2f2f2f"
+            android:textSize="21sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_free_rmb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/tv_free_money"
+            android:text="¥ "
+            android:textColor="@color/sly_text_2f2f2f"
+            android:textSize="21sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_free_manage_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:background="@drawable/guanli_feiyong_icon" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="12dp"
+                android:layout_toRightOf="@+id/tv_free_manage_icon"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="管理费"
+                        android:textColor="@color/black"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:text="¥ "
+                        android:textColor="@color/sly_text_2f2f2f"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/tv_free_manage_money"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textColor="@color/sly_text_2f2f2f"
+                        android:textSize="15sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ProgressBar
+                        android:id="@+id/pb_free_manage_progress"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="228dp"
+                        android:layout_height="7dp"
+                        android:layout_gravity="center_vertical"
+                        android:max="100"
+                        android:progress="75"
+                        android:progressDrawable="@drawable/progress_fund_detail" />
+
+                    <TextView
+                        android:id="@+id/tv_free_manage_rate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="15dp"
+                        android:gravity="right"
+                        android:text="0%"
+                        android:textColor="@color/sly_text_2f2f2f"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </LinearLayout>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_free_repair_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:background="@drawable/weixiu_feiyong_icon" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="12dp"
+                android:layout_toRightOf="@+id/tv_free_repair_icon"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="维修费"
+                        android:textColor="@color/black"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:text="¥ "
+                        android:textColor="@color/sly_text_2f2f2f"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/tv_free_repair_money"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textColor="@color/sly_text_2f2f2f"
+                        android:textSize="15sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ProgressBar
+                        android:id="@+id/pb_free_repair_progress"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="228dp"
+                        android:layout_height="7dp"
+                        android:layout_gravity="center_vertical"
+                        android:max="100"
+                        android:progress="32"
+                        android:progressDrawable="@drawable/progress_fund_detail" />
+
+                    <TextView
+                        android:id="@+id/tv_free_repair_rate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="15dp"
+                        android:gravity="right"
+                        android:text="0%"
+                        android:textColor="@color/sly_text_2f2f2f"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </LinearLayout>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

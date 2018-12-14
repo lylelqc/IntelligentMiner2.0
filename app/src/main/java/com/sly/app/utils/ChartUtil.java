@@ -110,7 +110,7 @@ public class ChartUtil {
         leftYAxis.setValueFormatter(new IAxisValueFormatter() {
             @Override
             public String getFormattedValue(float value, AxisBase axis) {
-                return value + "T";
+                return (value > 1 ? Math.round(value) : value)  + "T";
             }
         });
 

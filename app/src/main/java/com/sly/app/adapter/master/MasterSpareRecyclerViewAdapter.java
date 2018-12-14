@@ -27,7 +27,7 @@ public class MasterSpareRecyclerViewAdapter extends RecyclerView.Adapter {
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = View.inflate(parent.getContext(), R.layout.item_sly2_machine_list, null);
+        View v = View.inflate(parent.getContext(), R.layout.item_master_spare_list, null);
         return new ViewHolder(v);
     }
 
@@ -36,7 +36,7 @@ public class MasterSpareRecyclerViewAdapter extends RecyclerView.Adapter {
         ViewHolder viewHolder = (ViewHolder) holder;
         final MasterSpareListBean bean = list.get(position);
         viewHolder.tvItemSpareName.setText(bean.getPartName());
-        viewHolder.tvItemSpareNum.setText(bean.getUseCount());
+        viewHolder.tvItemSpareNum.setText(bean.getUseCount()+"");
         viewHolder.tvItemSpareDate.setText(bean.getTimes());
         viewHolder.tvItemSpareWorker.setText(bean.getWorker());
         viewHolder.tvItemSpareType.setText(bean.getModel());
