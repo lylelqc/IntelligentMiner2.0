@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -35,6 +36,7 @@ public class RepairCheckPopView extends PopupWindow implements View.OnClickListe
     private TextView tvReSet;
 
     private EditText etBillID;
+    private TextView tvName2;
     private EditText etAreaIP;
     private TextView tvBeginpTime;
     private TextView tvEndpTime;
@@ -42,6 +44,9 @@ public class RepairCheckPopView extends PopupWindow implements View.OnClickListe
     private TextView tvEndTime;
     private RadioButton cbStatus1;
     private RadioButton cbStatus2;
+    private RadioButton cbStatus3;
+    private RadioButton cbStatus4;
+    private RadioButton cbStatus5;
 
     private LinearLayout llBeginpTime;
     private LinearLayout llEndpTime;
@@ -58,15 +63,19 @@ public class RepairCheckPopView extends PopupWindow implements View.OnClickListe
     private Dialog dialog;
     private DatePicker picker;
     private String defaultDate;
+    private int type;
 
-    public RepairCheckPopView(final Activity context, int count) {
+    public RepairCheckPopView(final Activity context, int count, int loginType) {
         this.mContext = context;
         this.mCount = count;
+        this.type = loginType;
 
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         contentView = inflater.inflate(R.layout.pop_repair_check, null);
 
         etBillID = contentView.findViewById(R.id.et_repair_bill_id);
+
+        tvName2 = contentView.findViewById(R.id.tv_ip);
         etAreaIP = contentView.findViewById(R.id.et_repair_ip);
 
         llBeginpTime = contentView.findViewById(R.id.ll_repair_begin_ptime);
@@ -81,6 +90,9 @@ public class RepairCheckPopView extends PopupWindow implements View.OnClickListe
 
         cbStatus1 = contentView.findViewById(R.id.rb_repair_check_status1);
         cbStatus2 = contentView.findViewById(R.id.rb_repair_check_status2);
+        cbStatus3 = contentView.findViewById(R.id.rb_repair_check_status3);
+        cbStatus4 = contentView.findViewById(R.id.rb_repair_check_status4);
+        cbStatus5 = contentView.findViewById(R.id.rb_repair_check_status5);
 
         llRepairTime = contentView.findViewById(R.id.ll_repair_check_endtime);
         llChooseStatus = contentView.findViewById(R.id.ll_chooseStatus);
@@ -112,23 +124,106 @@ public class RepairCheckPopView extends PopupWindow implements View.OnClickListe
         defaultDate = calendar.get(Calendar.YEAR) + "-" + (calendar.get(Calendar.MONTH)+1) + "-" + calendar.get(Calendar.DAY_OF_MONTH);
         tvBeginpTime.setText(defaultDate);
         tvEndpTime.setText(defaultDate);
-        if(Count == 1){
-            llRepairTime.setVisibility(View.GONE);
-            llChooseStatus.setVisibility(View.GONE);
-        }else if(Count == 2){
-            llRepairTime.setVisibility(View.GONE);
-            llChooseStatus.setVisibility(View.VISIBLE);
-            cbStatus1.setText("处理中\n等待确认");
-            cbStatus2.setText("处理中\n已确认");
-        }else if(Count == 3){
+
+        // 矿工维修单查询
+        if(type == 1){
+            cbStatus3.setVisibility(View.GONE);
+            cbStatus4.setVisibility(View.GONE);
+            cbStatus5.setVisibility(View.GONE);
+            tvName2.setText(mContext.getResources().getString(R.string.miner_machine_code));
+            etAreaIP.setHint(mContext.getString(R.string.miner_enter_machine_code));
+            if(Count == 1){
+                llRepairTime.setVisibility(View.GONE);
+                llChooseStatus.setVisibility(View.GONE);
+            }else if(Count == 2){
+                llRepairTime.setVisibility(View.GONE);
+                llChooseStatus.setVisibility(View.VISIBLE);
+                cbStatus1.setText("待处理");
+                cbStatus2.setText("处理中\n已确认");
+            }else if(Count == 3){
+                tvBeginTime.setText(defaultDate);
+                tvEndTime.setText(defaultDate);
+                llRepairTime.setVisibility(View.VISIBLE);
+                llChooseStatus.setVisibility(View.VISIBLE);
+                cbStatus1.setText("维修结束");
+                cbStatus2.setText("取消维修");
+            }
+        }
+        // 历史维修单查询
+        else if(type == 3){
+            tvName2.setText(mContext.getResources().getString(R.string.miner_machine_code));
+            etAreaIP.setHint(mContext.getString(R.string.miner_enter_machine_code));
             tvBeginTime.setText(defaultDate);
             tvEndTime.setText(defaultDate);
-            llRepairTime.setVisibility(View.VISIBLE);
-            llChooseStatus.setVisibility(View.VISIBLE);
-            cbStatus1.setText("已处理");
-            cbStatus2.setText("取消维修");
-        }
 
+            cbStatus1.setText("未处理");
+            cbStatus2.setText("处理中\n等待确认");
+            cbStatus3.setText("处理中\n已确认");
+            cbStatus4.setText("维修结束");
+            cbStatus5.setText("取消维修");
+
+            cbStatus1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                    if(isChecked){
+                        setState(1);
+                    }
+                }
+            });
+            cbStatus2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                    if(isChecked){
+                        setState(2);
+                    }
+                }
+            });
+            cbStatus3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                    if(isChecked){
+                        setState(3);
+                    }
+                }
+            });
+            cbStatus4.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                    if(isChecked){
+                        setState(4);
+                    }
+                }
+            });
+            cbStatus5.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                    if(isChecked){
+                        setState(5);
+                    }
+                }
+            });
+        }else{
+            // 运维维修单查询
+            cbStatus3.setVisibility(View.GONE);
+            cbStatus4.setVisibility(View.GONE);
+            cbStatus5.setVisibility(View.GONE);
+            if(Count == 1){
+                llRepairTime.setVisibility(View.GONE);
+                llChooseStatus.setVisibility(View.GONE);
+            }else if(Count == 2){
+                llRepairTime.setVisibility(View.GONE);
+                llChooseStatus.setVisibility(View.VISIBLE);
+                cbStatus1.setText("处理中\n等待确认");
+                cbStatus2.setText("处理中\n已确认");
+            }else if(Count == 3){
+                tvBeginTime.setText(defaultDate);
+                tvEndTime.setText(defaultDate);
+                llRepairTime.setVisibility(View.VISIBLE);
+                llChooseStatus.setVisibility(View.VISIBLE);
+                cbStatus1.setText("已处理");
+                cbStatus2.setText("取消维修");
+            }
+        }
     }
 
     public void showFilterPopup(View parent) {
@@ -137,6 +232,19 @@ public class RepairCheckPopView extends PopupWindow implements View.OnClickListe
 //            this.showAtLocation(parent, Gravity.RIGHT,0,0);
         } else {
             this.dismiss();
+        }
+    }
+
+    private void setState(int btnTag){
+        if(btnTag == 1 || btnTag == 2
+                || btnTag == 3 || btnTag == 4){
+            cbStatus5.setChecked(false);
+        }else{
+            cbStatus1.setChecked(false);
+            cbStatus2.setChecked(false);
+            cbStatus3.setChecked(false);
+            cbStatus4.setChecked(false);
+            cbStatus5.setChecked(true);
         }
     }
 
@@ -154,6 +262,14 @@ public class RepairCheckPopView extends PopupWindow implements View.OnClickListe
         repairInfo[5] = metimeCount > 0 ? tvEndTime.getText().toString().trim() : "";
         repairInfo[6] = cbStatus1.isChecked() ? "true" : "false";
         repairInfo[7] = cbStatus2.isChecked() ? "true" : "false";
+        return repairInfo;
+    }
+
+    public String[] getTextInfo2(){
+        String[] repairInfo = new String[3];
+        repairInfo[0] = cbStatus3.isChecked() ? "true" : "false";
+        repairInfo[1] = cbStatus4.isChecked() ? "true" : "false";
+        repairInfo[2] = cbStatus5.isChecked() ? "true" : "false";
         return repairInfo;
     }
 
@@ -224,8 +340,11 @@ public class RepairCheckPopView extends PopupWindow implements View.OnClickListe
                 tvEndpTime.setText(defaultDate);
                 tvBeginTime.setText(defaultDate);
                 tvEndTime.setText(defaultDate);
-                cbStatus1.setChecked(true);
+                cbStatus1.setChecked(false);
                 cbStatus2.setChecked(false);
+                cbStatus3.setChecked(false);
+                cbStatus4.setChecked(false);
+                cbStatus5.setChecked(false);
                 break;
             case R.id.repair_date_sel_cancel:
                 dialog.dismiss();

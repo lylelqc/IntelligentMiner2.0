@@ -32,8 +32,17 @@ public class EventBusTags {
 
     public static final String JUMP_REPAIR_BILL_TREATED = "jump_repair_bill_treated"; //跳转已处理
 
+    public static final String JUMP_MIENR_REPAIR_BILL_TREATED = "jump_miner_repair_bill_treated"; //跳转矿工已处理
+
     public static final String CHOOSE_AUTH_MINE_AREA = "choose_auth_mine_area"; //选择授权矿场
 
     public static final String CLICK_MINE_MASTER = "click_mine_master"; // 点击选择矿场主
+
+    public static final String SET_MINER_INFO = "set_miner_info"; // 点击选择矿场主
+
+    public static final String SET_MINER_MASTER_INFO = "set_miner_master_info"; // 点击选择矿场主
+
+    public static final String SET_OPERATION_INFO = "set_operation_info"; // 点击选择矿场主
+
 
 }

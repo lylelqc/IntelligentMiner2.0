@@ -11,6 +11,7 @@ import com.sly.app.activity.BaseActivity;
 import com.sly.app.activity.yunw.machine.MachineDetailsActivity;
 import com.sly.app.comm.NetConstant;
 import com.sly.app.http.NetWorkCons;
+import com.sly.app.model.notice.MinerNoticeNewDetailsBean;
 import com.sly.app.model.notice.YunwNoticeNewDetailsBean;
 import com.sly.app.presenter.impl.CommonRequestPresenterImpl;
 import com.sly.app.utils.ApiSIgnUtil;
@@ -53,6 +54,7 @@ public class NoticeNewDetailsActivity extends BaseActivity implements ICommonVie
     private String MessageID;
     private CommonRequestPresenterImpl iCommonRequestPresenter;
     private List<YunwNoticeNewDetailsBean> mResultList = new ArrayList<>();
+    private List<MinerNoticeNewDetailsBean> mMinerDetailsList = new ArrayList<>();
 
     @Override
     protected boolean isBindEventBusHere() {
@@ -68,8 +70,9 @@ public class NoticeNewDetailsActivity extends BaseActivity implements ICommonVie
     protected void initViewsAndEvents() {
         tvMainTitle.setText(getString(R.string.sly_notice));
 
-        iCommonRequestPresenter = new CommonRequestPresenterImpl(mContext, this);
         MessageID = getIntent().getExtras().getString("MessageID");
+
+        iCommonRequestPresenter = new CommonRequestPresenterImpl(mContext, this);
         User = SharedPreferencesUtil.getString(mContext, "User", "None");
         FrSysCode = SharedPreferencesUtil.getString(mContext, "FrSysCode", "None");
         FMasterCode = SharedPreferencesUtil.getString(mContext, "FMasterCode", "None");
@@ -80,8 +83,14 @@ public class NoticeNewDetailsActivity extends BaseActivity implements ICommonVie
         LoginType = SharedPreferencesUtil.getString(mContext, "LoginType", "None");
         mineType = SharedPreferencesUtil.getString(mContext, "mineType", "None");
 
-        toRequest(NetConstant.EventTags.GET_NEW_NOTICE_DETAILS);
-        toRequest(NetConstant.EventTags.CAHNGE_NEWS_STATUS);
+        if("Miner".equals(mineType)){
+            toRequest(NetConstant.EventTags.GET_MINER_NOTICE_NEW_DETAILS);
+            toRequest(NetConstant.EventTags.SET_MINER_NOTICE_STATUS);
+        }else {
+            // 矿主-运维共用
+            toRequest(NetConstant.EventTags.GET_NEW_NOTICE_DETAILS);
+            toRequest(NetConstant.EventTags.CAHNGE_NEWS_STATUS);
+        }
     }
 
     @Override
@@ -93,6 +102,12 @@ public class NoticeNewDetailsActivity extends BaseActivity implements ICommonVie
         }
         else if(eventTag == NetConstant.EventTags.CAHNGE_NEWS_STATUS){
             map.put("Rounter", NetConstant.CAHNGE_NEWS_STATUS);
+        }
+        else if(eventTag == NetConstant.EventTags.GET_MINER_NOTICE_NEW_DETAILS){
+            map.put("Rounter", NetConstant.GET_MINER_NOTICE_NEW_DETAILS);
+        }
+        else if(eventTag == NetConstant.EventTags.SET_MINER_NOTICE_STATUS){
+            map.put("Rounter", NetConstant.SET_MINER_NOTICE_STATUS);
         }
 
         map.put("MessageID", MessageID);
@@ -126,6 +141,23 @@ public class NoticeNewDetailsActivity extends BaseActivity implements ICommonVie
                     tvDetailsNewCheck.setVisibility(View.VISIBLE);
                 }
             }
+        } else  if (eventTag == NetConstant.EventTags.GET_MINER_NOTICE_NEW_DETAILS) {
+            mMinerDetailsList =
+                    (List<MinerNoticeNewDetailsBean>) AppUtils.parseRowsResult(result, MinerNoticeNewDetailsBean.class);
+            if (!AppUtils.isListBlank(mMinerDetailsList)) {
+                MinerNoticeNewDetailsBean bean = mMinerDetailsList.get(0);
+                tvDetailsNewName.setText(bean.getMine34_Title());
+                tvDetailsNewTime.setText(bean.getMine34_Time());
+                tvDetailsNewIP.setText(bean.getMine08_IP());
+                tvDetailsNewType.setText(bean.getMine08_Model());
+                tvDetailsNewReason.setText(bean.getMine34_Message());
+                if(bean.getIsShow().equals("False")){
+                    tvDetailsNewCheck.setVisibility(View.GONE);
+                }
+                else{
+                    tvDetailsNewCheck.setVisibility(View.VISIBLE);
+                }
+            }
         }
 
     }
@@ -138,7 +170,11 @@ public class NoticeNewDetailsActivity extends BaseActivity implements ICommonVie
                 break;
             case R.id.tv_details_new_check:
                 Bundle bundle = new Bundle();
-                bundle.putString("machineSysCode", mResultList.get(0).getMine08_MineMachineSysCode());
+                if("Miner".equals(mineType)){
+                    bundle.putString("machineSysCode", mMinerDetailsList.get(0).getMine08_MineMachineSysCode());
+                }else{
+                    bundle.putString("machineSysCode", mResultList.get(0).getMine08_MineMachineSysCode());
+                }
                 AppUtils.goActivity(this, MachineDetailsActivity.class, bundle);
                 break;
         }

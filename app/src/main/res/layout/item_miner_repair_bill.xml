@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp">
+
+        <RelativeLayout
+            android:id="@+id/view_plan"
+            android:layout_width="match_parent"
+            android:layout_height="42dp">
+
+            <ImageView
+                android:id="@+id/iv_machine_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:src="@drawable/danhao_weixiudan_icon"/>
+
+            <TextView
+                android:id="@+id/tv_repair_machine_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="9dp"
+                android:layout_toRightOf="@id/iv_machine_image"
+                android:text="蚂蚁T9Plus"
+                android:maxWidth="120dp"
+                android:textSize="15sp"
+                android:ellipsize="end"
+                android:textColor="@color/sly_text_244153"/>
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/sly_line_gray"/>
+
+        <RelativeLayout
+            android:id="@+id/rl_details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/view_plan">
+
+            <RelativeLayout
+                android:id="@+id/rl_repair_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp">
+
+                <TextView
+                    android:id="@+id/tv_send__time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="派单时间："
+                    android:textSize="13sp"
+                    android:textColor="#43484d"/>
+
+                <TextView
+                    android:id="@+id/tv_begin_ptime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/tv_send__time"
+                    android:text="2015-10-15 22:45"
+                    android:textSize="13sp"
+                    android:textColor="#43484d" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@+id/tv_repair_sum"
+                    android:text="¥ "
+                    android:textSize="16sp"
+                    android:textColor="@color/sly_money_41494e"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_repair_sum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:text="0"
+                    android:textSize="16sp"
+                    android:textColor="@color/sly_money_41494e"
+                    />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="21dp"
+                android:layout_marginRight="15dp"
+                android:layout_below="@id/rl_repair_time">
+
+                <TextView
+                    android:id="@+id/tv_desciption"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="故障描述："
+                    android:textSize="13sp"
+                    android:textColor="#43484d"/>
+
+                <TextView
+                    android:id="@+id/tv_repair_desciption"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/tv_desciption"
+                    android:text="断离线"
+                    android:textSize="13sp"
+                    android:maxLines="2"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:textColor="#43484d" />
+            </RelativeLayout>
+
+        </RelativeLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@color/sly_bg_f4f4f4"
+        />
+</LinearLayout>

@@ -429,7 +429,7 @@ public class MasterAccountExecActivity extends BaseActivity implements ICommonVi
             spareAuth.setBackground(close);
         }
 
-        //点击按钮监听 0为关闭 1为打开
+        //点击按钮监听 0为授权 1为未授权
         tvAccountAuth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -488,6 +488,7 @@ public class MasterAccountExecActivity extends BaseActivity implements ICommonVi
         Permission = name;
         accredit = tag+"";
         toRequest(NetConstant.EventTags.SET_PERMISSION_FOR_ACCOUNT);
+
         if(name.equals("Mine89_IsCancel")){
             if(tag == 0){
                 tvAccountAuth.setBackground(open);

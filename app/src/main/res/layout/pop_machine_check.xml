@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,17 +14,17 @@
             android:id="@+id/ll_machine_list_type"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
             android:layout_marginLeft="15dp"
             android:layout_marginTop="18dp"
-            android:layout_marginBottom="20dp"
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="矿机型号"
-                android:textSize="14sp"
-                android:textColor="@color/sly_text_353a3e"/>
+                android:textColor="@color/sly_text_353a3e"
+                android:textSize="14sp" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recycler_view"
@@ -42,7 +42,7 @@
         android:id="@+id/view_line"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/sly_line_ececec"/>
+        android:background="@color/sly_line_ececec" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -65,8 +65,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="矿工号"
-                    android:textSize="14sp"
-                    android:textColor="@color/sly_text_353a3e"/>
+                    android:textColor="@color/sly_text_353a3e"
+                    android:textSize="14sp" />
 
                 <RelativeLayout
                     android:layout_width="151dp"
@@ -80,10 +80,11 @@
                         android:layout_height="match_parent"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
-                        android:textSize="12sp"
                         android:background="@null"
+                        android:digits="0123456789.abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
                         android:hint="  请输入矿工号"
-                        android:textColorHint="@color/sly_text_bfbfbf"/>
+                        android:textColorHint="@color/sly_text_bfbfbf"
+                        android:textSize="12sp" />
                 </RelativeLayout>
 
             </LinearLayout>
@@ -98,8 +99,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="会员号"
-                    android:textSize="14sp"
-                    android:textColor="#353a3e"/>
+                    android:textColor="#353a3e"
+                    android:textSize="14sp" />
 
                 <RelativeLayout
                     android:layout_width="151dp"
@@ -113,11 +114,11 @@
                         android:layout_height="match_parent"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
-                        android:textSize="12sp"
                         android:background="@null"
+                        android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
                         android:hint="  请输入会员号"
-                        android:inputType="number|numberDecimal"
-                        android:textColorHint="@color/sly_text_bfbfbf"/>
+                        android:textColorHint="@color/sly_text_bfbfbf"
+                        android:textSize="12sp" />
                 </RelativeLayout>
 
             </LinearLayout>
@@ -139,15 +140,15 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:text="IP段"
-                    android:textSize="14sp"
-                    android:textColor="@color/sly_text_353a3e"/>
+                    android:textColor="@color/sly_text_353a3e"
+                    android:textSize="14sp" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
                     android:layout_marginBottom="22dp"
                     android:layout_marginLeft="15dp"
+                    android:layout_marginTop="12dp"
                     android:orientation="horizontal">
 
                     <LinearLayout
@@ -162,29 +163,28 @@
                             android:layout_height="match_parent"
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
-                            android:textSize="12sp"
                             android:background="@null"
                             android:hint="  请输入起始IP"
-                            android:textColorHint="@color/sly_text_bfbfbf"/>
+                            android:textColorHint="@color/sly_text_bfbfbf"
+                            android:textSize="12sp" />
 
                     </LinearLayout>
 
                     <TextView
                         android:layout_width="31dp"
                         android:layout_height="29dp"
-                        android:text="-"
                         android:layout_gravity="center_vertical"
-                        android:textSize="14sp"
-                        android:textColor="#3a3a3a"
                         android:gravity="center"
-                        />
+                        android:text="-"
+                        android:textColor="#3a3a3a"
+                        android:textSize="14sp" />
 
                     <LinearLayout
                         android:id="@+id/ll_repair_end_time"
                         android:layout_width="109dp"
                         android:layout_height="29dp"
-                        android:gravity="center"
-                        android:background="@drawable/shape_f6f6f6_3dp">
+                        android:background="@drawable/shape_f6f6f6_3dp"
+                        android:gravity="center">
 
                         <EditText
                             android:id="@+id/et_list_end_ip"
@@ -192,10 +192,10 @@
                             android:layout_height="match_parent"
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
-                            android:textSize="12sp"
                             android:background="@null"
                             android:hint="  请输入结束IP"
-                            android:textColorHint="@color/sly_text_bfbfbf"/>
+                            android:textColorHint="@color/sly_text_bfbfbf"
+                            android:textSize="12sp" />
                     </LinearLayout>
 
                 </LinearLayout>
@@ -215,10 +215,10 @@
             android:background="@color/sly_line_ececec" />
 
         <TextView
-            android:layout_marginTop="21dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
+            android:layout_marginTop="21dp"
             android:text="选择状态"
             android:textColor="#353a3e"
             android:textSize="14sp" />
@@ -226,10 +226,10 @@
         <RadioGroup
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="22dp"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
             android:layout_marginTop="18dp"
-            android:layout_marginBottom="22dp"
             android:orientation="horizontal"
             android:weightSum="4">
 
@@ -242,47 +242,47 @@
                 android:button="@null"
                 android:gravity="center"
                 android:text="在线"
-                android:textSize="12sp"
-                android:textColor="@color/selector_flow_text_color"/>
+                android:textColor="@color/selector_flow_text_color"
+                android:textSize="12sp" />
 
             <com.sly.app.view.ToggleRadioButton
                 android:id="@+id/rb_machine_check_status2"
                 android:layout_width="0dp"
                 android:layout_height="34dp"
-                android:layout_weight="1"
                 android:layout_marginLeft="11dp"
+                android:layout_weight="1"
                 android:background="@drawable/selector_flow_color"
                 android:button="@null"
                 android:gravity="center"
                 android:text="离线"
-                android:textSize="12sp"
-                android:textColor="@color/selector_flow_text_color"/>
+                android:textColor="@color/selector_flow_text_color"
+                android:textSize="12sp" />
 
             <com.sly.app.view.ToggleRadioButton
                 android:id="@+id/rb_machine_check_status3"
                 android:layout_width="0dp"
                 android:layout_height="34dp"
-                android:layout_weight="1"
                 android:layout_marginLeft="11dp"
+                android:layout_weight="1"
                 android:background="@drawable/selector_flow_color"
                 android:button="@null"
                 android:gravity="center"
                 android:text="算力异常"
-                android:textSize="12sp"
-                android:textColor="@color/selector_flow_text_color"/>
+                android:textColor="@color/selector_flow_text_color"
+                android:textSize="12sp" />
 
             <com.sly.app.view.ToggleRadioButton
                 android:id="@+id/rb_machine_check_status4"
                 android:layout_width="0dp"
                 android:layout_height="34dp"
-                android:layout_weight="1"
                 android:layout_marginLeft="11dp"
+                android:layout_weight="1"
                 android:background="@drawable/selector_flow_color"
                 android:button="@null"
                 android:gravity="center"
                 android:text="停机"
-                android:textSize="12sp"
-                android:textColor="@color/selector_flow_text_color"/>
+                android:textColor="@color/selector_flow_text_color"
+                android:textSize="12sp" />
         </RadioGroup>
 
     </LinearLayout>
@@ -298,22 +298,22 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:background="@drawable/shape_btn_gradient_blue"
             android:gravity="center"
             android:text="重置"
-            android:textSize="16sp"
             android:textColor="@color/white"
-            android:background="@drawable/shape_btn_gradient_blue"/>
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/tv_machine_list_confirm"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:background="@drawable/shape_btn_gradient_blue2"
             android:gravity="center"
             android:text="完成"
-            android:textSize="16sp"
             android:textColor="@color/white"
-            android:background="@drawable/shape_btn_gradient_blue2"/>
+            android:textSize="16sp" />
     </LinearLayout>
 
 </LinearLayout>

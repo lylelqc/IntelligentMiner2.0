@@ -184,7 +184,7 @@ public class RepairBillActivity extends BaseActivity implements RepairCheckPopVi
                         null, null, null);
                 tvRepairCheck.setCompoundDrawablePadding(AppUtils.dp2px(this, 5));
 
-                mRepairCheckView = new RepairCheckPopView(this, count);
+                mRepairCheckView = new RepairCheckPopView(this, count, 2);
                 mRepairCheckView.setOnDismissListener(new PopupWindow.OnDismissListener() {
                     @Override
                     public void onDismiss() {
@@ -220,9 +220,21 @@ public class RepairBillActivity extends BaseActivity implements RepairCheckPopVi
             //状态判断
             String status = "";
             if(count == 2){
-                status = info[6].equals("true") ? "02" : "03";
+                if(info[6].equals("true")){
+                    status = "02";
+                }else{
+                    if(info[7].equals("true")){
+                        status = "03";
+                    }
+                }
             }else if(count == 3){
-                status = info[6].equals("true") ? "04" : "06";
+                if(info[6].equals("true")){
+                    status = "04";
+                }else{
+                    if(info[7].equals("true")){
+                        status = "06";
+                    }
+                }
             }
 
             // fragment更新数据

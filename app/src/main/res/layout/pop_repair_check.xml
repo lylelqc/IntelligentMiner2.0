@@ -52,6 +52,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tv_ip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="IP"
@@ -73,7 +74,8 @@
                     android:textSize="12sp"
                     android:background="@null"
                     android:hint="  请输入IP"
-                    android:inputType="number|numberDecimal"
+                    android:inputType="number"
+                    android:digits="0123456789."
                     android:textColorHint="@color/sly_text_bfbfbf"/>
             </RelativeLayout>
 
@@ -278,13 +280,13 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
             android:layout_marginTop="18dp"
-            android:layout_marginBottom="22dp"
+            android:gravity="center_vertical"
             android:orientation="horizontal">
 
             <com.sly.app.view.ToggleRadioButton
                 android:id="@+id/rb_repair_check_status1"
                 android:layout_width="78dp"
-                android:layout_height="34dp"
+                android:layout_height="32dp"
                 android:background="@drawable/selector_flow_color"
                 android:button="@null"
                 android:gravity="center"
@@ -294,14 +296,61 @@
             <com.sly.app.view.ToggleRadioButton
                 android:id="@+id/rb_repair_check_status2"
                 android:layout_width="78dp"
-                android:layout_height="34dp"
+                android:layout_height="32dp"
                 android:layout_marginLeft="11dp"
                 android:background="@drawable/selector_flow_color"
                 android:button="@null"
                 android:gravity="center"
                 android:textSize="12sp"
                 android:textColor="@color/selector_flow_text_color"/>
+
+            <com.sly.app.view.ToggleRadioButton
+                android:id="@+id/rb_repair_check_status3"
+                android:layout_width="78dp"
+                android:layout_height="32dp"
+                android:layout_marginLeft="11dp"
+                android:background="@drawable/selector_flow_color"
+                android:button="@null"
+                android:gravity="center"
+                android:textSize="12sp"
+                android:textColor="@color/selector_flow_text_color"/>
+
+            <com.sly.app.view.ToggleRadioButton
+                android:id="@+id/rb_repair_check_status4"
+                android:layout_width="78dp"
+                android:layout_height="32dp"
+                android:layout_marginLeft="11dp"
+                android:background="@drawable/selector_flow_color"
+                android:button="@null"
+                android:gravity="center"
+                android:textSize="12sp"
+                android:textColor="@color/selector_flow_text_color"/>
+
         </RadioGroup>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"/>
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp">
+
+            <com.sly.app.view.ToggleRadioButton
+                android:id="@+id/rb_repair_check_status5"
+                android:layout_width="78dp"
+                android:layout_height="32dp"
+                android:background="@drawable/selector_flow_color"
+                android:button="@null"
+                android:gravity="center"
+                android:textSize="12sp"
+                android:textColor="@color/selector_flow_text_color"/>
+        </RadioGroup>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="12dp"/>
 
     </LinearLayout>
 

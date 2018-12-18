@@ -236,7 +236,7 @@ public class SlyMineFragment2 extends BaseFragment {
             switch (view.getId()) {
                 case R.id.mine:
                 case R.id.rl_spinner:
-                    showPopupWindow();
+//                    showPopupWindow();
                     break;
                 case R.id.shezhi:
                     intent.setClass(getActivity(), SlySettingActivity.class);

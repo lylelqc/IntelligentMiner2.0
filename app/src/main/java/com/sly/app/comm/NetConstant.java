@@ -8,6 +8,13 @@ public class NetConstant {
     public static final String IMG_URL = "http://118.89.220.130:8081";
     public static final String IMG_URL2 = "http://sys.slyhash.com";
 
+    public static final String GET_MINER_INFO = "Miner.002";
+
+    public static final String GET_MINER_MASTER_INFO = "MineMaster.002";
+
+    public static final String GET_OPERATION_INFO = "Sly.003";
+
+
     public static final String GET_YUNW_MACHINE_NUM_RATE = "SlyTwo.001";
 
     public static final String GET_MINE_AREA_INFO = "SlyTwo.002";
@@ -134,6 +141,10 @@ public class NetConstant {
 
     public static final String DELETE_EVERY_PERSON = "SlyTwo.115";
 
+    public static final String GET_MASTER_NEW_COUNT = "SlyTwo.116";
+
+    public static final String GET_MASTER_NOTICE_LIST = "SlyTwo.117";
+
 
     public static final String GET_CHILD_ACCOUNTEXEC = "SlyTwo.119";
 
@@ -157,6 +168,13 @@ public class NetConstant {
 
     public static final String GET_COMMON_NOTICE = "SlyTwo.201";
 
+    public static final String GET_MINER_NOTICE_LIST = "SlyTwo.202";
+
+    public static final String GET_MINER_NOTICE_NEW_DETAILS = "SlyTwo.203";
+
+    public static final String SET_MINER_NOTICE_STATUS = "Miner.204";
+
+    public static final String GET_MINER_NEW_COUNT = "Miner.205";
 
     public static final String GET_MINER_ALL_MACHINE_COUNT = "SlyTwo.206";
 
@@ -170,11 +188,41 @@ public class NetConstant {
 
     public static final String GET_MINER_MONTH_RATE = "SlyTwo.211";
 
+    public static final String GET_MINER_MACHINE_LIST = "SlyTwo.212";
+
+    public static final String GET_MINER_MACHINE_MODEL = "SlyTwo.213";
+
+    public static final String GET_MINER_ALL_REPARE_FREE = "SlyTwo.214";
+
+    public static final String GET_MINER_REPARE_LIST = "SlyTwo.215";
+
+    public static final String GET_MINER_ALL_POWER_FREE = "SlyTwo.216";
+
+    public static final String GET_MINER_POWER_LIST = "SlyTwo.217";
+
+    public static final String GET_MINER_CONFIRMING_LSIT = "SlyTwo.218";
+
+    public static final String GET_MINER_TREATING_LIST = "SlyTwo.219";
+
+    public static final String GET_MINER_TREATED_LIST = "SlyTwo.220";
+
+    public static final String GET_MINER_REPAIR_DETAILS = "SlyTwo.221";
+
+    public static final String CONFRIM_MINER_REPAIR = "SlyTwo.222";
+
+    public static final String CANCEL_MINER_REPAIR = "SlyTwo.223";
+
+    public static final String GET_MINER_IS_REMINDER = "SlyTwo.224";
+
+    public static final String GET_MINER_REMINDER = "SlyTwo.225";
 
     public static final String GET_MINER_BILL_DATE = "SlyTwo.226";
 
     public static final String GET_MINER_PEROID_FREE = "SlyTwo.227";
 
+    public static final String GET_MINER_REPAIR_BILL_BY_MACHINE = "SlyTwo.228";
+
+    public static final String GET_MINER_MACHINE_STATUS = "SlyTwo.229";
 
 
 
@@ -341,6 +389,58 @@ public class NetConstant {
 
         public static final int GET_MINER_MONTH_RATE = BEGIN_EVENT + 132; // 获取获取本月运行率
 
+        public static final int GET_MINER_MACHINE_LIST = BEGIN_EVENT + 133; // 获取矿工设备列表
+
+        public static final int GET_MINER_MACHINE_MODEL = BEGIN_EVENT + 134; // 获取矿工型号
+
+        public static final int GET_MINER_ALL_REPARE_FREE = BEGIN_EVENT + 135; // 获取矿工总维修费
+
+        public static final int GET_MINER_REPARE_LIST = BEGIN_EVENT + 136; // 获取获矿工维修列表
+
+        public static final int GET_MINER_ALL_POWER_FREE = BEGIN_EVENT + 137; // 获取矿工总电费
+
+        public static final int GET_MINER_POWER_LIST = BEGIN_EVENT + 138; // 获取矿工电费列表
+
+        public static final int GET_MINER_MACHINE_STATUS = BEGIN_EVENT + 139; // 获取矿工设备状态
+
+        public static final int GET_MINER_REPAIR_DETAILS = BEGIN_EVENT + 140; // 获取矿工维修单详情
+
+        public static final int GET_MASTER_NEW_COUNT = BEGIN_EVENT + 141; // 获取矿主未读消息数
+
+        public static final int GET_MASTER_NOTICE_LIST = BEGIN_EVENT + 142; // 获取矿主消息列表
+
+        public static final int GET_MINER_NOTICE_LIST = BEGIN_EVENT + 143; // 获取矿工消息列表
+
+        public static final int GET_MINER_NOTICE_NEW_DETAILS = BEGIN_EVENT + 144; // 获取矿工消息详情
+
+        public static final int SET_MINER_NOTICE_STATUS = BEGIN_EVENT + 145; // 改变旷工消息的阅读状态
+
+        public static final int GET_MINER_NEW_COUNT = BEGIN_EVENT + 146; // 查看矿工未读消息数量
+
+        public static final int GET_MINER_CONFIRMING_LSIT = BEGIN_EVENT + 147; // 查看矿工待确认维修单列表
+
+        public static final int GET_MINER_TREATING_LIST = BEGIN_EVENT + 148; // 查看矿工处理中维修单列表
+
+        public static final int GET_MINER_TREATED_LIST = BEGIN_EVENT + 149; // 查看矿工已处理维修单列表
+
+        public static final int CONFRIM_MINER_REPAIR = BEGIN_EVENT + 150; // 查看矿工确认维修
+
+        public static final int CANCEL_MINER_REPAIR = BEGIN_EVENT + 151; // 查看矿工取消维修
+
+        public static final int GET_MINER_IS_REMINDER = BEGIN_EVENT + 152; // 查看矿工是否催单
+
+        public static final int GET_MINER_REMINDER = BEGIN_EVENT + 153; // 查看矿工催单
+
+        public static final int GET_MINER_REPAIR_BILL_BY_MACHINE = BEGIN_EVENT + 154; // 按照矿机查看维修单
+
+
+
+
+        public static final int GET_MINER_INFO = BEGIN_EVENT + 200; // 获取矿工信息
+
+        public static final int GET_MINER_MASTER_INFO = BEGIN_EVENT + 201; // 获取矿场主信息
+
+        public static final int GET_OPERATION_INFO = BEGIN_EVENT + 202; // 获取运维信息
 
     }
 

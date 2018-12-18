@@ -186,6 +186,13 @@
 
         <!--矿工-->
         <activity android:name=".activity.miner.MinerFreeActivity" />
+        <activity android:name=".activity.miner.MinerMachineListActivity" />
+        <activity android:name=".activity.miner.MinerMachineDetailsActivity" />
+        <activity android:name=".activity.miner.MinerHistoryFreeActivity" />
+        <activity android:name=".activity.miner.MinerFreeDetailsActivty" />
+        <activity android:name=".activity.miner.MinerRepairBillActivity" />
+        <activity android:name=".activity.miner.MinerRepairDetailsActivity" />
+        <activity android:name=".activity.miner.MinerHistoryRepairActivity" />
 
 
         <!-- Rich push 核心功能 since 2.0.6-->

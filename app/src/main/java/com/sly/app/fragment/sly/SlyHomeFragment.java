@@ -190,7 +190,8 @@ public class SlyHomeFragment extends BaseFragment {
             rlJustLogin.setVisibility(View.VISIBLE);
             rlBanner.setVisibility(View.GONE);
         }else{
-            tvLoginName.setText(User);
+            String maskNumber = User.substring(0, 3) + "****" + User.substring(7, User.length());
+            tvLoginName.setText(maskNumber);
             rlUserName.setVisibility(View.VISIBLE);
             rlJustLogin.setVisibility(View.GONE);
             rlBanner.setVisibility(View.VISIBLE);

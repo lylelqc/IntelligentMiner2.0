@@ -2,6 +2,7 @@ package com.sly.app.fragment;
 
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,8 +21,11 @@ import com.sly.app.activity.master.MasterAllPowerActivity;
 import com.sly.app.activity.master.MasterMachineListActivity;
 import com.sly.app.activity.master.MasterPersonManageActivity;
 import com.sly.app.activity.miner.MinerFreeActivity;
+import com.sly.app.activity.miner.MinerMachineListActivity;
+import com.sly.app.activity.miner.MinerRepairBillActivity;
 import com.sly.app.activity.sly.mine.notice.Sly2NoticeActivity;
 import com.sly.app.adapter.master.MasterHomeRecyclerViewAdapter;
+import com.sly.app.base.Contants;
 import com.sly.app.comm.EventBusTags;
 import com.sly.app.comm.NetConstant;
 import com.sly.app.http.NetWorkCons;
@@ -40,6 +44,7 @@ import com.sly.app.utils.ApiSIgnUtil;
 import com.sly.app.utils.AppUtils;
 import com.sly.app.utils.ChartUtil;
 import com.sly.app.utils.EncryptUtil;
+import com.sly.app.utils.NetUtils;
 import com.sly.app.utils.SharedPreferencesUtil;
 import com.sly.app.utils.ToastUtils;
 import com.sly.app.view.CustomCircleProgressBar;
@@ -59,7 +64,7 @@ import vip.devkit.library.Logcat;
 
 import static de.greenrobot.event.EventBus.TAG;
 
-public class Sly2MinerFragment extends BaseFragment implements ICommonViewUi {
+public class Sly2MinerFragment extends BaseFragment implements ICommonViewUi, SwipeRefreshLayout.OnRefreshListener {
 
     @BindView(R.id.ll_miner_repair)
     LinearLayout llMinerRepair;
@@ -106,6 +111,9 @@ public class Sly2MinerFragment extends BaseFragment implements ICommonViewUi {
     @BindView(R.id.tv_miner_rate)
     TextView tvMinerRate;
 
+    @BindView(R.id.swipe_refresh_layout)
+    SwipeRefreshLayout swipeRefreshLayout;
+
     public static String mContent = "???";
     private String User, LoginType, FrSysCode, FMasterCode, MineCode, PersonSysCode, Token, Key;
     private String MineName;
@@ -122,6 +130,7 @@ public class Sly2MinerFragment extends BaseFragment implements ICommonViewUi {
 
     private List<MasterAccountPermissionBean> mPermissionList = new ArrayList<>();
     private PopupWindow mPopupWindow;
+    private boolean isMachineZero;
 
     public static Sly2MinerFragment newInstance(String content) {
         Sly2MinerFragment fragment = new Sly2MinerFragment();
@@ -158,6 +167,8 @@ public class Sly2MinerFragment extends BaseFragment implements ICommonViewUi {
     protected void initViewsAndEvents() {
 
         iCommonRequestPresenter = new CommonRequestPresenterImpl(mContext, this);
+        swipeRefreshLayout.setOnRefreshListener(this);
+
         User = SharedPreferencesUtil.getString(mContext, "User", "None");
         Token = SharedPreferencesUtil.getString(mContext, "Token", "None");
         Key = SharedPreferencesUtil.getString(mContext, "Key", "None");
@@ -209,6 +220,10 @@ public class Sly2MinerFragment extends BaseFragment implements ICommonViewUi {
     @Override
     public void getRequestData(int eventTag, String result) {
         Logcat.e("返回参数 = " + result);
+        if(swipeRefreshLayout.isRefreshing()){
+            swipeRefreshLayout.setRefreshing(false);
+        }
+
         if (eventTag == NetConstant.EventTags.GET_MINER_ALL_MACHINE_COUNT) {
             minerMachineList =
                     (List<MinerMachineNumBean>) AppUtils.parseRowsResult(result, MinerMachineNumBean.class);
@@ -218,7 +233,19 @@ public class Sly2MinerFragment extends BaseFragment implements ICommonViewUi {
         } else if (eventTag == NetConstant.EventTags.GET_MINER_REPAIR_NUM) {
             ReturnBean returnBean = JSON.parseObject(result, ReturnBean.class);
             if (returnBean.getStatus().equals("1") && returnBean.getMsg().equals("成功")) {
-                tvMinerRepairNum.setText(returnBean.getData());
+                if("0".equals(returnBean.getData())){
+                    tvMinerRepairNum.setVisibility(View.GONE);
+                }else{
+                    tvMinerRepairNum.setVisibility(View.VISIBLE);
+                    int newCount = Integer.parseInt(returnBean.getData());
+                    if(newCount < 10 ){
+                        tvMinerRepairNum.setBackgroundDrawable(getResources().getDrawable(R.drawable.xiaoxi_kuanggong_icon));
+                    }
+                    else{
+                        tvMinerRepairNum.setBackgroundDrawable(getResources().getDrawable(R.drawable.bigxiaoxi_kuanggong_icon));
+                    }
+                    tvMinerRepairNum.setText(returnBean.getData());
+                }
             }
         } else if (eventTag == NetConstant.EventTags.GET_MINER_MONTH_RATE) {
             ReturnBean returnBean = JSON.parseObject(result, ReturnBean.class);
@@ -240,6 +267,7 @@ public class Sly2MinerFragment extends BaseFragment implements ICommonViewUi {
             //30天算力
             mPic30ListBean =
                     (List<MachineDetailsPicBean>) AppUtils.parseRowsResult(result, MachineDetailsPicBean.class);
+            Collections.reverse(mPic30ListBean);
         }
     }
 
@@ -282,6 +310,12 @@ public class Sly2MinerFragment extends BaseFragment implements ICommonViewUi {
         int exceptionCount = bean.getAbnormalCount();
         int stopCount = bean.getDowntimeCount();
 
+        if(allCount == 0){
+            isMachineZero = true;
+        }else{
+            isMachineZero = false;
+        }
+
         tvMinerAllMachineNum.setText(allCount + "");
         tvMinerOnlineNum.setText(onlineCount + "");
         tvMinerOfflineNum.setText(offlineCount + "");
@@ -318,12 +352,16 @@ public class Sly2MinerFragment extends BaseFragment implements ICommonViewUi {
 
     @Override
     public void onRequestSuccessException(int eventTag, String msg) {
-
+        if(swipeRefreshLayout.isRefreshing()){
+            swipeRefreshLayout.setRefreshing(false);
+        }
     }
 
     @Override
     public void onRequestFailureException(int eventTag, String msg) {
-
+        if(swipeRefreshLayout.isRefreshing()){
+            swipeRefreshLayout.setRefreshing(false);
+        }
     }
 
     @Override
@@ -335,35 +373,40 @@ public class Sly2MinerFragment extends BaseFragment implements ICommonViewUi {
             R.id.rl_exception_machine, R.id.rl_stop_machine, R.id.rl_all_machine_count, R.id.tv_miner_hours, R.id.tv_miner_month})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.ll_miner_repair:;
-//                AppUtils.goActivity(mContext, MasterAccountExecActivity.class);
+            case R.id.ll_miner_repair:
+                if(isMachineZero){
+                    ToastUtils.showToast(getString(R.string.no_machine_num));
+                }else{
+                    AppUtils.goActivity(mContext, MinerRepairBillActivity.class);
+                }
                 break;
             case R.id.ll_miner_free:
                 AppUtils.goActivity(mContext, MinerFreeActivity.class);
                 break;
             case R.id.rl_all_machine_count:
-                AppUtils.goActivity(mContext, MasterMachineListActivity.class);
+                Bundle bundle = new Bundle();
+                AppUtils.goActivity(mContext, MinerMachineListActivity.class, bundle);
                 break;
             //百分比状态点击
             case R.id.rl_online_machine:
                 Bundle bundle1 = new Bundle();
                 bundle1.putString("statusCode", "00");
-                AppUtils.goActivity(mContext, MasterMachineListActivity.class, bundle1);
+                AppUtils.goActivity(mContext, MinerMachineListActivity.class, bundle1);
                 break;
             case R.id.rl_offline_machine:
                 Bundle bundle2 = new Bundle();
                 bundle2.putString("statusCode", "01");
-                AppUtils.goActivity(mContext, MasterMachineListActivity.class, bundle2);
+                AppUtils.goActivity(mContext, MinerMachineListActivity.class, bundle2);
                 break;
             case R.id.rl_exception_machine:
                 Bundle bundle3 = new Bundle();
                 bundle3.putString("statusCode", "02");
-                AppUtils.goActivity(mContext, MasterMachineListActivity.class, bundle3);
+                AppUtils.goActivity(mContext, MinerMachineListActivity.class, bundle3);
                 break;
             case R.id.rl_stop_machine:
                 Bundle bundle4 = new Bundle();
                 bundle4.putString("statusCode", "05");
-                AppUtils.goActivity(mContext, MasterMachineListActivity.class, bundle4);
+                AppUtils.goActivity(mContext, MinerMachineListActivity.class, bundle4);
                 break;
             case R.id.tv_miner_hours:
                 tvMinerSuanli.setText("(" + (AppUtils.isBlank(allCalbean.getHoursCalcForce()) ? "0.0" : allCalbean.getHoursCalcForce()) + "T)");
@@ -390,5 +433,19 @@ public class Sly2MinerFragment extends BaseFragment implements ICommonViewUi {
             tvMinerMonth.setBackground(getResources().getDrawable(R.drawable.shape_right_circle_blue_15dp));
             tvMinerMonth.setTextColor(getResources().getColor(R.color.white));
         }
+    }
+
+    @Override
+    public void onRefresh() {
+        if (!NetUtils.isNetworkAvailable(mContext)) {
+            ToastUtils.showToast(Contants.NetStatus.NETDISABLE);
+            return;
+        }
+        toRequest(NetConstant.EventTags.GET_MINER_ALL_MACHINE_COUNT);
+        toRequest(NetConstant.EventTags.GET_MINER_REPAIR_NUM);
+        toRequest(NetConstant.EventTags.GET_MINER_MONTH_RATE);
+        toRequest(NetConstant.EventTags.GET_MINER_ALL_SUALI);
+        toRequest(NetConstant.EventTags.GET_MINER_24_SUALI);
+        toRequest(NetConstant.EventTags.GET_MINER_30_SUALI);
     }
 }

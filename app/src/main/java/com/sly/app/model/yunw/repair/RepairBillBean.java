@@ -10,6 +10,7 @@ public class RepairBillBean {
      \"Model\":\"蚂蚁S9\",
      \"AreaName\":\"B\",
      \"IP\":\"2.1.11.89\"
+     RepairSum
      * */
 
     private int rowid;
@@ -19,6 +20,15 @@ public class RepairBillBean {
     private String Model;
     private String AreaName;
     private String IP;
+    private double RepairSum;
+
+    public double getRepairSum() {
+        return RepairSum;
+    }
+
+    public void setRepairSum(double repairSum) {
+        RepairSum = repairSum;
+    }
 
     public int getRowid() {
         return rowid;

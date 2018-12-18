@@ -6,6 +6,9 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.text.InputFilter;
+import android.text.Spanned;
+import android.widget.EditText;
 
 import com.sly.app.R;
 
@@ -191,12 +194,35 @@ public class AppUtils {
         return newsCount;
     }
 
+    /**
+     * 设置状态栏颜色
+     * @param activity
+     * @param color
+     */
     public static void setStatusBarColor(Activity activity, int color){
         // 设置状态栏颜色
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             activity.getWindow().setStatusBarColor(color);
         }
     }
+
+    /**
+     * 判断输入换行符
+     * @param editText
+     */
+    public static void isSpaceEnter(EditText editText) {
+        editText.setFilters(new InputFilter[]{filter});
+    }
+
+    private static InputFilter filter = new InputFilter() {
+        @Override
+        public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+            if(source.equals(" ")||source.toString().contentEquals("\n"))
+                return "";
+            else
+                return null;
+        }
+    };
 
 
     /**

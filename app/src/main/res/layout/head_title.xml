@@ -13,23 +13,21 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <LinearLayout
                 android:id="@+id/btn_main_back"
-                android:layout_width="wrap_content"
+                android:layout_width="60dp"
                 android:layout_height="match_parent"
-                android:clickable="true"
-                android:orientation="horizontal"
                 android:layout_alignParentLeft="true"
-                android:paddingLeft="11dp"
-                android:paddingRight="40dp">
+                android:clickable="true"
+                android:orientation="horizontal">
 
-                <Button
+                <TextView
                     android:layout_width="10dp"
-                    android:layout_height="17dp"
+                    android:layout_height="16dp"
                     android:layout_gravity="center_vertical"
                     android:background="@drawable/news_return"
-                    android:padding="10dp"
-                    android:paddingLeft="10dp"/>
+                    android:layout_marginLeft="15dp" />
 
             </LinearLayout>
 

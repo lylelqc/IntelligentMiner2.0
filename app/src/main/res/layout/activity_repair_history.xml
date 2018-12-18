@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
-    <include layout="@layout/head_title2" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
+        <include layout="@layout/head_title2" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -40,21 +40,35 @@
             android:layout_width="match_parent"
             android:layout_height="5dp"/>
 
-        <FrameLayout
-            android:id="@+id/fl_repair_history"
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_refresh_layout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:background="@color/white">
 
-        </FrameLayout>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                android:scrollbars="none" />
+        </android.support.v4.widget.SwipeRefreshLayout>
 
-        <TextView
-            android:visibility="gone"
-            android:id="@+id/tv_shadow"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:alpha="0.5"
-            android:background="@color/black"/>
+        <include layout="@layout/content_page_status" />
 
     </LinearLayout>
 
-</LinearLayout>
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/tv_shadow"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="100dp"
+        android:alpha="0.5"
+        android:background="@color/black"/>
+
+</FrameLayout>

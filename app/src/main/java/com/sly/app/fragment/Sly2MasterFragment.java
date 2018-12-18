@@ -1,6 +1,7 @@
 package com.sly.app.fragment;
 
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
@@ -19,6 +20,7 @@ import com.sly.app.activity.master.MasterMachineListActivity;
 import com.sly.app.activity.master.MasterPersonManageActivity;
 import com.sly.app.activity.master.MasterSpareListActivity;
 import com.sly.app.adapter.master.MasterHomeRecyclerViewAdapter;
+import com.sly.app.base.Contants;
 import com.sly.app.comm.EventBusTags;
 import com.sly.app.comm.NetConstant;
 import com.sly.app.http.NetWorkCons;
@@ -35,7 +37,9 @@ import com.sly.app.utils.ApiSIgnUtil;
 import com.sly.app.utils.AppUtils;
 import com.sly.app.utils.ChartUtil;
 import com.sly.app.utils.EncryptUtil;
+import com.sly.app.utils.NetUtils;
 import com.sly.app.utils.SharedPreferencesUtil;
+import com.sly.app.utils.ToastUtils;
 import com.sly.app.view.CustomCircleProgressBar;
 import com.sly.app.view.iviews.ICommonViewUi;
 
@@ -50,7 +54,8 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import vip.devkit.library.Logcat;
 
-public class Sly2MasterFragment extends BaseFragment implements ICommonViewUi, MasterHomeRecyclerViewAdapter.OnItemClickListener {
+public class Sly2MasterFragment extends BaseFragment implements ICommonViewUi,
+        MasterHomeRecyclerViewAdapter.OnItemClickListener, SwipeRefreshLayout.OnRefreshListener {
 
 //    @BindView(R.id.rl_user_type)
 //    RelativeLayout rlUserType;
@@ -122,6 +127,9 @@ public class Sly2MasterFragment extends BaseFragment implements ICommonViewUi, M
     RelativeLayout rlMasterPersonManage;
     @BindView(R.id.rl_master_parts)
     RelativeLayout rlMasterParts;
+
+    @BindView(R.id.swipe_refresh_layout)
+    SwipeRefreshLayout swipeRefreshLayout;
 
     public static String mContent = "???";
     private String User, LoginType, FrSysCode, FMasterCode, MineCode, PersonSysCode, Token, Key;
@@ -199,6 +207,8 @@ public class Sly2MasterFragment extends BaseFragment implements ICommonViewUi, M
     protected void initViewsAndEvents() {
 
         iCommonRequestPresenter = new CommonRequestPresenterImpl(mContext, this);
+        swipeRefreshLayout.setOnRefreshListener(this);
+
         User = SharedPreferencesUtil.getString(mContext, "User", "None");
         Token = SharedPreferencesUtil.getString(mContext, "Token", "None");
         Key = SharedPreferencesUtil.getString(mContext, "Key", "None");
@@ -244,7 +254,10 @@ public class Sly2MasterFragment extends BaseFragment implements ICommonViewUi, M
             //30天算力
             map.put("Rounter", NetConstant.GET_MASTER_30_SUANLI);
             map.put("mineCode", MineCode);
-        }
+        }/*else if(eventTag == NetConstant.EventTags.GET_MASTER_NEW_COUNT){
+            map.put("Rounter", NetConstant.GET_MASTER_NEW_COUNT);
+            map.put("masterSysCode", FMasterCode);
+        }*/
 
         Map<String, String> mapJson = new HashMap<>();
         mapJson.putAll(map);
@@ -256,6 +269,9 @@ public class Sly2MasterFragment extends BaseFragment implements ICommonViewUi, M
     @Override
     public void getRequestData(int eventTag, String result) {
         Logcat.e("返回参数 = " + result);
+        if(swipeRefreshLayout.isRefreshing()){
+            swipeRefreshLayout.setRefreshing(false);
+        }
         if (eventTag == NetConstant.EventTags.GET_MASTER_MINE_LIST) {
             masterMineList =
                     (List<MasterMineBean>) AppUtils.parseRowsResult(result, MasterMineBean.class);
@@ -449,12 +465,16 @@ public class Sly2MasterFragment extends BaseFragment implements ICommonViewUi, M
 
     @Override
     public void onRequestSuccessException(int eventTag, String msg) {
-
+        if(swipeRefreshLayout.isRefreshing()){
+            swipeRefreshLayout.setRefreshing(false);
+        }
     }
 
     @Override
     public void onRequestFailureException(int eventTag, String msg) {
-
+        if(swipeRefreshLayout.isRefreshing()){
+            swipeRefreshLayout.setRefreshing(false);
+        }
     }
 
     @Override
@@ -582,5 +602,18 @@ public class Sly2MasterFragment extends BaseFragment implements ICommonViewUi, M
         MineCode = SharedPreferencesUtil.getString(mContext, "authMineCode");
         isMaster = SharedPreferencesUtil.getBoolean(mContext, "authIsMaster");
         toRequest(NetConstant.EventTags.GET_AUTH_ACCOUNT_PERMISSION);
+    }
+
+    @Override
+    public void onRefresh() {
+        if (!NetUtils.isNetworkAvailable(mContext)) {
+            ToastUtils.showToast(Contants.NetStatus.NETDISABLE);
+            return;
+        }
+        if(isMaster){
+            toRequest(NetConstant.EventTags.GET_MASTER_MINE_LIST);
+        }else{
+            swipeRefreshLayout.setRefreshing(false);
+        }
     }
 }

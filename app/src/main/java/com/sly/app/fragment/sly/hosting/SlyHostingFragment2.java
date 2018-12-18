@@ -12,6 +12,7 @@ import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSON;
 import com.sly.app.R;
 import com.sly.app.activity.master.AuthAccountSetMineActivity;
 import com.sly.app.activity.master.MasterAccountExecActivity;
@@ -19,13 +20,23 @@ import com.sly.app.activity.sly.mine.notice.Sly2NoticeActivity;
 import com.sly.app.activity.yunw.machine.MachineManageActivity;
 import com.sly.app.comm.BusEvent;
 import com.sly.app.comm.EventBusTags;
+import com.sly.app.comm.NetConstant;
 import com.sly.app.fragment.BaseFragment;
 import com.sly.app.fragment.Sly2MasterFragment;
 import com.sly.app.fragment.Sly2MinerFragment;
+import com.sly.app.http.NetWorkCons;
 import com.sly.app.model.PostResult;
+import com.sly.app.model.sly.ReturnBean;
+import com.sly.app.presenter.impl.CommonRequestPresenterImpl;
+import com.sly.app.utils.ApiSIgnUtil;
 import com.sly.app.utils.AppUtils;
+import com.sly.app.utils.EncryptUtil;
 import com.sly.app.utils.SharedPreferencesUtil;
 import com.sly.app.utils.ToastUtils;
+import com.sly.app.view.iviews.ICommonViewUi;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -33,7 +44,7 @@ import de.greenrobot.event.EventBus;
 
 import static de.greenrobot.event.EventBus.TAG;
 
-public class SlyHostingFragment2 extends BaseFragment{
+public class SlyHostingFragment2 extends BaseFragment implements ICommonViewUi {
 
     @BindView(R.id.rl_user_type)
     RelativeLayout rlUserType;
@@ -68,6 +79,7 @@ public class SlyHostingFragment2 extends BaseFragment{
     private String User, LoginType, FrSysCode, FMasterCode, MineCode, PersonSysCode, Token, Key;
     private String ChildAccount;
     private PopupWindow mPopupWindow;
+    private CommonRequestPresenterImpl iCommonRequestPresenter;
 
     public static SlyHostingFragment2 newInstance(String content) {
         SlyHostingFragment2 fragment = new SlyHostingFragment2();
@@ -105,22 +117,20 @@ public class SlyHostingFragment2 extends BaseFragment{
         super.onEvent(postResult);
         if (BusEvent.UPDATE_HOSTING_OPERATION_DATA.equals(postResult.getTag())) {
             showFragment(2, false);
-        }
-        else if (BusEvent.UPDATE_HOSTING_MASTER_DATA.equals(postResult.getTag())) {
-            showFragment(1,false);
-        }
-        else if(BusEvent.UPDATE_HOSTING_MINER_DATA.equals(postResult.getTag())){
+        } else if (BusEvent.UPDATE_HOSTING_MASTER_DATA.equals(postResult.getTag())) {
+            showFragment(1, false);
+        } else if (BusEvent.UPDATE_HOSTING_MINER_DATA.equals(postResult.getTag())) {
             showFragment(0, false);
-        }
-        else if(EventBusTags.CHOOSE_AUTH_MINE_AREA.equals(postResult.getTag())){
+        } else if (EventBusTags.CHOOSE_AUTH_MINE_AREA.equals(postResult.getTag())) {
             showFragment(1, true);
         }
     }
 
     @Override
     protected void initViewsAndEvents() {
+        iCommonRequestPresenter = new CommonRequestPresenterImpl(mContext, this);
 
-        mineType = SharedPreferencesUtil.getString(mContext,"mineType","None");
+        mineType = SharedPreferencesUtil.getString(mContext, "mineType", "None");
         User = SharedPreferencesUtil.getString(mContext, "User", "None");
         Token = SharedPreferencesUtil.getString(mContext, "Token", "None");
         Key = SharedPreferencesUtil.getString(mContext, "Key", "None");
@@ -131,28 +141,42 @@ public class SlyHostingFragment2 extends BaseFragment{
         PersonSysCode = SharedPreferencesUtil.getString(mContext, "PersonSysCode", "None");
         ChildAccount = SharedPreferencesUtil.getString(mContext, "ChildAccount", "None");
 
-
         ft1 = getFragmentManager().beginTransaction();
         ft2 = getFragmentManager().beginTransaction();
         ft3 = getFragmentManager().beginTransaction();
 
-        if(mineType != null && !"None".equals(mineType)){
-            if(mineType.equals("Operation")){
+        if (mineType != null && !"None".equals(mineType)) {
+            if (mineType.equals("Operation")) {
                 showFragment(2, false);
 
-            }
-            else if(mineType.equals("MinerMaster")){
-                showFragment(1,false);
-            }
-            else if(mineType.equals("Miner")){
-                showFragment(0,false);
+            } else if (mineType.equals("MinerMaster")) {
+                showFragment(1, false);
+            } else if (mineType.equals("Miner")) {
+                showFragment(0, false);
             }
         }
 
-        if(!AppUtils.isBlank(ChildAccount) && !("None").equals(ChildAccount)){
+        if (!AppUtils.isBlank(ChildAccount) && !("None").equals(ChildAccount)) {
             if (mMasterFragment == null) {
                 mMasterFragment = new Sly2MasterFragment();
                 ft2.add(R.id.fl_hosting_mine_master, mMasterFragment).commitAllowingStateLoss();
+            }
+        }
+
+        if (mHostingYunwFragment == null) {
+            mHostingYunwFragment = new HostingYunwFragment();
+            ft3.add(R.id.fl_hosting_yunw, mHostingYunwFragment).commitAllowingStateLoss();
+        }
+
+        if (!"None".equals(mineType)) {
+            if (("Operation").equals(mineType)) {
+
+            }
+            else if (("MinerMaster").equals(mineType)) {
+
+            }
+            else{
+
             }
         }
     }
@@ -169,6 +193,7 @@ public class SlyHostingFragment2 extends BaseFragment{
                 flHostingYunw.setVisibility(View.GONE);
 
                 setHeaderTitle(0);
+                toRequest(NetConstant.EventTags.GET_MINER_NEW_COUNT);
                 break;
             case 1:
                 /**
@@ -189,11 +214,11 @@ public class SlyHostingFragment2 extends BaseFragment{
                 flHostingMiner.setVisibility(View.GONE);
                 flHostingMinerMaster.setVisibility(View.VISIBLE);
                 flHostingYunw.setVisibility(View.GONE);
-                if(isChildAccount){
+                if (isChildAccount) {
                     setHeaderTitle(3);
-                }
-                else{
+                } else {
                     setHeaderTitle(1);
+                    toRequest(NetConstant.EventTags.GET_MASTER_NEW_COUNT);
                 }
 
                 break;
@@ -207,19 +232,19 @@ public class SlyHostingFragment2 extends BaseFragment{
                 flHostingMinerMaster.setVisibility(View.GONE);
                 flHostingYunw.setVisibility(View.VISIBLE);
                 setHeaderTitle(2);
+                toRequest(NetConstant.EventTags.GET_YUNW_NEWS_COUNT);
                 break;
         }
     }
 
     private void setHeaderTitle(int tag) {
-        if(tag == 0){
+        if (tag == 0) {
             tvUserType.setText(mContext.getResources().getString(R.string.user_type_miner));
             tvUserAccount.setVisibility(View.VISIBLE);
             String maskNumber = User.substring(0, 3) + "****" + User.substring(7, User.length());
             tvUserAccount.setText(maskNumber);
             tvMainRightLeft.setVisibility(View.GONE);
-        }
-        else if(tag == 1){
+        } else if (tag == 1) {
             tvUserType.setText(mContext.getResources().getString(R.string.user_type_master));
             tvUserAccount.setVisibility(View.VISIBLE);
             String maskNumber = User.substring(0, 3) + "****" + User.substring(7, User.length());
@@ -227,15 +252,14 @@ public class SlyHostingFragment2 extends BaseFragment{
             tvMainRightLeft.setText("");
             tvMainRightLeft.setVisibility(View.VISIBLE);
             tvMainRightLeft.setBackground(mContext.getResources().getDrawable(R.drawable.mine_owner_add));
-        }
-        else if(tag == 2){
+        } else if (tag == 2) {
             tvUserType.setText(mContext.getResources().getString(R.string.user_type_operation));
             tvUserAccount.setVisibility(View.GONE);
             tvMainRightLeft.setText("");
             tvMainRightLeft.setVisibility(View.VISIBLE);
             tvMainRightLeft.setBackground(null);
             tvMainRightLeft.setText(mContext.getResources().getString(R.string.machine_manage));
-        }else if(tag == 3){
+        } else if (tag == 3) {
             tvMainRightLeft.setVisibility(View.GONE);
             mMasterFragment.getActivityResult();
         }
@@ -248,12 +272,11 @@ public class SlyHostingFragment2 extends BaseFragment{
                 showPopupWindow();
                 break;
             case R.id.tv_main_right_left:
-                mineType = SharedPreferencesUtil.getString(mContext, "mineType","None");
-                if(!"None".equals(mineType)){
-                    if(("Operation").equals(mineType)){
+                mineType = SharedPreferencesUtil.getString(mContext, "mineType", "None");
+                if (!"None".equals(mineType)) {
+                    if (("Operation").equals(mineType)) {
                         AppUtils.goActivity(mContext, MachineManageActivity.class);
-                    }
-                    else if(("MinerMaster").equals(mineType)){
+                    } else if (("MinerMaster").equals(mineType)) {
                         mMasterFragment.startActivitys();
                     }
                 }
@@ -287,11 +310,12 @@ public class SlyHostingFragment2 extends BaseFragment{
                     tvUserType.setText(mContext.getResources().getString(R.string.user_type_miner));
                     SharedPreferencesUtil.putString(mContext, "LoginType", "Miner");
                     SharedPreferencesUtil.putString(mContext, "mineType", "Miner");
-                    if(!LoginType.equals("Miner")){
-                        LoginType = SharedPreferencesUtil.getString(mContext, "LoginType","None");
+                    if (!LoginType.equals("Miner")) {
+                        LoginType = SharedPreferencesUtil.getString(mContext, "LoginType", "None");
                     }
-                    EventBus.getDefault().post(new PostResult(EventBusTags.UPDATE_HOSTING_MINER_DATA));
                     showFragment(0, false);
+                    EventBus.getDefault().post(new PostResult(EventBusTags.UPDATE_HOSTING_MINER_DATA));
+                    toRequest(NetConstant.EventTags.GET_MINER_NEW_COUNT);
                     mPopupWindow.dismiss();
                 }
             });
@@ -303,11 +327,12 @@ public class SlyHostingFragment2 extends BaseFragment{
                         tvUserType.setText(mContext.getResources().getString(R.string.user_type_master));
                         SharedPreferencesUtil.putString(mContext, "LoginType", "MinerMaster");
                         SharedPreferencesUtil.putString(mContext, "mineType", "MinerMaster");
-                        if(!LoginType.equals("MinerMaster")){
-                            LoginType = SharedPreferencesUtil.getString(mContext, "LoginType","None");
+                        if (!LoginType.equals("MinerMaster")) {
+                            LoginType = SharedPreferencesUtil.getString(mContext, "LoginType", "None");
                         }
                         showFragment(1, false);
                         EventBus.getDefault().post(new PostResult(EventBusTags.CLICK_MINE_MASTER));
+                        toRequest(NetConstant.EventTags.GET_MASTER_NEW_COUNT);
                     } else {
                         ToastUtils.showToast(mContext.getResources().getString(R.string.no_permission));
                     }
@@ -323,6 +348,7 @@ public class SlyHostingFragment2 extends BaseFragment{
                         SharedPreferencesUtil.putString(mContext, "mineType", "Operation");
                         EventBus.getDefault().post(new PostResult(EventBusTags.UPDATE_HOSTING_OPERATION_DATA));
                         showFragment(2, false);
+                        toRequest(NetConstant.EventTags.GET_YUNW_NEWS_COUNT);
                     } else {
                         ToastUtils.showToast(mContext.getResources().getString(R.string.no_permission));
                     }
@@ -345,5 +371,65 @@ public class SlyHostingFragment2 extends BaseFragment{
         } else {
             mPopupWindow.showAsDropDown(rlUserType, 10, 5);
         }
+    }
+
+    @Override
+    public void toRequest(int eventTag) {
+        Map map = new HashMap();
+        map.put("Token", Token);
+        map.put("LoginType", LoginType);
+        map.put("User", User);
+
+        if(eventTag == NetConstant.EventTags.GET_YUNW_NEWS_COUNT){
+            map.put("Rounter", NetConstant.GET_YUNW_NEWS_COUNT);
+            map.put("personSysCode", PersonSysCode);
+        }
+        else if(eventTag == NetConstant.EventTags.GET_MASTER_NEW_COUNT){
+            map.put("Rounter", NetConstant.GET_MASTER_NEW_COUNT);
+            map.put("masterSysCode", FMasterCode);
+        }
+        else if(eventTag == NetConstant.EventTags.GET_MINER_NEW_COUNT){
+            map.put("Rounter", NetConstant.GET_MINER_NEW_COUNT);
+            map.put("minerSysCode", FrSysCode);
+        }
+
+        Map<String, String> mapJson = new HashMap<>();
+        mapJson.putAll(map);
+        mapJson.put("Sign", EncryptUtil.MD5(ApiSIgnUtil.init(mContext).getSign(map, Key)));
+        iCommonRequestPresenter.request(eventTag, mContext, NetWorkCons.BASE_URL, mapJson);
+    }
+
+    @Override
+    public void getRequestData(int eventTag, String result) {
+        ReturnBean returnBean = JSON.parseObject(result, ReturnBean.class);
+        if (returnBean.getStatus().equals("1") && returnBean.getMsg().equals("成功")) {
+
+            int count = Integer.parseInt(returnBean.getData());
+            if (count == 0) {
+                tvRedNum.setVisibility(View.GONE);
+            } else if (count > 99) {
+                tvRedNum.setText("99+");
+                tvRedNum.setVisibility(View.VISIBLE);
+            } else {
+                tvRedNum.setText(returnBean.getData());
+                tvRedNum.setVisibility(View.VISIBLE);
+            }
+            SharedPreferencesUtil.putString(mContext, "NewsCount", returnBean.getData());
+        }
+    }
+
+    @Override
+    public void onRequestSuccessException(int eventTag, String msg) {
+
+    }
+
+    @Override
+    public void onRequestFailureException(int eventTag, String msg) {
+
+    }
+
+    @Override
+    public void isRequesting(int eventTag, boolean status) {
+
     }
 }

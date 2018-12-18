@@ -1,6 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'realm-android'
-//apply from: 'tinker-support.gradle'
+apply from: 'tinker-support.gradle'
 android {
     signingConfigs {
         config {
@@ -18,7 +18,7 @@ android {
         targetSdkVersion 26
         resConfigs "zh"
         versionCode 1
-        versionName "2.0.0"
+        versionName "2.0.1"
         signingConfig signingConfigs.config
         manifestPlaceholders = [
                 qq_id: "1106535201",

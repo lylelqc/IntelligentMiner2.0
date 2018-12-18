@@ -2,6 +2,7 @@ package com.sly.app.fragment;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -17,6 +18,7 @@ import com.sly.app.activity.yunw.machine.MachineListActivity;
 import com.sly.app.activity.yunw.machine.MachineManageActivity;
 import com.sly.app.activity.yunw.offline.MachineOfflineActivity;
 import com.sly.app.activity.yunw.repair.RepairBillActivity;
+import com.sly.app.base.Contants;
 import com.sly.app.comm.EventBusTags;
 import com.sly.app.comm.NetConstant;
 import com.sly.app.http.NetWorkCons;
@@ -29,7 +31,9 @@ import com.sly.app.presenter.impl.CommonRequestPresenterImpl;
 import com.sly.app.utils.ApiSIgnUtil;
 import com.sly.app.utils.AppUtils;
 import com.sly.app.utils.EncryptUtil;
+import com.sly.app.utils.NetUtils;
 import com.sly.app.utils.SharedPreferencesUtil;
+import com.sly.app.utils.ToastUtils;
 import com.sly.app.view.CustomCircleProgressBar;
 import com.sly.app.view.iviews.ICommonViewUi;
 
@@ -43,7 +47,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import vip.devkit.library.Logcat;
 
-public class Sly2YunwFragment extends BaseFragment implements ICommonViewUi{
+public class Sly2YunwFragment extends BaseFragment implements ICommonViewUi, SwipeRefreshLayout.OnRefreshListener{
 
 //    @BindView(R.id.rl_user_type)
 //    RelativeLayout rlUserType;
@@ -122,6 +126,9 @@ public class Sly2YunwFragment extends BaseFragment implements ICommonViewUi{
     @BindView(R.id.tv_home_clock_work)
     TextView tvClockWork;
 
+    @BindView(R.id.swipe_refresh_layout)
+    SwipeRefreshLayout swipeRefreshLayout;
+
     public static String mContent = "???";
     private String User,LoginType, MineCode, PersonSysCode, Token, Key, PlanID;
     ICommonRequestPresenter iCommonRequestPresenter;
@@ -152,6 +159,8 @@ public class Sly2YunwFragment extends BaseFragment implements ICommonViewUi{
     @Override
     protected void initViewsAndEvents() {
         iCommonRequestPresenter = new CommonRequestPresenterImpl(mContext, this);
+        swipeRefreshLayout.setOnRefreshListener(this);
+
         User = SharedPreferencesUtil.getString(mContext, "User", "None");
         Token = SharedPreferencesUtil.getString(mContext, "Token", "None");
         Key = SharedPreferencesUtil.getString(mContext, "Key", "None");
@@ -165,7 +174,7 @@ public class Sly2YunwFragment extends BaseFragment implements ICommonViewUi{
         toRequest(NetConstant.EventTags.GET_YUNW_ALL_NUM);
         toRequest(NetConstant.EventTags.GET_YUNW_MACHINE_NUM_RATE);
         toRequest(NetConstant.EventTags.GET_MINE_AREA_INFO);
-        toRequest(NetConstant.EventTags.GET_YUNW_NEWS_COUNT);
+//        toRequest(NetConstant.EventTags.GET_YUNW_NEWS_COUNT);
 
     }
 
@@ -213,10 +222,10 @@ public class Sly2YunwFragment extends BaseFragment implements ICommonViewUi{
             map.put("mineCode", MineCode);
             map.put("personSysCode", PersonSysCode);
         }
-        else if(eventTag == NetConstant.EventTags.GET_YUNW_NEWS_COUNT){
-            map.put("Rounter", NetConstant.GET_YUNW_NEWS_COUNT);
-            map.put("personSysCode", PersonSysCode);
-        }
+//        else if(eventTag == NetConstant.EventTags.GET_YUNW_NEWS_COUNT){
+//            map.put("Rounter", NetConstant.GET_YUNW_NEWS_COUNT);
+//            map.put("personSysCode", PersonSysCode);
+//        }
 
         Map<String, String> mapJson = new HashMap<>();
         mapJson.putAll(map);
@@ -227,10 +236,16 @@ public class Sly2YunwFragment extends BaseFragment implements ICommonViewUi{
     @Override
     public void getRequestData(int eventTag, String result) {
         Logcat.e("返回参数 = " + result);
+        if(swipeRefreshLayout.isRefreshing()){
+            swipeRefreshLayout.setRefreshing(false);
+        }
         if(eventTag == NetConstant.EventTags.GET_MINE_AREA_INFO){
             List<MineAreaInfo> infoList =
                     (List<MineAreaInfo>)AppUtils.parseResult(result, MineAreaInfo.class);
             if(infoList != null && infoList.size() > 0){
+                if(llMonitorArea.getChildCount() > 0){
+                    llMonitorArea.removeAllViews();
+                }
                 for (MineAreaInfo info : infoList){
                     addViewItem(info);
                 }
@@ -271,8 +286,8 @@ public class Sly2YunwFragment extends BaseFragment implements ICommonViewUi{
                 setPorgressInfo();
             }
         }
-        else if(eventTag == NetConstant.EventTags.GET_YUNW_NEWS_COUNT){
-            ReturnBean returnBean = JSON.parseObject(result, ReturnBean.class);
+//        else if(eventTag == NetConstant.EventTags.GET_YUNW_NEWS_COUNT){
+//            ReturnBean returnBean = JSON.parseObject(result, ReturnBean.class);
 //            if (returnBean.getStatus().equals("1") && returnBean.getMsg().equals("成功")) {
 //
 //                int count = Integer.parseInt(returnBean.getData());
@@ -289,7 +304,7 @@ public class Sly2YunwFragment extends BaseFragment implements ICommonViewUi{
 //                }
 //                SharedPreferencesUtil.putString(mContext, "NewsCount", returnBean.getData());
 //            }
-        }
+//        }
     }
 
     private void setPorgressInfo() {
@@ -368,12 +383,16 @@ public class Sly2YunwFragment extends BaseFragment implements ICommonViewUi{
 
     @Override
     public void onRequestSuccessException(int eventTag, String msg) {
-
+        if(swipeRefreshLayout.isRefreshing()){
+            swipeRefreshLayout.setRefreshing(false);
+        }
     }
 
     @Override
     public void onRequestFailureException(int eventTag, String msg) {
-
+        if(swipeRefreshLayout.isRefreshing()){
+            swipeRefreshLayout.setRefreshing(false);
+        }
     }
 
     @Override
@@ -472,5 +491,19 @@ public class Sly2YunwFragment extends BaseFragment implements ICommonViewUi{
                 AppUtils.goActivity(mContext, ClockWorkActivity.class);
                 break;
         }
+    }
+
+    @Override
+    public void onRefresh() {
+        if (!NetUtils.isNetworkAvailable(mContext)) {
+            ToastUtils.showToast(Contants.NetStatus.NETDISABLE);
+            return;
+        }
+
+        toRequest(NetConstant.EventTags.GET_NEW_REPAIR_NUM);
+        toRequest(NetConstant.EventTags.GET_YUNW_ALL_NUM);
+        toRequest(NetConstant.EventTags.GET_YUNW_MACHINE_NUM_RATE);
+        toRequest(NetConstant.EventTags.GET_MINE_AREA_INFO);
+        toRequest(NetConstant.EventTags.GET_YUNW_NEWS_COUNT);
     }
 }

@@ -89,6 +89,10 @@
     <color name="color_fb3a2d">#fb3a2d</color>
     <color name="color_f6a800">#f6a800</color>
     <color name="color_777777">#777777</color>
+
+    <color name="color_57c2ff">#57c2ff</color>
+    <color name="color_4ed168">#4ed168</color>
+    <color name="color_fe7ea8">#fe7ea8</color>
     <!--维修单-->
     <color name="sly_text_244153">#244153</color>
     <color name="sly_text_7e858b">#7e858b</color>
@@ -108,6 +112,7 @@
     <color name="sly_money_394277">#394277</color>
     <color name="sly_money_f72a19">#f72a19</color>
     <color name="sly_money_ff4d01">#ff4d01</color>
+    <color name="sly_money_41494e">#41494e</color>
 
     <color name="sly_line_ececec">#ececec</color>
     <color name="sly_line_d7d7d7">#d7d7d7</color>
@@ -120,6 +125,11 @@
     <color name="sly_text_aaaaaa">#aaaaaa</color>
     <color name="sly_text_4085ea">#4085ea</color>
     <color name="sly_text_d6e7ff">#d6e7ff</color>
+    <color name="sly_text_848291">#848291</color>
+    <color name="sly_text_2e2d35">#2e2d35</color>
+
+
+
     <color name="sly_pic_dddddd">#dddddd</color>
 
 

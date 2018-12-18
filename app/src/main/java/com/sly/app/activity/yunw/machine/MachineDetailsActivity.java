@@ -89,6 +89,8 @@ public class MachineDetailsActivity extends BaseActivity implements ICommonViewU
 
     @BindView(R.id.rl_machine_details_history)
     RelativeLayout rlDetailsHistory;
+    @BindView(R.id.tv_shadow)
+    View tvShadow;
 
     @BindView(R.id.rl_machine_details_change)
     RelativeLayout rlDeatailsChange;
@@ -146,6 +148,8 @@ public class MachineDetailsActivity extends BaseActivity implements ICommonViewU
             tvDetailsMonthRateText.setText(getString(R.string.machine_ip));
             tvDetailsStartStop.setVisibility(View.GONE);
             rlDeatailsChange.setVisibility(View.GONE);
+            rlDetailsHistory.setVisibility(View.GONE);
+            tvShadow.setVisibility(View.GONE);
         }
 
         User = SharedPreferencesUtil.getString(this, "User", "None");

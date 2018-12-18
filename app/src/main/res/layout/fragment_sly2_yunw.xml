@@ -10,618 +10,255 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <!--<LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/shape_bg_gradient_blue">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="55dp">
-
-                <RelativeLayout
-                    android:id="@+id/rl_user_type"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_marginTop="15sp">
-
-                    <TextView
-                        android:id="@+id/tv_user_type"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="12dp"
-                        android:text="运维"
-                        android:textColor="@color/white"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:layout_width="10dp"
-                        android:layout_height="6dp"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="3dp"
-                        android:layout_toRightOf="@+id/tv_user_type"
-                        android:background="@drawable/operation_drop_down" />
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/rl_notice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="14dp"
-                    android:layout_marginTop="12dp">
-
-                    <TextView
-                        android:id="@+id/tv_notice"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginTop="10dp"
-                        android:background="@drawable/operation_new" />
-
-                    <TextView
-                        android:visibility="gone"
-                        android:id="@+id/tv_red_num"
-                        android:layout_width="wrap_content"
-                        android:layout_height="13dp"
-                        android:layout_marginLeft="14dp"
-                        android:background="@drawable/shape_notice_red"
-                        android:gravity="center"
-                        android:text="0"
-                        android:textSize="8sp"
-                        android:textColor="@color/white"
-                        />
-                </RelativeLayout>
-
-                <TextView
-                    android:id="@+id/tv_operation_manage"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="15dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_toLeftOf="@+id/rl_notice"
-                    android:text="管理"
-                    android:textColor="@color/white"
-                    android:textSize="16sp" />
-
-            </RelativeLayout>
-        </LinearLayout>-->
-
-        <android.support.v4.widget.NestedScrollView
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_refresh_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <LinearLayout
+            <android.support.v4.widget.NestedScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_height="wrap_content">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/shape_bg_gradient_blue2"
                     android:orientation="vertical">
-
-                    <LinearLayout
-                        android:id="@+id/ll_notice_num"
-                        android:layout_width="match_parent"
-                        android:layout_height="13dp"
-                        android:layout_marginLeft="12dp"
-                        android:layout_marginRight="12dp"
-                        android:layout_marginTop="15dp"
-                        android:orientation="horizontal"
-                        android:weightSum="4">
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1">
-
-                            <RelativeLayout
-                                android:id="@+id/rl_offline_num"
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:layout_marginLeft="42dp"
-                                android:background="@drawable/operation_bubble1"
-                                android:gravity="center">
-
-                                <TextView
-                                    android:id="@+id/tv_offline_num"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:gravity="center_horizontal"
-                                    android:textColor="@color/white"
-                                    android:textSize="10sp"
-                                    android:text="0"/>
-                            </RelativeLayout>
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1">
-
-                            <RelativeLayout
-                                android:id="@+id/rl_repair_num"
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:layout_marginLeft="25dp"
-                                android:background="@drawable/operation_bubble1"
-                                android:gravity="center">
-
-                                <TextView
-                                    android:id="@+id/tv_repair_num"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="match_parent"
-                                    android:gravity="center_horizontal"
-                                    android:textColor="@color/white"
-                                    android:textSize="10sp"
-                                    android:text="0"/>
-                            </RelativeLayout>
-                        </LinearLayout>
-                    </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@drawable/shape_bg_gradient_blue2"
                         android:orientation="vertical">
+
+                        <LinearLayout
+                            android:id="@+id/ll_notice_num"
+                            android:layout_width="match_parent"
+                            android:layout_height="13dp"
+                            android:layout_marginLeft="12dp"
+                            android:layout_marginRight="12dp"
+                            android:layout_marginTop="15dp"
+                            android:orientation="horizontal"
+                            android:weightSum="4">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1">
+
+                                <RelativeLayout
+                                    android:id="@+id/rl_offline_num"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginLeft="42dp"
+                                    android:background="@drawable/operation_bubble1"
+                                    android:gravity="center">
+
+                                    <TextView
+                                        android:id="@+id/tv_offline_num"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="center_horizontal"
+                                        android:textColor="@color/white"
+                                        android:textSize="10sp"
+                                        android:text="0"/>
+                                </RelativeLayout>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1">
+
+                                <RelativeLayout
+                                    android:id="@+id/rl_repair_num"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginLeft="25dp"
+                                    android:background="@drawable/operation_bubble1"
+                                    android:gravity="center">
+
+                                    <TextView
+                                        android:id="@+id/tv_repair_num"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:gravity="center_horizontal"
+                                        android:textColor="@color/white"
+                                        android:textSize="10sp"
+                                        android:text="0"/>
+                                </RelativeLayout>
+                            </LinearLayout>
+                        </LinearLayout>
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="12dp"
-                            android:layout_marginRight="12dp"
-                            android:orientation="horizontal"
-                            android:weightSum="5">
+                            android:orientation="vertical">
 
                             <LinearLayout
-                                android:id="@+id/ll_offline_machine"
-                                android:layout_width="0dp"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginBottom="23dp"
-                                android:layout_weight="1"
-                                android:orientation="vertical">
+                                android:layout_marginLeft="12dp"
+                                android:layout_marginRight="12dp"
+                                android:orientation="horizontal"
+                                android:weightSum="5">
 
-                                <TextView
-                                    android:layout_width="16dp"
-                                    android:layout_height="18dp"
-                                    android:layout_gravity="center"
-                                    android:background="@drawable/operation_off" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
+                                <LinearLayout
+                                    android:id="@+id/ll_offline_machine"
+                                    android:layout_width="0dp"
                                     android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:layout_marginTop="10dp"
-                                    android:text="离线机器"
-                                    android:textColor="@color/white"
-                                    android:textSize="13sp" />
-                            </LinearLayout>
+                                    android:layout_marginBottom="23dp"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical">
 
-                            <LinearLayout
-                                android:id="@+id/ll_repair_bill"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginBottom="23dp"
-                                android:layout_weight="1"
-                                android:orientation="vertical">
+                                    <TextView
+                                        android:layout_width="16dp"
+                                        android:layout_height="18dp"
+                                        android:layout_gravity="center"
+                                        android:background="@drawable/operation_off" />
 
-                                <TextView
-                                    android:layout_width="16dp"
-                                    android:layout_height="18dp"
-                                    android:layout_gravity="center"
-                                    android:background="@drawable/operation_repair" />
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:layout_marginTop="10dp"
+                                        android:text="离线机器"
+                                        android:textColor="@color/white"
+                                        android:textSize="13sp" />
+                                </LinearLayout>
 
-                                <TextView
-                                    android:layout_width="wrap_content"
+                                <LinearLayout
+                                    android:id="@+id/ll_repair_bill"
+                                    android:layout_width="0dp"
                                     android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:layout_marginTop="10dp"
-                                    android:text="维修单"
-                                    android:textColor="@color/white"
-                                    android:textSize="13sp" />
-                            </LinearLayout>
+                                    android:layout_marginBottom="23dp"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical">
 
-                            <LinearLayout
-                                android:id="@+id/ll_downline_machine"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginBottom="23dp"
-                                android:layout_weight="1"
-                                android:orientation="vertical">
+                                    <TextView
+                                        android:layout_width="16dp"
+                                        android:layout_height="18dp"
+                                        android:layout_gravity="center"
+                                        android:background="@drawable/operation_repair" />
 
-                                <TextView
-                                    android:layout_width="16dp"
-                                    android:layout_height="18dp"
-                                    android:layout_gravity="center"
-                                    android:background="@drawable/operation_downline" />
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:layout_marginTop="10dp"
+                                        android:text="维修单"
+                                        android:textColor="@color/white"
+                                        android:textSize="13sp" />
+                                </LinearLayout>
 
-                                <TextView
-                                    android:layout_width="wrap_content"
+                                <LinearLayout
+                                    android:id="@+id/ll_downline_machine"
+                                    android:layout_width="0dp"
                                     android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:layout_marginTop="10dp"
-                                    android:text="矿机停机"
-                                    android:textColor="@color/white"
-                                    android:textSize="13sp" />
-                            </LinearLayout>
+                                    android:layout_marginBottom="23dp"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical">
 
-                            <LinearLayout
-                                android:id="@+id/ll_modify_mine"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginBottom="23dp"
-                                android:layout_weight="1"
-                                android:orientation="vertical">
+                                    <TextView
+                                        android:layout_width="16dp"
+                                        android:layout_height="18dp"
+                                        android:layout_gravity="center"
+                                        android:background="@drawable/operation_downline" />
 
-                                <TextView
-                                    android:layout_width="16dp"
-                                    android:layout_height="18dp"
-                                    android:layout_gravity="center"
-                                    android:background="@drawable/operation_modify" />
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:layout_marginTop="10dp"
+                                        android:text="矿机停机"
+                                        android:textColor="@color/white"
+                                        android:textSize="13sp" />
+                                </LinearLayout>
 
-                                <TextView
-                                    android:layout_width="wrap_content"
+                                <LinearLayout
+                                    android:id="@+id/ll_modify_mine"
+                                    android:layout_width="0dp"
                                     android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:layout_marginTop="10dp"
-                                    android:text="修改矿池"
-                                    android:textColor="@color/white"
-                                    android:textSize="13sp" />
-                            </LinearLayout>
+                                    android:layout_marginBottom="23dp"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical">
 
-                            <LinearLayout
-                                android:id="@+id/ll_goline_machine"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginBottom="23dp"
-                                android:layout_weight="1"
-                                android:orientation="vertical">
+                                    <TextView
+                                        android:layout_width="16dp"
+                                        android:layout_height="18dp"
+                                        android:layout_gravity="center"
+                                        android:background="@drawable/operation_modify" />
 
-                                <TextView
-                                    android:layout_width="16dp"
-                                    android:layout_height="18dp"
-                                    android:layout_gravity="center"
-                                    android:background="@drawable/operation_go_online" />
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:layout_marginTop="10dp"
+                                        android:text="修改矿池"
+                                        android:textColor="@color/white"
+                                        android:textSize="13sp" />
+                                </LinearLayout>
 
-                                <TextView
-                                    android:layout_width="wrap_content"
+                                <LinearLayout
+                                    android:id="@+id/ll_goline_machine"
+                                    android:layout_width="0dp"
                                     android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:layout_marginTop="10dp"
-                                    android:text="矿机上线"
-                                    android:textColor="@color/white"
-                                    android:textSize="13sp" />
+                                    android:layout_marginBottom="23dp"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="16dp"
+                                        android:layout_height="18dp"
+                                        android:layout_gravity="center"
+                                        android:background="@drawable/operation_go_online" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:layout_marginTop="10dp"
+                                        android:text="矿机上线"
+                                        android:textColor="@color/white"
+                                        android:textSize="13sp" />
+                                </LinearLayout>
                             </LinearLayout>
                         </LinearLayout>
                     </LinearLayout>
-                </LinearLayout>
 
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="5dp" />
-
-                <RelativeLayout
-                    android:id="@+id/rl_all_machine_count"
-                    android:layout_width="match_parent"
-                    android:layout_height="34dp"
-                    android:background="@color/white"
-                    android:gravity="center">
-
-                    <TextView
-                        android:id="@+id/all_num"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="总设备数："
-                        android:textColor="@color/sly_text_333333"
-                        android:textSize="14sp" />
-
-                    <TextView
-                        android:id="@+id/tv_all_num"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_toRightOf="@+id/all_num"
-                        android:text="0"
-                        android:textColor="@color/sly_text_333333"
-                        android:textSize="14sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_toRightOf="@+id/tv_all_num"
-                        android:text="台"
-                        android:textColor="@color/sly_text_333333"
-                        android:textSize="14sp" />
-                </RelativeLayout>
-
-                <include layout="@layout/gray_line" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/white"
-                    android:orientation="vertical">
-
-                    <LinearLayout
+                    <View
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:weightSum="2">
-
-                        <RelativeLayout
-                            android:id="@+id/rl_online_machine"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1">
-
-                            <TextView
-                                android:id="@+id/tv_online_num"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="21dp"
-                                android:layout_marginTop="22dp"
-                                android:text="0"
-                                android:textColor="@color/sly_text_333333"
-                                android:textSize="14sp" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="22dp"
-                                android:layout_toRightOf="@+id/tv_online_num"
-                                android:text="台"
-                                android:textColor="@color/sly_text_333333"
-                                android:textSize="14sp" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_below="@+id/tv_online_num"
-                                android:layout_marginBottom="22dp"
-                                android:layout_marginLeft="21dp"
-                                android:layout_marginTop="10dp"
-                                android:text="在线"
-                                android:textColor="@color/sly_text_666666"
-                                android:textSize="12sp" />
-
-                            <com.sly.app.view.CustomCircleProgressBar
-                                android:id="@+id/Progress_1"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentRight="true"
-                                android:layout_marginBottom="16dp"
-                                android:layout_marginRight="16dp"
-                                android:layout_marginTop="16dp"
-                                app:direction="top"
-                                app:inside_color="@color/color_e9e9e9"
-                                app:max_progress="100"
-                                app:outside_color="@color/color_27ae0c"
-                                app:outside_radius="25dp"
-                                app:progress="0"
-                                app:progress_text_color="@color/color_27ae0c"
-                                app:progress_text_size="13sp"
-                                app:progress_width="5dp"
-                                app:progressbar_text_size="10sp" />
-
-                        </RelativeLayout>
-
-                        <View
-                            android:layout_width="1dp"
-                            android:layout_height="match_parent"
-                            android:background="@color/sly_line_gray" />
-
-                        <RelativeLayout
-                            android:id="@+id/rl_offline_machine"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1">
-
-                            <TextView
-                                android:id="@+id/tv_offline_num2"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="21dp"
-                                android:layout_marginTop="22dp"
-                                android:text="0"
-                                android:textColor="@color/sly_text_333333"
-                                android:textSize="14sp" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="22dp"
-                                android:layout_toRightOf="@+id/tv_offline_num2"
-                                android:text="台"
-                                android:textColor="@color/sly_text_333333"
-                                android:textSize="14sp" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_below="@+id/tv_offline_num2"
-                                android:layout_marginBottom="22dp"
-                                android:layout_marginLeft="21dp"
-                                android:layout_marginTop="10dp"
-                                android:text="离线"
-                                android:textColor="@color/sly_text_666666"
-                                android:textSize="12sp" />
-
-                            <com.sly.app.view.CustomCircleProgressBar
-                                android:id="@+id/Progress_2"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentRight="true"
-                                android:layout_marginRight="16dp"
-                                android:layout_marginTop="16dp"
-                                app:direction="top"
-                                app:inside_color="@color/color_e9e9e9"
-                                app:max_progress="100"
-                                app:outside_color="@color/color_fb3a2d"
-                                app:outside_radius="25dp"
-                                app:progress="0"
-                                app:progress_text_color="@color/color_fb3a2d"
-                                app:progress_text_size="13sp"
-                                app:progress_width="5dp"
-                                app:progressbar_text_size="10sp" />
-
-                        </RelativeLayout>
-
-                    </LinearLayout>
-
-                    <include layout="@layout/gray_line" />
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:baselineAligned="false"
-                        android:orientation="horizontal">
-
-                        <RelativeLayout
-                            android:id="@+id/rl_exception_machine"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1">
-
-                            <TextView
-                                android:id="@+id/tv_exception_num"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="21dp"
-                                android:layout_marginTop="22dp"
-                                android:text="0"
-                                android:textColor="@color/sly_text_333333"
-                                android:textSize="14sp" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="22dp"
-                                android:layout_toRightOf="@+id/tv_exception_num"
-                                android:text="台"
-                                android:textColor="@color/sly_text_333333"
-                                android:textSize="14sp" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_below="@+id/tv_exception_num"
-                                android:layout_marginBottom="22dp"
-                                android:layout_marginLeft="21dp"
-                                android:layout_marginTop="10dp"
-                                android:text="算力异常"
-                                android:textColor="@color/sly_text_666666"
-                                android:textSize="12sp" />
-
-                            <com.sly.app.view.CustomCircleProgressBar
-                                android:id="@+id/Progress_3"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentRight="true"
-                                android:layout_marginRight="16dp"
-                                android:layout_marginTop="16dp"
-                                app:direction="top"
-                                app:inside_color="@color/color_e9e9e9"
-                                app:max_progress="100"
-                                app:outside_color="@color/color_f6a800"
-                                app:outside_radius="25dp"
-                                app:progress="0"
-                                app:progress_text_color="@color/color_f6a800"
-                                app:progress_text_size="13sp"
-                                app:progress_width="5dp"
-                                app:progressbar_text_size="10sp" />
-
-                        </RelativeLayout>
-
-                        <View
-                            android:layout_width="1dp"
-                            android:layout_height="match_parent"
-                            android:background="@color/sly_line_gray" />
-
-                        <RelativeLayout
-                            android:id="@+id/rl_stop_machine"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1">
-
-                            <TextView
-                                android:id="@+id/tv_stop_num"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="21dp"
-                                android:layout_marginTop="22dp"
-                                android:text="0"
-                                android:textColor="@color/sly_text_333333"
-                                android:textSize="14sp" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="22dp"
-                                android:layout_toRightOf="@+id/tv_stop_num"
-                                android:text="台"
-                                android:textColor="@color/sly_text_333333"
-                                android:textSize="14sp" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_below="@+id/tv_stop_num"
-                                android:layout_marginBottom="22dp"
-                                android:layout_marginLeft="21dp"
-                                android:layout_marginTop="10dp"
-                                android:text="停机"
-                                android:textColor="@color/sly_text_666666"
-                                android:textSize="12sp" />
-
-                            <com.sly.app.view.CustomCircleProgressBar
-                                android:id="@+id/Progress_4"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentRight="true"
-                                android:layout_marginRight="16dp"
-                                android:layout_marginTop="16dp"
-                                app:direction="top"
-                                app:inside_color="@color/color_e9e9e9"
-                                app:max_progress="100"
-                                app:outside_color="@color/color_777777"
-                                app:outside_radius="25dp"
-                                app:progress="0"
-                                app:progress_text_color="@color/color_777777"
-                                app:progress_text_size="13sp"
-                                app:progress_width="5dp"
-                                app:progressbar_text_size="10sp" />
-
-                        </RelativeLayout>
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="5dp"
-                    android:background="@color/sly_bg_f4f4f4" />
-
-                <include layout="@layout/gray_line" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/white"
-                    android:orientation="vertical">
+                        android:layout_height="5dp" />
 
                     <RelativeLayout
+                        android:id="@+id/rl_all_machine_count"
                         android:layout_width="match_parent"
-                        android:layout_height="34dp">
+                        android:layout_height="34dp"
+                        android:background="@color/white"
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/all_num"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="总设备数："
+                            android:textColor="@color/sly_text_333333"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/tv_all_num"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@+id/all_num"
+                            android:text="0"
+                            android:textColor="@color/sly_text_333333"
+                            android:textSize="14sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:layout_marginLeft="15dp"
-                            android:text="矿机监控"
+                            android:layout_toRightOf="@+id/tv_all_num"
+                            android:text="台"
                             android:textColor="@color/sly_text_333333"
                             android:textSize="14sp" />
                     </RelativeLayout>
@@ -629,16 +266,307 @@
                     <include layout="@layout/gray_line" />
 
                     <LinearLayout
-                        android:id="@+id/ll_monitor_area"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@color/white"
                         android:orientation="vertical">
 
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="2">
+
+                            <RelativeLayout
+                                android:id="@+id/rl_online_machine"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1">
+
+                                <TextView
+                                    android:id="@+id/tv_online_num"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="21dp"
+                                    android:layout_marginTop="22dp"
+                                    android:text="0"
+                                    android:textColor="@color/sly_text_333333"
+                                    android:textSize="14sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="22dp"
+                                    android:layout_toRightOf="@+id/tv_online_num"
+                                    android:text="台"
+                                    android:textColor="@color/sly_text_333333"
+                                    android:textSize="14sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@+id/tv_online_num"
+                                    android:layout_marginBottom="22dp"
+                                    android:layout_marginLeft="21dp"
+                                    android:layout_marginTop="10dp"
+                                    android:text="在线"
+                                    android:textColor="@color/sly_text_666666"
+                                    android:textSize="12sp" />
+
+                                <com.sly.app.view.CustomCircleProgressBar
+                                    android:id="@+id/Progress_1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_marginBottom="16dp"
+                                    android:layout_marginRight="16dp"
+                                    android:layout_marginTop="16dp"
+                                    app:direction="top"
+                                    app:inside_color="@color/color_e9e9e9"
+                                    app:max_progress="100"
+                                    app:outside_color="@color/color_27ae0c"
+                                    app:outside_radius="25dp"
+                                    app:progress="0"
+                                    app:progress_text_color="@color/color_27ae0c"
+                                    app:progress_text_size="13sp"
+                                    app:progress_width="5dp"
+                                    app:progressbar_text_size="10sp" />
+
+                            </RelativeLayout>
+
+                            <View
+                                android:layout_width="1dp"
+                                android:layout_height="match_parent"
+                                android:background="@color/sly_line_gray" />
+
+                            <RelativeLayout
+                                android:id="@+id/rl_offline_machine"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1">
+
+                                <TextView
+                                    android:id="@+id/tv_offline_num2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="21dp"
+                                    android:layout_marginTop="22dp"
+                                    android:text="0"
+                                    android:textColor="@color/sly_text_333333"
+                                    android:textSize="14sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="22dp"
+                                    android:layout_toRightOf="@+id/tv_offline_num2"
+                                    android:text="台"
+                                    android:textColor="@color/sly_text_333333"
+                                    android:textSize="14sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@+id/tv_offline_num2"
+                                    android:layout_marginBottom="22dp"
+                                    android:layout_marginLeft="21dp"
+                                    android:layout_marginTop="10dp"
+                                    android:text="离线"
+                                    android:textColor="@color/sly_text_666666"
+                                    android:textSize="12sp" />
+
+                                <com.sly.app.view.CustomCircleProgressBar
+                                    android:id="@+id/Progress_2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_marginRight="16dp"
+                                    android:layout_marginTop="16dp"
+                                    app:direction="top"
+                                    app:inside_color="@color/color_e9e9e9"
+                                    app:max_progress="100"
+                                    app:outside_color="@color/color_fb3a2d"
+                                    app:outside_radius="25dp"
+                                    app:progress="0"
+                                    app:progress_text_color="@color/color_fb3a2d"
+                                    app:progress_text_size="13sp"
+                                    app:progress_width="5dp"
+                                    app:progressbar_text_size="10sp" />
+
+                            </RelativeLayout>
+
+                        </LinearLayout>
+
+                        <include layout="@layout/gray_line" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:baselineAligned="false"
+                            android:orientation="horizontal">
+
+                            <RelativeLayout
+                                android:id="@+id/rl_exception_machine"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1">
+
+                                <TextView
+                                    android:id="@+id/tv_exception_num"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="21dp"
+                                    android:layout_marginTop="22dp"
+                                    android:text="0"
+                                    android:textColor="@color/sly_text_333333"
+                                    android:textSize="14sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="22dp"
+                                    android:layout_toRightOf="@+id/tv_exception_num"
+                                    android:text="台"
+                                    android:textColor="@color/sly_text_333333"
+                                    android:textSize="14sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@+id/tv_exception_num"
+                                    android:layout_marginBottom="22dp"
+                                    android:layout_marginLeft="21dp"
+                                    android:layout_marginTop="10dp"
+                                    android:text="算力异常"
+                                    android:textColor="@color/sly_text_666666"
+                                    android:textSize="12sp" />
+
+                                <com.sly.app.view.CustomCircleProgressBar
+                                    android:id="@+id/Progress_3"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_marginRight="16dp"
+                                    android:layout_marginTop="16dp"
+                                    app:direction="top"
+                                    app:inside_color="@color/color_e9e9e9"
+                                    app:max_progress="100"
+                                    app:outside_color="@color/color_f6a800"
+                                    app:outside_radius="25dp"
+                                    app:progress="0"
+                                    app:progress_text_color="@color/color_f6a800"
+                                    app:progress_text_size="13sp"
+                                    app:progress_width="5dp"
+                                    app:progressbar_text_size="10sp" />
+
+                            </RelativeLayout>
+
+                            <View
+                                android:layout_width="1dp"
+                                android:layout_height="match_parent"
+                                android:background="@color/sly_line_gray" />
+
+                            <RelativeLayout
+                                android:id="@+id/rl_stop_machine"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1">
+
+                                <TextView
+                                    android:id="@+id/tv_stop_num"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="21dp"
+                                    android:layout_marginTop="22dp"
+                                    android:text="0"
+                                    android:textColor="@color/sly_text_333333"
+                                    android:textSize="14sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="22dp"
+                                    android:layout_toRightOf="@+id/tv_stop_num"
+                                    android:text="台"
+                                    android:textColor="@color/sly_text_333333"
+                                    android:textSize="14sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@+id/tv_stop_num"
+                                    android:layout_marginBottom="22dp"
+                                    android:layout_marginLeft="21dp"
+                                    android:layout_marginTop="10dp"
+                                    android:text="停机"
+                                    android:textColor="@color/sly_text_666666"
+                                    android:textSize="12sp" />
+
+                                <com.sly.app.view.CustomCircleProgressBar
+                                    android:id="@+id/Progress_4"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_marginRight="16dp"
+                                    android:layout_marginTop="16dp"
+                                    app:direction="top"
+                                    app:inside_color="@color/color_e9e9e9"
+                                    app:max_progress="100"
+                                    app:outside_color="@color/color_777777"
+                                    app:outside_radius="25dp"
+                                    app:progress="0"
+                                    app:progress_text_color="@color/color_777777"
+                                    app:progress_text_size="13sp"
+                                    app:progress_width="5dp"
+                                    app:progressbar_text_size="10sp" />
+
+                            </RelativeLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="5dp"
+                        android:background="@color/sly_bg_f4f4f4" />
+
+                    <include layout="@layout/gray_line" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="34dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginLeft="15dp"
+                                android:text="矿机监控"
+                                android:textColor="@color/sly_text_333333"
+                                android:textSize="14sp" />
+                        </RelativeLayout>
+
+                        <include layout="@layout/gray_line" />
+
+                        <LinearLayout
+                            android:id="@+id/ll_monitor_area"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                        </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
-            </LinearLayout>
 
-        </android.support.v4.widget.NestedScrollView>
+            </android.support.v4.widget.NestedScrollView>
+        </android.support.v4.widget.SwipeRefreshLayout>
 
     </LinearLayout>
 

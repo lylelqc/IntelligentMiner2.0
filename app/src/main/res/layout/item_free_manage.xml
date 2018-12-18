@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/rl_miner_manage_free_details"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/miner_management_expense_money_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="15dp"
+                android:layout_toLeftOf="@+id/tv_miner_repair_free_money"
+                android:text="¥"
+                android:textSize="17sp"
+                android:textColor="@color/sly_text_244153"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/tv_miner_manage_free_money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="19dp"
+                android:text="10.63"
+                android:textSize="17sp"
+                android:textColor="@color/sly_text_244153"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="19dp"
+            android:layout_toRightOf="@+id/miner_management_expense_money_icon"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_miner_free_model"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="蚂蚁S9"
+                android:textColor="#252525"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tv_manage_free_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2018-11-01 12:30"
+                android:textColor="#848689"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="85dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginTop="0dp"
+        android:background="#aaaaa5" />
+
+
+</LinearLayout>

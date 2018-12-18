@@ -5,778 +5,696 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <!--<RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="44dp"
-        android:background="@drawable/shape_bg_gradient_blue"
-        android:gravity="center_vertical">
-
-        <RelativeLayout
-            android:id="@+id/rl_user_type"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_marginTop="7dp"
-            android:gravity="center_vertical">
-
-            <TextView
-                android:id="@+id/tv_user_type"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="12dp"
-                android:text="矿场主"
-                android:textColor="@color/white"
-                android:textSize="17sp" />
-
-            <TextView
-                android:layout_width="10dp"
-                android:layout_height="6dp"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="3dp"
-                android:layout_toRightOf="@+id/tv_user_type"
-                android:background="@drawable/operation_drop_down" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_below="@+id/rl_user_type"
-            android:layout_marginLeft="12dp">
-
-            <TextView
-                android:id="@+id/tv_user_account"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="138****3526"
-                android:textColor="@color/white"
-                android:textSize="11sp" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/rl_notice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="14dp">
-
-            <TextView
-                android:id="@+id/tv_notice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/operation_new" />
-
-            <TextView
-                android:id="@+id/tv_red_num"
-                android:layout_width="wrap_content"
-                android:layout_height="13dp"
-                android:layout_marginLeft="14dp"
-                android:background="@drawable/shape_notice_red"
-                android:gravity="center"
-                android:text="0"
-                android:textColor="@color/white"
-                android:textSize="8sp"
-                android:visibility="gone" />
-        </RelativeLayout>
-
-        <TextView
-            android:id="@+id/tv_master_add"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="15dp"
-            android:layout_toLeftOf="@+id/rl_notice"
-            android:background="@drawable/mine_owner_add" />
-
-    </RelativeLayout>-->
-
-    <android.support.v4.widget.NestedScrollView
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <LinearLayout
+        <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="110dp">
-
-                <LinearLayout
-                    android:id="@+id/rl_master_header"
-                    android:layout_width="match_parent"
-                    android:layout_height="80dp"
-                    android:background="@drawable/shape_bg_gradient_blue2"
-                    android:orientation="vertical">
-
-
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/recycler_view"
-                        android:layout_width="match_parent"
-                        android:layout_height="35dp"
-                        android:layout_marginLeft="12dp"
-                        android:layout_marginRight="12dp"
-                        android:layout_marginTop="8dp">
-
-                    </android.support.v7.widget.RecyclerView>
-
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_below="@+id/rl_master_header"
-                    android:background="@color/white" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginRight="12dp"
-                    android:background="@drawable/shape_white_12dp"
-                    android:weightSum="3">
-
-                    <LinearLayout
-                        android:id="@+id/ll_master_all_free"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="center_vertical"
-                        android:orientation="vertical">
-
-                        <LinearLayout
-                            android:id="@+id/ll_master_free"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="20dp"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="费用"
-                                android:textColor="@color/sly_text_333333"
-                                android:textSize="14sp" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="( ¥ )"
-                                android:textColor="@color/sly_text_666666"
-                                android:textSize="10sp" />
-
-                        </LinearLayout>
-
-                        <TextView
-                            android:id="@+id/tv_master_all_free"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginTop="5dp"
-                            android:text="*****"
-                            android:textColor="@color/sly_text_4085ea"
-                            android:textSize="13sp" />
-
-                    </LinearLayout>
-
-                    <View
-                        android:layout_width="1dp"
-                        android:layout_height="34dp"
-                        android:layout_gravity="center_vertical"
-                        android:background="@color/sly_bg_f4f4f4" />
-
-                    <LinearLayout
-                        android:id="@+id/ll_master_all_power"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="center_vertical"
-                        android:orientation="vertical">
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="20dp"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="耗电量"
-                                android:textColor="@color/sly_text_333333"
-                                android:textSize="14sp" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="(KW/h)"
-                                android:textColor="@color/sly_text_666666"
-                                android:textSize="10sp" />
-
-                        </LinearLayout>
-
-                        <TextView
-                            android:id="@+id/tv_master_all_power_consumption"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginTop="5dp"
-                            android:text="*****"
-                            android:textColor="@color/sly_text_4085ea"
-                            android:textSize="13sp" />
-
-                    </LinearLayout>
-
-                    <View
-                        android:layout_width="1dp"
-                        android:layout_height="34dp"
-                        android:layout_gravity="center_vertical"
-                        android:background="@color/sly_bg_f4f4f4" />
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="center_vertical"
-                        android:orientation="vertical">
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="20dp"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="运行率"
-                                android:textColor="@color/sly_text_333333"
-                                android:textSize="14sp" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text=" (%)"
-                                android:textColor="@color/sly_text_666666"
-                                android:textSize="10sp" />
-                        </LinearLayout>
-
-                        <TextView
-                            android:id="@+id/tv_master_all_run_rate"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginTop="5dp"
-                            android:text="*****"
-                            android:textColor="@color/sly_text_4085ea"
-                            android:textSize="13sp" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/rl_all_machine_count"
-                android:layout_width="match_parent"
-                android:layout_height="38dp"
-                android:background="@color/white"
-                android:gravity="center">
-
-                <TextView
-                    android:id="@+id/all_num"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="总设备数："
-                    android:textColor="@color/sly_text_333333"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:id="@+id/tv_master_all_num"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toRightOf="@+id/all_num"
-                    android:text="0"
-                    android:textColor="@color/sly_text_333333"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toRightOf="@+id/tv_master_all_num"
-                    android:text="台"
-                    android:textColor="@color/sly_text_333333"
-                    android:textSize="14sp" />
-            </RelativeLayout>
-
-            <include layout="@layout/gray_line" />
+            android:layout_height="wrap_content">
 
             <LinearLayout
-                android:id="@+id/ll_master_num_rate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
                 android:orientation="vertical">
 
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:weightSum="2">
+                    android:layout_height="110dp">
 
-                    <RelativeLayout
-                        android:id="@+id/rl_online_machine"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1">
+                    <LinearLayout
+                        android:id="@+id/rl_master_header"
+                        android:layout_width="match_parent"
+                        android:layout_height="80dp"
+                        android:background="@drawable/shape_bg_gradient_blue2"
+                        android:orientation="vertical">
 
-                        <TextView
-                            android:id="@+id/tv_master_online_num"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="21dp"
-                            android:layout_marginTop="22dp"
-                            android:text="0"
-                            android:textColor="@color/sly_text_333333"
-                            android:textSize="14sp" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="22dp"
-                            android:layout_toRightOf="@+id/tv_master_online_num"
-                            android:text="台"
-                            android:textColor="@color/sly_text_333333"
-                            android:textSize="14sp" />
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/recycler_view"
+                            android:layout_width="match_parent"
+                            android:layout_height="35dp"
+                            android:layout_marginLeft="12dp"
+                            android:layout_marginRight="12dp"
+                            android:layout_marginTop="8dp">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/tv_master_online_num"
-                            android:layout_marginBottom="22dp"
-                            android:layout_marginLeft="21dp"
-                            android:layout_marginTop="10dp"
-                            android:text="在线"
-                            android:textColor="@color/sly_text_666666"
-                            android:textSize="12sp" />
+                        </android.support.v7.widget.RecyclerView>
 
-                        <com.sly.app.view.CustomCircleProgressBar
-                            android:id="@+id/Progress_1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:layout_marginBottom="16dp"
-                            android:layout_marginRight="16dp"
-                            android:layout_marginTop="16dp"
-                            app:direction="top"
-                            app:inside_color="@color/color_e9e9e9"
-                            app:max_progress="100"
-                            app:outside_color="@color/color_27ae0c"
-                            app:outside_radius="25dp"
-                            app:progress="0"
-                            app:progress_text_color="@color/color_27ae0c"
-                            app:progress_text_size="13sp"
-                            app:progress_width="5dp"
-                            app:progressbar_text_size="10sp" />
-
-                    </RelativeLayout>
+                    </LinearLayout>
 
                     <View
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
-                        android:background="@color/sly_line_gray" />
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_below="@+id/rl_master_header"
+                        android:background="@color/white" />
 
-                    <RelativeLayout
-                        android:id="@+id/rl_offline_machine"
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginRight="12dp"
+                        android:background="@drawable/shape_white_12dp"
+                        android:weightSum="3">
+
+                        <LinearLayout
+                            android:id="@+id/ll_master_all_free"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:id="@+id/ll_master_free"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="20dp"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="费用"
+                                    android:textColor="@color/sly_text_333333"
+                                    android:textSize="14sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="( ¥ )"
+                                    android:textColor="@color/sly_text_666666"
+                                    android:textSize="10sp" />
+
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/tv_master_all_free"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginTop="5dp"
+                                android:text="*****"
+                                android:textColor="@color/sly_text_4085ea"
+                                android:textSize="13sp" />
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="34dp"
+                            android:layout_gravity="center_vertical"
+                            android:background="@color/sly_bg_f4f4f4" />
+
+                        <LinearLayout
+                            android:id="@+id/ll_master_all_power"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="20dp"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="耗电量"
+                                    android:textColor="@color/sly_text_333333"
+                                    android:textSize="14sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="(KW/h)"
+                                    android:textColor="@color/sly_text_666666"
+                                    android:textSize="10sp" />
+
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/tv_master_all_power_consumption"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginTop="5dp"
+                                android:text="*****"
+                                android:textColor="@color/sly_text_4085ea"
+                                android:textSize="13sp" />
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="34dp"
+                            android:layout_gravity="center_vertical"
+                            android:background="@color/sly_bg_f4f4f4" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="20dp"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="运行率"
+                                    android:textColor="@color/sly_text_333333"
+                                    android:textSize="14sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text=" (%)"
+                                    android:textColor="@color/sly_text_666666"
+                                    android:textSize="10sp" />
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/tv_master_all_run_rate"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginTop="5dp"
+                                android:text="*****"
+                                android:textColor="@color/sly_text_4085ea"
+                                android:textSize="13sp" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_all_machine_count"
+                    android:layout_width="match_parent"
+                    android:layout_height="38dp"
+                    android:background="@color/white"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/all_num"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1">
+                        android:text="总设备数："
+                        android:textColor="@color/sly_text_333333"
+                        android:textSize="14sp" />
 
-                        <TextView
-                            android:id="@+id/tv_master_offline_num"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="21dp"
-                            android:layout_marginTop="22dp"
-                            android:text="0"
-                            android:textColor="@color/sly_text_333333"
-                            android:textSize="14sp" />
+                    <TextView
+                        android:id="@+id/tv_master_all_num"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/all_num"
+                        android:text="0"
+                        android:textColor="@color/sly_text_333333"
+                        android:textSize="14sp" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="22dp"
-                            android:layout_toRightOf="@+id/tv_master_offline_num"
-                            android:text="台"
-                            android:textColor="@color/sly_text_333333"
-                            android:textSize="14sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/tv_master_offline_num"
-                            android:layout_marginBottom="22dp"
-                            android:layout_marginLeft="21dp"
-                            android:layout_marginTop="10dp"
-                            android:text="离线"
-                            android:textColor="@color/sly_text_666666"
-                            android:textSize="12sp" />
-
-                        <com.sly.app.view.CustomCircleProgressBar
-                            android:id="@+id/Progress_2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:layout_marginRight="16dp"
-                            android:layout_marginTop="16dp"
-                            app:direction="top"
-                            app:inside_color="@color/color_e9e9e9"
-                            app:max_progress="100"
-                            app:outside_color="@color/color_fb3a2d"
-                            app:outside_radius="25dp"
-                            app:progress="0"
-                            app:progress_text_color="@color/color_fb3a2d"
-                            app:progress_text_size="13sp"
-                            app:progress_width="5dp"
-                            app:progressbar_text_size="10sp" />
-
-                    </RelativeLayout>
-
-                </LinearLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/tv_master_all_num"
+                        android:text="台"
+                        android:textColor="@color/sly_text_333333"
+                        android:textSize="14sp" />
+                </RelativeLayout>
 
                 <include layout="@layout/gray_line" />
 
                 <LinearLayout
+                    android:id="@+id/ll_master_num_rate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:background="@color/white"
+                    android:orientation="vertical">
 
-                    <RelativeLayout
-                        android:id="@+id/rl_exception_machine"
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1">
+                        android:orientation="horizontal"
+                        android:weightSum="2">
 
-                        <TextView
-                            android:id="@+id/tv_master_exception_num"
+                        <RelativeLayout
+                            android:id="@+id/rl_online_machine"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="21dp"
-                            android:layout_marginTop="22dp"
-                            android:text="0"
-                            android:textColor="@color/sly_text_333333"
-                            android:textSize="14sp" />
+                            android:layout_weight="1">
 
-                        <TextView
+                            <TextView
+                                android:id="@+id/tv_master_online_num"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="21dp"
+                                android:layout_marginTop="22dp"
+                                android:text="0"
+                                android:textColor="@color/sly_text_333333"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="22dp"
+                                android:layout_toRightOf="@+id/tv_master_online_num"
+                                android:text="台"
+                                android:textColor="@color/sly_text_333333"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/tv_master_online_num"
+                                android:layout_marginBottom="22dp"
+                                android:layout_marginLeft="21dp"
+                                android:layout_marginTop="10dp"
+                                android:text="在线"
+                                android:textColor="@color/sly_text_666666"
+                                android:textSize="12sp" />
+
+                            <com.sly.app.view.CustomCircleProgressBar
+                                android:id="@+id/Progress_1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginBottom="16dp"
+                                android:layout_marginRight="16dp"
+                                android:layout_marginTop="16dp"
+                                app:direction="top"
+                                app:inside_color="@color/color_e9e9e9"
+                                app:max_progress="100"
+                                app:outside_color="@color/color_27ae0c"
+                                app:outside_radius="25dp"
+                                app:progress="0"
+                                app:progress_text_color="@color/color_27ae0c"
+                                app:progress_text_size="13sp"
+                                app:progress_width="5dp"
+                                app:progressbar_text_size="10sp" />
+
+                        </RelativeLayout>
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/sly_line_gray" />
+
+                        <RelativeLayout
+                            android:id="@+id/rl_offline_machine"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="22dp"
-                            android:layout_toRightOf="@+id/tv_master_exception_num"
-                            android:text="台"
-                            android:textColor="@color/sly_text_333333"
-                            android:textSize="14sp" />
+                            android:layout_weight="1">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/tv_master_exception_num"
-                            android:layout_marginBottom="22dp"
-                            android:layout_marginLeft="21dp"
-                            android:layout_marginTop="10dp"
-                            android:text="算力异常"
-                            android:textColor="@color/sly_text_666666"
-                            android:textSize="12sp" />
+                            <TextView
+                                android:id="@+id/tv_master_offline_num"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="21dp"
+                                android:layout_marginTop="22dp"
+                                android:text="0"
+                                android:textColor="@color/sly_text_333333"
+                                android:textSize="14sp" />
 
-                        <com.sly.app.view.CustomCircleProgressBar
-                            android:id="@+id/Progress_3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:layout_marginRight="16dp"
-                            android:layout_marginTop="16dp"
-                            app:direction="top"
-                            app:inside_color="@color/color_e9e9e9"
-                            app:max_progress="100"
-                            app:outside_color="@color/color_f6a800"
-                            app:outside_radius="25dp"
-                            app:progress="0"
-                            app:progress_text_color="@color/color_f6a800"
-                            app:progress_text_size="13sp"
-                            app:progress_width="5dp"
-                            app:progressbar_text_size="10sp" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="22dp"
+                                android:layout_toRightOf="@+id/tv_master_offline_num"
+                                android:text="台"
+                                android:textColor="@color/sly_text_333333"
+                                android:textSize="14sp" />
 
-                    </RelativeLayout>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/tv_master_offline_num"
+                                android:layout_marginBottom="22dp"
+                                android:layout_marginLeft="21dp"
+                                android:layout_marginTop="10dp"
+                                android:text="离线"
+                                android:textColor="@color/sly_text_666666"
+                                android:textSize="12sp" />
 
-                    <View
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
-                        android:background="@color/sly_line_gray" />
+                            <com.sly.app.view.CustomCircleProgressBar
+                                android:id="@+id/Progress_2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginRight="16dp"
+                                android:layout_marginTop="16dp"
+                                app:direction="top"
+                                app:inside_color="@color/color_e9e9e9"
+                                app:max_progress="100"
+                                app:outside_color="@color/color_fb3a2d"
+                                app:outside_radius="25dp"
+                                app:progress="0"
+                                app:progress_text_color="@color/color_fb3a2d"
+                                app:progress_text_size="13sp"
+                                app:progress_width="5dp"
+                                app:progressbar_text_size="10sp" />
 
-                    <RelativeLayout
-                        android:id="@+id/rl_stop_machine"
-                        android:layout_width="wrap_content"
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+                    <include layout="@layout/gray_line" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1">
+                        android:orientation="horizontal">
 
-                        <TextView
-                            android:id="@+id/tv_master_stop_num"
+                        <RelativeLayout
+                            android:id="@+id/rl_exception_machine"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="21dp"
-                            android:layout_marginTop="22dp"
-                            android:text="0"
-                            android:textColor="@color/sly_text_333333"
-                            android:textSize="14sp" />
+                            android:layout_weight="1">
 
-                        <TextView
+                            <TextView
+                                android:id="@+id/tv_master_exception_num"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="21dp"
+                                android:layout_marginTop="22dp"
+                                android:text="0"
+                                android:textColor="@color/sly_text_333333"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="22dp"
+                                android:layout_toRightOf="@+id/tv_master_exception_num"
+                                android:text="台"
+                                android:textColor="@color/sly_text_333333"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/tv_master_exception_num"
+                                android:layout_marginBottom="22dp"
+                                android:layout_marginLeft="21dp"
+                                android:layout_marginTop="10dp"
+                                android:text="算力异常"
+                                android:textColor="@color/sly_text_666666"
+                                android:textSize="12sp" />
+
+                            <com.sly.app.view.CustomCircleProgressBar
+                                android:id="@+id/Progress_3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginRight="16dp"
+                                android:layout_marginTop="16dp"
+                                app:direction="top"
+                                app:inside_color="@color/color_e9e9e9"
+                                app:max_progress="100"
+                                app:outside_color="@color/color_f6a800"
+                                app:outside_radius="25dp"
+                                app:progress="0"
+                                app:progress_text_color="@color/color_f6a800"
+                                app:progress_text_size="13sp"
+                                app:progress_width="5dp"
+                                app:progressbar_text_size="10sp" />
+
+                        </RelativeLayout>
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/sly_line_gray" />
+
+                        <RelativeLayout
+                            android:id="@+id/rl_stop_machine"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="22dp"
-                            android:layout_toRightOf="@+id/tv_master_stop_num"
-                            android:text="台"
-                            android:textColor="@color/sly_text_333333"
-                            android:textSize="14sp" />
+                            android:layout_weight="1">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/tv_master_stop_num"
-                            android:layout_marginBottom="22dp"
-                            android:layout_marginLeft="21dp"
-                            android:layout_marginTop="10dp"
-                            android:text="停机"
-                            android:textColor="@color/sly_text_666666"
-                            android:textSize="12sp" />
+                            <TextView
+                                android:id="@+id/tv_master_stop_num"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="21dp"
+                                android:layout_marginTop="22dp"
+                                android:text="0"
+                                android:textColor="@color/sly_text_333333"
+                                android:textSize="14sp" />
 
-                        <com.sly.app.view.CustomCircleProgressBar
-                            android:id="@+id/Progress_4"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:layout_marginRight="16dp"
-                            android:layout_marginTop="16dp"
-                            app:direction="top"
-                            app:inside_color="@color/color_e9e9e9"
-                            app:max_progress="100"
-                            app:outside_color="@color/color_777777"
-                            app:outside_radius="25dp"
-                            app:progress="0"
-                            app:progress_text_color="@color/color_777777"
-                            app:progress_text_size="13sp"
-                            app:progress_width="5dp"
-                            app:progressbar_text_size="10sp" />
-                    </RelativeLayout>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="22dp"
+                                android:layout_toRightOf="@+id/tv_master_stop_num"
+                                android:text="台"
+                                android:textColor="@color/sly_text_333333"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/tv_master_stop_num"
+                                android:layout_marginBottom="22dp"
+                                android:layout_marginLeft="21dp"
+                                android:layout_marginTop="10dp"
+                                android:text="停机"
+                                android:textColor="@color/sly_text_666666"
+                                android:textSize="12sp" />
+
+                            <com.sly.app.view.CustomCircleProgressBar
+                                android:id="@+id/Progress_4"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginRight="16dp"
+                                android:layout_marginTop="16dp"
+                                app:direction="top"
+                                app:inside_color="@color/color_e9e9e9"
+                                app:max_progress="100"
+                                app:outside_color="@color/color_777777"
+                                app:outside_radius="25dp"
+                                app:progress="0"
+                                app:progress_text_color="@color/color_777777"
+                                app:progress_text_size="13sp"
+                                app:progress_width="5dp"
+                                app:progressbar_text_size="10sp" />
+                        </RelativeLayout>
+                    </LinearLayout>
                 </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp" />
+
+                <include layout="@layout/gray_line" />
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="45dp"
+                    android:background="@color/white">
+
+                    <TextView
+                        android:id="@+id/tv_suanli_icon"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="15dp"
+                        android:background="@drawable/mine_owner_chart" />
+
+                    <TextView
+                        android:id="@+id/tv_suanli"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@+id/tv_suanli_icon"
+                        android:text="算力"
+                        android:textColor="@color/sly_text_333333"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tv_master_suanli"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="5dp"
+                        android:layout_toRightOf="@+id/tv_suanli"
+                        android:textColor="@color/sly_text_4a96f2"
+                        android:textSize="13sp" />
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="15dp">
+
+                        <TextView
+                            android:id="@+id/tv_master_month"
+                            android:layout_width="64dp"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:background="@drawable/shape_right_circle_white_15dp"
+                            android:gravity="center"
+                            android:text="本月"
+                            android:textColor="@color/sly_text_666666"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/tv_master_hours"
+                            android:layout_width="64dp"
+                            android:layout_height="match_parent"
+                            android:layout_centerVertical="true"
+                            android:layout_toLeftOf="@+id/tv_master_month"
+                            android:background="@drawable/layer_left_circle_blue_15dp"
+                            android:gravity="center"
+                            android:text="24小时"
+                            android:textColor="@color/white"
+                            android:textSize="14sp" />
+
+                    </RelativeLayout>
+
+                </RelativeLayout>
+
+                <include layout="@layout/gray_line" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white">
+
+                    <com.github.mikephil.charting.charts.LineChart
+                        android:id="@+id/lc_cal_power_pic"
+                        android:layout_width="match_parent"
+                        android:layout_height="232dp"
+                        android:layout_marginLeft="10dp">
+
+                    </com.github.mikephil.charting.charts.LineChart>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginBottom="10dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tv_begintime"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_marginLeft="20dp"
+                            android:textColor="@color/sly_text_999999"
+                            android:textSize="10sp" />
+
+                        <TextView
+                            android:id="@+id/tv_endtime"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="10dp"
+                            android:textColor="@color/sly_text_999999"
+                            android:textSize="10sp" />
+                    </RelativeLayout>
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="15dp"
+                    android:background="@color/sly_bg_f4f4f4" />
+
+                <RelativeLayout
+                    android:id="@+id/rl_master_person_manage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white">
+
+                    <TextView
+                        android:id="@+id/tv_person_icon"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/mine_owner_personnel" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_toRightOf="@+id/tv_person_icon"
+                        android:text="人员管理"
+                        android:textColor="@color/sly_text_333333"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="15dp"
+                        android:background="@drawable/news_net" />
+                </RelativeLayout>
+
+                <include layout="@layout/gray_line" />
+
+                <RelativeLayout
+                    android:id="@+id/rl_master_parts"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white">
+
+                    <TextView
+                        android:id="@+id/tv_parts_icon"
+                        android:layout_width="16dp"
+                        android:layout_height="17dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/mine_owner_parts" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_toRightOf="@+id/tv_parts_icon"
+                        android:text="配件情况"
+                        android:textColor="@color/sly_text_333333"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="15dp"
+                        android:background="@drawable/news_net" />
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="15dp"
+                    android:background="@color/sly_bg_f4f4f4" />
+
             </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="10dp" />
-
-            <include layout="@layout/gray_line" />
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="45dp"
-                android:background="@color/white">
-
-                <TextView
-                    android:id="@+id/tv_suanli_icon"
-                    android:layout_width="18dp"
-                    android:layout_height="18dp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="15dp"
-                    android:background="@drawable/mine_owner_chart" />
-
-                <TextView
-                    android:id="@+id/tv_suanli"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="10dp"
-                    android:layout_toRightOf="@+id/tv_suanli_icon"
-                    android:text="算力"
-                    android:textColor="@color/sly_text_333333"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:id="@+id/tv_master_suanli"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="5dp"
-                    android:layout_toRightOf="@+id/tv_suanli"
-                    android:textColor="@color/sly_text_4a96f2"
-                    android:textSize="13sp" />
-
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="15dp">
-
-                    <TextView
-                        android:id="@+id/tv_master_month"
-                        android:layout_width="64dp"
-                        android:layout_height="match_parent"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:background="@drawable/shape_right_circle_white_15dp"
-                        android:gravity="center"
-                        android:text="本月"
-                        android:textColor="@color/sly_text_666666"
-                        android:textSize="14sp" />
-
-                    <TextView
-                        android:id="@+id/tv_master_hours"
-                        android:layout_width="64dp"
-                        android:layout_height="match_parent"
-                        android:layout_centerVertical="true"
-                        android:layout_toLeftOf="@+id/tv_master_month"
-                        android:background="@drawable/layer_left_circle_blue_15dp"
-                        android:gravity="center"
-                        android:text="24小时"
-                        android:textColor="@color/white"
-                        android:textSize="14sp" />
-
-                </RelativeLayout>
-
-            </RelativeLayout>
-
-            <include layout="@layout/gray_line" />
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white">
-
-                <com.github.mikephil.charting.charts.LineChart
-                    android:id="@+id/lc_cal_power_pic"
-                    android:layout_width="match_parent"
-                    android:layout_height="232dp"
-                    android:layout_marginLeft="10dp">
-
-                </com.github.mikephil.charting.charts.LineChart>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginBottom="10dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/tv_begintime"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_marginLeft="20dp"
-                        android:textColor="@color/sly_text_999999"
-                        android:textSize="10sp" />
-
-                    <TextView
-                        android:id="@+id/tv_endtime"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="10dp"
-                        android:textColor="@color/sly_text_999999"
-                        android:textSize="10sp" />
-                </RelativeLayout>
-            </RelativeLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="15dp"
-                android:background="@color/sly_bg_f4f4f4" />
-
-            <RelativeLayout
-                android:id="@+id/rl_master_person_manage"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white">
-
-                <TextView
-                    android:id="@+id/tv_person_icon"
-                    android:layout_width="18dp"
-                    android:layout_height="18dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/mine_owner_personnel" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_toRightOf="@+id/tv_person_icon"
-                    android:text="人员管理"
-                    android:textColor="@color/sly_text_333333"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="15dp"
-                    android:background="@drawable/news_net" />
-            </RelativeLayout>
-
-            <include layout="@layout/gray_line" />
-
-            <RelativeLayout
-                android:id="@+id/rl_master_parts"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white">
-
-                <TextView
-                    android:id="@+id/tv_parts_icon"
-                    android:layout_width="16dp"
-                    android:layout_height="17dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/mine_owner_parts" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_toRightOf="@+id/tv_parts_icon"
-                    android:text="配件情况"
-                    android:textColor="@color/sly_text_333333"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="15dp"
-                    android:background="@drawable/news_net" />
-            </RelativeLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="15dp"
-                android:background="@color/sly_bg_f4f4f4" />
-
-        </LinearLayout>
-    </android.support.v4.widget.NestedScrollView>
+        </android.support.v4.widget.NestedScrollView>
+    </android.support.v4.widget.SwipeRefreshLayout>
 
 
 </LinearLayout>

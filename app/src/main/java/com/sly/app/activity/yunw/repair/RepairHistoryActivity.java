@@ -86,7 +86,7 @@ public class RepairHistoryActivity extends BaseActivity implements RepairCheckPo
                         null, null, null);
                 tvRepairCheck.setCompoundDrawablePadding(AppUtils.dp2px(this, 5));
 
-                mRepairCheckView = new RepairCheckPopView(this, 3);
+                mRepairCheckView = new RepairCheckPopView(this, 3, 2);
                 mRepairCheckView.setOnDismissListener(new PopupWindow.OnDismissListener() {
                     @Override
                     public void onDismiss() {

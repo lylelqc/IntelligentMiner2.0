@@ -149,10 +149,12 @@ RepairBillDetailsActivity extends BaseActivity implements ICommonViewUi {
         // 把当前activty加入压入栈中
         ActivityHelper.getInstance().pushOneActivity(this);
         BillNo = getIntent().getExtras().getString("BillNo");
+
         User = SharedPreferencesUtil.getString(this, "User", "None");
         Token = SharedPreferencesUtil.getString(this, "Token", "None");
         Key = SharedPreferencesUtil.getString(this, "Key", "None");
         LoginType = SharedPreferencesUtil.getString(this, "LoginType", "None");
+
         MineCode = SharedPreferencesUtil.getString(this, "MineCode", "None");
         PersonSysCode = SharedPreferencesUtil.getString(this, "PersonSysCode", "None");
 
@@ -250,6 +252,7 @@ RepairBillDetailsActivity extends BaseActivity implements ICommonViewUi {
         RepairBillDetailsBean bean = mResultList.get(0);
 
         machineSysCode = bean.getMachineSysCode();
+        detailID = bean.getDetailID();
 //        reason = bean.getRepairInfo();
         String BillStatus = bean.getResultCode();
         if("00".equals(BillStatus)
@@ -266,7 +269,7 @@ RepairBillDetailsActivity extends BaseActivity implements ICommonViewUi {
             tvDetailsReason.setText(bean.getInfo());
 
             if("00".equals(BillStatus)){
-                detailID = bean.getDetailID();
+//                detailID = bean.getDetailID();
 
                 llDetailsAllfree.setVisibility(View.GONE);
                 llDetailsDescription.setVisibility(View.GONE);
@@ -283,7 +286,7 @@ RepairBillDetailsActivity extends BaseActivity implements ICommonViewUi {
                 tvDetailsDescription.setText(bean.getRepairInfo());
                 ivDetailsStatusIcon.setImageResource(R.drawable.nothave_weixiudan_icon);
             }else if("03".equals(BillStatus)){
-                detailID = bean.getDetailID();
+//                detailID = bean.getDetailID();
 
                 llDetailsStartStop.setVisibility(View.VISIBLE);
                 tvDetailStart2.setText(getString(R.string.repair_deal));
@@ -293,7 +296,7 @@ RepairBillDetailsActivity extends BaseActivity implements ICommonViewUi {
 
                 //设置控件距离top的高度
                 FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(ivDetailsStatusIcon.getLayoutParams());
-                lp.setMargins(0, AppUtils.dp2px(this,100), 0, AppUtils.dp2px(this,15));
+                lp.setMargins(AppUtils.dp2px(this,350), AppUtils.dp2px(this,100),  0, 0);
                 ivDetailsStatusIcon.setLayoutParams(lp);
                 ivDetailsStatusIcon.setImageResource(R.drawable.have_weixiudan_icon);
             }

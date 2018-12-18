@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <include layout="@layout/head_title3" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingTop="50dp"
+                android:background="#fff">
+
+                <TextView
+                    android:id="@+id/miner_cost_details_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="¥"
+                    android:textColor="#5a6069"
+                    android:textSize="15sp"
+                    android:layout_marginTop="23dp"
+                    android:layout_marginRight="5dp"/>
+
+                <TextView
+                    android:id="@+id/miner_cost_details_money"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="38sp"
+                    android:textColor="#5a6069"
+                    android:text="0.0"
+                    android:layout_toRightOf="@+id/miner_cost_details_icon"/>
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:background="#fff"
+                android:paddingBottom="20dp">
+
+                <TextView
+                    android:id="@+id/miner_cost_details_model"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="蚂蚁S9"
+                    android:textColor="#666"
+                    android:textSize="14sp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="2dp"/>
+
+                <TextView
+                    android:id="@+id/miner_cost_details_repair"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape_repair_5dp"
+                    android:padding="3dp"
+                    android:textSize="11sp"
+                    android:textColor="#fff"
+                    android:text="维修结束"
+                    android:layout_toRightOf="@+id/miner_cost_details_model"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/white">
+
+                <View android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="35dp"
+                    android:layout_marginRight="35dp"
+                    android:background="#aaaaa5"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#fff"
+                android:paddingTop="18dp">
+
+                <TextView
+                    android:id="@+id/miner_cost_details_maintenance_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="维修单号："
+                    android:layout_marginLeft="60dp"
+                    android:textSize="14sp"
+                    android:textColor="#333333"/>
+                <TextView
+                    android:id="@+id/miner_cost_details_code"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/miner_cost_details_maintenance_number"
+                    android:layout_marginLeft="20dp"
+                    android:text="2018963665928666"
+                    android:textSize="14sp"
+                    android:textColor="#333333"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_miner_details_ptime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#fff"
+                android:paddingTop="18dp">
+
+                <TextView
+                    android:id="@+id/miner_cost_details_distribute_leaflets"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="派单时间："
+                    android:layout_marginLeft="60dp"
+                    android:textSize="14sp"
+                    android:textColor="#333"/>
+                <TextView
+                    android:id="@+id/miner_cost_details_ptime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/miner_cost_details_distribute_leaflets"
+                    android:layout_marginLeft="20dp"
+                    android:text="2018-12-12 08:30"
+                    android:textSize="14sp"
+                    android:textColor="#333"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_miner_details_etime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#fff"
+                android:paddingTop="18dp">
+
+                <TextView
+                    android:id="@+id/miner_cost_details_end_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="结束时间："
+                    android:layout_marginLeft="60dp"
+                    android:textSize="14sp"
+                    android:textColor="#333"/>
+                <TextView
+                    android:id="@+id/miner_cost_details_etime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/miner_cost_details_end_time"
+                    android:layout_marginLeft="20dp"
+                    android:text="2018-12-12 09:30"
+                    android:textSize="14sp"
+                    android:textColor="#333"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_miner_details_during"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#fff"
+                android:paddingTop="18dp">
+
+                <TextView
+                    android:id="@+id/miner_cost_details_during"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="维修时长："
+                    android:layout_marginLeft="60dp"
+                    android:textSize="14sp"
+                    android:textColor="#333"/>
+                <TextView
+                    android:id="@+id/miner_cost_details_during_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/miner_cost_details_during"
+                    android:layout_marginLeft="20dp"
+                    android:text="00-00-00"
+                    android:textSize="14sp"
+                    android:textColor="#333"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#fff"
+                android:paddingTop="18dp">
+
+                <TextView
+                    android:id="@+id/miner_cost_details_mine_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="矿机编号："
+                    android:layout_marginLeft="60dp"
+                    android:textSize="14sp"
+                    android:textColor="#333"/>
+                <TextView
+                    android:id="@+id/miner_cost_details_machine_code"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/miner_cost_details_mine_number"
+                    android:layout_marginLeft="20dp"
+                    android:text="J00001052"
+                    android:textSize="14sp"
+                    android:textColor="#333"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#fff"
+                android:paddingTop="18dp">
+
+                <TextView
+                    android:id="@+id/miner_cost_details_failure_cause"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="故障原因："
+                    android:layout_marginLeft="60dp"
+                    android:textSize="14sp"
+                    android:textColor="#333"/>
+                <TextView
+                    android:id="@+id/miner_cost_details_reason"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/miner_cost_details_failure_cause"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="35dp"
+                    android:text="断离线"
+                    android:textSize="14sp"
+                    android:textColor="#333"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_miner_details_descripted"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#fff"
+                android:paddingTop="18dp">
+
+                <TextView
+                    android:id="@+id/miner_cost_details_maintenance_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="维修描述："
+                    android:layout_marginLeft="60dp"
+                    android:textSize="14sp"
+                    android:textColor="#333"/>
+                <TextView
+                    android:id="@+id/miner_cost_details_descriped"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/miner_cost_details_maintenance_description"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="35dp"
+                    android:text="算力板损坏"
+                    android:textSize="14sp"
+                    android:textColor="#333"/>
+
+            </RelativeLayout>
+
+            <View android:layout_width="match_parent"
+                android:layout_height="18dp"
+                android:background="@color/white"/>
+
+            <RelativeLayout
+                android:id="@+id/rl_repair_details_history"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="#fff"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:id="@+id/miner_cost_details_history"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="60dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/jilu_weixiudan_icon"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="历史维修记录"
+                    android:layout_toRightOf="@+id/miner_cost_details_history"
+                    android:textSize="14sp"
+                    android:textColor="@color/sly_text_333333"/>
+
+                <TextView
+                    android:layout_width="6dp"
+                    android:layout_height="11dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/operation_next_step"
+                    android:layout_marginTop="15dp"/>
+            </RelativeLayout>
+
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/tv_miner_details_reminder"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/shape_btn_gradient_3dp"
+            android:gravity="center"
+            android:text="催单"
+            android:textColor="@color/white"
+            android:textSize="16sp"/>
+
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/ll_miner_repair_details_btn"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:orientation="horizontal"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:weightSum="2">
+
+            <TextView
+                android:id="@+id/tv_miner_repair_details_cancel"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:text="取消维修"
+                android:textSize="16sp"
+                android:background="@drawable/shape_btn_gradient_blue"
+                />
+
+            <TextView
+                android:id="@+id/tv_miner_repair_details_confirm"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:text="确认维修"
+                android:textSize="16sp"
+                android:background="@drawable/shape_btn_gradient_blue2"
+                />
+        </LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

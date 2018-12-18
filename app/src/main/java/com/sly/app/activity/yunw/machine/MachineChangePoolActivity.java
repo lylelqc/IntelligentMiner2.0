@@ -115,6 +115,16 @@ public class MachineChangePoolActivity extends BaseActivity implements ICommonVi
         MineCode = SharedPreferencesUtil.getString(this, "MineCode", "None");
         PersonSysCode = SharedPreferencesUtil.getString(this, "PersonSysCode", "None");
 
+        AppUtils.isSpaceEnter(etChangeMine1Pool);
+        AppUtils.isSpaceEnter(etChangeMiner1Code);
+        AppUtils.isSpaceEnter(etChangePwd1);
+        AppUtils.isSpaceEnter(etChangeMine2Pool);
+        AppUtils.isSpaceEnter(etChangeMiner2Code);
+        AppUtils.isSpaceEnter(etChangePwd2);
+        AppUtils.isSpaceEnter(etChangeMine3Pool);
+        AppUtils.isSpaceEnter(etChangeMiner3Code);
+        AppUtils.isSpaceEnter(etChangePwd3);
+
         intitNewsCount();
         toRequest(NetConstant.EventTags.SET_DETAILS_AND_MANAGE_POOL);
 

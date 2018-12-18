@@ -3,7 +3,7 @@ package com.sly.app.model.yunw.machine;
 public class MachineDetailsPicBean {
 
     /**
-     * \"NowCalcForce\":\"0\",
+     * \"CalcForce\":\"0\",
      * \"DataTime\":\"2018\/11\/19 11:25:45\"
      */
     private String CalcForce;
