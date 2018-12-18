@@ -49,6 +49,7 @@
                         android:layout_marginRight="10dp"
                         android:background="@null"
                         android:hint="  请输入矿工号"
+                        android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
                         android:textColorHint="@color/sly_text_bfbfbf"
                         android:textSize="12sp" />
                 </RelativeLayout>
@@ -82,6 +83,7 @@
                         android:layout_marginRight="10dp"
                         android:background="@null"
                         android:hint="  请输入会员号"
+                        android:digits="0123456789.abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
                         android:inputType="number|numberDecimal"
                         android:textColorHint="@color/sly_text_bfbfbf"
                         android:textSize="12sp" />
@@ -130,6 +132,7 @@
                             android:layout_marginRight="10dp"
                             android:background="@null"
                             android:hint="  请输入IP"
+                            android:digits="0123456789."
                             android:textColorHint="@color/sly_text_bfbfbf"
                             android:textSize="12sp" />
                     </RelativeLayout>

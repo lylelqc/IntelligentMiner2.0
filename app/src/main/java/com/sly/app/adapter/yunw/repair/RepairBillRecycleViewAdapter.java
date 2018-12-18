@@ -20,12 +20,14 @@ import butterknife.ButterKnife;
 
 public class RepairBillRecycleViewAdapter extends RecyclerView.Adapter {
 
+    private boolean isHistory;
     private Context mContext;
     private List<RepairBillBean> list;
 
-    public RepairBillRecycleViewAdapter(Context Context, List<RepairBillBean> mResultList) {
+    public RepairBillRecycleViewAdapter(Context Context, List<RepairBillBean> mResultList, boolean history) {
         mContext = Context;
         list = mResultList;
+        isHistory = history;
     }
 
     @Override
@@ -48,6 +50,7 @@ public class RepairBillRecycleViewAdapter extends RecyclerView.Adapter {
             public void onClick(View view) {
                 Bundle bundle = new Bundle();
                 bundle.putString("BillNo", bean.getBillNo());
+                bundle.putBoolean("isHistory", isHistory);
                 AppUtils.goActivity(mContext, RepairBillDetailsActivity.class, bundle);
             }
         });

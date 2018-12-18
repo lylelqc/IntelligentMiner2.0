@@ -118,6 +118,7 @@
                                 android:textSize="12sp"
                                 android:background="@null"
                                 android:hint="  请输入矿工号"
+                                android:digits="0123456789.abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
                                 android:textColorHint="@color/sly_text_bfbfbf"/>
                         </RelativeLayout>
 
@@ -159,6 +160,7 @@
                                 android:textSize="12sp"
                                 android:background="@null"
                                 android:hint="  请输入会员号"
+                                android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
                                 android:inputType="number|numberDecimal"
                                 android:textColorHint="@color/sly_text_bfbfbf"/>
                         </RelativeLayout>

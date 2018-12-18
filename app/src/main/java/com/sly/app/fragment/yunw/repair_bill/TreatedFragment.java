@@ -353,7 +353,7 @@ public class TreatedFragment extends BaseFragment implements IRecyclerViewUi, Sw
     }
 
     public void refreshListView() {
-        RepairBillRecycleViewAdapter mIntermediary = new RepairBillRecycleViewAdapter(mContext, mResultList);
+        RepairBillRecycleViewAdapter mIntermediary = new RepairBillRecycleViewAdapter(mContext, mResultList, false);
         adapter = new HeaderAndFooterRecyclerViewAdapter(mIntermediary);
         recyclerView.setAdapter(adapter);
         if (mResultList.size() >= NetWorkCons.Request.PAGE_NUMBER) {

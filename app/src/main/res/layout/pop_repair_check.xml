@@ -40,6 +40,7 @@
                     android:textSize="12sp"
                     android:background="@null"
                     android:hint="  请输入维修单号"
+                    android:inputType="number"
                     android:textColorHint="@color/sly_text_bfbfbf"/>
             </RelativeLayout>
 

@@ -165,6 +165,7 @@
                             android:layout_marginRight="10dp"
                             android:background="@null"
                             android:hint="  请输入起始IP"
+                            android:digits="0123456789."
                             android:textColorHint="@color/sly_text_bfbfbf"
                             android:textSize="12sp" />
 
@@ -194,6 +195,7 @@
                             android:layout_marginRight="10dp"
                             android:background="@null"
                             android:hint="  请输入结束IP"
+                            android:digits="0123456789."
                             android:textColorHint="@color/sly_text_bfbfbf"
                             android:textSize="12sp" />
                     </LinearLayout>

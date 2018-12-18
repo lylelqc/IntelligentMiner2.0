@@ -109,6 +109,8 @@ public class NetConstant {
 
     public static final String GET_YUNW_MACHINE_LIST_STATUS = "SlyTwo.049";
 
+    public static final String GET_YUNW_REPAIR_BILL_BY_MACHINE = "SlyTwo.050";
+
 
     /*矿场主2.0*/
     public static final String GET_MASTER_MINE_LIST = "SlyTwo.101";
@@ -432,6 +434,8 @@ public class NetConstant {
         public static final int GET_MINER_REMINDER = BEGIN_EVENT + 153; // 查看矿工催单
 
         public static final int GET_MINER_REPAIR_BILL_BY_MACHINE = BEGIN_EVENT + 154; // 按照矿机查看维修单
+
+        public static final int GET_YUNW_REPAIR_BILL_BY_MACHINE = BEGIN_EVENT + 155; // 运维按照矿机查看维修单
 
 
 

@@ -83,7 +83,7 @@
     <string name="repair_form">维修报单</string>
     <string name="repair_deal">已解决</string>
     <string name="repair_refuse_time">拒绝时间</string>
-    <string name="repair_history">历史维修记录</string>
+    <string name="repair_history">维修记录</string>
     <string name="machine_list">矿机列表</string>
     <string name="machine_start">启用</string>
     <string name="machine_stop">停机</string>

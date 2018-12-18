@@ -24,6 +24,7 @@ import com.sly.app.comm.NetConstant;
 import com.sly.app.fragment.BaseFragment;
 import com.sly.app.fragment.Sly2MasterFragment;
 import com.sly.app.fragment.Sly2MinerFragment;
+import com.sly.app.fragment.Sly2YunwFragment;
 import com.sly.app.http.NetWorkCons;
 import com.sly.app.model.PostResult;
 import com.sly.app.model.sly.ReturnBean;
@@ -70,7 +71,7 @@ public class SlyHostingFragment2 extends BaseFragment implements ICommonViewUi {
     public static String mContent = "???";
     private Sly2MinerFragment mMinerFragment;
     private Sly2MasterFragment mMasterFragment;
-    private HostingYunwFragment mHostingYunwFragment;
+    private Sly2YunwFragment mYunwFragment;
     private FragmentTransaction ft1;
     private FragmentTransaction ft2;
     private FragmentTransaction ft3;
@@ -163,9 +164,9 @@ public class SlyHostingFragment2 extends BaseFragment implements ICommonViewUi {
             }
         }
 
-        if (mHostingYunwFragment == null) {
-            mHostingYunwFragment = new HostingYunwFragment();
-            ft3.add(R.id.fl_hosting_yunw, mHostingYunwFragment).commitAllowingStateLoss();
+        if (mYunwFragment == null) {
+            mYunwFragment = new Sly2YunwFragment();
+            ft3.add(R.id.fl_hosting_yunw, mYunwFragment).commitAllowingStateLoss();
         }
 
         if (!"None".equals(mineType)) {
@@ -224,9 +225,9 @@ public class SlyHostingFragment2 extends BaseFragment implements ICommonViewUi {
                 break;
             case 2:
 
-                if (mHostingYunwFragment == null) {
-                    mHostingYunwFragment = new HostingYunwFragment();
-                    ft3.add(R.id.fl_hosting_yunw, mHostingYunwFragment).commitAllowingStateLoss();
+                if (mYunwFragment == null) {
+                    mYunwFragment = new Sly2YunwFragment();
+                    ft3.add(R.id.fl_hosting_yunw, mYunwFragment).commitAllowingStateLoss();
                 }
                 flHostingMiner.setVisibility(View.GONE);
                 flHostingMinerMaster.setVisibility(View.GONE);
@@ -314,8 +315,7 @@ public class SlyHostingFragment2 extends BaseFragment implements ICommonViewUi {
                         LoginType = SharedPreferencesUtil.getString(mContext, "LoginType", "None");
                     }
                     showFragment(0, false);
-                    EventBus.getDefault().post(new PostResult(EventBusTags.UPDATE_HOSTING_MINER_DATA));
-                    toRequest(NetConstant.EventTags.GET_MINER_NEW_COUNT);
+                    EventBus.getDefault().post(new PostResult(EventBusTags.SET_MINER_INFO));
                     mPopupWindow.dismiss();
                 }
             });
@@ -332,7 +332,6 @@ public class SlyHostingFragment2 extends BaseFragment implements ICommonViewUi {
                         }
                         showFragment(1, false);
                         EventBus.getDefault().post(new PostResult(EventBusTags.CLICK_MINE_MASTER));
-                        toRequest(NetConstant.EventTags.GET_MASTER_NEW_COUNT);
                     } else {
                         ToastUtils.showToast(mContext.getResources().getString(R.string.no_permission));
                     }
@@ -346,9 +345,8 @@ public class SlyHostingFragment2 extends BaseFragment implements ICommonViewUi {
                     if (!AppUtils.isBlank(PersonSysCode) && !"None".equals(PersonSysCode)) {
                         tvUserType.setText(mContext.getResources().getString(R.string.user_type_operation));
                         SharedPreferencesUtil.putString(mContext, "mineType", "Operation");
-                        EventBus.getDefault().post(new PostResult(EventBusTags.UPDATE_HOSTING_OPERATION_DATA));
+                        EventBus.getDefault().post(new PostResult(EventBusTags.SET_OPERATION_INFO));
                         showFragment(2, false);
-                        toRequest(NetConstant.EventTags.GET_YUNW_NEWS_COUNT);
                     } else {
                         ToastUtils.showToast(mContext.getResources().getString(R.string.no_permission));
                     }

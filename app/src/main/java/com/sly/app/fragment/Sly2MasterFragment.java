@@ -284,6 +284,10 @@ public class Sly2MasterFragment extends BaseFragment implements ICommonViewUi,
                 toRequest(NetConstant.EventTags.GET_MASTER_ALL_SUANLI);
                 toRequest(NetConstant.EventTags.GET_MASTER_24_SUANLI);
                 toRequest(NetConstant.EventTags.GET_MASTER_30_SUANLI);
+            }else{
+                tvMasterAllFree.setText("0.00");
+                tvMasterAllpowerConsumption.setText("0.00");
+                tvMasterAllRunRate.setText("0.00");
             }
         } else if (eventTag == NetConstant.EventTags.GET_MASTER_ALL_DATA) {
             masterAllDataList =
@@ -361,6 +365,9 @@ public class Sly2MasterFragment extends BaseFragment implements ICommonViewUi,
                 }
                 toRequest(NetConstant.EventTags.GET_MASTER_ALL_DATA);
                 toRequest(NetConstant.EventTags.GET_MASTER_NUM_RATE);
+                toRequest(NetConstant.EventTags.GET_MASTER_ALL_SUANLI);
+                toRequest(NetConstant.EventTags.GET_MASTER_24_SUANLI);
+                toRequest(NetConstant.EventTags.GET_MASTER_30_SUANLI);
             }
         }
     }

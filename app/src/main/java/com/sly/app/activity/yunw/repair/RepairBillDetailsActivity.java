@@ -130,6 +130,7 @@ RepairBillDetailsActivity extends BaseActivity implements ICommonViewUi {
     private String remark = "";
     private String machineSysCode = "";
     private String reason = "";
+    private boolean isHistory;
 
     @Override
     protected boolean isBindEventBusHere() {
@@ -149,6 +150,11 @@ RepairBillDetailsActivity extends BaseActivity implements ICommonViewUi {
         // 把当前activty加入压入栈中
         ActivityHelper.getInstance().pushOneActivity(this);
         BillNo = getIntent().getExtras().getString("BillNo");
+        isHistory = getIntent().getExtras().getBoolean("isHistory");
+
+        if(isHistory){
+            llDetailsHistory.setVisibility(View.GONE);
+        }
 
         User = SharedPreferencesUtil.getString(this, "User", "None");
         Token = SharedPreferencesUtil.getString(this, "Token", "None");

@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
@@ -252,6 +253,8 @@ public class MasterAllPowerActivity extends BaseActivity implements ICommonViewU
         Button btnSelCancel = dialog.findViewById(R.id.repair_date_sel_cancel);
         Button btnSelOk = dialog.findViewById(R.id.repair_date_sel_ok);
         picker = dialog.findViewById(R.id.date_picker);
+
+        hideDay(picker);
         //设置分割线颜色
         setDatePickerDividerColor();
 
@@ -274,6 +277,43 @@ public class MasterAllPowerActivity extends BaseActivity implements ICommonViewU
                 toRequest(NetConstant.EventTags.GET_MASTER_MONTH_POWER);
             }
         });
+    }
+
+    /**
+     * 隐藏 日
+     * @param mDatePicker
+     */
+    private void hideDay(DatePicker mDatePicker) {
+        try {
+            /* 处理android5.0以上的特殊情况 */
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                int daySpinnerId = Resources.getSystem().getIdentifier("day", "id", "android");
+                if (daySpinnerId != 0) {
+                    View daySpinner = mDatePicker.findViewById(daySpinnerId);
+                    if (daySpinner != null) {
+                        daySpinner.setVisibility(View.GONE);
+                    }
+                }
+            } else {
+                Field[] datePickerfFields = mDatePicker.getClass().getDeclaredFields();
+                for (Field datePickerField : datePickerfFields) {
+                    if ("mDaySpinner".equals(datePickerField.getName()) || ("mDayPicker").equals(datePickerField.getName())) {
+                        datePickerField.setAccessible(true);
+                        Object dayPicker = new Object();
+                        try {
+                            dayPicker = datePickerField.get(mDatePicker);
+                        } catch (IllegalAccessException e) {
+                            e.printStackTrace();
+                        } catch (IllegalArgumentException e) {
+                            e.printStackTrace();
+                        }
+                        ((View) dayPicker).setVisibility(View.GONE);
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**

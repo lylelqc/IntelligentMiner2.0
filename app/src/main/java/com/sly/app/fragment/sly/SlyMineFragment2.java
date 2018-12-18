@@ -1,11 +1,7 @@
 package com.sly.app.fragment.sly;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -18,29 +14,20 @@ import com.sly.app.R;
 import com.sly.app.activity.device.MinersDeviceActivity;
 import com.sly.app.activity.mine.LoginActivity;
 import com.sly.app.activity.sly.mine.IdCardActivity;
-import com.sly.app.activity.sly.mine.SlyAttendanceActivity;
-import com.sly.app.activity.sly.mine.SlyMachineManagerActivity;
-import com.sly.app.activity.sly.mine.SlyMachineMonitorActivity;
-import com.sly.app.activity.sly.mine.SlyMachineOnlineActivity;
 import com.sly.app.activity.sly.mine.SlyMineBalanceActivity;
 import com.sly.app.activity.sly.mine.SlyNoticeActivity;
-import com.sly.app.activity.sly.mine.SlyRepairDocActivity;
 import com.sly.app.activity.sly.mine.SlySettingActivity;
 import com.sly.app.activity.sly.mine.UserInfoEditActivity;
-import com.sly.app.base.EventBusTags;
-import com.sly.app.comm.BusEvent;
+import com.sly.app.comm.EventBusTags;
 import com.sly.app.fragment.BaseFragment;
 import com.sly.app.http.NetWorkCons;
 import com.sly.app.http.type1.HttpClient;
 import com.sly.app.http.type1.HttpResponseHandler;
 import com.sly.app.model.PostResult;
 import com.sly.app.model.ReturnBean;
-import com.sly.app.model.sly.AllDMinerMasterTableBean;
-import com.sly.app.model.sly.AllDMinerTableBean;
 import com.sly.app.model.sly.KgFullInfoBean;
 import com.sly.app.model.sly.MinerMasterInfoBean;
 import com.sly.app.model.sly.YwFullInfoBean;
-import com.sly.app.model.sly.balance.SlyReturnListBean;
 import com.sly.app.utils.ApiSIgnUtil;
 import com.sly.app.utils.AppUtils;
 import com.sly.app.utils.CommonUtil2;
@@ -56,14 +43,12 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 import cn.jpush.android.api.JPushInterface;
-import de.greenrobot.event.EventBus;
 import okhttp3.Headers;
 import okhttp3.Request;
 import vip.devkit.library.Logcat;
@@ -168,14 +153,6 @@ public class SlyMineFragment2 extends BaseFragment {
 
     @Override
     protected void onUserVisible() {
-        User = SharedPreferencesUtil.getString(mContext, "User");
-        Token = SharedPreferencesUtil.getString(mContext, "Token");
-        FrSysCode = SharedPreferencesUtil.getString(mContext, "FrSysCode");
-        FMasterCode = SharedPreferencesUtil.getString(mContext, "FMasterCode");
-        PersonSysCode = SharedPreferencesUtil.getString(mContext,"PersonSysCode");
-        Key = SharedPreferencesUtil.getString(mContext, "Key");
-        LoginType = SharedPreferencesUtil.getString(mContext, "LoginType", "None");
-
         // 设置状态栏颜色
         AppUtils.setStatusBarColor(getActivity(), getResources().getColor(R.color.colorPrimary));
     }
@@ -198,6 +175,7 @@ public class SlyMineFragment2 extends BaseFragment {
         SharedPreferencesUtil.putString(getActivity(), "MainFlag", "01");
         mineType = SharedPreferencesUtil.getString(mContext, "mineType");
 
+        isUserLoginInfo();
         AppUtils.setStatusBarColor(getActivity(), getResources().getColor(R.color.colorPrimary));
 
     }
@@ -221,6 +199,44 @@ public class SlyMineFragment2 extends BaseFragment {
                 eventType = postResult.getTag();
             }
         }
+        else if(EventBusTags.SET_MINER_INFO.equals(postResult.getTag())
+                || EventBusTags.CLICK_MINE_MASTER.equals(postResult.getTag())
+                || EventBusTags.SET_OPERATION_INFO.equals(postResult.getTag())){
+            isUserLoginInfo();
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(mineType != null && !"None".equals(mineType)){
+            showMenuForRole();
+        }else{
+            rlBalance.setVisibility(View.VISIBLE);
+            rlTongji.setVisibility(View.VISIBLE);
+            rlSmrenzheng.setVisibility(View.VISIBLE);
+            rlTobeManager.setVisibility(View.GONE);
+            rlOnline.setVisibility(View.GONE);
+            rlOffline.setVisibility(View.GONE);
+            rlShebeiManager.setVisibility(View.GONE);
+            rlWeixiudangManager.setVisibility(View.GONE);
+            rlAttendance.setVisibility(View.GONE);
+        }
+
+    }
+
+    private void isUserLoginInfo(){
+        if (CommonUtils.isBlank(User) || CommonUtils.isBlank(Token)) {
+
+        } else {
+            String SysCode = "";
+            if(LoginType.equals("Miner")){
+                SysCode = FrSysCode;
+            }else if(LoginType.equals("MinerMaster")){
+                SysCode = FMasterCode;
+            }
+            getUserInfo(mContext, LoginType, User, SysCode, Key, Token);//更新数据
+        }
     }
 
     @OnClick({R.id.shezhi, R.id.msg, R.id.rl_member, R.id.rl_balance,
@@ -234,23 +250,16 @@ public class SlyMineFragment2 extends BaseFragment {
             startActivity(intent);
         } else {
             switch (view.getId()) {
-                case R.id.mine:
-                case R.id.rl_spinner:
-//                    showPopupWindow();
-                    break;
                 case R.id.shezhi:
                     intent.setClass(getActivity(), SlySettingActivity.class);
                     startActivity(intent);
                     break;
                 case R.id.rl_my_shebei:
-//                    intent.setClass(getActivity(), MyMachineActivity.class);
-//                    startActivity(intent);
                     break;
                 case R.id.msg:
                     CommonUtil2.goActivity(mContext,SlyNoticeActivity.class);
                     break;
                 case R.id.rl_member:
-                    //startActivityWithoutExtras(ShareRecordActivity.class);
                     intent.setClass(getActivity(), UserInfoEditActivity.class);
                     startActivity(intent);
                     break;
@@ -258,53 +267,15 @@ public class SlyMineFragment2 extends BaseFragment {
                     intent.setClass(getActivity(), SlyMineBalanceActivity.class);
                     startActivity(intent);
                     break;
-                case R.id.rl_weixiu:
-//                    intent.setClass(getActivity(), ReplareTaketActivity.class);
-//                    startActivity(intent);
-                    break;
                 case R.id.rl_tongji:
                     intent.setClass(getActivity(), MinersDeviceActivity.class);
                     startActivity(intent);
                     break;
                 case R.id.rl_smrenzheng:
                     checkRzStatus(02);
-//                    intent.setClass(getActivity(), IdCardActivity.class);
-//                    /**实名认证**/
-//                    intent.putExtra("tag",02);
-//                    startActivity(intent);
                     break;
                 case R.id.rl_tobe_manager:
                     toRzIdStatus();
-//                    checkRzStatus(01);
-//                    intent.setClass(getActivity(), IdCardActivity.class);
-//                    /**成为矿场主**/
-//                    intent.putExtra("tag",01);
-//                    startActivity(intent);
-                    break;
-//                case R.id.rl_shebeicount:
-//                    break;
-//                case R.id.rl_online:
-//                    intent.setClass(getActivity(), SlyMachineOnlineActivity.class);
-//                    startActivity(intent);
-//                    break;
-//                case R.id.rl_offline:
-//                    break;
-//                case R.id.rl_shebeiManager:
-//                    intent.setClass(getActivity(), SlyMachineManagerActivity.class);
-//                    startActivity(intent);
-//                    break;
-//                case R.id.rl_weixiudanManager:
-//                    intent.setClass(getActivity(), SlyRepairDocActivity.class);
-//                    startActivity(intent);
-//                    break;
-//                case R.id.rl_monitor:
-//                    intent.setClass(getActivity(), SlyMachineMonitorActivity.class);
-//                    startActivity(intent);
-//                    break;
-//                case R.id.rl_attendance:
-//                    intent.setClass(getActivity(), SlyAttendanceActivity.class);
-//                    startActivity(intent);
-//                    break;
             }
         }
 
@@ -407,57 +378,6 @@ public class SlyMineFragment2 extends BaseFragment {
         });
     }
 
-    // 获取设备总数
-    private void getMachineCount() {
-        Map map = new HashMap();
-        map.put("Token", Token);
-        map.put("LoginType", LoginType);
-        map.put("User", User);
-        if (LoginType.equals("Miner")) {
-            map.put("minerSysCode", FrSysCode);
-            map.put("Rounter", "Miner.011");
-        } else {
-            map.put("mineMasterCode", FMasterCode);
-            map.put("Rounter", "MineMaster.015");
-        }
-        Map<String, String> mapJson = new HashMap<>();
-        mapJson.putAll(map);
-        mapJson.put("Sign", EncryptUtil.MD5(ApiSIgnUtil.init(getActivity()).getSign(map, Key)));
-        final String json = CommonUtils.GsonToJson(mapJson);
-        HttpClient.postJson(NetWorkCons.BASE_URL, json, new HttpResponseHandler() {
-            @Override
-            public void onSuccess(int statusCode, String content) {
-                super.onSuccess(statusCode, content);
-                try {
-                    LogCatW(NetWorkCons.BASE_URL + this, json, statusCode, content);
-                    SlyReturnListBean mReturnBean = JSON.parseObject(CommonUtils.proStr(content), SlyReturnListBean.class);
-
-                    if (mReturnBean.getStatus().equals("1") && mReturnBean.getData().getRows().size() > 0) {
-                        if (LoginType.equals("Miner")) {
-                            List<AllDMinerTableBean> chartList = JSON.parseArray(mReturnBean.getData().getRows().toString(), AllDMinerTableBean.class);
-                            Logcat.e(chartList.toString());
-                            AllDMinerTableBean allDataTableBean = chartList.get(0);
-                            tvShebeiCount.setText(allDataTableBean.getMachineCount() + "台");
-
-                        } else {
-                            List<AllDMinerMasterTableBean> chartList = JSON.parseArray(mReturnBean.getData().getRows().toString(), AllDMinerMasterTableBean.class);
-                            Logcat.e(chartList.toString());
-                            AllDMinerMasterTableBean allDataTableBean = chartList.get(0);
-                            tvShebeiCount.setText(allDataTableBean.getMachineCount() + "台");
-                        }
-
-                    } else {
-//                            ToastUtils.showToast(mReturnBean.getMsg());
-                    }
-                } catch (Exception e) {
-                    ToastUtils.showToast(e.toString());
-                }
-            }
-
-
-        });
-    }
-
     // 查看身份认证状态
     private void checkRzStatus(final int tag) {
         Map map = new HashMap();
@@ -503,34 +423,6 @@ public class SlyMineFragment2 extends BaseFragment {
                                         intent.putExtra("tag", tag);
                                         startActivity(intent);
                                     }
-                                    /*switch (Integer.valueOf(data)) {
-                                        case 0:
-                                            if ("00".equals(data)) {
-                                                ToastUtils.showToast("您已认证成为矿场主，请重新登录");
-                                                SharedPreferencesUtil.clearString(mContext, "Discount");
-                                                SharedPreferencesUtil.putString(mContext, "Token", null);
-                                                SharedPreferencesUtil.putString(mContext, "MemberCode", null);
-                                                CommonUtil2.goActivity(mContext, LoginActivity.class);
-                                            } else {
-                                                intent.setClass(mContext, IdCardActivity.class);
-                                                intent.putExtra("tag", tag);
-                                                startActivity(intent);
-                                            }
-                                            break;
-                                        case 01:
-                                            ToastUtils.showToast("成为矿场主认证审核中，请耐心等候");
-                                            break;
-                                        case 02:
-                                            intent.setClass(mContext, IdCardActivity.class);
-                                            intent.putExtra("tag", tag);
-                                            startActivity(intent);
-                                            break;
-                                        case 03:
-                                            intent.setClass(mContext, IdCardActivity.class);
-                                            intent.putExtra("tag", tag);
-                                            startActivity(intent);
-                                            break;
-                                    }*/
                                 } else if (LoginType.equals("Miner") || LoginType.equals("MinerMaster")) {
                                     ReturnBean returnBean = JSON.parseObject(CommonUtils.proStr(content), ReturnBean.class);
                                     if (returnBean.getStatus().equals("1")) {
@@ -542,45 +434,7 @@ public class SlyMineFragment2 extends BaseFragment {
                                             ToastUtils.showToast("您的实名认证还在审核中哦，请耐心等候");
                                         }
                                     }
-//                                        status = managerRzStatusBeans.get(0).getMine72_AuditStatusCode();
-//                                        SharedPreferencesUtil.putString(mContext, "IdCardName", managerRzStatusBeans.get(0).getMine72_Name());
-//
-//                                        if ("Waitting".equals(status.trim())) {
-//                                            ToastUtils.showToast("您的实名认证还在审核中哦，请耐心等候");
-//                                        } else if ("Pass".equals(status.trim())) {
-//                                            ToastUtils.showToast("您的实名认证已经审核通过，无需重复认证");
-////                                            CommonUtil2.goActivity(mContext,WithdrawActivity.class);
-//                                        } else if ("Back".equals(status.trim()) || "Refuse".equals(status.trim())) {
-//                                            ToastUtils.showToast("您的实名认证没有通过哦，请重新申请");
-//                                            intent.setClass(mContext, IdCardActivity.class);
-//                                            intent.putExtra("tag", tag);
-//                                            startActivity(intent);
-//                                        }
-                                } /*else if (LoginType.equals("MinerMaster")) {
-                                    SlyReturnListBean slyReturnListBean = JSON.parseObject(CommonUtils.proStr(content), SlyReturnListBean.class);
-                                    List<ManagerRzStatusBean> managerRzStatusBeans = JSON.parseArray(slyReturnListBean.getData().getRows().toString(), ManagerRzStatusBean.class);
-                                    String statusName = "";
-                                    if (managerRzStatusBeans.size() == 0) {
-                                        intent.setClass(mContext, IdCardActivity.class);
-                                        intent.putExtra("tag", tag);
-                                        startActivity(intent);
-                                    } else {
-                                        statusName = managerRzStatusBeans.get(0).getMine60_AuditStatusName();
-                                        SharedPreferencesUtil.putString(mContext, "IdCardName", managerRzStatusBeans.get(0).getMine58_Name());
-
-                                        if ("等待审核".equals(statusName)) {
-                                            ToastUtils.showToast("您的实名认证还在审核中哦，请耐心等待");
-                                        } else if ("审核通过".equals(statusName)) {
-                                            ToastUtils.showToast("您的实名认证已经审核通过，无需重复认证");
-//                                            startActivityWithoutExtras(WithdrawActivity.class);
-                                        } else if ("审核拒绝".equals(statusName) || "发回修改".equals(statusName)) {
-                                            ToastUtils.showToast("您的实名认证没有通过哦，请重新申请");
-                                            intent.setClass(mContext, IdCardActivity.class);
-                                            intent.putExtra("tag", tag);
-                                            startActivity(intent);
-                                        }
-                                    }
-                                }*/
+                                }
                             } else {
                                 ToastUtils.showToast(jsonObject.optString("msg"));
                             }
@@ -677,7 +531,7 @@ public class SlyMineFragment2 extends BaseFragment {
         }
 
         map.put("Token", token);
-        map.put("LoginType", loginType);
+        map.put("LoginType", "None");
         map.put("Rounter", mRounter);
         map.put("User", user);
 
@@ -790,123 +644,7 @@ public class SlyMineFragment2 extends BaseFragment {
         }else{
             tvMainMsg.setText("");
             showMenuForRole();
-        }
-    }
-
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        mineType = SharedPreferencesUtil.getString(mContext,"mineType","None");
-        if (CommonUtils.isBlank(User) || CommonUtils.isBlank(Token)
-                || ("None").equals(User) || ("None").equals(Token)) {
-            mine.setText("我的");
-            tvXiala.setVisibility(View.GONE);
-        } else {
-            tvXiala.setVisibility(View.VISIBLE);
-            String SysCode = "";
-            if(mineType.equals("Miner")){
-                SysCode = FrSysCode;
-                mine.setText("矿工");
-            }else if(mineType.equals("MinerMaster")){
-                SysCode = FMasterCode;
-                mine.setText("矿场主");
-            }else{
-                mine.setText("运维");
-            }
-            getUserInfo(mContext, LoginType, User, SysCode, Key, Token);//更新数据
-        }
-        if(mineType != null && !"None".equals(mineType)){
-            showMenuForRole();
-        }else{
-//            rlMyShebei.setVisibility(View.GONE);
-            rlBalance.setVisibility(View.VISIBLE);
-//            rlWeixiu.setVisibility(View.VISIBLE);
-            rlTongji.setVisibility(View.VISIBLE);
-//            rlShebeicount.setVisibility(View.VISIBLE);
-            rlSmrenzheng.setVisibility(View.VISIBLE);
-            rlTobeManager.setVisibility(View.GONE);
-            rlOnline.setVisibility(View.GONE);
-            rlOffline.setVisibility(View.GONE);
-            rlShebeiManager.setVisibility(View.GONE);
-            rlWeixiudangManager.setVisibility(View.GONE);
-            rlAttendance.setVisibility(View.GONE);
-//            rlMonitor.setVisibility(View.GONE);
-        }
-        getNewsCount();
-    }
-
-    private void showPopupWindow(){
-            if(mPopupWindow == null){
-            LayoutInflater inflater = LayoutInflater.from(getActivity());
-            View contentView = inflater.inflate(R.layout.mine_popupwindow, null,false);
-
-            mPopupWindow = new PopupWindow(contentView, RelativeLayout.LayoutParams.WRAP_CONTENT,
-                    RelativeLayout.LayoutParams.WRAP_CONTENT, true);
-            mPopupWindow.showAsDropDown(rlSpinner, 10, 0);
-            TextView miner = contentView.findViewById(R.id.miner);
-            TextView mineMaster = contentView.findViewById(R.id.mineMaster);
-            TextView operation = contentView.findViewById(R.id.operation);
-
-            miner.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Log.e(TAG, "FrSysCode: ");
-                    mine.setText("矿工");
-                    SharedPreferencesUtil.putString(mContext, "LoginType", "Miner");
-                    SharedPreferencesUtil.putString(mContext, "mineType", "Miner");
-                    if(!LoginType.equals("Miner")){
-                        LoginType = SharedPreferencesUtil.getString(mContext, "LoginType","None");
-                    }
-                    getUserInfo(mContext, LoginType, User, FrSysCode, Key, Token);//更新数据
-                    EventBus.getDefault().post(new PostResult(BusEvent.UPDATE_HOSTING_MINER_DATA));
-                    showMenuForRole();
-                    getNewsCount();
-                }
-            });
-
-            mineMaster.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Log.d(TAG, "FMasterCode: ");
-                    if(FMasterCode != null && !FMasterCode.isEmpty()){
-                        mine.setText("矿场主");
-                        SharedPreferencesUtil.putString(mContext, "LoginType", "MinerMaster");
-                        SharedPreferencesUtil.putString(mContext, "mineType", "MinerMaster");
-                        if(!LoginType.equals("MinerMaster")){
-                            LoginType = SharedPreferencesUtil.getString(mContext, "LoginType","None");
-                        }
-                        getUserInfo(mContext, LoginType, User, FMasterCode, Key, Token);//更新数据
-                        EventBus.getDefault().post(new PostResult(BusEvent.UPDATE_HOSTING_MASTER_DATA));
-                        showMenuForRole();
-                        getNewsCount();
-                    }
-                    else{
-                        ToastUtils.showToast("抱歉！您当前没有此权限");
-                    }
-                }
-            });
-
-            operation.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Log.e(TAG, "PersonSysCode: ");
-                    if(PersonSysCode != null && !PersonSysCode.isEmpty()){
-                        mine.setText("运维");
-                        SharedPreferencesUtil.putString(mContext, "mineType", "Operation");
-                        String SysCode = LoginType.equals("Miner") ? FrSysCode : FMasterCode;
-                        getUserInfo(mContext, LoginType, User, SysCode, Key, Token);//更新数据
-                        EventBus.getDefault().post(new PostResult(BusEvent.UPDATE_HOSTING_OPERATION_DATA));
-                        showMenuForRole();
-                        getNewsCount();
-                    }
-                    else{
-                        ToastUtils.showToast("抱歉！您当前没有此权限");
-                    }
-                }
-            });
-        }else{
-            mPopupWindow.showAsDropDown(rlSpinner, 10, 0);
+            getNewsCount();
         }
     }
 
